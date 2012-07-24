@@ -51,5 +51,6 @@ end
 #  name                   :string(255)
 #  location               :string(255)
 #  about                  :text
+#  admin                  :boolean         default(FALSE)
 #
 

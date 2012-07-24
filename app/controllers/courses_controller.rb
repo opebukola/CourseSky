@@ -1,6 +1,10 @@
 class CoursesController < ApplicationController
+
+	before_filter :authenticate_user!, except: [:index, :show]
+	before_filter :correct_user, only: [:edit, :update, :destroy, :manage, :publish]
+
 	def index
-		@courses = Course.published.desc
+		@courses = Course.featured.published.desc
 	end
 
 	def new
@@ -50,4 +54,14 @@ class CoursesController < ApplicationController
 		@course.toggle!(:published)
 		redirect_to :back, notice: "Course Published!"
 	end
+
+	private
+
+		def correct_user
+			@course = Course.find(params[:id])
+			unless current_user == @course.user
+				flash[:error] = "You are not authorized to perform this action"
+				redirect_to @course
+			end
+		end
 end

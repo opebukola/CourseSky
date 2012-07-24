@@ -1,0 +1,38 @@
+<%= provide(:title, 'Your Dashboard') %>
+
+<h2> Dashboard </h2>
+<div>
+<%= image_tag @user.avatar_url(:profile) %><br />
+<% if @user.name %>
+		<%= link_to @user.name, user_path(@user) %>
+<% else %>
+		<%= link_to @user.username, user_path(@user) %>
+<% end %>
+</div>
+<hr />
+
+<ul class="nav nav-tabs">
+	<li><a href="#learning" data-toggle="tab">Learning</a></li>
+	<li><a href="#teaching" data-toggle="tab">Teaching</a></li>
+	<li><a href="#skills" data-toggle="tab">Skills</a></li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="learning">
+		<h3> Currently enrolled in the following courses: </h3><br />
+		<div>
+			[ENROLLED COURSES]
+		</div>
+	</div>
+	<div class="tab-pane" id="teaching">
+		<h3> Currently Teaching:</h3><br />
+		<% @user.courses.each do |course| %>
+			<ul>
+				<li><%= link_to course.title, manage_course_path(course) %></li>
+			</ul>
+		<% end %>
+	</div>
+	<div class="tab-pane" id="skills">
+		List of all my mad skillz!
+	</div>
+</div>

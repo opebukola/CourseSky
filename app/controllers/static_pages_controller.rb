@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
 	def home
-		@courses = Course.published.desc
+		@courses = Course.featured.published.desc
 	end
 
 	def about

@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
-  attr_accessible :cover_image, :description, :published, :title
+  attr_accessible :cover_image, :description, :published, :title,
+                  :featured
 
   belongs_to :user
 
@@ -11,6 +12,7 @@ class Course < ActiveRecord::Base
 
   scope :desc, order: "created_at desc"
   scope :published, where(published: true)
+  scope :featured, where(featured: true)
 
   #status methods
   def status
@@ -33,5 +35,6 @@ end
 #  user_id     :integer
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  featured    :boolean         default(FALSE)
 #
 
