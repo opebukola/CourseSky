@@ -1,0 +1,8 @@
+<%= simple_form_for @course do |f| %>
+	<%= f.input :title, label: 'Provide a title for your course' %>
+	<%= f.input :description, label: 'Write a short description of what students will learn' %>
+	<%= f.input :cover_image, label: 'Upload a cover image for your course' %>
+	<h4> What type of course is this? </h4>
+	"[CATEGORY CHOICES]"<br />
+	<%= f.button :submit, "Save Course Draft" %>
+<% end %>

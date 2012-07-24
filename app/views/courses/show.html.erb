@@ -1,0 +1,8 @@
+<%= provide(:title, @course.title) %>
+
+<%= render 'course_info' %>
+<p>
+	<h3> Lessons In This Course: </h3><br />
+</p>
+<hr />
+<%= link_to 'Course Admin', manage_course_path(@course), class: "btn btn-primary" if @course.user == current_user %>

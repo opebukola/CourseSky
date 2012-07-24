@@ -1,0 +1,20 @@
+<div class="cover-image">
+	<%= image_tag @course.cover_image_url(:box) %>
+</div>
+<h3><%= link_to @course.title, course_path %></h3> By <%= @course.user.username %>
+<p>
+	<h4>About This Course</h4>
+	<%= @course.description %>
+</p>
+<p>
+	<strong>Categories:</strong> <br />
+</p>
+
+
+ENROLLMENT FORM
+<p>
+	<h4> People: </h4>
+	This course has "X" <%= link_to "students", '#' %>
+	<br />
+</p>
+<hr />

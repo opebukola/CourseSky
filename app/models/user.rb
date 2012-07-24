@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  has_many :courses
 
   #uplaod avatar
   mount_uploader :avatar, AvatarUploader

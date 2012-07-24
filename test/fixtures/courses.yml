@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  cover_image: MyString
+  description: MyText
+  published: false
+  user_id: 1
+
+two:
+  title: MyString
+  cover_image: MyString
+  description: MyText
+  published: false
+  user_id: 1
+# == Schema Information
+#
+# Table name: courses
+#
+#  id          :integer         not null, primary key
+#  title       :string(255)
+#  cover_image :string(255)
+#  description :text
+#  published   :boolean         default(FALSE)
+#  user_id     :integer
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#
+
