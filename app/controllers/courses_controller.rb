@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:index, :show]
 	before_filter :correct_user, only: [:edit, :update, :destroy, :manage, :publish]
+	before_filter :admin_user, only: [:admin, :feature]
 
 	def index
 		@courses = Course.featured.published.desc
@@ -33,8 +34,8 @@ class CoursesController < ApplicationController
 
 	def update
 		@course = Course.find(params[:id])
-		if @course.update_attributes[params[:course]]
-			render @course, notice: "Course Updated!"
+		if @course.update_attributes(params[:course])
+			redirect_to @course, notice: "Course Updated!"
 		else
 			render 'edit'
 		end
@@ -55,11 +56,21 @@ class CoursesController < ApplicationController
 		redirect_to :back, notice: "Course Published!"
 	end
 
+	def admin
+		@courses = Course.published.desc
+	end
+
+	def feature
+		@course = Course.find(params[:id])
+		@course.toggle!(:featured)
+		redirect_to :back, notice: "Course is now feautured!"
+	end
+
 	private
 
 		def correct_user
 			@course = Course.find(params[:id])
-			unless current_user == @course.user
+			unless current_user == @course.user || current_user.admin?
 				flash[:error] = "You are not authorized to perform this action"
 				redirect_to @course
 			end

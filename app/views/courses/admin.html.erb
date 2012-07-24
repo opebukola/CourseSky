@@ -1,0 +1,22 @@
+<%= provide(:title, 'Course Admin Area') %>
+
+<table border="1">
+	<tr>
+		<th> Course Name </th>
+		<th> Course User </th>
+		<th> Course Status </th>
+		<th> Change Featured Status </th>
+		<th> Delete Course </th>
+	</tr>
+	<tr>
+		<% @courses.each do |course| %>
+		<td> <%= course.title %> </td>
+		<td> <%= course.user.username %> </td>
+		<td> <%= course.feature_status %></td>
+		<td> <%= link_to "Change Featured Status", feature_course_path(course), method: :put %></td>
+		<td> <%= link_to "Delete", course_path(course),
+																method: :delete,
+																data: {confirm: 'Are you sure?'} %></td>
+	</tr>
+	<% end %>
+</table>

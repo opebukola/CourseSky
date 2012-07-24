@@ -7,9 +7,12 @@ Coursesky::Application.routes.draw do
     end
   end
   resources :courses do
+    collection do
+      get :admin
+    end
   	member do
   		get :manage
-  		put :publish
+  		put :publish, :feature
   	end
   end
 

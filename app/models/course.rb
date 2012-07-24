@@ -1,6 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :cover_image, :description, :published, :title,
-                  :featured
+  attr_accessible :cover_image, :description, :published, :title
 
   belongs_to :user
 
@@ -21,6 +20,14 @@ class Course < ActiveRecord::Base
   	else
   		return 'draft'
   	end
+  end
+
+  def feature_status
+    if self.featured
+      return 'featured'
+    else
+      return 'not featured'
+    end
   end
 end
 # == Schema Information
