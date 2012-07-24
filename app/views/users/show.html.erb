@@ -1,0 +1,12 @@
+<% provide(:title, @user.username) %>
+
+<h3> Showing <%= @user.username%>'s profile </h3><br />
+
+<p>
+	<%= image_tag @user.avatar_url(:profile) %>
+	Name: <%= @user.name %><br />
+	Location: <%= @user.location %><br />
+	About Me: <%= @user.about %>
+</p>
+
+<%= link_to "Edit Your Profile", edit_user_registration_path(@user) if @user == current_user %>
