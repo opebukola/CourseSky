@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724161347) do
+ActiveRecord::Schema.define(:version => 20120725152732) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(:version => 20120724161347) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.boolean  "featured",    :default => false
+  end
+
+  create_table "lessons", :force => true do |t|
+    t.string   "title"
+    t.string   "document"
+    t.string   "video_url"
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.integer  "document_ipaper_id"
+    t.string   "document_ipaper_access_key"
+    t.integer  "position"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,12 +1,11 @@
 <%= provide(:title, 'Manage Course') %>
 <%= render 'course_info' %>
-<%= link_to 'Edit Course Information', edit_course_path, class: "btn btn-primary"  %><br /><hr />
+<%= link_to 'Edit Course Information', edit_course_path, class: "btn btn-primary"  %><hr />
 <%= render 'publish' %>
 <hr />
-render 'lesson_list' 
-render 'add_lesson'
-<hr />
+<%= render 'lesson_list' %><hr /> 
+<%= render 'add_lesson' %><hr />
 <%= link_to 'Delete Course', course_path(@course),
 																		method: :delete,
-																		notice: 'Are you sure?',
+																		data: {confirm: 'Are you sure?'},
 																		class: "btn btn-danger" %>

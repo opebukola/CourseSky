@@ -8,6 +8,7 @@ gem 'devise'
 gem 'annotate'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'scribd-carrierwave'
 
 # Gems used only for assets and not required
 # in production environments by default.

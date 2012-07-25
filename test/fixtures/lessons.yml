@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  document: MyString
+  video_url: MyString
+  course_id: 1
+  user_id: 1
+  document_ipaper_id: 1
+  document_ipaper_access_key: MyString
+  position: 1
+
+two:
+  title: MyString
+  document: MyString
+  video_url: MyString
+  course_id: 1
+  user_id: 1
+  document_ipaper_id: 1
+  document_ipaper_access_key: MyString
+  position: 1
+# == Schema Information
+#
+# Table name: lessons
+#
+#  id                         :integer         not null, primary key
+#  title                      :string(255)
+#  document                   :string(255)
+#  video_url                  :string(255)
+#  course_id                  :integer
+#  user_id                    :integer
+#  document_ipaper_id         :integer
+#  document_ipaper_access_key :string(255)
+#  position                   :integer
+#  created_at                 :datetime        not null
+#  updated_at                 :datetime        not null
+#
+

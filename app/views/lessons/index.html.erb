@@ -1,0 +1,5 @@
+<%= provide(:title, 'Lessons') %>
+
+<% @lessons.each do |lesson| %>
+	<%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %><br />
+<% end %>

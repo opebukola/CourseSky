@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
   attr_accessible :cover_image, :description, :published, :title
 
   belongs_to :user
+  has_many :lessons, dependent: :destroy
 
   validates :title, presence: true
   validates :description, presence: true
