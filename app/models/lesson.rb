@@ -1,10 +1,13 @@
 class Lesson < ActiveRecord::Base
   before_save :set_position
   attr_accessible :course_id, :document, :document_ipaper_access_key, :document_ipaper_id, :position, 
-  								:title, :user_id, :video_url
+  								:title, :user_id, :video_url, :questions_attributes
 
   belongs_to :user
   belongs_to :course
+  has_many :questions, dependent: :destroy
+  accepts_nested_attributes_for :questions, allow_destroy: true
+
 
   mount_uploader :document, DocumentUploader
 

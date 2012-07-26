@@ -17,6 +17,20 @@
 	</div>
 	</div>
 	<div class="tab-pane" id="quiz">
-		[quiz will go here]
+		<ul>
+			<% @lesson.questions.each do |question| %>
+				<li>
+					Question: <%= question.content %><br />
+					Hint: <%= question.hint %>
+				</li>
+				<li>
+					<%= form_tag controller:'questions', action: 'check_correct', id: question.id do %>
+							Your Answer:
+							<%= text_field_tag :response, "Enter your answer" %>
+							<%= submit_tag("check answer") %>
+					<% end %>
+				</li>
+			<% end %>
+		</ul>
 	</div>
 </div>

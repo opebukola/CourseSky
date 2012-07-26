@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725152732) do
+ActiveRecord::Schema.define(:version => 20120726181042) do
+
+  create_table "answers", :force => true do |t|
+    t.string   "content"
+    t.boolean  "correct_answer", :default => false
+    t.integer  "question_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -36,6 +46,16 @@ ActiveRecord::Schema.define(:version => 20120725152732) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
+
+  create_table "questions", :force => true do |t|
+    t.text     "content"
+    t.text     "hint"
+    t.integer  "lesson_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "questions", ["lesson_id"], :name => "index_questions_on_lesson_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

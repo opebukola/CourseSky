@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  hint: MyText
+  lesson_id: 1
+
+two:
+  content: MyText
+  hint: MyText
+  lesson_id: 1
+# == Schema Information
+#
+# Table name: questions
+#
+#  id         :integer         not null, primary key
+#  content    :text
+#  hint       :text
+#  lesson_id  :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+

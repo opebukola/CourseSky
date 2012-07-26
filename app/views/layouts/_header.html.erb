@@ -14,7 +14,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><%= link_to "Dashboard", dashboard_user_path(current_user) %></li>
+								<li><%= link_to "My Courses", dashboard_user_path(current_user) %></li>
 								<li><%= link_to "Profile", user_path(current_user) %></li>
 								<li><%= link_to "Admin", admin_courses_path if current_user.admin? %></li>
 								<li class="divider"></li>

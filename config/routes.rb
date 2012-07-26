@@ -18,6 +18,11 @@ Coursesky::Application.routes.draw do
   		put :publish, :feature
   	end
   end
+  resources :questions do
+    member do
+      post :check_correct
+    end
+  end
 
 
   root to: 'static_pages#home'
