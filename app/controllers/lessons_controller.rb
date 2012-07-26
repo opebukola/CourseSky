@@ -1,10 +1,10 @@
 class LessonsController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:index, :show]
-	before_filter :correct_user, only: [:edit, :update, :destroy]
+	before_filter :correct_user, only: [:edit, :update, :destroy, :sort]
 	def index
 		@course = Course.find(params[:course_id])
-		@lessons = @course.lessons.all
+		@lessons = @course.lessons.order("position")
 	end	
 
 	def new
@@ -49,6 +49,13 @@ class LessonsController < ApplicationController
 		@course = Course.find(params[:course_id])
 		Lesson.find(params[:id]).destroy
 		redirect_to :back, notice: "Lesson Deleted!"
+	end
+
+	def sort
+		params[:lesson].each_with_index do |id, index|
+			Lesson.update_all({position: index+1}, {id: id})
+		end
+		render nothing: true
 	end
 
 	private

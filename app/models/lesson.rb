@@ -1,4 +1,5 @@
 class Lesson < ActiveRecord::Base
+  before_save :set_position
   attr_accessible :course_id, :document, :document_ipaper_access_key, :document_ipaper_id, :position, 
   								:title, :user_id, :video_url
 
@@ -25,6 +26,11 @@ class Lesson < ActiveRecord::Base
       video_source = ""
     end
   end
+
+  protected
+    def set_position
+      self.position ||= 1 + (Lesson.where('course_id=?',course_id).maximum(:position) || 0)
+    end
 end
 # == Schema Information
 #

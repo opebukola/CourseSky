@@ -1,14 +1,15 @@
 <p>
 	<h3> Manage Current Lessons (reorder, edit, delete) </h3><br />
-	<% @course.lessons.each do |lesson| %>
-		<ul>
-			<li>
+	<ul id="lessons-list" data-update-url="<%=sort_course_lessons_url(course_id: @course.id) %>">
+		<% @course.lessons.order("position").each do |lesson| %>
+			<%= content_tag_for :li, lesson do %>
+			<span class="handle">[move]</span>
 				<%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %> |
 				<%= link_to "Edit Lesson", edit_course_lesson_path(course_id: @course.id, id: lesson.id) %> |
 				<%= link_to "Delete Lesson", course_lesson_path(course_id: @course.id, id: lesson.id), 
 					method: :delete,
 					data: {confirm: 'Are you sure?'} %>
-			</li>
-		</ul>
-	<% end %>
+			<% end %>
+		<% end %>
+	</ul>
 </p>
