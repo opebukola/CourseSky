@@ -1,11 +1,16 @@
 class Course < ActiveRecord::Base
-  attr_accessible :cover_image, :description, :published, :title
+  attr_accessible :cover_image, :description, :published, :title,
+                  :subject_id, :category_ids
 
-  belongs_to :user
   has_many :lessons, dependent: :destroy
+  has_many :categorizations, dependent: :destroy
+  has_many :categories, through: :categorizations
+  belongs_to :user
+  belongs_to :subject
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :subject, presence: true
   validates :user_id, presence: true
 
   mount_uploader :cover_image, CoverImageUploader
@@ -44,5 +49,6 @@ end
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #  featured    :boolean         default(FALSE)
+#  subject_id  :integer
 #
 

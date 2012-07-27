@@ -3,6 +3,7 @@
 	<%= f.input :description, label: 'Write a short description of what students will learn' %>
 	<%= f.input :cover_image, label: 'Upload a cover image for your course' %>
 	<h4> What type of course is this? </h4>
-	"[CATEGORY CHOICES]"<br />
+	<%= f.association :subject, collection: Subject.order(:name), label: 'Select subject', required: true %>
+	<%= f.association :categories, collection: Category.order(:name), label: 'Select topics' %><br />
 	<%= f.button :submit, "Save Course Draft" %>
 <% end %>

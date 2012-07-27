@@ -3,17 +3,21 @@
 </div>
 <h3><%= link_to @course.title, course_path %></h3> By <%= @course.user.username %>
 <p>
-	<h4>About This Course</h4>
+	<h3>About This Course:</h3><br />
+	<strong>Subject: </strong>
+	<%= @course.subject.try(:name) %><br>
+	<strong>Topics: </strong>
+	<% @course.categories.each do |cat| %>
+		<%= cat.name %>, 
+	<% end %><br />
+	<strong>Description: </strong>
 	<%= @course.description %>
-</p>
-<p>
-	<strong>Categories:</strong> <br />
 </p>
 
 
 ENROLLMENT FORM
 <p>
-	<h4> People: </h4>
+	<h3> People: </h3>
 	This course has "X" <%= link_to "students", '#' %>
 	<br />
 </p>

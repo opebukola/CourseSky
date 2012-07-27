@@ -18,5 +18,6 @@ end
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #  featured    :boolean         default(FALSE)
+#  subject_id  :integer
 #
 
