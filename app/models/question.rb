@@ -7,8 +7,7 @@ class Question < ActiveRecord::Base
 
   def correct_answers
   	answer_array = []
-  	answers = self.answers.find_all_by_correct_answer(true)
-  	answers.each do |answer|
+    self.answers.each do |answer|
   		answer.content
   		answer_array<<answer.content
   	end
