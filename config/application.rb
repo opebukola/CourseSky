@@ -61,5 +61,8 @@ module Coursesky
 
     #For deploying on Heroku w/ devise
     config.assets.initialize_on_precompile = false
+
+    #ckeditor path
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end
