@@ -24,11 +24,13 @@ end
 
 def make_courses
   users = User.all
+  subject = Subject.create!(name: "Math")
   2.times do |n|
     title = Faker::Lorem.sentence(1)
     description = Faker::Lorem.paragraphs(1)
     users.each { |user| user.courses.create!(title: title, 
                             description: description,
+                            subject: subject,
                             published: true)}
   end
 end
