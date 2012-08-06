@@ -26,9 +26,25 @@ class User < ActiveRecord::Base
 
   has_many :courses
   has_many :lessons
+  has_many :enrollments, foreign_key: "student_id", dependent: :destroy
+  has_many :enrolled_courses, through: :enrollments
 
   #uplaod avatar
   mount_uploader :avatar, AvatarUploader
+
+  #enrollment methods
+  def enroll!(course)
+    self.enrollments.create!(enrolled_course_id:course.id)
+  end
+
+  def withdraw!(course)
+    self.enrollments.find_by_enrolled_course_id(course.id).destroy
+  end
+
+  def enrolled?(course)
+    return true if 
+    self.enrollments.find_by_enrolled_course_id(course.id)
+  end
 end
 # == Schema Information
 #

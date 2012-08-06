@@ -1,4 +1,8 @@
 Coursesky::Application.routes.draw do
+  get "enrollments/create"
+
+  get "enrollments/destroy"
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users
@@ -16,7 +20,7 @@ Coursesky::Application.routes.draw do
       get :admin
     end
   	member do
-  		get :manage
+  		get :manage, :students
   		put :publish, :feature
   	end
   end
@@ -26,6 +30,7 @@ Coursesky::Application.routes.draw do
     end
   end
   resources :categories
+  resources :enrollments, only: [:create, :destroy]
 
 
   root to: 'static_pages#home'

@@ -66,6 +66,10 @@ class CoursesController < ApplicationController
 		redirect_to :back, notice: "Course is now feautured!"
 	end
 
+	def students
+		@course = Course.find(params[:id])
+	end
+
 	private
 
 		def correct_user

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806160658) do
+ActiveRecord::Schema.define(:version => 20120806174210) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(:version => 20120806160658) do
 
   add_index "courses", ["grade_level_id"], :name => "index_courses_on_grade_level_id"
   add_index "courses", ["subject_id"], :name => "index_courses_on_subject_id"
+
+  create_table "enrollments", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "enrolled_course_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "enrollments", ["enrolled_course_id"], :name => "index_enrollments_on_enrolled_course_id"
+  add_index "enrollments", ["student_id", "enrolled_course_id"], :name => "index_enrollments_on_student_id_and_enrolled_course_id", :unique => true
+  add_index "enrollments", ["student_id"], :name => "index_enrollments_on_student_id"
 
   create_table "grade_levels", :force => true do |t|
     t.string   "name"

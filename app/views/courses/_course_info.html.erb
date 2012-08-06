@@ -7,7 +7,7 @@
 	<strong>Subject: </strong>
 	<%= @course.subject.try(:name) %><br>
 	<strong>Grade: </strong>
-	<%= @course.grade_level.name %><br>
+	<%= @course.grade_level.try(:name) %><br>
 	<strong>Topics: </strong>
 	<% @course.categories.each do |cat| %>
 		<%= cat.name %>, 
@@ -16,11 +16,10 @@
 	<%= raw @course.description %>
 </p>
 
-
-ENROLLMENT FORM
+<%= render 'enrollment_form' unless @course.user == current_user %>
 <p>
 	<h3> People: </h3>
-	This course has "X" <%= link_to "students", '#' %>
+	This course has <%= link_to pluralize(@course.students.count, 'student'), students_course_path %>
 	<br />
 </p>
 <hr />

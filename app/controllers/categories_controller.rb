@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-	before_filter :authenticate_user!
-	before_filter :admin_user
+	before_filter :authenticate_user!, except: [:show]
+	before_filter :admin_user, except: [:show]
 
 	def index
 		@subjects = Subject.order("name")
