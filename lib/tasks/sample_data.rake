@@ -34,6 +34,7 @@ def make_math
     user.courses.create!(title: title, 
                             description: description,
                             subject: subject,
+                            grade_level: grade,
                             published: true)
   end
 end
@@ -48,6 +49,7 @@ def make_science
     user.courses.create!(title: title, 
                             description: description,
                             subject: subject,
+                            grade_level: grade,
                             published: true)
   end
 end
@@ -62,6 +64,7 @@ def make_history
     user.courses.create!(title: title, 
                             description: description,
                             subject: subject,
+                            grade_level: grade,
                             published: true)
   end
 end
