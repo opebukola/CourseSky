@@ -25,6 +25,7 @@ Coursesky::Application.routes.draw do
       post :check_correct
     end
   end
+  resources :categories
 
 
   root to: 'static_pages#home'

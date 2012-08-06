@@ -1,0 +1,5 @@
+<%= simple_form_for @category do |f| %>
+	<%= f.association :subject, collection: Subject.order(:name), label: 'Select Subject', required: true %>
+	<%= f.input :name %>
+	<%= f.button :submit, "Add Category" %>
+<% end %>

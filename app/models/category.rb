@@ -4,6 +4,8 @@ class Category < ActiveRecord::Base
   has_many :categorizations, dependent: :destroy
   has_many :courses, through: :categorizations
   belongs_to :subject
+
+  validates :subject, presence: true
 end
 # == Schema Information
 #

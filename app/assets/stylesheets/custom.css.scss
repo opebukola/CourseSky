@@ -144,6 +144,22 @@ footer {
   }
 }
 
+
+.coursebox{
+  float: left;
+  width: 700px;
+  margin: 0px 0px 0px 0px;
+}
+
+.browse {
+  border: solid 2px #ccc;
+  float: right;
+  margin-left: 0px;
+  margin-top: 70px;
+  padding: 10px;
+  width: 18%;
+}
+
 /* lessons list */
 #lessons_list .handle {
   font-size: 12px;

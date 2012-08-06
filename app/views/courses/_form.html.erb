@@ -4,6 +4,7 @@
 	<%= f.input :cover_image, label: 'Upload a cover image for your course' %>
 	<h4> What type of course is this? </h4>
 	<%= f.association :subject, collection: Subject.order(:name), label: 'Select subject', required: true %>
-	<%= f.association :categories, collection: Category.order(:name), label: 'Select topics' %><br />
+	<%= f.association :categories, collection: Category.order(:name), label: 'Select topics' %>
+	<%= f.association :grade_level, collection: GradeLevel.all, label: 'Select grade', required: true %><br />
 	<%= f.button :submit, "Save Course Draft" %>
 <% end %>

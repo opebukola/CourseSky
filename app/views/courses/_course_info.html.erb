@@ -6,6 +6,8 @@
 	<h3>About This Course:</h3><br />
 	<strong>Subject: </strong>
 	<%= @course.subject.try(:name) %><br>
+	<strong>Grade: </strong>
+	<%= @course.grade_level.name %><br>
 	<strong>Topics: </strong>
 	<% @course.categories.each do |cat| %>
 		<%= cat.name %>, 

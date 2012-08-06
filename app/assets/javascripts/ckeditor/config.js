@@ -1,5 +1,5 @@
-config.extraPlugins = 'equation';
+config.extraPlugins = "equation, embed,attachment";
 config.toolbar_Basic =
 	[
-		['Equation', 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink','-','About']
+		['equation', 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink','-','About']
 	];

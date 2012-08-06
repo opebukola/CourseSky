@@ -1,0 +1,11 @@
+<div class="browse">
+	<h2> Browse by Subject </h2>
+	<% @subjects.each do |subject| %>
+	<p>
+		<h3><%= subject.name.upcase %></h3>
+		<% subject.categories.order("name").each do |category| %>
+		<%= link_to category.name, category_path(category) %>, 
+		<% end %>
+	</p>
+	<% end %> 
+</div>
