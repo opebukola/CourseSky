@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   attr_accessible :cover_image, :description, :published, :title,
-                  :subject_id, :category_ids, :subject, :grade_level_id
+                  :subject_id, :category_ids, :subject, :grade_level_id, :grade_level
 
   has_many :lessons, dependent: :destroy
   has_many :categorizations, dependent: :destroy
