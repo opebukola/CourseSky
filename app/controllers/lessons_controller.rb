@@ -63,8 +63,7 @@ class LessonsController < ApplicationController
 
 		def correct_user
 			@course = Course.find(params[:course_id])
-			@lesson = Lesson.find(params[:id])
-			unless current_user == @lesson.user || current_user.admin?
+			unless current_user == @course.user || current_user.admin?
 				flash[:error]= "You are not authorized to perform this action"
 				redirect_to @course
 			end

@@ -2,6 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
+    make_admin
     make_math
     make_science
     make_history
@@ -21,6 +22,15 @@ def make_users
                 password_confirmation: password,
                 remember_me:  true )
   end
+end
+
+def make_admin
+  User.create!(username: "admin",
+                email: "admin@example.com",
+                password: "password",
+                password_confirmation: "password",
+                admin: true,
+                remember_me: true ) 
 end
 
 

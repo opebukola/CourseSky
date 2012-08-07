@@ -32,3 +32,11 @@
 		</ul>
 	</div>
 </div>
+
+<% if @lesson.previous_lesson %>
+	<%= link_to "<< Previous Lesson", course_lesson_path(@lesson.course.id, @lesson.previous_lesson) %>
+<% end %>  | 
+
+<% if @lesson.next_lesson %>
+	<%= link_to "Next Lesson >>", course_lesson_path(@lesson.course.id, @lesson.next_lesson) %>
+<% end %>

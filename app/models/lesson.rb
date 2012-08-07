@@ -30,6 +30,28 @@ class Lesson < ActiveRecord::Base
     end
   end
 
+  def next_lesson
+    lesson = Course.find(self.course.id).lessons.find_by_position(self.position + 1)
+    return lesson.id if lesson
+  end
+
+  def previous_lesson
+    lesson = Course.find(self.course.id).lessons.find_by_position(self.position - 1)
+    return lesson.id if lesson
+  end
+
+  # def next_lesson
+  #   lesson_position = self.position + 1
+  #   Course.find(self.course.id).lessons.find_by_position(lesson_position)
+  # end
+
+  #Find previous and next lesson
+   # def next_lesson
+   #    Course.find(self.course.id).lessons.order(:position).where(
+   #      "position>=?", self.position).limit(1).offset(1)
+   #  end
+
+
   protected
     def set_position
       self.position ||= 1 + (Lesson.where('course_id=?',course_id).maximum(:position) || 0)

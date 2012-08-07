@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
 
 	def index
 		@courses = Course.featured.published.desc
+		@subjects = Subject.order("name")
 	end
 
 	def new
