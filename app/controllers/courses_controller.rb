@@ -5,7 +5,8 @@ class CoursesController < ApplicationController
 	before_filter :admin_user, only: [:admin, :feature]
 
 	def index
-		@courses = Course.featured.published.desc
+		@featured_courses = Course.featured.published.desc(limit: 3)
+		@courses = Course.published.desc
 		@subjects = Subject.order("name")
 	end
 

@@ -21,7 +21,11 @@
 	<div class="tab-pane active" id="learning">
 		<h3> Currently enrolled in the following courses: </h3><br />
 		<div>
-			[ENROLLED COURSES]
+			<% @user.enrolled_courses.each do |course| %>
+			<ul>
+				<li><%= link_to course.title, course_path(course) %></li>
+			</ul>
+			<% end %>
 		</div>
 	</div>
 	<div class="tab-pane" id="teaching">
@@ -33,6 +37,6 @@
 		<% end %>
 	</div>
 	<div class="tab-pane" id="skills">
-		List of all my mad skillz!
+		<h3> Mastered the following skills:</h3><br />
 	</div>
 </div>

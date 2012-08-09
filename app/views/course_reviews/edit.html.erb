@@ -1,0 +1,4 @@
+<% provide(:title, 'Edit Review') %>
+
+<h3> Edit your review of: <%= Course.find(params[:course_id]).title %></h3><br />
+<%= render 'form' %>

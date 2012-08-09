@@ -31,6 +31,7 @@ Coursesky::Application.routes.draw do
   end
   resources :categories
   resources :enrollments, only: [:create, :destroy]
+  resources :course_reviews
 
 
   root to: 'static_pages#home'

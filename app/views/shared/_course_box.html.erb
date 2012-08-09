@@ -5,7 +5,6 @@
 			<%= image_tag course.cover_image_url(:box) %><br />
 			<h4><%= link_to course.title, course_path(course) %><br /></h4>
 			By: <%= course.user.username %><br />
-			<%= link_to "Start Course", '#', class: "btn" %>
 		</div>
 		<% end %>
 	</div>

@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :lessons
   has_many :enrollments, foreign_key: "student_id", dependent: :destroy
   has_many :enrolled_courses, through: :enrollments
+  has_many :course_reviews
 
   #uplaod avatar
   mount_uploader :avatar, AvatarUploader
@@ -44,6 +45,12 @@ class User < ActiveRecord::Base
   def enrolled?(course)
     return true if 
     self.enrollments.find_by_enrolled_course_id(course.id)
+  end
+
+  #reviews methods
+  def has_reviewed?(course)
+    return true if
+    self.course_reviews.find_by_course_id(course.id)
   end
 end
 # == Schema Information

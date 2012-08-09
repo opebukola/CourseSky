@@ -13,7 +13,13 @@
 		<%= cat.name %>, 
 	<% end %><br />
 	<strong>Description: </strong>
-	<%= raw @course.description %>
+	<%= raw @course.description %><br />
+	<strong>Average Rating: </strong>
+	<% if @course.rating %>
+		<%= @course.rating %>, <%= link_to 'Read Reviews', course_reviews_path(course_id: @course.id) %>
+	<% else %>
+		<%= "No Reviews yet." %>
+	<% end %>
 </p>
 
 <%= render 'enrollment_form' unless @course.user == current_user %>

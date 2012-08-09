@@ -77,14 +77,16 @@ p {
   margin-right: 10px;
   font-size: 1.4em;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 20px;
   line-height: 1;
   &:hover {
     /** color: white; **/
     text-decoration: none;
   }
 }
-
+.nav {
+  padding-top: 18px;
+}
 .navbar-inner {
   background: #ffffff; /* Old browsers */
   background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */

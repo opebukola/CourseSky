@@ -7,6 +7,7 @@ class Course < ActiveRecord::Base
   has_many :categories, through: :categorizations
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
+  has_many :course_reviews
   belongs_to :user
   belongs_to :subject
   belongs_to :grade_level
@@ -37,6 +38,15 @@ class Course < ActiveRecord::Base
       return 'featured'
     else
       return 'not featured'
+    end
+  end
+
+  #ratings
+  def rating
+    total = self.course_reviews.sum('value') 
+    review_count = self.course_reviews.count
+    unless review_count == 0
+      return (total / review_count)
     end
   end
 end

@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  course_id: 1
+  user_id: 1
+  content: MyText
+  value: 1
+
+two:
+  course_id: 1
+  user_id: 1
+  content: MyText
+  value: 1
+# == Schema Information
+#
+# Table name: course_ratings
+#
+#  id         :integer         not null, primary key
+#  course_id  :integer
+#  user_id    :integer
+#  content    :text
+#  value      :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+
