@@ -1,0 +1,32 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: MyString
+  integer: MyString
+  lesson_id: MyString
+  integer: MyString
+  content: MyString
+  text: MyString
+  ancestry: MyString
+
+two:
+  user_id: MyString
+  integer: MyString
+  lesson_id: MyString
+  integer: MyString
+  content: MyString
+  text: MyString
+  ancestry: MyString
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  lesson_id  :integer
+#  content    :text
+#  ancestry   :string(255)
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+

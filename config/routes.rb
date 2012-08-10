@@ -32,11 +32,10 @@ Coursesky::Application.routes.draw do
   resources :categories
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews
-
-
-  root to: 'static_pages#home'
+  resources :comments, only: [:new, :create, :destroy]
 
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact' 
   match '/teach', to: 'static_pages#teach'
+  root to: 'static_pages#home'
 end

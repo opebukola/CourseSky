@@ -26,6 +26,9 @@ class LessonsController < ApplicationController
 
 	def show
 		@lesson = Lesson.find(params[:id])
+		@comments = @lesson.comments
+		@comment = Comment.new
+		params[:lesson_id] = params[:id]
 		if @lesson.course.status == 'draft'
 			redirect_to root_path unless current_user == @lesson.user
 		end

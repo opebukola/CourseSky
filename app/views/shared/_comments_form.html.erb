@@ -1,0 +1,9 @@
+<h3> Join the Conversation: </h3>
+<div class="new_comment" %>
+	<%= simple_form_for @comment do |f| %>
+		<%= f.input :lesson_id, as: :hidden, input_html: { value: params[:lesson_id]} %>
+		<%= f.input :parent_id, as: :hidden, input_html: { value: params[:parent_id]} %>
+		<%= f.input :content, label: "Add A Question", placeholder: "Ask a question" %>
+		<%= f.button :submit, "Save Comment" %>
+	<% end %>
+</div>

@@ -1,0 +1,8 @@
+<div class="comments" %>
+	<p>
+		<%= comment.content %><br />
+		<strong>Posted by:</strong> <%= comment.user.username %><br />
+		<%= link_to 'Reply', new_comment_path(parent_id: comment, lesson_id: @lesson.id) %> |
+		<%= link_to 'Delete', '#' if current_user == comment.user %>
+	</p>
+</div>
