@@ -1,33 +1,36 @@
-<ul class="nav nav-tabs">
-	<li><a href="#document" data-toggle="tab">Document</a></li>
-	<li><a href="#video" data-toggle="tab">Video</a></li>
-	<li><a href="#quiz" data-toggle="tab"> Quiz</a></li>
-</ul>
+<div class="lesson-box">
+	<h2>Lesson <%=@lesson.position %>: <%= @lesson.title %></h2>
+	<ul class="nav nav-tabs">
+		<li><a href="#document" data-toggle="tab">Document</a></li>
+		<li><a href="#video" data-toggle="tab">Video</a></li>
+		<li><a href="#quiz" data-toggle="tab"> Quiz</a></li>
+	</ul>
 
-<div class="tab-content">
-	<div class="tab-pane active" id="document">
-		<%= raw @lesson.document.display_ipaper %>
-	</div>
-	<div class="tab-pane" id="video">
+	<div class="tab-content">
+		<div class="tab-pane active" id="document">
+			<%= raw @lesson.document.display_ipaper %>
+		</div>
 		<div class="tab-pane" id="video">
-		<iframe allowfullscreen="", frameborder="1", height="349",
-			src="<%= @lesson.video_source %>", width="560"> </iframe>
+			<div class="tab-pane" id="video">
+			<iframe allowfullscreen="", frameborder="1", height="349",
+				src="<%= @lesson.video_source %>", width="560"> </iframe>
+		</div>
+		</div>
+		<div class="tab-pane" id="quiz">
+			<ul>
+				<% @lesson.questions.each do |question| %>
+					<li>
+						<%= raw question.content %><br />
+						Hint: <%= question.hint %>
+						<%= form_tag controller:'questions', action: 'check_correct', id: question.id do %>
+								Your Answer:
+								<%= text_field_tag :response, "Enter your answer" %>
+								<%= submit_tag("check answer") %>
+						<% end %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		<%= link_to "Mark Lesson Complete", '#', class: 'btn' %>
 	</div>
-	</div>
-	<div class="tab-pane" id="quiz">
-		<ul>
-			<% @lesson.questions.each do |question| %>
-				<li>
-					<%= raw question.content %><br />
-					Hint: <%= question.hint %>
-					<%= form_tag controller:'questions', action: 'check_correct', id: question.id do %>
-							Your Answer:
-							<%= text_field_tag :response, "Enter your answer" %>
-							<%= submit_tag("check answer") %>
-					<% end %>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-	<%= link_to "Mark Lesson Complete", '#', class: 'btn' %>
 </div>

@@ -1,5 +1,5 @@
 <% provide(:title, @lesson.title) %>
-<h1><%= @lesson.title %></h1>
+<h1>Course: <%=@lesson.course.title %></h1>
 <% if @lesson.previous_lesson %>
 	<%= link_to "<< Previous Lesson", course_lesson_path(@lesson.course.id, @lesson.previous_lesson) %>
 <% end %>  | 
@@ -7,6 +7,7 @@
 <% if @lesson.next_lesson %>
 	<%= link_to "Next Lesson >>", course_lesson_path(@lesson.course.id, @lesson.next_lesson) %>
 <% end %>
-<%= render 'content' %><br />
+<%= render 'coursenav' %>
+<section><%= render 'content' %></section><br />
 <%= render 'comments' %>
 <%= render 'shared/comments_form' %>

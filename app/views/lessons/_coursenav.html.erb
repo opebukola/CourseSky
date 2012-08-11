@@ -1,0 +1,8 @@
+<div class="coursenav">
+	<h2>Course Content:</h2>
+	<% @lesson.course.lessons.order(:position).each do |lesson| %>
+	<ul>
+		<li>Lesson <%= lesson.position %>: <%= link_to lesson.title, course_lesson_path(@lesson.course, lesson) %></li>
+	</ul>
+	<% end %>
+</div>
