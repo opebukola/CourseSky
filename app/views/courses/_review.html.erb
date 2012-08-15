@@ -1,4 +1,4 @@
-<% if current_user.enrolled?(@course) %>
+<% if current_user && current_user.enrolled?(@course) %>
 	<% if current_user.has_reviewed?(@course) %>
 		<%= link_to 'You have reviewed this course. Update your review', edit_course_review_path(course_id: @course.id) %>
 	<% else %>

@@ -1,13 +1,14 @@
 <% provide(:title, @lesson.title) %>
 <h1>Course: <%=@lesson.course.title %></h1>
+
+<%= render 'coursenav' %>
+<section><%= render 'content' %></section>
 <% if @lesson.previous_lesson %>
-	<%= link_to "<< Previous Lesson", course_lesson_path(@lesson.course.id, @lesson.previous_lesson) %>
-<% end %>  | 
+	<%= link_to "<< Previous Lesson", course_lesson_path(@lesson.course.id, @lesson.previous_lesson), class: 'btn'%>
+<% end %>  
 
 <% if @lesson.next_lesson %>
-	<%= link_to "Next Lesson >>", course_lesson_path(@lesson.course.id, @lesson.next_lesson) %>
-<% end %>
-<%= render 'coursenav' %>
-<section><%= render 'content' %></section><br />
+	<%= link_to "Next Lesson >>", course_lesson_path(@lesson.course.id, @lesson.next_lesson), class: 'btn' %>
+<% end %><br />
 <%= render 'comments' %>
 <%= render 'shared/comments_form' %>

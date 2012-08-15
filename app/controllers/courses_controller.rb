@@ -65,7 +65,7 @@ class CoursesController < ApplicationController
 	def feature
 		@course = Course.find(params[:id])
 		@course.toggle!(:featured)
-		redirect_to :back, notice: "Course is now feautured!"
+		redirect_to :back, notice: "Course is now featured!"
 	end
 
 	def students

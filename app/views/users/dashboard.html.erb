@@ -23,7 +23,8 @@
 		<div>
 			<% @user.enrolled_courses.each do |course| %>
 			<ul>
-				<li><%= link_to course.title, course_path(course) %></li>
+				<li><%= link_to course.title, course_path(course) %><br />
+					Progress: <%= @user.progress(course) %> percent. You have completed <%= pluralize(@user.completed_lessons(course), 'lesson') %>. You have <%= pluralize(@user.incomplete_lessons(course), 'lesson') %> remaining.</li>
 			</ul>
 			<% end %>
 		</div>

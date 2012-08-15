@@ -7,6 +7,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :course
   has_many :questions, dependent: :destroy
   has_many :comments
+  has_many :lesson_progressions, foreign_key: "enrolled_lesson_id", dependent: :destroy
   accepts_nested_attributes_for :questions, allow_destroy: true
 
 

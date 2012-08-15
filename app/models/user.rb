@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :enrolled_courses, through: :enrollments
   has_many :course_reviews
   has_many :comments
+  has_many :lesson_progressions, foreign_key: "student_id", dependent: :destroy
 
   #uplaod avatar
   mount_uploader :avatar, AvatarUploader
@@ -52,6 +53,25 @@ class User < ActiveRecord::Base
   def has_reviewed?(course)
     return true if
     self.course_reviews.find_by_course_id(course.id)
+  end
+
+  #course progress methods
+
+  def completed_lessons(course)
+    self.lesson_progressions.completed.find_all_by_enrolled_course_id(course.id).count
+  end
+
+  def incomplete_lessons(course)
+    course.lessons.count - completed_lessons(course)
+  end
+  
+  def progress(course)
+    if self.enrolled?(course)
+      complete = completed_lessons(course)
+      incomplete = incomplete_lessons(course)
+      progress = complete.to_f / (complete.to_f + incomplete.to_f) 
+      return progress.round(2) * 100
+    end
   end
 end
 # == Schema Information
