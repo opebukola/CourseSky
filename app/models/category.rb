@@ -1,11 +1,15 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name, :subject_id
+  has_ancestry
+  attr_accessible :name, :parent_id, :parent
 
   has_many :categorizations, dependent: :destroy
   has_many :courses, through: :categorizations
-  belongs_to :subject
+  has_many :children, class_name: "Category"
+  belongs_to :parent, class_name: "Category"
 
-  validates :subject, presence: true
+  scope :main, where('ancestry is null')
+
+  
 end
 # == Schema Information
 #

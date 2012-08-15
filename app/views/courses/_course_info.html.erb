@@ -4,8 +4,6 @@
 <h3><%= link_to @course.title, course_path %></h3> By <%= @course.user.username %>
 <p>
 	<h3>About This Course:</h3><br />
-	<strong>Subject: </strong>
-	<%= @course.subject.try(:name) %><br>
 	<strong>Grade: </strong>
 	<%= @course.grade_level.try(:name) %><br>
 	<strong>Topics: </strong>

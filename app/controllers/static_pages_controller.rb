@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 	def home
 		@courses = Course.featured.published.desc.limit(6)
-		@subjects = Subject.order("name")
+		@categories = Category.main.order(:name)
 	end
 
 	def about

@@ -2,6 +2,8 @@
 	<% if @lesson_progression && @lesson_progression.completed %>
 			<%= 'You have completed this lesson' %>
 	<% else %>
-		<%= link_to "Mark Lesson Complete", complete_lesson_progression_path(enrolled_lesson_id: @lesson.id, enrolled_course_id: @lesson.course.id), method: :put, class: 'btn' %>
+		<%= link_to "Finished with this lesson? Mark Lesson Complete", complete_lesson_progression_path(enrolled_lesson_id: @lesson.id, enrolled_course_id: @lesson.course.id), method: :put, class: 'btn' %>
 	<% end %>
+<% else %>
+	<%= link_to "Finished with this lesson? Mark Lesson Complete", complete_lesson_progression_path(enrolled_lesson_id: @lesson.id, enrolled_course_id: @lesson.course.id), method: :put, class: 'btn' %>
 <% end %>

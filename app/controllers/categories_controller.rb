@@ -2,13 +2,13 @@ class CategoriesController < ApplicationController
 	before_filter :admin_user, except: [:show]
 
 	def index
-		@subjects = Subject.order("name")
+		@categories = Category.main.order(:name)
 	end
 
 	def show
+		@categories = Category.main.order(:name)
 		@category = Category.find(params[:id])
 		@courses = @category.courses.featured.published.desc
-		@subjects = Subject.order("name")
 	end
 
 	def new

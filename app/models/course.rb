@@ -9,14 +9,13 @@ class Course < ActiveRecord::Base
   has_many :students, through: :enrollments
   has_many :course_reviews
   belongs_to :user
-  belongs_to :subject
   belongs_to :grade_level
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :subject, presence: true
   validates :user_id, presence: true
   validates :grade_level, presence: true
+  validates :categories, presence: true
 
   mount_uploader :cover_image, CoverImageUploader
 
@@ -46,7 +45,8 @@ class Course < ActiveRecord::Base
     total = self.course_reviews.sum('value') 
     review_count = self.course_reviews.count
     unless review_count == 0
-      return (total / review_count)
+      rating = (total / review_count).to_f
+      return rating.round(1)
     end
   end
 end

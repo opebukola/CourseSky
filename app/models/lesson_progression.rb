@@ -4,6 +4,8 @@ class LessonProgression < ActiveRecord::Base
   belongs_to :student, class_name: "User"
   belongs_to :enrolled_lesson, class_name: "Lesson"
 
+  validates_uniqueness_of :student_id, scope: [:enrolled_course_id, :enrolled_lesson_id]
+
   scope :completed, where(completed:true)
 
 end

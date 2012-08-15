@@ -5,4 +5,7 @@
 		<li>Lesson <%= lesson.position %>: <%= link_to lesson.title, course_lesson_path(@lesson.course, lesson) %></li>
 	</ul>
 	<% end %>
+	<% unless current_user && current_user.enrolled?(@course) %>
+		<%= link_to 'Enroll & Save Your Progress!', course_path(@course), class: 'btn btn-success' %>
+	<% end %>
 </div>
