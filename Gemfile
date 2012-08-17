@@ -11,7 +11,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'scribd-carrierwave'
 gem 'faker'
-gem 'ckeditor', '3.7.1'
+gem 'ckeditor', git: "git://github.com/oob205/ckeditor.git"
 gem 'mini_magick'
 gem 'ancestry'
 gem 'pg_search'
