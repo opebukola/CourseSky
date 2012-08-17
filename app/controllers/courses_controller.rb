@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
 	before_filter :admin_user, only: [:admin, :feature]
 
 	def index
-		@courses = Course.featured.published.desc
+		@courses = Course.text_search(params[:query]).featured.published.desc
 		@categories = Category.main.order(:name)
 	end
 

@@ -49,6 +49,24 @@ class Course < ActiveRecord::Base
       return rating.round(1)
     end
   end
+
+  #search
+  include PgSearch
+  pg_search_scope :search, against: [:title, :description],
+    using: {tsearch: {dictionary: "english"}},
+    associated_against: {lessons: :title}
+
+  def self.text_search(query)
+    if query.present?
+      rank = <<-RANK
+      ts_rank(to_tsvector(title), plainto_tsquery(#{sanitize(query)}))
+    RANK
+  where("title @@ :q or description @@ :q", q: "%#{query}%").order("#{rank} DESC")
+      search(query).order("#{rank} desc")
+    else
+      scoped
+    end
+  end
 end
 # == Schema Information
 #

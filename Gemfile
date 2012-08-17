@@ -14,6 +14,7 @@ gem 'faker'
 gem 'ckeditor', '3.7.1'
 gem 'mini_magick'
 gem 'ancestry'
+gem 'pg_search'
 
 
 # Gems used only for assets and not required

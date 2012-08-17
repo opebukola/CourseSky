@@ -5,10 +5,13 @@
 			<%= link_to "Learn", courses_path, class: "topbar" %>
 			<%= link_to "Teach", teach_path, class: "topbar" %>
 			<nav>
+				<%= form_tag courses_path, class: "navbar-search",method: :get do %>
+					<%= text_field_tag :query, params[:query], placeholder: "Search for courses" %>
+					<%= submit_tag "Search", name: nil %>
+				<% end %>
 				<ul class="nav pull-right">
 					<li><%= link_to "Home", root_path %></li>
 					<li><%= link_to "Help", '#' %></li>
-					</li>
 					<% if user_signed_in? %>
 						<li id="fat-menu" class="dropdown" %>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b>
