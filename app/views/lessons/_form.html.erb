@@ -1,21 +1,20 @@
 <%= simple_form_for [@course, @lesson] do |f| %>
-	<h3> Step 1: Tell us more about the lesson: </h3><br />
+	<h3> Step 1: Give the lesson a title </h3><br />
 	<%= f.input :title, label: "Provide a title" %>
-	<h3> Step 2: What skills will students learn? </h3><br />
-	[This will include a collection select of skills]
-	<h3> Step 3: Add some materials! </h3><br />
-	<h4>Add a Document:</h4>
+	<h3> Step 2: Add some learning materials! </h3><br />
+	<h4>Add a Document:</h4><br />
 	<%= f.input :document, label: "Upload a document. Accepted file formats include .doc, .pdf, .ppt" %>
 	<p>
-		<h4>Add a Video:</h4>
-		<%= f.input :video_url, label: "Enter the URL of a YouTube video. Currently, we only support YouTube EDU videos." %>
+		<h4>Add a Video:</h4><br />
+		<%= f.input :video_url, label: "Enter the URL of a YouTube video. Check out YouTube EDU for some great educational videos" %>
 	</p>
 	<p>
-		<h4> Add a Quiz: </h4>
+		<h4> Add a Quiz: </h4><br />
 		<%= f.simple_fields_for :questions do |builder| %>
 			<%= render 'question_fields', f: builder %>
 		<% end %>
 		<%= link_to_add_fields "Add New Question", f, :questions %>
 	</p>
+	<h3> Step 3: Save Your Lesson! (you can always edit it later) </h3><br />
 	<%= f.button :submit, "Save Lesson" %>
 <% end %>

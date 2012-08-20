@@ -17,11 +17,10 @@
 		</div>
 		</div>
 		<div class="tab-pane" id="quiz">
-			<ul>
+			<ol>
 				<% @lesson.questions.each do |question| %>
 					<li>
-						<%= raw question.content %><br />
-						Hint: <%= question.hint %>
+						<%= raw question.content %>
 						<%= form_tag controller:'questions', action: 'check_correct', id: question.id do %>
 								Your Answer:
 								<%= text_field_tag :response, "Enter your answer" %>
@@ -29,12 +28,15 @@
 						<% end %>
 					</li>
 				<% end %>
-			</ul>
+			</ol>
 		</div>
 		<%= render 'complete' %> | 
-		<%= link_to 'Download', '#' %> |
-		<%= link_to 'Share', '#' %>
+		<%= link_to 'Download Doc', @lesson.document_url, target: '_blank' %> |
 	
+<!-- AddThis Button BEGIN -->
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-502e6266716e4b50"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-502e6266716e4b50"></script>
 <!-- AddThis Button END -->
 	</div>
 </div>

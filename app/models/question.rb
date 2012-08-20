@@ -8,8 +8,7 @@ class Question < ActiveRecord::Base
   def correct_answers
   	answer_array = []
     self.answers.each do |answer|
-  		answer.content
-  		answer_array<<answer.content
+  		answer_array<<answer.content.downcase
   	end
   	return answer_array
   end

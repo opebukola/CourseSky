@@ -1,5 +1,5 @@
 <fieldset>
-	<%= f.input :content, as: :ckeditor, label: "Add correct Answer", input_html: {toolbar: 'Basic'} %>
+	<%= f.input :content, label: "Add correct Answer" %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove Answer", '#', class: "remove_fields" %>
 </fieldset>
