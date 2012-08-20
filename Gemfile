@@ -15,6 +15,7 @@ gem 'ckeditor', git: "git://github.com/oob205/ckeditor.git"
 gem 'mini_magick'
 gem 'ancestry'
 gem 'pg_search'
+gem 'fog'
 
 
 # Gems used only for assets and not required
