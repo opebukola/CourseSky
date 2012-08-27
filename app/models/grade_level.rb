@@ -2,6 +2,8 @@ class GradeLevel < ActiveRecord::Base
   attr_accessible :name
 
   has_many :courses
+
+  scope :desc, order: "created_at desc"
 end
 # == Schema Information
 #

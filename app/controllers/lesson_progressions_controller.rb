@@ -1,10 +1,14 @@
 class LessonProgressionsController < ApplicationController
+	before_filter :authenticate_user! 
 	before_filter :correct_user
 	def complete
 		@lesson_progression = current_user.lesson_progressions.find_by_enrolled_course_id_and_enrolled_lesson_id(
 			params[:enrolled_course_id], params[:enrolled_lesson_id])
 		@lesson_progression.toggle!(:completed)
-		redirect_to :back, notice: "Lesson marked complete"
+		respond_to do |format|
+			format.html {redirect_to :back, notice: "Lesson marked completed"}
+			format.js
+		end
 	end
 
 	private

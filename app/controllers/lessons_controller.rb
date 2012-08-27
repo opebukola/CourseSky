@@ -26,7 +26,6 @@ class LessonsController < ApplicationController
 	def show
 		@lesson = Lesson.find(params[:id])
 		@course = Course.find(params[:course_id])
-		@lesson_progression = current_user.lesson_progressions.find_by_enrolled_lesson_id(@lesson.id) if current_user
 		@comments = @lesson.comments
 		@comment = Comment.new
 		params[:lesson_id] = params[:id]

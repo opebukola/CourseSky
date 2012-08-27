@@ -1,0 +1,7 @@
+var answer = $('#check_answer_<%=@question.id%>')
+<% if @question.correct_answers.include?params[:response].downcase %>
+$(answer).html("Correct!")
+<% else %>
+	alert('Wrong answer. Try again!')
+<% end %>
+

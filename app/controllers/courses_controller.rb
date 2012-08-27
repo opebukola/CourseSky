@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
-		if @course.status == 'draft'
+		if @course.feature_status == 'not featured'
 			redirect_to root_path unless current_user == @course.user
 		end
 	end
@@ -43,8 +43,12 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
-		Course.find(params[:id]).destroy
-		redirect_to root_path, notice: "Course Deleted"
+		@course = Course.find(params[:id])
+		if @course.destroy
+			redirect_to root_path, notice: "Course Deleted"
+		else
+			redirect_to :back, notice: "Cannot delete course"
+		end
 	end
 
 	def manage

@@ -23,7 +23,8 @@
 			<% @user.enrolled_courses.each do |course| %>
 			<ul>
 				<li><%= link_to course.title, course_path(course) %><br />
-					Progress: <%= @user.progress(course) %> percent. You have completed <%= pluralize(@user.completed_lessons(course), 'lesson') %>. You have <%= pluralize(@user.incomplete_lessons(course), 'lesson') %> remaining.</li>
+					Progress: <%= @user.progress(course) %> percent.<br />
+					You have completed <%= pluralize(@user.completed_lessons(course), 'lesson') %>. You have <%= pluralize(@user.incomplete_lessons(course), 'lesson') %> remaining.</li>
 			</ul>
 			<% end %>
 		</div>
@@ -32,7 +33,11 @@
 		<h3> Currently Teaching:</h3><br />
 		<% @user.courses.each do |course| %>
 			<ul>
-				<li><%= link_to course.title, manage_course_path(course) %></li>
+				<li>
+					<%= link_to course.title, manage_course_path(course) %> |
+					Status: <%= course.status %> |
+					Featured on site: <%= course.feature_status %>
+				</li>
 			</ul>
 		<% end %>
 	</div>

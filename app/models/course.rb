@@ -10,6 +10,7 @@ class Course < ActiveRecord::Base
   has_many :course_reviews
   belongs_to :user
   belongs_to :grade_level
+  before_destroy :ensure_no_students
 
   validates :title, presence: true
   validates :description, presence: true
@@ -22,6 +23,13 @@ class Course < ActiveRecord::Base
   scope :desc, order: "created_at desc"
   scope :published, where(published: true)
   scope :featured, where(featured: true)
+
+  def ensure_no_students
+    if self.students
+      self.errors.add(:base, "Cannot delete course with students")
+      return false 
+    end
+  end
 
   #status methods
   def status

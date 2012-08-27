@@ -1,0 +1,12 @@
+<%= provide(:title, 'All Users') %>
+<ul>
+<% @users.each do |user| %>
+	<li>
+		<%= user.email %> |
+		<%= user.username %> |
+		<%= link_to 'Delete User', user_path(user),
+																method: :delete,
+																data: {confirm: 'Are you sure?'} %>
+	</li>
+<% end %>
+</ul>

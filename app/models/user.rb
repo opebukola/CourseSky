@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
       return progress.round(2) * 100
     end
   end
+
+  def has_completed(lesson)
+    self.lesson_progressions.completed.find_by_enrolled_lesson_id(lesson.id)
+  end
 end
 # == Schema Information
 #
