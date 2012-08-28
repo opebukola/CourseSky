@@ -8,18 +8,15 @@
 			<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3><br />
 		</div>
 			<%= render 'enrollment_form' unless @course.user == current_user %> 
-			[social share]<br />
-			[social share]<br />
-			[social share]<br />
+			[social share buttons]
 	</div>
+	<br />
 	<div class="description">
 		<h2>About This Course</h2>
-		<%= @course.description %>
-		<h4>Grades: </h4>
-		<%= @course.grade_level.try(:name) %>
-		<h4>Subjects: </h4>
-		<% @course.categories.each do |cat| %>
-			<%= cat.name %>, 
+		<%= raw @course.description %>
+		Grades: <%= @course.grade_level.try(:name) %><br />
+		Subjects: <% @course.categories.each do |cat| %>
+			<%= link_to cat.name, category_path(cat) %>
 		<% end %>
 		
 	</div>
