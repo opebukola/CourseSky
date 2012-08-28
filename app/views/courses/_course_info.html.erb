@@ -8,20 +8,21 @@
 			<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3><br />
 		</div>
 			<%= render 'enrollment_form' unless @course.user == current_user %> 
+			<%= link_to 'Edit or Update Course', manage_course_path(@course), class: "btn btn-large" if @course.user == current_user %>
 			[social share buttons]
 	</div>
 	<br />
 	<div class="description">
-		<h2>About This Course</h2>
+		<h2>About This Course:</h2>
 		<%= raw @course.description %>
 		Grades: <%= @course.grade_level.try(:name) %><br />
 		Subjects: <% @course.categories.each do |cat| %>
-			<%= link_to cat.name, category_path(cat) %>
+			<%= link_to cat.name, category_path(cat) %> |
 		<% end %>
 		
 	</div>
 	<div class="people">
-		<h2> People</h2>
+		<h2> People:</h2>
 		<div class="students">
 			<h3><%= link_to pluralize(@course.students.count, 'student'), students_course_path %> :</h3>
 			<% @course.students.limit(4).each do |student| %>
@@ -30,12 +31,12 @@
 			<%= render 'review' %>
 		</div>
 		<div class="teachers">
-			<h3> Instructors:</h3>
+			<h3> Instructors</h3>
 			<%= image_tag @course.user.avatar_url(:profile) %>
 		</div><br /><br />
 	</div>
 	<div class="content">
-		<h2> Content </h2>
+		<h2> Content: </h2>
 		<% @course.lessons.each do |lesson| %>
 			<ul>
 				<li><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></li>

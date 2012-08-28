@@ -1,7 +1,7 @@
 <% if current_user %>
 	<%= simple_form_for(current_user.enrollments.build(enrolled_course_id: @course.id), remote: true) do |f| %>	
 		<%= f.input :enrolled_course_id, as: :hidden %>
-		<%= f.button :submit, "Enroll" %>
+		<%= f.button :submit, "Enroll", class: 'btn' %>
 	<% end %>
 <% else %>
 	<%= link_to "Sign in or Sign Up to Enroll", new_user_session_path, class: "btn" %>

@@ -1,5 +1,6 @@
 <p>
-	<h3> Manage Current Lessons (reorder, edit, delete) </h3><br />
+	<h3> Current Lessons </h3><br />
+	You can drag and drop to rearrange lesson order:<br />
 	<ul id="lessons-list" data-update-url="<%=sort_course_lessons_url(course_id: @course.id) %>">
 		<% @course.lessons.order("position").each do |lesson| %>
 			<%= content_tag_for :li, lesson do %>
@@ -12,4 +13,8 @@
 			<% end %>
 		<% end %>
 	</ul>
+</p>
+<p>
+	<h3> Create New Lessons for this Course </h3><br />
+	<%= link_to 'Add Lesson', new_course_lesson_path(course_id: @course.id), class: "btn btn-primary" %>
 </p>
