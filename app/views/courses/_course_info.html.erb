@@ -1,29 +1,48 @@
-<div class="cover-image">
-	<%= image_tag @course.cover_image_url(:box) %>
-</div>
-<h3><%= link_to @course.title, course_path %></h3> By <%= @course.user.username %>
-<p>
-	<h3>About This Course:</h3><br />
-	<strong>Grade: </strong>
-	<%= @course.grade_level.try(:name) %><br>
-	<strong>Topics: </strong>
-	<% @course.categories.each do |cat| %>
-		<%= cat.name %>, 
-	<% end %><br />
-	<strong>Description: </strong>
-	<%= raw @course.description %><br />
-	<strong>Average Rating: </strong>
-	<% if @course.rating %>
-		<%= @course.rating %>, <%= link_to 'Read Reviews', course_reviews_path(course_id: @course.id) %>
-	<% else %>
-		<%= "No Reviews yet." %>
-	<% end %>
-</p>
-
-<%= render 'enrollment_form' unless @course.user == current_user %>
-<p>
-	<h3> People: </h3>
-	This course has <%= link_to pluralize(@course.students.count, 'student'), students_course_path %>
-	<br />
-</p>
-<hr />
+<section>
+	<div class="course-banner">
+		<div id="cover-image">
+			<%= image_tag @course.cover_image_url(:box) %>
+		</div>
+		<div class="course-title">
+			<h1><%= link_to @course.title, course_path %></h1>
+			<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3><br />
+		</div>
+			<%= render 'enrollment_form' unless @course.user == current_user %> 
+			[social share]<br />
+			[social share]<br />
+			[social share]<br />
+	</div>
+	<div class="description">
+		<h2>About This Course</h2>
+		<%= @course.description %>
+		<h4>Grades: </h4>
+		<%= @course.grade_level.try(:name) %>
+		<h4>Subjects: </h4>
+		<% @course.categories.each do |cat| %>
+			<%= cat.name %>, 
+		<% end %>
+		
+	</div>
+	<div class="people">
+		<h2> People</h2>
+		<div class="students">
+			<h3><%= link_to pluralize(@course.students.count, 'student'), students_course_path %> :</h3>
+			<% @course.students.limit(4).each do |student| %>
+				<%= image_tag student.avatar_url(:profile) %>
+			<% end %><br />
+			<%= render 'review' %>
+		</div>
+		<div class="teachers">
+			<h3> Instructors:</h3>
+			<%= image_tag @course.user.avatar_url(:profile) %>
+		</div><br /><br />
+	</div>
+	<div class="content">
+		<h2> Content </h2>
+		<% @course.lessons.each do |lesson| %>
+			<ul>
+				<li><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></li>
+				</ul>
+		<% end %>
+	</div>
+</section>

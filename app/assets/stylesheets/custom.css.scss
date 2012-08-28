@@ -38,15 +38,14 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 h2 {
-  font-size: 1.7em;
+  font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  font-weight: normal;
-  color: $grayLight;
+  /* color: $grayLight; */
 }
 
 p {
@@ -124,11 +123,7 @@ footer {
   }
 }
 
-/* courses */
-.cover-image{
-  float: left;
-  margin-right: 10px;
-}
+/* courses*/
 
 .course {
   border: solid 1px #CCC;
@@ -161,6 +156,42 @@ footer {
   padding: 10px;
   width: 18%;
 }
+
+
+
+.course-banner{
+  /* border-bottom:solid #d9d9d9 1px; */
+  background-color:#FAFAFA; 
+  padding: 8px 0px 10px;
+  #cover-image{
+    float: left;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+}
+
+.description {
+  padding: 8px 0px 10px;
+  border-bottom:solid #d9d9d9 1px;
+}
+
+.people{
+  padding: 8px 0px 10px;
+  border-bottom:solid #d9d9d9 1px;
+  .students{
+    float:right;
+  }
+}
+
+.content{
+  padding: 8px 0px 10px; 
+}
+
+.explore{
+  text-align: center;
+  font-size: 2em;
+}
+
 
 /* lessons list */
 #lessons_list .handle {
