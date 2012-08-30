@@ -5,5 +5,5 @@
 	<h4> What type of course is this? </h4>
 	<%= f.association :categories, collection: Category.order(:name), label: 'Select categories' %>
 	<%= f.association :grade_level, collection: GradeLevel.order.desc, label: 'Select grade', required: true %><br />
-	<%= f.button :submit, "Save Course Draft" %>
+	<%= f.button :submit, "Save Course" %>
 <% end %>

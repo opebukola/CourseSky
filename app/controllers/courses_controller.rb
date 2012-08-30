@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
 	def create
 		@course = current_user.courses.build(params[:course])
 		if @course.save
-			redirect_to @course, notice: "Draft Course Saved!"
+			redirect_to @course, notice: "Course Saved!"
 		else
 			render 'new'
 		end
