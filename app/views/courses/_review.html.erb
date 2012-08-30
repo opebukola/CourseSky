@@ -1,5 +1,13 @@
 <% if @course.rating %>
-	Average Rating: <%= @course.rating %>, <%= link_to 'Read Reviews', course_reviews_path(course_id: @course.id) %>
+	<h3>Average User Rating: <%= @course.rating %></h3><br />
+	<% @course.course_reviews.limit(5).each do |review| %>
+	<ul>
+		<li><h4><%= review.user.username %> says:</h4>
+			<%= review.content %>
+		</li>
+	</ul>
+	<% end %><br />
+	 <%= link_to 'Read All Reviews', course_reviews_path(course_id: @course.id) %>
 <% else %>
 	<%= "No Course Reviews yet." %>
 <% end %>
