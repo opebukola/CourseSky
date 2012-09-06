@@ -7,6 +7,8 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
+  scope :positioned, order: "position"
+
   def has_answer?
     self.answers.any?
   end
@@ -28,19 +30,9 @@ class Question < ActiveRecord::Base
 
   #find next question
   def next_question
-    next_q = Lesson.find(self.lesson.id).questions.find_by_position(self.position + 1)
-    if next_q
-      return next_q
-    else
-      return self
-    end
+    Question.order(:position).find(:first, conditions: ["position > ? and lesson_id = ?",
+        self.position, self.lesson_id])
   end
-
-
-  # def next_question
-  #   question = Lesson.find(self.lesson.id).questions.find_by_position(self.position + 1)
-  #   return question.id if lesson
-  # end
 
   protected
     def set_position

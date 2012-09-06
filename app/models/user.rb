@@ -83,6 +83,10 @@ class User < ActiveRecord::Base
   def has_answered(question)
     return true if self.question_attempts.find_by_question_id(question.id)
   end
+
+  def reset!(question)
+    self.question_attempts.find_by_question_id(question.id).destroy
+  end
 end
 # == Schema Information
 #

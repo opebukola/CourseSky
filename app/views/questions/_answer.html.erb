@@ -1,0 +1,25 @@
+<div id="check_answer_<%=@question.id%>" class="submit-tag">
+	<% if current_user.has_answered(@question) %>
+	You have already answered this question. 
+	<%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', @question.next_question %>
+	<% else %>
+				<%= form_tag({action: 'check', controller: 'questions', id: @question.id}) do %>
+				<%= text_area_tag :response, "Enter your answer" %><br />
+					<%= submit_tag("Submit Answer", class:'btn btn-large') %><br />
+					<% end %>	
+					<a href="#hint" role="button" class="hint-text" data-toggle="modal"> I don't know. Show me a hint </a>
+					<div class="modal" id="hint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel"><%= @question.objective %></h3>
+					</div>
+					<div class="modal-body">
+						<p><%= @question.hint %></p>
+					</div>
+					<div class="modal-footer">
+						<%= link_to 'Read Lesson Notes', @lesson.document_url, target: '_blank' %> |
+						<%= link_to 'Watch Video', @lesson.video_source, target: '_blank' %>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					</div>
+	<% end %>					
+</div>
