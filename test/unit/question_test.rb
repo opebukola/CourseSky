@@ -15,5 +15,8 @@ end
 #  lesson_id  :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  prompt     :text
+#  position   :integer
+#  objective  :string(255)
 #
 

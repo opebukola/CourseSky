@@ -1,41 +1,33 @@
-<div class="lesson-box">
-	<h2>Lesson <%=@lesson.position %>: <%= @lesson.title %></h2>
-	<ul class="nav nav-tabs">
-		<li><a href="#video" data-toggle="tab">Video</a></li>
-		<li><a href="#document" data-toggle="tab">Document</a></li>
-		<li><a href="#quiz" data-toggle="tab"> Quiz</a></li>
-	</ul>
-
-	<div class="tab-content">
-		<div class="tab-pane" id="video">
-			<iframe allowfullscreen="", frameborder="1", height="360",
-				src="<%= @lesson.video_source %>", width="640"> </iframe>
-		</div>
-		<div class="tab-pane active" id="document">
-			<%= raw @lesson.document.display_ipaper %>
-		</div>
-		<div class="tab-pane" id="quiz">
-			<ol>
-				<% @lesson.questions.each do |question| %>
-				<li>
-					<%= raw question.content %>
-					<div id="check_answer_<%=question.id%>">
-						<%= form_tag({action: 'check_correct', controller: 'questions', id: question.id}, {remote:true}) do %>
-						Your Answer: <%= text_field_tag :response, "Enter your answer" %>
-							<%= submit_tag("check answer") %>
+<h2><%= @lesson.title %></h2>
+<ul class="question-list">
+	<% @lesson.questions.order(:position).each do |question| %>
+	<section class="lesson-box">
+		<li class="question-section"id="question_<%=question.position%>">
+				<div class="user-avatar">
+						<%= image_tag @course.user.avatar_url(:profile) %><br />
+						<% if @course.user.name %>
+							<%= @course.user.name %> says:
+						<% else %>
+							<%= @course.user.username %> says:
+						<% end %>
 					</div>
-					<% end %>
-				</li>
-				<% end %>
-			</ol>
-		</div>
-	</div>
-	<%= render 'complete' %> |
-	<%= link_to 'Download Doc', @lesson.document_url, target: '_blank' %> | <%= link_to 'Report Error', '#' %> |
-	
-	<!-- AddThis Button BEGIN -->
-	<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-502e6266716e4b50"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
-	<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-502e6266716e4b50"></script>
-	<!-- AddThis Button END -->
-</div>
+					<div class="prompt">
+				<h3><%= raw question.prompt %></h3>
+			</div>
+			<div class="question">
+				<%= raw question.content %>
+				<div id="check_answer_<%=question.id%>">
+					<%= form_tag({action: 'check', controller: 'questions', id: question.id}) do %>
+						<%= text_area_tag :response, "Enter your answer" %>
+						<div class="submit-tag">
+							<%= submit_tag("Submit Answer", class:'btn btn-large') %><br />
+							<% end %>	
+							<%= link_to 'I don\'t know. Show me a hint', '#' %>
+						</div>
+				</div>
+				
+			</div>
+		</li>
+	</section>
+	<% end %>
+</ul>

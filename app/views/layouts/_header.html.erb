@@ -6,8 +6,8 @@
 			<%= link_to "Teach", teach_path, class: "topbar" %>
 			<nav>
 				<%= form_tag courses_path, class: "navbar-search",method: :get do %>
-					<%= text_field_tag :query, params[:query], placeholder: "Search for courses" %>
-					<%= submit_tag "Search", name: nil %>
+				<%= text_field_tag :query, params[:query], placeholder: "Search for courses" %>
+				<%= submit_tag "Search", name: nil %>
 				<% end %>
 				<ul class="nav pull-right">
 					<li><%= link_to "Home", root_path %></li>

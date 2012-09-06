@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   has_many :course_reviews
   has_many :comments
   has_many :lesson_progressions, foreign_key: "student_id", dependent: :destroy
+  has_many :question_attempts, foreign_key: "student_id", dependent: :destroy
 
   #uplaod avatar
   mount_uploader :avatar, AvatarUploader
@@ -76,6 +77,11 @@ class User < ActiveRecord::Base
 
   def has_completed(lesson)
     self.lesson_progressions.completed.find_by_enrolled_lesson_id(lesson.id)
+  end
+
+  #question progress
+  def has_answered(question)
+    return true if self.question_attempts.find_by_question_id(question.id)
   end
 end
 # == Schema Information

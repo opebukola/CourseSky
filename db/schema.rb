@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815165020) do
+ActiveRecord::Schema.define(:version => 20120905150753) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -136,15 +136,36 @@ ActiveRecord::Schema.define(:version => 20120815165020) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "question_attempts", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "question_id"
+    t.boolean  "completed",   :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "question_attempts", ["question_id"], :name => "index_question_attempts_on_question_id"
+  add_index "question_attempts", ["student_id"], :name => "index_question_attempts_on_student_id"
+
   create_table "questions", :force => true do |t|
     t.text     "content"
     t.text     "hint"
     t.integer  "lesson_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "prompt"
+    t.integer  "position"
+    t.string   "objective"
   end
 
   add_index "questions", ["lesson_id"], :name => "index_questions_on_lesson_id"
+
+  create_table "sections", :force => true do |t|
+    t.text     "prompt"
+    t.integer  "lesson_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "subjects", :force => true do |t|
     t.string   "name"

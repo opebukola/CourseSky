@@ -1,5 +1,7 @@
 <fieldset>
-	<%= f.input :content, as: :ckeditor, label: "Add New Question", input_html: {toolbar: 'Basic'} %>
+	<%= f.input :objective, label: "What's the point of this question?", hint: 'Objectives are short, only a few words, and should define what the question is testing e.g. \'Define Economics\' or \'Adding Fractions\' ' %>
+	<%= f.input :prompt, as: :ckeditor, label: "Add the Prompt", input_html: {toolbar: 'Basic'} %>
+	<%= f.input :content, as: :ckeditor, label: "Add Question Text", input_html: {toolbar: 'Basic'} %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove Question", '#', class: "remove_fields" %>
 	<p>
@@ -8,4 +10,5 @@
 		<% end %>
 		<%= link_to_add_fields "Add correct answer", f, :answers %>
 	</p>
+	<%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question" %>
 </fieldset>

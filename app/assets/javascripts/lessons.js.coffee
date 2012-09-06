@@ -13,3 +13,7 @@ jQuery ->
   	regexp = new RegExp($(this).data('id'), 'g')
   	$(this).before($(this).data('fields').replace(regexp, time))
   	event.preventDefault()
+  $("#hint").hide();
+  $("#video-resource").hide();
+  $("#doc-resource").hide();
+

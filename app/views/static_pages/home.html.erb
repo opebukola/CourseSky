@@ -3,19 +3,12 @@
 <section>
 	<div class="center hero-unit">
 		<h1>Take control of your learning </h1>
-		<h2>Online courses for middle and high school. 100% FREE</h2>
-
-		<p>
-			Watch video lectures, download notes, and take quizzes to test your knowledge. Go at your own pace, study whenever and wherever you want. 
-		</p>
-
-		<%= link_to "Get started now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+		<h2>Online classes for middle and high school. 100% Free. Choose a subject below to get started</h2>
 	</div>
 </section>
 <section>
-	<%= render 'shared/browse' %>
-	<h2> FEATURED COURSES: </h2>
 	<%= render 'shared/course_box' %>
 </section>
-
-
+<p>
+	<h4> Educators: CourseSky is an open education resource. You are free to use, distribute, and remix our content. <%= link_to 'Learn more!', '#' %></h4>
+</p>

@@ -1,0 +1,4 @@
+<div class="course-info">
+	<h3><%= link_to @course.title, course_path(@course) %></h3> by <%= @course.user.name %><br />
+		Lesson <%= @lesson.position %> of <%= @course.lessons.count %>
+</div>

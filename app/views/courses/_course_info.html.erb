@@ -1,53 +1,45 @@
 <section>
-	<ul class="nav nav-tabs">
-		<li><a href="#main" data-toggle="tab">Course Description</a></li>
-		<li><a href="#content" data-toggle="tab">Lessons</a></li>
-		<li><a href="#people" data-toggle="tab">People</a></li>
-	</ul>
-	<div class="tab-content">
-		<div class="tab-pane active" id="main">
-			<div class="course-banner">
-				<div id="cover-image">
-					<%= image_tag @course.cover_image_url(:box) %>
-				</div>
-				<div class="course-title">
-					<h1><%= link_to @course.title, course_path %></h1>
-					<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3><br />
-				</div>
-				<%= render 'enrollment_form' unless @course.user == current_user %> 
-				<%= link_to 'Edit or Update Course', manage_course_path(@course), class: "btn btn-large" if @course.user == current_user %> <br />
-					[social share buttons]
-			</div>
-			<%= raw @course.description %>
-			Grades: <%= @course.grade_level.try(:name) %><br />
-			Subjects: <% @course.categories.each do |cat| %>
-				<%= link_to cat.name, category_path(cat) %> |
+	<div class="course-div">
+		<div id="cover-image">
+			<%= image_tag @course.cover_image_url(:box) %>
+		</div>
+		<h1><%= @course.title %></h1>
+		<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3>
+		<%= @course.description %><br />
+		Grades: <%= @course.grade_level.name %> | 
+		Subjects: <% @course.categories.each do |cat| %>
+				<%= link_to cat.name, category_path(cat) %> 
 			<% end %>
+		<p>
+			<%= render 'enrollment_form' unless @course.user == current_user %> 
+		</p>
+		<p>
+			<%= link_to 'Edit or Update Course', manage_course_path(@course), class: "btn btn-large" if current_user && current_user == @course.user %>
+		</p>
 		</div>
-		<div class="tab-pane" id="content">
-			<div class="content">
-				<% @course.lessons.order(:position).each do |lesson| %>
-					<ul>
-						<li><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></li>
-					</ul>
-				<% end %>
-			</div>
-		</div>
-		<div class="tab-pane" id="people">
-			<p>
-				<h3> Instructors:</h3>
-				<%= image_tag @course.user.avatar_url(:profile) %>
-			</p>
-			<p>
-				<h3><%= pluralize @course.students.count, 'student' %> are taking this course, including:</h3>
+	<div class="course-div">
+		<h2> Topics in this course:</h2>
+		<ol>
+			<% @course.lessons.order(:position).each do |lesson| %>
+			<h3>
+				<p>
+					<li>
+						<%= link_to lesson.title, question_path(lesson.questions.find_by_position(1)) %></h3>
+						Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', lesson.document_url, target: '_blank' %><br />
+						Status: 'X' percent completed
+					</li>
+				</p>
+			<% end %>
+		</ol>
+	</div>
+	<div class="course-div">
+		<h2> People: </h2>
+		<h3> Instructors:</h3>
+					<%= image_tag @course.user.avatar_url(:profile) %>
+		<h3><%= pluralize @course.students.count, 'student' %> are taking this course, including:</h3>
 				<% @course.students.limit(10).each do |student| %>
 					<%= image_tag student.avatar_url(:profile) %>
 				<% end %><br />
 				<%= link_to 'See all students', students_course_path %>
-			</p><br />
-			<p>
-				<%= render 'review' %>
-			</p>
-		</div>
 	</div>
 </section>

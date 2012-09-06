@@ -1,6 +1,6 @@
 <%= simple_form_for @course do |f| %>
-	<%= f.input :title, label: 'Provide a title for your course' %>
-	<%= f.input :description, as: :ckeditor, label: 'Write a short description of what students will learn', input_html: {toolbar: 'Basic'} %>
+	<%= f.input :title, label: 'Give the course a title' %>
+	<%= f.input :description, label: 'Give the course a description' %>
 	<%= f.input :cover_image, label: 'Upload a cover image for your course' %>
 	<h4> What type of course is this? </h4>
 	<%= f.association :categories, collection: Category.order(:name), label: 'Select categories' %>

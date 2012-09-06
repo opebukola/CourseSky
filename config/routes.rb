@@ -14,7 +14,9 @@ Coursesky::Application.routes.draw do
   end
   resources :courses do
     resources :lessons do
-      collection {post :sort}
+      collection do
+        post :sort
+      end
     end
     collection do
       get :admin
@@ -26,7 +28,7 @@ Coursesky::Application.routes.draw do
   end
   resources :questions do
     member do
-      post :check_correct
+      post :check
     end
   end
   resources :categories

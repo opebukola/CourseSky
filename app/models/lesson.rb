@@ -34,12 +34,12 @@ class Lesson < ActiveRecord::Base
 
   def next_lesson
     lesson = Course.find(self.course.id).lessons.find_by_position(self.position + 1)
-    return lesson.id if lesson
+    return lesson
   end
 
   def previous_lesson
     lesson = Course.find(self.course.id).lessons.find_by_position(self.position - 1)
-    return lesson.id if lesson
+    return lesson
   end
 
 

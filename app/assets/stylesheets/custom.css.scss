@@ -144,9 +144,8 @@ footer {
 
 
 .coursebox{
-  float: left;
-  width: 700px;
-  margin: 0px 0px 0px 0px;
+  width: 75%;
+  margin: 0px auto;
 }
 
 .browse {
@@ -160,8 +159,8 @@ footer {
 
 
 
-.course-banner{
-  /* border-bottom:solid #d9d9d9 1px; */
+.course-div{
+  border-bottom:solid #d9d9d9 1px; 
   /* background-color:#FAFAFA; */
   padding: 8px 0px 30px;
   margin-bottom: 10px;
@@ -189,6 +188,8 @@ footer {
   cursor: move;
 }
 
+
+
 /* comments */
 .comments {
   margin: 8px 0;
@@ -207,18 +208,59 @@ footer {
   margin-left: 0;
 }
 
-/* lessons */
+/* questions */
 .lesson-box{
-  width: 90%;
-  float: left;
-  border: solid 1px #999;
+  border: dotted 1px #999; 
+  padding: 15px 25px 15px 25px;
+  margin-bottom: 50px;
+  .user-avatar{
+    float: left;
+    margin-bottom: 50px;
+    margin-right: 20px;
+    }
+  .prompt{
+    padding: 5px 10px 5px 10px; 
+    margin-bottom: 50px; 
+    h3 {
+      font-weight: normal;
+    }
+  }
+  .question{
+    border: solid 1px #999; 
+    padding: 5px 10px 5px 10px; 
+    background-color:#FAFAFA; 
+    border-radius: 12px; 
+  }
+  .submit-tag{
+    text-align: center;
+  }
+  .hint-text a{
+    text-align: center;
+  }
+  li {
+    list-style: none;
+  }
+}
+
+.learning-resources{
+  border: dotted 1px #999;
   padding: 5px 10px 5px 10px;
 }
+
 .coursenav {
   border: solid 2px #ccc;
-  float: right;
   margin-left: 0px;
   margin-top: 70px;
   padding: 10px;
   width: 20%;
+}
+
+.course-info{
+  text-align: right;
+}
+
+.questionnav li {
+  margin-left: 0px;
+  padding: 10px;
+  display: inline;
 }

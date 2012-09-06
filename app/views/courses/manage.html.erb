@@ -1,32 +1,25 @@
 <%= provide(:title, 'Manage Course') %>
 <ul class="nav nav-tabs">
-	<li><a href="#info" data-toggle="tab">Edit Basic Information</a></li>
-	<li><a href="#lessons" data-toggle="tab">Edit Lessons</a></li>
-	<li><a href="#status" data-toggle="tab">Edit Status</a></li>
+	<li><a href="#info" data-toggle="tab">Course Information</a></li>
+	<li><a href="#lessons" data-toggle="tab">Lessons & Questions</a></li>
+	<li><a href="#status" data-toggle="tab">Status</a></li>
 </ul>
 
 <div class="tab-content">
 	<div class="tab-pane active" id="info">
-		<p>
-		<h3>Course Information</h3><br />
-		<div class="course-banner">
-			<div id="cover-image">
-				<%= image_tag @course.cover_image_url(:box) %>
-			</div>
-			<div class="course-title">
-				<h1><%= link_to @course.title, course_path %></h1>
-				<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3><br />
-			</div>
-		</div></p>
-		<p>
-			<h2>About This Course</h2>
-			<%= raw @course.description %>
-			Grades: <%= @course.grade_level.try(:name) %><br />
-			Subjects: <% @course.categories.each do |cat| %>
-				<%= cat.name %>
+		<div class="course-div">
+		<div id="cover-image">
+			<%= image_tag @course.cover_image_url(:box) %>
+		</div>
+		<h1><%= @course.title %></h1>
+		<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3>
+		<%= @course.description %><br />
+		Grades: <%= @course.grade_level.name %> | 
+		Subjects: <% @course.categories.each do |cat| %>
+				<%= link_to cat.name, category_path(cat) %> 
 			<% end %>
-		</p>
-		<%= link_to 'Edit Course Information', edit_course_path, class: "btn btn-primary"  %>
+	</div>
+		<%= link_to 'Edit Basic Information', edit_course_path, class: "btn btn-primary"  %>
 		<%= link_to 'Delete Course', course_path(@course),
 																		method: :delete,
 																		data: {confirm: 'Are you sure?'},

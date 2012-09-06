@@ -1,16 +1,24 @@
 <p>
-	<h3> Current Lessons </h3><br />
-	You can drag and drop to rearrange lesson order:<br />
+	<h3>You can drag and drop to rearrange lesson order:</h3><br />
 	<ul id="lessons-list" data-update-url="<%=sort_course_lessons_url(course_id: @course.id) %>">
 		<% @course.lessons.order("position").each do |lesson| %>
 			<%= content_tag_for :li, lesson do %>
-			<span class="handle">[move]</span>
-				<%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %> |
-				<%= link_to "Edit Lesson", edit_course_lesson_path(course_id: @course.id, id: lesson.id) %> |
-				<%= link_to "Delete Lesson", course_lesson_path(course_id: @course.id, id: lesson.id), 
-					method: :delete,
-					data: {confirm: 'Are you sure?'} %>
-			<% end %>
+				<span class="handle">[move]</span>
+					<%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %> |
+					<%= link_to "Edit Lesson", edit_course_lesson_path(course_id: @course.id, id: lesson.id) %> |
+					<%= link_to "Delete Lesson", course_lesson_path(course_id: @course.id, id: lesson.id), 
+						method: :delete,
+						data: {confirm: 'Are you sure?'} %><br />
+						Questions in this lesson:
+						<ul id="question-lists">
+							<% lesson.questions.order(:position).each do |question| %>
+								<%= content_tag_for :li, question do %>
+									<span class="handle">[move]</span>
+									<%= link_to question.objective, '#' %><br />
+								<% end %><br />
+							<% end %>
+						</ul>
+				<% end %><br /><hr />
 		<% end %>
 	</ul>
 </p>
