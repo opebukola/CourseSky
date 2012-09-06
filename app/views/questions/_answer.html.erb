@@ -1,5 +1,5 @@
 <div id="check_answer_<%=@question.id%>" class="submit-tag">
-	<% if current_user.has_answered(@question) %>
+	<% if current_user && current_user.has_answered(@question) %>
 	You have already answered this question. 
 	<%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', @question.next_question %>
 	<% else %>
