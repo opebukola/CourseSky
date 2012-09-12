@@ -1,28 +1,34 @@
 <p>
-	<h3>You can drag and drop to rearrange lesson order:</h3><br />
+	<%= link_to 'Add New Lesson', new_course_lesson_path(course_id: @course.id), class: "btn btn-primary" %>
+</p>
+<hr />
+<p>
+	<h2>Edit or rearrange existing lessons</h2>
 	<ul id="lessons-list" data-update-url="<%=sort_course_lessons_url(course_id: @course.id) %>">
 		<% @course.lessons.order("position").each do |lesson| %>
 			<%= content_tag_for :li, lesson do %>
-				<span class="handle">[move]</span>
+				<h3><span class="handle">[move]</span>
 					<%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %> |
 					<%= link_to "Edit Lesson", edit_course_lesson_path(course_id: @course.id, id: lesson.id) %> |
 					<%= link_to "Delete Lesson", course_lesson_path(course_id: @course.id, id: lesson.id), 
 						method: :delete,
-						data: {confirm: 'Are you sure?'} %><br />
-						Questions in this lesson:
-						<ul id="question-lists">
+						data: {confirm: 'Are you sure?'} %><br /></h3>
+						<a data-toggle="collapse" data-target="#question_lesson_<%=lesson.id%>">
+							[Show/Hide Questions]
+						</a>
+						<div id="question_lesson_<%=lesson.id%>" class="collapse">
 							<% lesson.questions.order(:position).each do |question| %>
-								<%= content_tag_for :li, question do %>
-									<span class="handle">[move]</span>
-									<%= link_to question.objective, '#' %><br />
-								<% end %><br />
+									<%= link_to question.objective, question_path(question) %> |
+									<%= link_to "Edit", edit_question_path(question, lesson_id: lesson.id) %> |
+									<%= link_to "Delete", question_path(question),
+									method: :delete,
+									data: {confirm: 'Are you sure?'} %><br />
 							<% end %>
-						</ul>
-				<% end %><br /><hr />
+						</div>
+						<h4><%=link_to "Add New Question", new_question_path(course_id: @course.id, lesson_id: lesson.id) %></h4>
+			<% end %><hr />
 		<% end %>
 	</ul>
 </p>
-<p>
-	<h3> Create New Lessons for this Course </h3><br />
-	<%= link_to 'Add Lesson', new_course_lesson_path(course_id: @course.id), class: "btn btn-primary" %>
-</p>
+
+

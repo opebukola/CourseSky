@@ -1,30 +1,9 @@
 <%= simple_form_for [@course, @lesson] do |f| %>
-	<ul class="nav nav-tabs">
-		<li><a href="#basics" data-toggle="tab">Basics</a></li>
-		<li><a href="#questions" data-toggle="tab">Questions</a></li>
-	</ul>
-	<div class="tab-content">
-		<div class="tab-pane active" id="basics">
-			<h2> Provide some basic information for your lesson. Be sure to include learning materials that teaches the topics covered in the lesson</h2>
-			<h3> Step 1: Give the lesson a title </h3><br />
-			<%= f.input :title, label: "Provide a title" %>
-			<h3> Step 2: Add some learning materials! </h3><br />
-			<h4>Add a Document:</h4><br />
-			<%= f.input :document, label: "Upload a document. Accepted file formats include .doc, .pdf, .ppt" %>
-			<p>
-				<h4>Add a Video:</h4><br />
-				<%= f.input :video_url, label: "Enter the URL of a YouTube video. Check out YouTube EDU for some great educational videos" %>
-			</p>
-		</div>
-		<div class="tab-pane" id="questions">
-			<h2> Here you can add questions and prompts. Each question must include prompt, question content, answers, and hint. Not sure what these are? Click here to learn more</h2>
-			<%= f.simple_fields_for :questions do |builder| %>
-					<%= render 'question_fields', f: builder %>
-			<% end %>
-			<%= link_to_add_fields "Add New Question", f, :questions %>
-		</div>
-	</div>
-	<hr />
-	<h3> Step 3: Save Your Lesson! (you can always edit it later) </h3><br />
-	<%= f.button :submit, "Save Lesson" %>
+<h3> Step 1: Provide basic information </h3>
+<%= f.input :title, label: "Give Lesson a Title" %><br />
+<h3> Step 2: Add learning materials! </h3><br />
+<%= f.input :document, label: "Upload a document. Accepted file formats include .doc, .pdf, .ppt" %><br />
+<%= f.input :video_url, label: "Enter the URL of a YouTube video. Check out YouTube EDU for some great educational videos" %>
+<h3> Step 3: Save Your Lesson! (you can always edit it later) </h3><br />
+<%= f.button :submit, "Save Lesson", class: 'btn btn-success' %>	
 <% end %>

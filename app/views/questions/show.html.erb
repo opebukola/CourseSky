@@ -1,14 +1,8 @@
 <% provide(:title, @question.objective) %>
+<section>
 <%= render 'course_info' %>
 <h2><%= @lesson.title %></h2>
 <%= render 'shared/question_nav' %>
-<%= render 'content' %>
+<%= render 'prompt' %>
 <%= render 'shared/resources' %>
-<% if @lesson.previous_lesson %>
-	<%= link_to "<< Previous Lesson", question_path(@lesson.previous_lesson.questions.find_by_position(1)) %>
-<% end %>  
-
-<% if @lesson.next_lesson %>
-	<%= link_to "Next Lesson >>", question_path(@lesson.next_lesson.questions.find_by_position(1)) %>
-<% end %><br />
-<%= link_to 'All Lessons in this Course', '#' %>
+</section>

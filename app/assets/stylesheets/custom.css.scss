@@ -72,18 +72,6 @@ p {
   }
 }
 
-.topbar {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.4em;
-  letter-spacing: -1px;
-  padding-top: 20px;
-  line-height: 1;
-  &:hover {
-    /** color: white; **/
-    text-decoration: none;
-  }
-}
 .nav {
   padding-top: 18px;
 }
@@ -160,9 +148,9 @@ footer {
 
 
 .course-div{
-  border-bottom:solid #d9d9d9 1px; 
+  border-top:solid #d9d9d9 1px; 
   /* background-color:#FAFAFA; */
-  padding: 8px 0px 30px;
+  padding: 8px 0px 20px;
   margin-bottom: 10px;
   #cover-image{
     float: left; 
@@ -209,10 +197,11 @@ footer {
 }
 
 /* questions */
-.lesson-box{
+.question-box{
   border: dotted 1px #999; 
-  padding: 15px 25px 15px 25px;
+  padding: 10px 10px 10px 10px;
   margin-bottom: 50px;
+  margin-right: 10px;
   .user-avatar{
     float: left;
     margin-bottom: 50px;
@@ -225,12 +214,6 @@ footer {
       font-weight: normal;
     }
   }
-  .question{
-    border: solid 1px #999; 
-    padding: 5px 10px 5px 10px; 
-    background-color:#FAFAFA; 
-    border-radius: 12px; 
-  }
   .submit-tag{
     text-align: center;
   }
@@ -242,17 +225,17 @@ footer {
   }
 }
 
-.learning-resources{
-  border: dotted 1px #999;
-  padding: 5px 10px 5px 10px;
+.response {
+  font-size: 2em;
 }
+
 
 .coursenav {
   border: solid 2px #ccc;
   margin-left: 0px;
   margin-top: 70px;
   padding: 10px;
-  width: 20%;
+  width: 30%;
 }
 
 .course-info{
@@ -263,4 +246,9 @@ footer {
   margin-left: 0px;
   padding: 10px;
   display: inline;
+}
+
+/** search **/
+.search{
+  text-align: center;
 }

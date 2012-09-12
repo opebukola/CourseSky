@@ -1,45 +1,13 @@
-<section>
-	<div class="course-div">
+<div class="course-div">
 		<div id="cover-image">
 			<%= image_tag @course.cover_image_url(:box) %>
 		</div>
 		<h1><%= @course.title %></h1>
 		<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3>
 		<%= @course.description %><br />
-		Grades: <%= @course.grade_level.name %> | 
+		Grades: <%= @course.grade_level.name %> <br />
 		Subjects: <% @course.categories.each do |cat| %>
 				<%= link_to cat.name, category_path(cat) %> 
 			<% end %>
-		<p>
-			<%= render 'enrollment_form' unless @course.user == current_user %> 
-		</p>
-		<p>
-			<%= link_to 'Edit or Update Course', manage_course_path(@course), class: "btn btn-large" if current_user && current_user == @course.user %>
-		</p>
-		</div>
-	<div class="course-div">
-		<h2> Topics in this course:</h2>
-		<ol>
-			<% @course.lessons.order(:position).each do |lesson| %>
-			<h3>
-				<p>
-					<li>
-						<%= link_to lesson.title, question_path(lesson.questions.find_by_position(1)) %></h3>
-						Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', lesson.document_url, target: '_blank' %><br />
-						Status: 'X' percent completed
-					</li>
-				</p>
-			<% end %>
-		</ol>
-	</div>
-	<div class="course-div">
-		<h2> People: </h2>
-		<h3> Instructors:</h3>
-					<%= image_tag @course.user.avatar_url(:profile) %>
-		<h3><%= pluralize @course.students.count, 'student' %> are taking this course, including:</h3>
-				<% @course.students.limit(10).each do |student| %>
-					<%= image_tag student.avatar_url(:profile) %>
-				<% end %><br />
-				<%= link_to 'See all students', students_course_path %>
-	</div>
-</section>
+</div>
+	

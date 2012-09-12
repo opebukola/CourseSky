@@ -1,5 +1,5 @@
-<section class="lesson-box">
-	<div class="question-section"id="question_<%=@question.position%>">
+<section class="question-box">
+	<div id="question_<%=@question.position%>">
 		<div class="user-avatar">
 			<%= image_tag @course.user.avatar_url(:profile) %><br />
 			<% if @course.user.name %>
@@ -11,8 +11,7 @@
 		<div class="prompt">
 			<h3><%= raw @question.prompt %></h3>
 		</div>
-		<div class="question">
-			<h4><%= raw @question.content %></h4>
+		<div class="answer-box">
 			<%= render 'answer' %>
 			</div>
 	</div>

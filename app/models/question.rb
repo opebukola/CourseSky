@@ -1,17 +1,18 @@
 class Question < ActiveRecord::Base
-  attr_accessible :content, :hint, :lesson_id, :answers_attributes, :prompt,
-                  :objective
+  attr_accessible :hint, :lesson_id, :answers_attributes, :prompt,
+                  :objective, :course_id
   belongs_to :lesson
+  belongs_to :course
   has_many :answers
+  has_many :question_attempts, dependent: :destroy
   before_save :set_position
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  scope :positioned, order: "position"
-
-  def has_answer?
-    self.answers.any?
-  end
+  validates :lesson_id, presence: true
+  validates :course_id, presence: true
+  validates :prompt, presence: true
+  validates :objective, presence: true
 
   def correct_answers
     if self.answers.any?
@@ -23,20 +24,43 @@ class Question < ActiveRecord::Base
     end
   end
 
-  # If student gives correct answer, create a question attempt
-  def mark_complete(user)
-    QuestionAttempt.create!(question_id:self.id, student_id:user.id)
+  def no_answer
+    self.answers.empty?
   end
 
+  def is_correct?(response)
+    self.no_answer || self.correct_answers.include?(response.downcase)
+  end
+
+  # Record answer attempt
+  def update_attempts(user)
+    try = self.question_attempts.find_or_create_by_student_id(
+      student_id:user.id)
+    attempt_count = try.attempts
+    try.update_attribute(:attempts, attempt_count += 1)
+  end
+
+  #update correct
+  def mark_correct(user)
+    attempt = QuestionAttempt.find_by_question_id_and_student_id(self.id, user.id)
+    attempt.update_attribute(:completed, true)
+  end
+
+
   #find next question
+  # def next_question
+  #   Question.order(:position).find(:first, conditions: ["position > ? and lesson_id = ?",
+  #       self.position, self.lesson_id])
+  # end
+
   def next_question
-    Question.order(:position).find(:first, conditions: ["position > ? and lesson_id = ?",
-        self.position, self.lesson_id])
+    Question.order(:position).find(:first, conditions: ["position > ? and course_id = ?",
+        self.position, self.course_id]) 
   end
 
   protected
     def set_position
-      self.position ||= 1 + (Question.where('lesson_id=?',lesson_id).maximum(:position) || 0)
+      self.position ||= 1 + (Question.where('course_id=?',course_id).maximum(:position) || 0)
     end
 
 end
@@ -45,7 +69,6 @@ end
 # Table name: questions
 #
 #  id         :integer         not null, primary key
-#  content    :text
 #  hint       :text
 #  lesson_id  :integer
 #  created_at :datetime        not null
@@ -53,5 +76,6 @@ end
 #  prompt     :text
 #  position   :integer
 #  objective  :string(255)
+#  course_id  :integer
 #
 

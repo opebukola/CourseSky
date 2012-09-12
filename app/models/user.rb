@@ -32,8 +32,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :lesson_progressions, foreign_key: "student_id", dependent: :destroy
   has_many :question_attempts, foreign_key: "student_id", dependent: :destroy
-
-  #uplaod avatar
   mount_uploader :avatar, AvatarUploader
 
   #enrollment methods
@@ -56,37 +54,78 @@ class User < ActiveRecord::Base
     self.course_reviews.find_by_course_id(course.id)
   end
 
-  #course progress methods
-
-  def completed_lessons(course)
-    self.lesson_progressions.completed.find_all_by_enrolled_course_id(course.id).count
-  end
-
-  def incomplete_lessons(course)
-    course.lessons.count - completed_lessons(course)
-  end
-  
-  def progress(course)
-    if self.enrolled?(course)
-      complete = completed_lessons(course)
-      incomplete = incomplete_lessons(course)
-      progress = complete.to_f / (complete.to_f + incomplete.to_f) 
-      return progress.round(2) * 100
-    end
-  end
-
-  def has_completed(lesson)
-    self.lesson_progressions.completed.find_by_enrolled_lesson_id(lesson.id)
-  end
-
   #question progress
-  def has_answered(question)
-    return true if self.question_attempts.find_by_question_id(question.id)
+  def has_answered?(question)
+    return true if self.question_attempts.find_by_question_id_and_completed(
+      question.id, :true)
   end
 
   def reset!(question)
     self.question_attempts.find_by_question_id(question.id).destroy
   end
+
+  #lesson progress 
+  def completed_lesson?(lesson)
+    questions = Question.find_all_by_lesson_id(lesson.id)
+    questions.all? {|question| self.has_answered?(question)}
+  end
+
+  def lesson_progress(lesson)
+    if self.completed_lesson?(lesson)
+      return 'completed'
+    elsif self.question_attempts.find_all_by_lesson_id(lesson.id).any?
+      return 'in progress'
+    else
+      return 'not started'
+    end 
+  end
+
+  #course progress 
+
+  def completed_course?(course)
+    lessons = Lesson.find_all_by_course_id(course.id)
+    lessons.all? {|lesson| self.completed_lesson?(lesson)}
+  end
+
+  def completed_lessons(course)
+    lessons = Lesson.find_all_by_course_id(course.id)
+    lessons.select {|lesson| self.completed_lesson?(lesson)}
+  end
+
+  def incomplete_lessons(course)
+    course.lessons.count - completed_lessons(course).size
+  end
+
+  def progress(course)
+    if self.enrolled?(course)
+      total = course.lessons.size
+      complete = completed_lessons(course).size
+      incomplete = incomplete_lessons(course)
+      progress = complete.to_f / total.to_f
+      return progress.round(2) * 100
+    end
+  end
+
+  #course progress methods -- DEPRACATED
+
+  #def completed_lessons(course)
+   # self.lesson_progressions.completed.find_all_by_enrolled_course_id(course.id).count
+  #end
+
+  #def incomplete_lessons(course)
+   # course.lessons.count - completed_lessons(course)
+  #end
+  
+  # def progress(course)
+  #   if self.enrolled?(course)
+  #     complete = completed_lessons(course)
+  #     incomplete = incomplete_lessons(course)
+  #     progress = complete.to_f / (complete.to_f + incomplete.to_f) 
+  #     return progress.round(2) * 100
+  #   end
+  # end
+
+  
 end
 # == Schema Information
 #

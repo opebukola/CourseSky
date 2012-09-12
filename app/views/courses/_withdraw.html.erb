@@ -1,3 +1,0 @@
-<%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(@course), html: {method: :delete}, remote:true) do |f| %>
-	<%= f.button :submit, "You're taking this Course. Click to leave course", class: 'btn' %>
-<% end %>

@@ -1,0 +1,6 @@
+<div class="course-div">
+		<h2> People: </h2>
+		<h3> Instructors:</h3>
+					<%= image_tag @course.user.avatar_url(:profile) %><br />
+		<h3><%= pluralize @course.students.count, 'student' %> are taking this course. <%= link_to 'See all students', students_course_path %>
+	</div>

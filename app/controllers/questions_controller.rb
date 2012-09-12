@@ -1,32 +1,61 @@
 class QuestionsController < ApplicationController
+	
+	def new
+		@question = Question.new
+	end
+
+	def create
+		@question = Question.new(params[:question])
+		@course = @question.lesson.course
+		if @question.save 
+			redirect_to manage_course_path(@course), notice: "Question saved"
+		else
+			render 'new'
+		end
+	end
+	
 	def show
 		@question = Question.find(params[:id])
 		@lesson = @question.lesson
 		@course = @question.lesson.course
 	end
 
+	def edit
+		@question = Question.find(params[:id])
+		@lesson = @question.lesson
+		@course = @question.lesson.course
+	end
+
+	def update
+		@question = Question.find(params[:id])
+		@course = @question.lesson.course
+		if @question.update_attributes(params[:question])
+			redirect_to manage_course_path(@course), notice: "Question updated"
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		Question.find(params[:id]).destroy
+		redirect_to :back, notice: "Question Deleted"
+	end
+
 	def check
 		@question = Question.find(params[:id])
-		@user = current_user
-		respond_to do |format|
-			format.html{ 
-				if @question.has_answer?
-					if @question.correct_answers.include?params[:response].downcase
-						flash[:success] = "Correct!"
-						@question.mark_complete(current_user) if current_user
-						redirect_to question_path @question.next_question
-					else
-						flash[:error] = "That's not the correct answer, try again!"
-						redirect_to :back
-					end
-				else
-					flash[:success] = "Great answer!"
-					@question.mark_complete(current_user) if current_user
-					redirect_to question_path @question.next_question
+		@question.update_attempts(current_user) if current_user
+			if @question.is_correct?params[:response].downcase
+				@question.mark_correct(current_user) if current_user
+				respond_to do |format|
+					format.html{ redirect_to :@question.next_question, notice: "Correct!"}
+					format.js { render 'check_correct'}
 				end
-				}
-			format.js 
-		end
+			else
+				respond_to do |format|
+					format.html {redirect_to :back, notice: "Try Again"}
+					format.js { render 'check_incorrect'}
+				end
+			end
 	end
 end
 

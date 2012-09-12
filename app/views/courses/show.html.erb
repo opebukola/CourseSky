@@ -1,5 +1,16 @@
 <%= provide(:title, @course.title) %>
+<section>
 <%= render 'course_info' %>
+<p>
+			<%= link_to 'Edit or Update Course', manage_course_path(@course), class: "btn btn-large" if current_user && current_user == @course.user %>
+		</p>
+		<% if current_user && current_user.enrolled?(@course) %>
+			<h3>Progress: <%= current_user.progress(@course) %> percent complete</h3><br />
+			<%= link_to "Continue Course!", '#', class: 'btn' %><br />
+		<% end %>
+<%= render 'course_topics' %>
+<%= render 'course_users' %>
+</section>
 <div class="explore">
 Looking for something else?
 <p>

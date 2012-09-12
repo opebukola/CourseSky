@@ -3,7 +3,7 @@
 		<% @lesson.questions.order(:position).each do |q| %>
 		<li id="questionanchor">
 			<% if current_user %>
-				<% if current_user.has_answered(q) %>
+				<% if current_user.has_answered?(q) %>
 					<%= link_to q.objective + ' (completed)', q %>
 				<% else %>
 					<%= link_to q.objective, q %>

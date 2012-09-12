@@ -10,7 +10,6 @@ end
 # Table name: questions
 #
 #  id         :integer         not null, primary key
-#  content    :text
 #  hint       :text
 #  lesson_id  :integer
 #  created_at :datetime        not null
@@ -18,5 +17,6 @@ end
 #  prompt     :text
 #  position   :integer
 #  objective  :string(255)
+#  course_id  :integer
 #
 

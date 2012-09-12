@@ -15,5 +15,7 @@ end
 #  completed   :boolean         default(FALSE)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  attempts    :integer         default(0)
+#  lesson_id   :integer
 #
 
