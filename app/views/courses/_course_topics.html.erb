@@ -1,16 +1,16 @@
-<div class="course-div">
-		<h2> Lessons in this course:</h2>
+<div>
+		
 		<ol>
 			<% @course.lessons.order(:position).each do |lesson| %>
 			<h3>
 				<p>
 					<li>
-						<%= link_to lesson.title, question_path(lesson.questions.order(:position).first) %></h3>
+						<%= link_to lesson.title, lesson.questions.order(:position).first %></h3>
 						Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', lesson.document_url, target: '_blank' %><br />
 						<% if current_user %>
 							Status: <%= current_user.lesson_progress(lesson) %>
 						<% end %>
-					</li>
+					</li><hr />
 				</p>
 			<% end %>
 		</ol>

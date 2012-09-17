@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :username, :email, :password, 
   								:password_confirmation, :remember_me, :name,
-                  :location, :about, :avatar, :admin
+                  :location, :about, :avatar
   
   #Virtual attribute for authenticating users by either username or email
   attr_accessor :login
@@ -150,5 +150,6 @@ end
 #  location               :string(255)
 #  about                  :text
 #  admin                  :boolean         default(FALSE)
+#  instructor             :boolean         default(FALSE)
 #
 

@@ -23,6 +23,8 @@ textarea {
 
 .center {
   text-align: center;
+  padding: 30px 10px 20px 10px;
+  background-color: #FAFAFA;
   h1 {
     margin-bottom: 10px;
   }
@@ -73,16 +75,16 @@ p {
 }
 
 .nav {
-  padding-top: 18px;
+  padding-top: 10px;
 }
 .navbar-inner {
-  background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+  background: #FAFAFA; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #FAFAFA 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
-  background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#FAFAFA 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#FAFAFA 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#FAFAFA 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%,#FAFAFA 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
 }
 
@@ -136,27 +138,23 @@ footer {
   margin: 0px auto;
 }
 
-.browse {
-  border: solid 2px #ccc;
-  float: right;
-  margin-left: 0px;
-  margin-top: 70px;
-  padding: 10px;
-  width: 18%;
-}
-
-
 
 .course-div{
-  border-top:solid #d9d9d9 1px; 
-  /* background-color:#FAFAFA; */
-  padding: 8px 0px 20px;
+  background-color:#FAFAFA; 
+  padding: 5px 5px 30px;
   margin-bottom: 10px;
   #cover-image{
     float: left; 
     margin-right: 20px;
     margin-left: 10px;
   }
+}
+
+.progress-sidebar{
+  border: 1px solid #E5E5E5;
+  padding: 10px 10px 10px 10px;
+  border-radius: 8px; 
+  background-color:#FAFAFA; 
 }
 
 .content{
@@ -175,6 +173,48 @@ footer {
   color: #777;
   cursor: move;
 }
+
+
+/** LESSON VIEWS **/
+
+.intro{
+  border: 1px solid #E5E5E5;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  .start{
+    font-size: 2.5em;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    color: #741885;
+  }
+}
+
+.question-box{
+  border: solid 2px #999; 
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  .prompt{
+    padding: 5px 5px 5px 5px; 
+    margin-bottom: 10px; 
+    font-size: 1.5em;
+  }
+  .submit{
+    text-align: center;
+  }
+  .answers {
+    padding: 10px 10px 10px 40px;
+  }
+}
+
+#hint {
+  background: #E5E5E5;
+  border-radius: 8px; 
+  padding: 5px 5px 5px 5px;
+}
+
 
 
 
@@ -197,33 +237,33 @@ footer {
 }
 
 /* questions */
-.question-box{
-  border: dotted 1px #999; 
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 50px;
-  margin-right: 10px;
-  .user-avatar{
-    float: left;
-    margin-bottom: 50px;
-    margin-right: 20px;
-    }
-  .prompt{
-    padding: 5px 10px 5px 10px; 
-    margin-bottom: 50px; 
-    h3 {
-      font-weight: normal;
-    }
-  }
-  .submit-tag{
-    text-align: center;
-  }
-  .hint-text a{
-    text-align: center;
-  }
-  li {
-    list-style: none;
-  }
-}
+// .question-box{
+//   border: dotted 1px #999; 
+//   padding: 10px 10px 10px 10px;
+//   margin-bottom: 50px;
+//   margin-right: 10px;
+//   .user-avatar{
+//     float: left;
+//     margin-bottom: 50px;
+//     margin-right: 20px;
+//     }
+//   .prompt{
+//     padding: 5px 10px 5px 10px; 
+//     margin-bottom: 50px; 
+//     h3 {
+//       font-weight: normal;
+//     }
+//   }
+//   .submit-tag{
+//     text-align: center;
+//   }
+//   .hint-text a{
+//     text-align: center;
+//   }
+//   li {
+//     list-style: none;
+//   }
+// }
 
 .response {
   font-size: 2em;

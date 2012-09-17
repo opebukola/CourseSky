@@ -1,12 +1,11 @@
-<h3>Need help with this lesson? You can:</h3>
 <div class="accordion" id="accordion2">
   <div class="accordion-group">
     <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-        Watch A Video
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#video">
+        <h3>Watch a Video</h3>
       </a>
     </div>
-    <div id="collapseOne" class="accordion-body collapse">
+    <div id="video" class="accordion-body collapse">
       <div class="accordion-inner">
       <iframe width="640" height="360" src="<%=@lesson.video_source%>" frameborder="0" allowfullscreen></iframe>
       </div>
@@ -14,22 +13,28 @@
   </div>
   <div class="accordion-group">
     <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-        Read Notes
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#document">
+        <h3>Read Notes</h3>
       </a>
     </div>
-    <div id="collapseTwo" class="accordion-body collapse">
+    <div id="document" class="accordion-body collapse">
       <div class="accordion-inner">
         <%=raw @lesson.document.display_ipaper%>
       </div>
     </div>
   </div>
+    <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#reflect">
+        <h3>Ask a Question</h3>
+      </a>
+    </div>
+    <div id="reflect" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render 'shared/comments' %>
+      </div>
+    </div>
+  </div>
 </div>
 
-	<% if @lesson.previous_lesson %>
-		<%= link_to "<< Previous Lesson", question_path(@lesson.previous_lesson.questions.order(:position).first) %>
-	<% end %><br />
-	<% if @lesson.next_lesson %>
-		<%= link_to "Next Lesson >>", question_path(@lesson.next_lesson.questions.order(:position).first) %>
-	<% end %>
 

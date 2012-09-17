@@ -1,13 +1,16 @@
 <%= simple_form_for @question do |f| %>
 	<%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
 	<%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
+	<h4> What's the objective?</h4>
 	<%= f.input :objective, label: "Question objective", hint: 'A few words that describe what the question is measuring e.g., \'Adding Fractions\' ' %>
+		<h4> What type of question is this? </h4>
+	<%= f.select :question_type, Question::QUESTION_TYPES, label: "What type of question is this?" %>
 	<%= f.input :prompt, as: :ckeditor, label: "Add the Prompt", hint: 'Should include text of the question', input_html: {toolbar: 'Basic'} %>
 	<p>
 		<%= f.simple_fields_for :answers do |builder| %>
 			<%= render 'answer_fields', f: builder %>
 		<% end %>
-		<%= link_to_add_fields "Add correct answer", f, :answers %>
+		<%= link_to_add_fields "Add Answer", f, :answers %>
 	</p>
 	<%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question" %>
 	<%= f.button :submit, "Save Question" %>

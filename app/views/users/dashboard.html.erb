@@ -13,12 +13,13 @@
 <h2> You're Learning:</h2>
 <div>
 	<% @user.enrolled_courses.each do |course| %>
-	<%= link_to course.title, course_path(course) %><br />
-	Progress: <%= @user.progress(course) %> percent.<br />
-	<%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(course.id), html: {method: :delete}, remote:true) do |f| %>
-		<%= f.button :submit, "Leave course", class: 'btn btn-danger' %>
+	<div id = "leave-course-<%=course.id%>">
+		<%= link_to course.title, course_path(course) %><br />
+		Progress: <%= @user.progress(course) %> percent.<br />
+		<%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(course.id), html: {method: :delete}, remote:true) do |f| %>
+			<%= f.button :submit, "Leave course", class: 'btn btn-danger' %>
 		<% end %>
-		<hr />
+	</div>
 	<% end %>
 </div>
 	

@@ -19,8 +19,12 @@ class QuestionAttempt < ActiveRecord::Base
     end
 
     def build_course_enrollment
-      Enrollment.find_or_create_by_student_id_and_enrolled_course_id(
+      course = self.lesson.course
+      user = self.student
+      unless course.user == user
+        Enrollment.find_or_create_by_student_id_and_enrolled_course_id(
         self.student_id, self.lesson.course_id)
+      end
     end
 end
 # == Schema Information

@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  attr_accessible :content, :correct_answer, :question_id
+  attr_accessible :content, :correct, :question_id
   belongs_to :question
 end
 # == Schema Information
@@ -11,5 +11,6 @@ end
 #  question_id :integer
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  correct     :boolean         default(FALSE)
 #
 
