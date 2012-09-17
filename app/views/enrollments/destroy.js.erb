@@ -1,1 +1,2 @@
-$("#enrollment_form").html("<%= escape_javascript(render('courses/enroll'))%>")
+$("#leave-course-<%=@course.id%>").hide();
+alert("You are no longer enrolled in <%=@course.title%>");

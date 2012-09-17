@@ -28,5 +28,6 @@ end
 #  location               :string(255)
 #  about                  :text
 #  admin                  :boolean         default(FALSE)
+#  instructor             :boolean         default(FALSE)
 #
 

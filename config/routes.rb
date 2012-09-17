@@ -36,11 +36,6 @@ Coursesky::Application.routes.draw do
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews
   resources :comments, only: [:new, :create, :destroy]
-  resources :lesson_progressions, only: [] do
-    member do
-      put :complete
-    end
-  end
 
 
 

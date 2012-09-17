@@ -1,4 +1,4 @@
 var response = $("#check_answer_<%=@question.id%>");
 response.addClass("response");
 response.html(
-	"Great Answer! <%= escape_javascript(link_to 'Go to Next Question', @question.next_question)%>");
+	"Correct! <%= escape_javascript(link_to 'Go to Next Question', @question.next_question) if @question.next_question%>");

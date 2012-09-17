@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
 	before_filter :authenticate_user!, except: [:index, :show]
 	before_filter :correct_user, only: [:edit, :update, :destroy, :manage, :publish]
 	before_filter :admin_user, only: [:admin, :feature]
+	before_filter :instructor, only: [:new, :create]
 
 	def index
 		@courses = Course.text_search(params[:query]).featured.published.desc

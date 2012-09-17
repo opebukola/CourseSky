@@ -1,5 +1,6 @@
 <fieldset>
-	<%= f.input :content, label: "Add correct Answer" %>
+	<%= f.input :content, label: "Add Answer Choice" %>
+	<%= f.input :correct, label: "Mark as Correct Answer" %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove Answer", '#', class: "remove_fields" %>
 </fieldset>

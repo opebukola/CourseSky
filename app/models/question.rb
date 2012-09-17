@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   attr_accessible :hint, :lesson_id, :answers_attributes, :prompt,
-                  :objective, :course_id
+                  :objective, :course_id, :question_type
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -14,10 +14,17 @@ class Question < ActiveRecord::Base
   validates :prompt, presence: true
   validates :objective, presence: true
 
+  #method for doing multiple choice 
+  QUESTION_TYPES = ["Multiple Choice", "Free Response"]
+
+  def is_multiple_choice?
+    return true if self.question_type == "Multiple Choice"
+  end
+
   def correct_answers
     if self.answers.any?
     	answer_array = []
-      self.answers.each do |answer|
+      self.answers.find_all_by_correct(:true).each do |answer|
     		answer_array<<answer.content.downcase
     	end
     	return answer_array
@@ -47,11 +54,7 @@ class Question < ActiveRecord::Base
   end
 
 
-  #find next question
-  # def next_question
-  #   Question.order(:position).find(:first, conditions: ["position > ? and lesson_id = ?",
-  #       self.position, self.lesson_id])
-  # end
+  #find next question in the course
 
   def next_question
     Question.order(:position).find(:first, conditions: ["position > ? and course_id = ?",
@@ -68,14 +71,15 @@ end
 #
 # Table name: questions
 #
-#  id         :integer         not null, primary key
-#  hint       :text
-#  lesson_id  :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  prompt     :text
-#  position   :integer
-#  objective  :string(255)
-#  course_id  :integer
+#  id            :integer         not null, primary key
+#  hint          :text
+#  lesson_id     :integer
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  prompt        :text
+#  position      :integer
+#  objective     :string(255)
+#  course_id     :integer
+#  question_type :string(255)
 #
 

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911210606) do
+ActiveRecord::Schema.define(:version => 20120916205844) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
     t.integer  "question_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "correct",     :default => false
   end
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
@@ -125,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20120911210606) do
     t.integer  "position"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.text     "intro"
   end
 
   create_table "question_attempts", :force => true do |t|
@@ -144,12 +146,13 @@ ActiveRecord::Schema.define(:version => 20120911210606) do
   create_table "questions", :force => true do |t|
     t.text     "hint"
     t.integer  "lesson_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.text     "prompt"
     t.integer  "position"
     t.string   "objective"
     t.integer  "course_id"
+    t.string   "question_type"
   end
 
   add_index "questions", ["course_id"], :name => "index_questions_on_course_id"
@@ -180,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20120911210606) do
     t.string   "location"
     t.text     "about"
     t.boolean  "admin",                  :default => false
+    t.boolean  "instructor",             :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

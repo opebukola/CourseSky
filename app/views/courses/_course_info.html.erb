@@ -1,13 +1,7 @@
 <div class="course-div">
-		<div id="cover-image">
-			<%= image_tag @course.cover_image_url(:box) %>
-		</div>
+		<div id="cover-image"><%= image_tag @course.cover_image_url(:box) %></div>
 		<h1><%= @course.title %></h1>
-		<h3>by: <%= link_to @course.user.username, user_path(@course.user) %></h3>
+		Course by: <%= link_to @course.user.username, user_path(@course.user) %><br />
 		<%= @course.description %><br />
-		Grades: <%= @course.grade_level.name %> <br />
-		Subjects: <% @course.categories.each do |cat| %>
-				<%= link_to cat.name, category_path(cat) %> 
-			<% end %>
 </div>
 	
