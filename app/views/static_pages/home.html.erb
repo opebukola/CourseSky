@@ -3,18 +3,21 @@
 <section>
 	<div class="center hero-unit">
 		<h1>Take control of your learning </h1>
-		<h2>Online classes for Advanced Placement. 100% Free.
+		<h2>Online classes for Advanced Placement. 100% Free.</h2> <%= link_to 'Sign up Now!', '#', class: 'btn btn-large btn-primary' %>
 	</div>
 </section>
 <section>
 	<%= render 'shared/course_box' %>
 </section>
-<p>
-	<h4>Are you a teacher or expert? Do you want to join the movement to provide quality, affordable education to all students? Then help CourseSky build the world’s first collection of free open K-12 courses! <%= link_to 'Learn more', teach_path %></h4>
-</p>
-<br />
+<div class="teacher-call">
+	<p>
+		<br />
+		<h4>Are you a teacher or expert? We need your help! <%= link_to 'Learn more', teach_path %></h4>
+	</p>
+	<br />
+</div>
 
 <%= form_tag courses_path, class: "search",method: :get do %>
 				<%= text_field_tag :query, params[:query], placeholder: "Search courses" %>
-				<%= submit_tag "Search", name: nil %>
+				
 				<% end %>

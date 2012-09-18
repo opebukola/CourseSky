@@ -2,9 +2,8 @@
 	<div class="coursebox">
 		<% @courses.each do |course| %>
 		<div class="course">
-			<%= image_tag course.cover_image_url(:box) %><br />
-			<h4><%= link_to course.title, course_path(course) %><br /></h4>
-			By: <%= course.user.username %><br />
+			<%= link_to image_tag(course.cover_image_url(:box)), course_path(course) %> <br />
+			<h4><%= course.title %><br /></h4>
 		</div>
 		<% end %>
 	</div>
