@@ -182,7 +182,24 @@ footer {
 }
 
 
-/** LESSON VIEWS **/
+/** question views **/
+
+.questionnav li {
+  margin-left: 0px;
+  padding: 10px;
+  display: inline;
+}
+
+.progress-bar{
+border: 1px solid #E5E5E5;
+  li {
+    display: inline;
+    padding: 0px 5px 0px 5px;
+    background: url('progress-bar.png');
+  }
+}
+
+
 
 .intro{
   border: 1px solid #E5E5E5;
@@ -243,34 +260,6 @@ footer {
   margin-left: 0;
 }
 
-/* questions */
-// .question-box{
-//   border: dotted 1px #999; 
-//   padding: 10px 10px 10px 10px;
-//   margin-bottom: 50px;
-//   margin-right: 10px;
-//   .user-avatar{
-//     float: left;
-//     margin-bottom: 50px;
-//     margin-right: 20px;
-//     }
-//   .prompt{
-//     padding: 5px 10px 5px 10px; 
-//     margin-bottom: 50px; 
-//     h3 {
-//       font-weight: normal;
-//     }
-//   }
-//   .submit-tag{
-//     text-align: center;
-//   }
-//   .hint-text a{
-//     text-align: center;
-//   }
-//   li {
-//     list-style: none;
-//   }
-// }
 
 .response {
   font-size: 2em;
@@ -289,11 +278,7 @@ footer {
   text-align: right;
 }
 
-.questionnav li {
-  margin-left: 0px;
-  padding: 10px;
-  display: inline;
-}
+
 
 /** search **/
 .search{
