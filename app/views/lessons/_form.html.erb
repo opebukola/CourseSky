@@ -1,6 +1,7 @@
 <%= simple_form_for [@course, @lesson] do |f| %>
 <h3> Step 1: Provide basic information </h3>
 <%= f.input :title, label: "Give Lesson a Title" %><br />
+<%= f.input :intro, label: "Enter and introduction for the lesson" %><br />
 <h3> Step 2: Add learning materials! </h3><br />
 <%= f.input :document, label: "Upload a document. Accepted file formats include .doc, .pdf, .ppt" %><br />
 <%= f.input :video_url, label: "Enter the URL of a YouTube video. Check out YouTube EDU for some great educational videos" %>

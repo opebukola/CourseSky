@@ -18,7 +18,7 @@
 						</a>
 						<div id="question_lesson_<%=lesson.id%>" class="collapse">
 							<% lesson.questions.order(:position).each do |question| %>
-									<%= link_to question.objective, question_path(question) %> |
+									<%= link_to truncate(question.prompt, lenght: 30), question_path(question) %> |
 									<%= link_to "Edit", edit_question_path(question, course_id: @course.id, lesson_id: lesson.id) %> |
 									<%= link_to "Delete", question_path(question),
 									method: :delete,

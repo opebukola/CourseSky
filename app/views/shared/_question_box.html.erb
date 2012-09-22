@@ -1,7 +1,7 @@
 <div id="question_<%=@question.position%>" class="question-box">
 	<%= render 'shared/question_nav' %>
 	<div class="prompt">
-		<%= raw @question.prompt %>
+		<%= markdown @question.prompt %>
 	</div>
 	<% if current_user && current_user.has_answered?(@question) %>
 		You have correctly answered this question. 

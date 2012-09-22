@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   attr_accessible :hint, :lesson_id, :answers_attributes, :prompt,
-                  :objective, :course_id, :question_type
+                   :course_id, :question_type
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -12,9 +12,9 @@ class Question < ActiveRecord::Base
   validates :lesson_id, presence: true
   validates :course_id, presence: true
   validates :prompt, presence: true
-  validates :objective, presence: true
 
-  #method for doing multiple choice 
+
+  #question types
   QUESTION_TYPES = ["Multiple Choice", "Free Response"]
 
   def is_multiple_choice?
@@ -76,10 +76,9 @@ end
 #  lesson_id     :integer
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
-#  prompt        :text
 #  position      :integer
-#  objective     :string(255)
 #  course_id     :integer
 #  question_type :string(255)
+#  prompt        :text
 #
 

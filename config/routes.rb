@@ -36,6 +36,7 @@ Coursesky::Application.routes.draw do
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews
   resources :comments, only: [:new, :create, :destroy]
+  resources :grade_levels
 
 
 

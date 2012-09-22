@@ -1,0 +1,16 @@
+<%= provide(:title, 'Grade levels') %>
+
+<h3> Add & Edit Grade Levels </h3>
+<ul>
+	<% @grade_levels.each do |grade| %>
+		<li>
+			<%= link_to grade.name, '#' %> |
+			<%= link_to 'Edit', edit_grade_level_path(grade) %> |
+			<%= link_to 'Delete', grade_level_path(grade), 
+															method: :delete,
+															data: {confirm: 'Are you sure?'} %>
+		</li>
+	<% end %>
+</ul>
+			
+<%= link_to 'Add Grade Level', new_grade_level_path %> 

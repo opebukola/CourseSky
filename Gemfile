@@ -16,6 +16,7 @@ gem 'mini_magick'
 gem 'ancestry'
 gem 'pg_search'
 gem 'fog'
+gem 'redcarpet'
 
 
 # Gems used only for assets and not required

@@ -1,11 +1,9 @@
 <%= simple_form_for @question do |f| %>
 	<%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
 	<%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
-	<h4> What's the objective?</h4>
-	<%= f.input :objective, label: "Question objective", hint: 'A few words that describe what the question is measuring e.g., \'Adding Fractions\' ' %>
 		<h4> What type of question is this? </h4>
 	<%= f.select :question_type, Question::QUESTION_TYPES, label: "What type of question is this?" %>
-	<%= f.input :prompt, as: :ckeditor, label: "Add the Prompt", hint: 'Should include text of the question', input_html: {toolbar: 'Basic'} %>
+	<%= f.input :prompt, label: "Add the Question Text", hint: 'You can add html tags (emphasis, lists, links, etc.) using <a href="http://daringfireball.net/projects/markdown/basics"> markdown. </a>' %>
 	<p>
 		<%= f.simple_fields_for :answers do |builder| %>
 			<%= render 'answer_fields', f: builder %>

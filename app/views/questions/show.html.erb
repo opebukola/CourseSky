@@ -1,4 +1,4 @@
-<% provide(:title, @question.objective) %>
+<% provide(:title, "Question" + @question.position.to_s) %>
 <section>
 <%= render 'shared/course_info' %>
 <%= render 'shared/lesson_intro' %>

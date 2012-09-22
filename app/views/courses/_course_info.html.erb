@@ -2,6 +2,6 @@
 		<div id="cover-image"><%= image_tag @course.cover_image_url(:box) %></div>
 		<h1><%= @course.title %></h1>
 		Course by: <%= link_to @course.user.username, user_path(@course.user) %><br />
-		<%= @course.description %><br />
+		<%= markdown @course.description %><br />
 </div>
 	

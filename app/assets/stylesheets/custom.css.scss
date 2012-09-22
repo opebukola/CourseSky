@@ -23,11 +23,16 @@ textarea {
 
 .center {
   text-align: center;
-  padding: 30px 10px 20px 10px;
+  padding: 20px 10px 10px 10px;
   background-color: #FAFAFA;
+  margin-bottom: 50px;
   h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
+}
+
+.control{
+  font-weight: normal;
 }
 
 /* typography */
@@ -62,37 +67,42 @@ p {
 #logo {
   float: left;
   margin-right: 25px;
-  font-size: 1em;
-  color: white;
-  letter-spacing: -1px;
-  padding-top: 2px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
 }
 
 .nav {
   padding-top: 10px;
 }
 .navbar-inner {
-  background: #FAFAFA; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, #FAFAFA 100%); /* FF3.6+ */
+  background: #eeeeee; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #eaeaea 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #ffffff 0%,#FAFAFA 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #ffffff 0%,#FAFAFA 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #ffffff 0%,#FAFAFA 100%); /* IE10+ */
-  background: linear-gradient(to bottom, #ffffff 0%,#FAFAFA 100%); /* W3C */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#eeeeee 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#eeeeee 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%,#eeeeee 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+  border-bottom: 3px solid #32B2C6;
+}
+
+.navbar .nav > li > a {
+  float: none;
+  padding: 9px 10px 11px;
+  line-height: 19px;
+  color: #000000;
+  text-decoration: none;
+  text-shadow: none;
+  font-weight: normal;
+  font-size: 1.2em; 
+  :hover { 
+      color: $grayDarker;
+    }
 }
 
 /* footer */
 
 footer {
   margin-top: 45px;
-  padding-top: 5px;
+  padding: 5px 5px 0px 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
   a {
@@ -121,7 +131,12 @@ footer {
 }
 
 
-/* courses*/
+/* courses index pages*/
+
+.coursesarea{
+  width: 75%; 
+  margin: 0px auto;
+}
 
 .course {
   border: solid 1px #CCC;
@@ -130,25 +145,16 @@ footer {
   float: left;
   margin-right: 20px;
   margin-bottom: 20px;
-  a {
-    color: black;
-  }
-  .btn {
-    width: 180px;
-    align: center;
+  h3 {
+    margin-top: 10px;
   }
 }
 
-
-.coursebox{
-  width: 75%;
-  margin: 0px auto;
-}
-
+/* course detail pages*/
 
 .course-div{
   background-color:#FAFAFA; 
-  padding: 5px 5px 30px;
+  padding: 5px 5px 5px;
   margin-bottom: 10px;
   #cover-image{
     float: left; 
