@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   	def require_beta_login
   		authenticate_or_request_with_http_basic do |username, password|
-        username == "go" && password == "fish"
+        username == "gold" && password == "fish"
       end
   	end
 
