@@ -1,40 +1,43 @@
-<div class="accordion" id="accordion2">
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#video">
-        <h3>Watch a Video</h3>
-      </a>
-    </div>
-    <div id="video" class="accordion-body collapse">
-      <div class="accordion-inner">
-      <iframe width="640" height="360" src="<%=@lesson.video_source%>" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#document">
-        <h3>Read Notes</h3>
-      </a>
-    </div>
-    <div id="document" class="accordion-body collapse">
-      <div class="accordion-inner">
-        <%=raw @lesson.document.display_ipaper%>
-      </div>
-    </div>
-  </div>
+<div class="resources">
+  <h2>Need help with this lesson? </h2>
+  <div class="accordion" id="accordion2">
     <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#reflect">
-        <h3>Ask a Question</h3>
-      </a>
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#video">
+          <h3>Watch a Video</h3>
+        </a>
+      </div>
+      <div id="video" class="accordion-body collapse">
+        <div class="accordion-inner">
+        <iframe width="640" height="360" src="<%=@lesson.video_source%>" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-    <div id="reflect" class="accordion-body collapse">
-      <div class="accordion-inner">
-        <%= render 'shared/comments' %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#document">
+          <h3>Read Notes </h3>
+        </a>
+      </div>
+      <div id="document" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <%=raw @lesson.document.display_ipaper%>
+          Download this Document!
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#question">
+          <h3>Ask a Question</h3>
+        </a>
+      </div>
+      <div id="question" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <%= render 'shared/comments' %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 

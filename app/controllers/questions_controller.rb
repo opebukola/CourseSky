@@ -47,6 +47,7 @@ class QuestionsController < ApplicationController
 	def check
 		@question = Question.find(params[:id])
 		@lesson = @question.lesson
+		@comment = Comment.new
 		@question.update_attempts(current_user) if current_user
 			if @question.is_correct?params[:response].downcase
 				@question.mark_correct(current_user) if current_user

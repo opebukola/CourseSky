@@ -3,3 +3,5 @@ jQuery ->
 	$("#show-hint").click (event) ->
 		$("#hint").show();
 		event.preventDefault();
+
+

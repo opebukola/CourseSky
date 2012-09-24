@@ -4,5 +4,6 @@
 <%= render 'shared/lesson_intro' %>
 <%= render 'shared/question_box' %>
 <%= render 'shared/resources' %>
-Download Document | Share Lesson
 </section>
+<%= link_to '<< Previous Lesson', @lesson.previous_lesson.questions.order(:position).first, class: 'previous-lesson' if @lesson.previous_lesson %>
+<%= link_to 'Next Lesson>>', @lesson.next_lesson.questions.order(:position).first, class: 'next-lesson' if @lesson.next_lesson%>

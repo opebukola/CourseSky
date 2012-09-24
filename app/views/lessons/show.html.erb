@@ -1,9 +1,7 @@
 <% provide(:title, @course.title ) %>
+<section>
 <%= render 'shared/course_info' %>
+<%= render 'shared/lesson_intro' %>
 <%= render 'shared/resources' %>
-<h2> Quiz Questions: </h2>
-<ul>
-	<% @lesson.questions.each do |question| %>
-		<li><%= link_to question.objective, question_path(question) %></li>
-	<% end %>
-</ul>
+<%= render 'shared/question_box' %>
+</section>
