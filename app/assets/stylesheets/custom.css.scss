@@ -287,7 +287,13 @@ footer {
 
 .previous-lesson{
   color: #741885;
-  font-size: 1.2em;
+  font-size: 1.4em;
+}
+
+.response {
+  font-size: 1.5em;
+  padding-top: 5px;
+  color: #741885;
 }
 
 /* comments */
@@ -307,16 +313,6 @@ footer {
 .nested_comments .nested_comments .nested_comments {
   margin-left: 0;
 }
-
-
-.response {
-  font-size: 2em;
-  background-color:#FAFAFA; 
-  padding: 5px 5px 5px;
-  border: solid 2px #ccc;
-  width: 50%;
-}
-
 
 .coursenav {
   border: solid 2px #ccc;

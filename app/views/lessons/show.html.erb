@@ -5,3 +5,5 @@
 <%= render 'shared/question_box' %>
 <%= render 'shared/resources' %>
 </section>
+<%= link_to '<< Previous Lesson', course_lesson_path(course_id: @lesson.course_id, id: @lesson.previous_lesson.id), class: 'previous-lesson' if @lesson.previous_lesson %>
+<%= link_to 'Next Lesson>>', course_lesson_path(course_id: @lesson.course_id, id: @lesson.next_lesson.id), class: 'next-lesson' if @lesson.next_lesson%>

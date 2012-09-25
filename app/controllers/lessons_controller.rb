@@ -27,6 +27,7 @@ class LessonsController < ApplicationController
 		@lesson = Lesson.find(params[:id])
 		@course = Course.find(params[:course_id])
 		@question = @lesson.questions.order(:position).first
+		@questions = @lesson.questions.order(:position)
 		@comments = @lesson.comments
 		@comment = Comment.new
 		params[:lesson_id] = params[:id]

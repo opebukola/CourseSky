@@ -1,28 +1,30 @@
-<div id="question_<%=@question.position%>" class="question-box">
+<div class="question-box">
 	<%= render 'shared/question_nav' %>
-	<div class="prompt">
-		<%= markdown @question.prompt %>
-	</div>
-	<% if current_user && current_user.has_answered?(@question) %>
-		You have correctly answered this question. 
-		<%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', @question.next_question %>
-	<% elsif @question.is_multiple_choice? %>
-		<div id="check_answer_<%=@question.id%>" class="answers">
-			<%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-				<% @question.answers.each do |answer| %>
-					<%= radio_button_tag'response', answer.content %> <%= answer.content %><br /><br />
-				<% end %>
-			<%= submit_tag("Check Answer", class:'btn') %><br />
-			<% end %>		
+	<div id="check-<%=@question.id%>">
+		<div class="prompt">
+			<%= markdown @question.prompt %>
 		</div>
-	<% else %>
-		<div id="check_answer_<%=@question.id%>" class="submit">
-			<%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-				<%= text_area_tag :response, "Enter your answer" %><br />
+		<% if current_user && current_user.has_answered?(@question) %>
+			You have correctly answered this question. 
+			<%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', '#' %>
+		<% elsif @question.is_multiple_choice? %>
+			<div id="check_answer_<%=@question.id%>" class="answers">
+				<%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
+					<% @question.answers.each do |answer| %>
+						<%= radio_button_tag'response', answer.content %> <%= answer.content %><br /><br />
+					<% end %>
 				<%= submit_tag("Check Answer", class:'btn') %><br />
-			<% end %>		
-		</div>			
-	<% end %>		
-	<div id="show-hint"><%= link_to 'Show Me a Hint', '#' %></div>
-	<div id="hint"><%= @question.hint %></div>
+				<% end %>		
+			</div>
+		<% else %>
+			<div id="check_answer_<%=@question.id%>" class="submit">
+				<%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
+					<%= text_area_tag :response, "Enter your answer" %><br />
+					<%= submit_tag("Check Answer", class:'btn') %><br />
+				<% end %>		
+			</div>			
+		<% end %>		
+		<div id="show-hint"><%= link_to 'Show Me a Hint', '#' %></div>
+		<div id="hint"><%= @question.hint %></div>
+	</div>
 </div>

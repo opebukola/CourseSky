@@ -18,5 +18,6 @@ end
 #  course_id     :integer
 #  question_type :string(255)
 #  prompt        :text
+#  explanation   :text
 #
 

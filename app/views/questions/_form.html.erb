@@ -11,5 +11,6 @@
 		<%= link_to_add_fields "Add Answer", f, :answers %>
 	</p>
 	<%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question" %>
+	<%= f.input :explanation, label: "Enter the explanation that will be shown after student answers question correctly", hint: 'You can add html tags with markdown' %>
 	<%= f.button :submit, "Save Question" %>
 <% end %>

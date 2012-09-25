@@ -1,5 +1,5 @@
-var response = $("#question_<%=@question.position%>");
+var response = $("#check-<%=@question.id%>");
 response.addClass("response");
-response.html("Great Answer! <%= escape_javascript(link_to 'Next', @question.next_question) if @question.next_question%>");
+response.html("<%= escape_javascript(@question.explanation)%>");
 
 
