@@ -24,7 +24,7 @@
 				<% end %>		
 			</div>			
 		<% end %>		
-		<div id="show-hint"><%= link_to 'Show Me a Hint', '#' %></div>
-		<div id="hint"><%= @question.hint %></div>
+		<div id="show-hint"><%= link_to 'Show Me a Hint', 'javascript:void(0)', "data-toggle" => "collapse", "data-target" => "#hint-container" %></div>
+		<div id="hint-container" class="collapse"><div id="hint"><%= @question.hint %></div></div>
 	</div>
 </div>
