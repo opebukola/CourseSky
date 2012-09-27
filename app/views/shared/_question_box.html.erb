@@ -6,33 +6,13 @@
     </div>
     <% if current_user && current_user.has_answered?(@question) %>
       You have correctly answered this question. 
-      <%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', '#' %>
-    <% elsif @question.is_multiple_choice? %>
-      <div id="check_answer_<%=@question.id%>" class="answers">
-        <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-          <% @question.answers.each do |answer| %>
-            <label class="radio"><%= radio_button_tag 'response', answer.content %> <%= answer.content %></label><br/>
-          <% end %>
-        <%= submit_tag("Check Answer", class:'btn') %><br />
-        <% end %>    
-      </div>
-    <% else %>
-      <div id="check_answer_<%=@question.id%>" class="submit">
-        <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-          <%= text_area_tag :response, "Enter your answer" %><br />
-          <%= submit_tag("Check Answer", class:'btn') %><br />
-        <% end %>    
-      </div>      
-    <% end %>
-    <div id="show-hint">
-      <%= link_to 'javascript:void(0)', "data-toggle" => "collapse", "data-target" => "#hint-container" do %>
-         <i class="icon-question-sign"></i>
-         Show Me a Hint
+      <%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> 
+      <% if @question.next_question %>
+        or <%= link_to 'move on to the next question', @question.next_question, :class => "qustion-pjax" %>
       <% end %>
-    </div>
-    <div id="hint-container" class="collapse"><div id="hint">
-      <%= @question.hint %></div>
-    </div>
+    <% else %>
+       <%= render "questions/question" %>
+    <% end %>
   </div>
   <hr/>
   <div class="row-fluid">
