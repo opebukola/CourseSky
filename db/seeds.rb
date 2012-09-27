@@ -45,7 +45,8 @@ def create_lesson(course)
   puts "created lesson:"
   y lesson
 
-  3.times { create_question(lesson) }
+  3.times { create_choice_question(lesson) }
+  2.times { create_question(lesson) }
 end
 
 def create_question(lesson)
@@ -56,7 +57,22 @@ def create_question(lesson)
 
   puts "created question:"
   y question
+end
 
+def create_choice_question(lesson)
+  question = Question.new(:prompt => Faker::Lorem.sentence, :explanation => Faker::Lorem.paragraph, :hint => Faker::Lorem.sentence, :question_type => "Multiple Choice")
+  question.lesson = lesson
+  question.course = lesson.course
+  question.save
+
+  puts "created question:"
+  y question
+
+  (1..4).each do |i| 
+    ans = Answer.new(:content => Faker::Lorem.sentence, :correct => i == 4)
+    ans.question = question
+    ans.save
+  end
 end
 
 user = User.first || create_user

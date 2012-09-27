@@ -11,7 +11,7 @@
       <div id="check_answer_<%=@question.id%>" class="answers">
         <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
           <% @question.answers.each do |answer| %>
-            <%= radio_button_tag'response', answer.content %> <%= answer.content %><br /><br />
+            <label class="radio"><%= radio_button_tag 'response', answer.content %> <%= answer.content %></label><br /><br />
           <% end %>
         <%= submit_tag("Check Answer", class:'btn') %><br />
         <% end %>    
