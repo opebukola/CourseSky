@@ -67,8 +67,9 @@ class Question < ActiveRecord::Base
   end
 
   protected
+    # TODO: we have to take care of reorder and deletion
     def set_position
-      self.position ||= 1 + (Question.where('course_id=?',course_id).maximum(:position) || 0)
+      self.position ||= 1 + (Question.where(:lesson_id => self.lesson_id).maximum(:position) || 0)
     end
 
 end
