@@ -102,6 +102,8 @@ GEM
     pg_search (0.5.1)
       activerecord (>= 3)
       activesupport (>= 3)
+    pjax_rails (0.2.1)
+      jquery-rails
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -186,6 +188,7 @@ DEPENDENCIES
   mini_magick
   pg
   pg_search
+  pjax_rails
   rails (= 3.2.6)
   rails-erd
   redcarpet

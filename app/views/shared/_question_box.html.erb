@@ -1,30 +1,50 @@
 <div class="question-box">
-	<%= render 'shared/question_nav' %>
-	<div id="check-<%=@question.id%>">
-		<div class="prompt">
-			<%= markdown @question.prompt %>
-		</div>
-		<% if current_user && current_user.has_answered?(@question) %>
-			You have correctly answered this question. 
-			<%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', '#' %>
-		<% elsif @question.is_multiple_choice? %>
-			<div id="check_answer_<%=@question.id%>" class="answers">
-				<%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-					<% @question.answers.each do |answer| %>
-						<%= radio_button_tag'response', answer.content %> <%= answer.content %><br /><br />
-					<% end %>
-				<%= submit_tag("Check Answer", class:'btn') %><br />
-				<% end %>		
-			</div>
-		<% else %>
-			<div id="check_answer_<%=@question.id%>" class="submit">
-				<%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-					<%= text_area_tag :response, "Enter your answer" %><br />
-					<%= submit_tag("Check Answer", class:'btn') %><br />
-				<% end %>		
-			</div>			
-		<% end %>		
-		<div id="show-hint"><%= link_to 'Show Me a Hint', 'javascript:void(0)', "data-toggle" => "collapse", "data-target" => "#hint-container" %></div>
-		<div id="hint-container" class="collapse"><div id="hint"><%= @question.hint %></div></div>
-	</div>
+  <%= render 'shared/question_nav' %>
+  <div id="check-<%=@question.id%>">
+    <div class="prompt">
+      <%= markdown @question.prompt %>
+    </div>
+    <% if current_user && current_user.has_answered?(@question) %>
+      You have correctly answered this question. 
+      <%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %> or <%= link_to 'move on to the next question', '#' %>
+    <% elsif @question.is_multiple_choice? %>
+      <div id="check_answer_<%=@question.id%>" class="answers">
+        <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
+          <% @question.answers.each do |answer| %>
+            <%= radio_button_tag'response', answer.content %> <%= answer.content %><br /><br />
+          <% end %>
+        <%= submit_tag("Check Answer", class:'btn') %><br />
+        <% end %>    
+      </div>
+    <% else %>
+      <div id="check_answer_<%=@question.id%>" class="submit">
+        <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
+          <%= text_area_tag :response, "Enter your answer" %><br />
+          <%= submit_tag("Check Answer", class:'btn') %><br />
+        <% end %>    
+      </div>      
+    <% end %>
+    <div id="show-hint"><%= link_to 'Show Me a Hint', 'javascript:void(0)', "data-toggle" => "collapse", "data-target" => "#hint-container" %></div>
+    <div id="hint-container" class="collapse"><div id="hint"><%= @question.hint %></div></div>
+  </div>
+  <hr/>
+  <div class="row-fluid">
+    <div class="span1">
+      <%= link_to "Prev", @question.prev_question, :class => "btn qustion-pjax pull-left" if @question.prev_question %>
+    </div>
+    <div class="span10">
+      <div class="progress progress-success">
+        <div class="bar" style="width:<%= @question.position / @question.lesson.questions.count.to_f * 100  %>%;"></div>
+      </div>
+    </div>
+    <div class="span1">
+      <%= link_to "Next", @question.next_question, :class => "btn qustion-pjax pull-right" if @question.next_question %>
+    </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    $('a.qustion-pjax').pjax('[question-pjax-container]');
+  });
+</script>

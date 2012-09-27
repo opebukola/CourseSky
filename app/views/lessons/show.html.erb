@@ -2,7 +2,11 @@
 <section>
 <%= render 'shared/course_info' %>
 <%= render 'shared/lesson_intro' %>
-<%= render 'shared/question_box' %>
+
+<div question-pjax-container>
+  <%= render 'shared/question_box' %>
+</div>
+
 <%= render 'shared/resources' %>
 </section>
 <%= link_to '<< Previous Lesson', course_lesson_path(course_id: @lesson.course_id, id: @lesson.previous_lesson.id), class: 'previous-lesson' if @lesson.previous_lesson %>

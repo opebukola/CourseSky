@@ -25,11 +25,11 @@ class Question < ActiveRecord::Base
 
   def correct_answers
     if self.answers.any?
-    	answer_array = []
+      answer_array = []
       self.answers.find_all_by_correct(:true).each do |answer|
-    		answer_array<<answer.content.downcase
-    	end
-    	return answer_array
+        answer_array<<answer.content.downcase
+      end
+      return answer_array
     end
   end
 
@@ -56,11 +56,14 @@ class Question < ActiveRecord::Base
   end
 
 
-  #find next question in the course
+  #find prev question in the course
+  def prev_question
+    self.lesson.questions.where("position < ?", self.position).order("position DESC").first
+  end
 
+  #find next question in the course
   def next_question
-    Question.order(:position).find(:first, conditions: ["position > ? and course_id = ?",
-        self.position, self.course_id]) 
+    self.lesson.questions.where("position > ?", self.position).order("position ASC").first
   end
 
   protected

@@ -21,6 +21,10 @@ class QuestionsController < ApplicationController
 		@comments = @lesson.comments
 		@comment = current_user.comments.build if current_user
 		params[:lesson_id] = @lesson.id
+
+  if pjax_request?
+    render :partial =>  "shared/question_box"
+  end
 	end
 
 	def edit
