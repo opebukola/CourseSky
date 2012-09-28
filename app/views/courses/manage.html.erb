@@ -1,24 +1,24 @@
 <%= provide(:title, 'Manage Course') %>
 <ul class="nav nav-tabs">
-	<li><a href="#info" data-toggle="tab">Basics</a></li>
-	<li><a href="#lessons" data-toggle="tab">Lessons</a></li>
-	<li><a href="#status" data-toggle="tab">Status</a></li>
+  <li><a href="#info" data-toggle="tab">Basics</a></li>
+  <li><a href="#lessons" data-toggle="tab">Lessons</a></li>
+  <li><a href="#status" data-toggle="tab">Status</a></li>
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane active" id="info">
-		<%= render 'course_info' %>
-		<%= link_to 'Edit Basic Information', edit_course_path, class: "btn btn-primary"  %>
-		<%= link_to 'Delete Course', course_path(@course),
-																		method: :delete,
-																		data: {confirm: 'Are you sure?'},
-																		class: "btn btn-danger" %>
-	</div>
-	<div class="tab-pane" id="lessons">
-		<%= render 'lesson_list' %>
-	</div>
-	<div class="tab-pane" id="status">
-		<%= render 'publish' %>
-	</div>
+  <div class="tab-pane active" id="info">
+    <%= render 'course_info' %>
+    <%= link_to 'Edit Basic Information', edit_course_path, class: "btn btn-primary"  %>
+    <%= link_to 'Delete Course', course_path(@course),
+                                    method: :delete,
+                                    data: {confirm: 'Are you sure?'},
+                                    class: "btn btn-danger" %>
+  </div>
+  <div class="tab-pane" id="lessons">
+    <%= render 'lesson_list' %>
+  </div>
+  <div class="tab-pane" id="status">
+    <%= render 'publish' %>
+  </div>
 </div>
 

@@ -1,12 +1,12 @@
 <section>
 <div>
-	<p>
-		<h2> Content </h2>
-		<% @course.lessons.each do |lesson| %>
-			<ul>
-				<li><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></li>
-			</ul>
-		<% end %>
-	</p>
+  <p>
+    <h2> Content </h2>
+    <% @course.lessons.each do |lesson| %>
+      <ul>
+        <li><%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></li>
+      </ul>
+    <% end %>
+  </p>
 </div>
 </section>

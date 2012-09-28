@@ -7,10 +7,10 @@ class User < ActiveRecord::Base
          authentication_keys: [:login]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :login, :username, :email, :password, 
-  								:password_confirmation, :remember_me, :name,
+  attr_accessible :login, :username, :email, :password,
+                  :password_confirmation, :remember_me, :name,
                   :location, :about, :avatar
-  
+
   #Virtual attribute for authenticating users by either username or email
   attr_accessor :login
 
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def enrolled?(course)
-    return true if 
+    return true if
     self.enrollments.find_by_enrolled_course_id(course.id)
   end
 
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     self.question_attempts.find_by_question_id(question.id).destroy
   end
 
-  #lesson progress 
+  #lesson progress
   def completed_lesson?(lesson)
     questions = Question.find_all_by_lesson_id(lesson.id)
     questions.all? {|question| self.has_answered?(question)}
@@ -77,10 +77,10 @@ class User < ActiveRecord::Base
       return 'in progress'
     else
       return 'not started'
-    end 
+    end
   end
 
-  #course progress 
+  #course progress
 
   def completed_course?(course)
     lessons = Lesson.find_all_by_course_id(course.id)
@@ -115,17 +115,17 @@ class User < ActiveRecord::Base
   #def incomplete_lessons(course)
    # course.lessons.count - completed_lessons(course)
   #end
-  
+
   # def progress(course)
   #   if self.enrolled?(course)
   #     complete = completed_lessons(course)
   #     incomplete = incomplete_lessons(course)
-  #     progress = complete.to_f / (complete.to_f + incomplete.to_f) 
+  #     progress = complete.to_f / (complete.to_f + incomplete.to_f)
   #     return progress.round(2) * 100
   #   end
   # end
 
-  
+
 end
 # == Schema Information
 #

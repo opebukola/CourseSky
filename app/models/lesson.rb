@@ -1,6 +1,6 @@
 class Lesson < ActiveRecord::Base
   before_save :set_position
-  attr_accessible :course_id, :document, :document_ipaper_access_key, :document_ipaper_id, :position, 
+  attr_accessible :course_id, :document, :document_ipaper_access_key, :document_ipaper_id, :position,
                   :title, :user_id, :video_url, :intro
 
   belongs_to :user

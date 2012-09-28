@@ -9,7 +9,7 @@ class Category < ActiveRecord::Base
 
   scope :main, where('ancestry is null')
 
-  
+
 end
 # == Schema Information
 #

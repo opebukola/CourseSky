@@ -4,11 +4,11 @@
 
 <% @course.students.each do |student| %>
 <p>
-	<%= image_tag student.avatar.url(:profile) %>
-	<% if student.name %>
-		<%= link_to student.name, user_path(student) %>
-	<% else %>
-		<%= link_to student.username, user_path(student) %>
-	<% end %>
+  <%= image_tag student.avatar.url(:profile) %>
+  <% if student.name %>
+    <%= link_to student.name, user_path(student) %>
+  <% else %>
+    <%= link_to student.username, user_path(student) %>
+  <% end %>
 </p>
 <% end %>

@@ -1,16 +1,16 @@
 <%= simple_form_for @question do |f| %>
-	<%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
-	<%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
-		<h4> What type of question is this? </h4>
-	<%= f.select :question_type, Question::QUESTION_TYPES, label: "What type of question is this?" %>
-	<%= f.input :prompt, label: "Add the Question Text", hint: 'You can add html tags (emphasis, lists, links, etc.) using <a href="http://daringfireball.net/projects/markdown/basics"> markdown. </a>' %>
-	<p>
-		<%= f.simple_fields_for :answers do |builder| %>
-			<%= render 'answer_fields', f: builder %>
-		<% end %>
-		<%= link_to_add_fields "Add Answer", f, :answers %>
-	</p>
-	<%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question" %>
-	<%= f.input :explanation, label: "Enter the explanation that will be shown after student answers question correctly", hint: 'You can add html tags with markdown' %>
-	<%= f.button :submit, "Save Question" %>
+  <%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
+  <%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
+    <h4> What type of question is this? </h4>
+  <%= f.select :question_type, Question::QUESTION_TYPES, label: "What type of question is this?" %>
+  <%= f.input :prompt, label: "Add the Question Text", hint: 'You can add html tags (emphasis, lists, links, etc.) using <a href="http://daringfireball.net/projects/markdown/basics"> markdown. </a>' %>
+  <p>
+    <%= f.simple_fields_for :answers do |builder| %>
+      <%= render 'answer_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Answer", f, :answers %>
+  </p>
+  <%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question" %>
+  <%= f.input :explanation, label: "Enter the explanation that will be shown after student answers question correctly", hint: 'You can add html tags with markdown' %>
+  <%= f.button :submit, "Save Question" %>
 <% end %>

@@ -15,7 +15,7 @@ class QuestionAttempt < ActiveRecord::Base
 
   protected
     def set_lesson_id
-      self.lesson_id = self.question.lesson.id 
+      self.lesson_id = self.question.lesson.id
     end
 
     def build_course_enrollment

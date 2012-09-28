@@ -2,13 +2,13 @@
 
 <h3> Showing Reviews for: <%= @course.title %></h3>
 <p>
-	<% @course_reviews.each do |review| %>
-	<ul>
-		<li>
-			Reviewed by:<%= review.user.username %><br />
-			Rating: <%= review.value %><br />
-			<%= review.content %>
-		</li>
-	</ul>
-	<% end %>
+  <% @course_reviews.each do |review| %>
+  <ul>
+    <li>
+      Reviewed by:<%= review.user.username %><br />
+      Rating: <%= review.value %><br />
+      <%= review.content %>
+    </li>
+  </ul>
+  <% end %>
 </p>

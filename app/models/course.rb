@@ -28,17 +28,17 @@ class Course < ActiveRecord::Base
   def ensure_no_students
     if self.students
       self.errors.add(:base, "Cannot delete course with students")
-      return false 
+      return false
     end
   end
 
   #status methods
   def status
-  	if self.published
-  		return 'published'
-  	else
-  		return 'draft'
-  	end
+    if self.published
+      return 'published'
+    else
+      return 'draft'
+    end
   end
 
   def feature_status
@@ -51,7 +51,7 @@ class Course < ActiveRecord::Base
 
   #ratings
   def rating
-    total = self.course_reviews.sum('value') 
+    total = self.course_reviews.sum('value')
     review_count = self.course_reviews.count
     unless review_count == 0
       rating = (total / review_count).to_f

@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @lessons = @course.lessons.order("position")
-  end  
+  end
 
   def new
     @course = Course.find(params[:course_id])

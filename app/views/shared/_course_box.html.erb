@@ -1,10 +1,10 @@
 <section>
-	<div class="coursesarea">
-		<% @courses.each do |course| %>
-		<div class="course">
-			<%= link_to image_tag(course.cover_image_url(:box)), course_path(course) %> <br />
-			<h3><%= course.title %><br /></h3>
-		</div>
-		<% end %>
-	</div>
+  <div class="coursesarea">
+    <% @courses.each do |course| %>
+    <div class="course">
+      <%= link_to image_tag(course.cover_image_url(:box)), course_path(course) %> <br />
+      <h3><%= course.title %><br /></h3>
+    </div>
+    <% end %>
+  </div>
 </section>

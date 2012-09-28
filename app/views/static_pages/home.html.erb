@@ -1,21 +1,21 @@
 <% provide(:title, 'Welcome') %>
 <section>
-	<div class="center">
-		<h1><span class="control">Take control of your learning.</span> Free, Online AP Classes. </h1>
-	</div>
+  <div class="center">
+    <h1><span class="control">Take control of your learning.</span> Free, Online AP Classes. </h1>
+  </div>
 </section>
 <section>
-	<%= render 'shared/course_box' %>
+  <%= render 'shared/course_box' %>
 </section>
 <div class="teacher-call">
-	<p>
-		<br />
-		<h4>Are you a teacher or expert? We need your help! <%= link_to 'Learn more', teach_path %></h4>
-	</p>
-	<br />
+  <p>
+    <br />
+    <h4>Are you a teacher or expert? We need your help! <%= link_to 'Learn more', teach_path %></h4>
+  </p>
+  <br />
 </div>
 
 <%= form_tag courses_path, class: "search",method: :get do %>
-				<%= text_field_tag :query, params[:query], placeholder: "Search courses" %>
-				
-				<% end %>
+        <%= text_field_tag :query, params[:query], placeholder: "Search courses" %>
+
+        <% end %>
