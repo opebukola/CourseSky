@@ -55,13 +55,20 @@ class Question < ActiveRecord::Base
     attempt.update_attribute(:completed, true)
   end
 
+  def first_question?
+    self.position == 1
+  end
 
-  #find prev question in the course
+  def last_question?
+    self.position == self.lesson.questions.count
+  end
+
+  #find prev question in the lesson
   def prev_question
     self.lesson.questions.where("position < ?", self.position).order("position DESC").first
   end
 
-  #find next question in the course
+  #find next question in the lesson
   def next_question
     self.lesson.questions.where("position > ?", self.position).order("position ASC").first
   end

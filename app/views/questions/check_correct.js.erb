@@ -2,4 +2,7 @@ var response = $("#check-<%=@question.id%>");
 response.addClass("response");
 response.html("<%= escape_javascript(@question.explanation)%>");
 
+<% if @question.last_question? %>
+  window.location = "<%= share_course_lesson_path(@question.course, @question.lesson) %>"
+<% end %>
 

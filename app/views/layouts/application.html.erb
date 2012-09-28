@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	  <title>Coursesky | <%= yield(:title) %></title>
-	  <%= stylesheet_link_tag    "application", :media => "all" %>
-	  <%= javascript_include_tag "application" %>
-	  <%= csrf_meta_tags %>
-	  <%= render 'layouts/shim' %>
-	</head>
-	<body>
-		<%= render 'layouts/header' %>
-		<div class="container">
-			<% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %>">
-					<a class="close" data-dismiss="alert">x</a>
-					<%= value %>
-				</div>
-			<% end %>
-			<%= yield %>	
-			<%= render 'layouts/footer' %>	
-		</div>	
-	</body>
+  <head>
+    <title>Coursesky | <%= yield(:title) %></title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render "shared/facebook" %>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= value %>
+        </div>
+      <% end %>
+      <%= yield %>  
+      <%= render 'layouts/footer' %>  
+    </div>  
+  </body>
 </html>

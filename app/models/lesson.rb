@@ -1,7 +1,7 @@
 class Lesson < ActiveRecord::Base
   before_save :set_position
   attr_accessible :course_id, :document, :document_ipaper_access_key, :document_ipaper_id, :position, 
-  								:title, :user_id, :video_url, :intro
+                  :title, :user_id, :video_url, :intro
 
   belongs_to :user
   belongs_to :course
@@ -13,14 +13,14 @@ class Lesson < ActiveRecord::Base
   mount_uploader :document, DocumentUploader
 
   VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
-	validates :video_url, format: {with: VIDEO_REGEX}, allow_blank: true
+  validates :video_url, format: {with: VIDEO_REGEX}, allow_blank: true
 
   validates :title, presence: true
   validates :user_id, presence: true
   validates :course_id, presence: true
 
   #create embed codes for Youtube Video URLs. Need to do embed codes
-	def video_source
+  def video_source
     regex_youtube = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
     if regex_youtube.match(self.video_url)
       protocol = $1
@@ -31,20 +31,25 @@ class Lesson < ActiveRecord::Base
     end
   end
 
+  def first_lesson?
+    self.position == 1
+  end
+
+  def last_lesson?
+    self.position == self.course.lessons.count
+  end
+
   def next_lesson
-    lesson = Course.find(self.course.id).lessons.find_by_position(self.position + 1)
-    return lesson
+    self.course.lessons.find_by_position(self.position + 1)
   end
 
-  def previous_lesson
-    lesson = Course.find(self.course.id).lessons.find_by_position(self.position - 1)
-    return lesson
+  def prev_lesson
+    self.course.lessons.find_by_position(self.position - 1)
   end
-
 
   protected
     def set_position
-      self.position ||= 1 + (Lesson.where('course_id=?',course_id).maximum(:position) || 0)
+      self.position ||= 1 + (self.course.lessons.maximum(:position) || 0)
     end
 end
 # == Schema Information
