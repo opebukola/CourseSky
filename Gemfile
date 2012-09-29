@@ -13,7 +13,7 @@ gem 'mini_magick'
 gem 'ancestry'
 gem 'pg_search'
 gem 'fog'
-gem 'redcarpet'
+gem 'kramdown'
 gem 'pjax_rails'
 
 group :development do
