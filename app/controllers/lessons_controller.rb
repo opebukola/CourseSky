@@ -1,6 +1,5 @@
 class LessonsController < ApplicationController
-
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show, :share]
   before_filter :correct_user, only: [:edit, :update, :destroy, :sort]
   def index
     @course = Course.find(params[:course_id])
