@@ -3,8 +3,6 @@ Coursesky::Application.routes.draw do
 
   get "enrollments/destroy"
 
-  mount Ckeditor::Engine => '/ckeditor'
-
   devise_for :users
 
   resources :users, only: [:show, :destroy, :index] do
