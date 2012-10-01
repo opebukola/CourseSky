@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/oob205/ckeditor.git
-  revision: 1a72c17b64047a4297323d00607b28db20f8a031
-  specs:
-    ckeditor (3.7.1)
-      mime-types
-      orm_adapter
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -179,7 +171,6 @@ DEPENDENCIES
   annotate
   bootstrap-sass
   carrierwave
-  ckeditor!
   coffee-rails (~> 3.2.1)
   devise
   faker
