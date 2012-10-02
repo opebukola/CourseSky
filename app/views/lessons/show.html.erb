@@ -3,13 +3,9 @@
 <section>
   <%= render 'shared/course_info' %>
   <%= render 'shared/lesson_intro' %>
-
   <div question-pjax-container>
     <%= render 'shared/question_box' %>
   </div>
-
-  <%= render 'shared/resources' %>
 </section>
 
-<%= link_to '<< Previous Lesson', course_lesson_path(course_id: @lesson.course_id, id: @lesson.prev_lesson.id), class: 'previous-lesson' if @lesson.prev_lesson %>
-<%= link_to 'Next Lesson>>', course_lesson_path(course_id: @lesson.course_id, id: @lesson.next_lesson.id), class: 'next-lesson' if @lesson.next_lesson%>
+

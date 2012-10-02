@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   attr_accessible :hint, :lesson_id, :answers_attributes, :prompt,
-                   :course_id, :question_type, :explanation
+                   :course_id, :question_type, :explanation, :question_text
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -14,6 +14,8 @@ class Question < ActiveRecord::Base
   validates :prompt, presence: true
   validates :question_type, presence: true
   validates :explanation, presence: true
+  validates :question_text, presence: true
+  validates :hint, presence: true
 
 
   #question types
@@ -94,5 +96,6 @@ end
 #  question_type :string(255)
 #  prompt        :text
 #  explanation   :text
+#  question_text :text
 #
 

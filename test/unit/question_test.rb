@@ -19,5 +19,6 @@ end
 #  question_type :string(255)
 #  prompt        :text
 #  explanation   :text
+#  question_text :text
 #
 

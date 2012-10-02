@@ -253,16 +253,22 @@ footer {
   }
 }
 
+.prompt{
+  border: 1px solid #E5E5E5;
+  padding: 5px 5px 5px 5px; 
+  margin-bottom: 10px; 
+  font-size: 1.2em;
+  .author-image{
+    float: left;
+    padding: 0px 8px 0px 0px;
+  }
+}
+
 .question-box{
   border: 2px dotted #32B2C6; 
   border-radius: 8px; 
   padding: 10px 10px 10px 10px;
   margin-bottom: 10px;
-  .prompt{
-    padding: 5px 5px 5px 5px; 
-    margin-bottom: 10px; 
-    font-size: 1.5em;
-  }
   .submit{
     text-align: center;
   }

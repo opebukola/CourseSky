@@ -1,9 +1,14 @@
 <%= simple_form_for @question do |f| %>
   <%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
   <%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
-  <h4> What type of question is this? </h4>
+  <h4> 1. Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
+  <hr />
+  <h4> 2. Enter a prompt for the question </h4>
   <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5} %>
+  <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <h4> 3. Write question text </h4>
+  <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <p>
     <%= f.simple_fields_for :answers do |builder| %>
