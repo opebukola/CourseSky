@@ -5,7 +5,10 @@ class Question < ActiveRecord::Base
   belongs_to :course
   has_many :answers
   has_many :question_attempts, dependent: :destroy
-  before_save :set_position
+
+  acts_as_list scope: :lesson
+  alias_method :next_question, :lower_item
+  alias_method :prev_question, :higher_item
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
@@ -14,7 +17,6 @@ class Question < ActiveRecord::Base
   validates :prompt, presence: true
   validates :question_type, presence: true
   validates :explanation, presence: true
-
 
   #question types
   QUESTION_TYPES = ["Multiple Choice", "Enter Response", "Open Ended"]
@@ -55,30 +57,7 @@ class Question < ActiveRecord::Base
     attempt.update_attribute(:completed, true)
   end
 
-  def first_question?
-    self.position == 1
-  end
-
-  def last_question?
-    self.position == self.lesson.questions.count
-  end
-
-  #find prev question in the lesson
-  def prev_question
-    self.lesson.questions.where("position < ?", self.position).order("position DESC").first
-  end
-
-  #find next question in the lesson
-  def next_question
-    self.lesson.questions.where("position > ?", self.position).order("position ASC").first
-  end
-
   protected
-    # TODO: we have to take care of reorder and deletion
-    def set_position
-      self.position ||= 1 + (Question.where(:lesson_id => self.lesson_id).maximum(:position) || 0)
-    end
-
 end
 # == Schema Information
 #
