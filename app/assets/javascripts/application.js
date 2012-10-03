@@ -15,4 +15,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.pjax
+//= require_self
 //= require_tree .
+
+var CourseSky = {};
+
