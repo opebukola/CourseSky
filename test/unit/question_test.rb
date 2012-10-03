@@ -10,7 +10,7 @@ end
 # Table name: questions
 #
 #  id            :integer         not null, primary key
-#  hint          :text
+#  first_hint    :text
 #  lesson_id     :integer
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
@@ -19,6 +19,6 @@ end
 #  question_type :string(255)
 #  prompt        :text
 #  explanation   :text
-#  question_text :text
+#  second_hint   :text
 #
 

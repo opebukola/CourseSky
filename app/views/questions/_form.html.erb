@@ -1,16 +1,13 @@
 <%= simple_form_for @question do |f| %>
   <%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
   <%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
-  <h4> 1. Choose a question type </h4><br />
+  <h4>Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
   <hr />
-  <h4> 2. Enter a prompt for the question </h4>
-  <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5} %>
+  <h4>Write the Question </h4>
+  <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5}, label:"Question", hint: "Be brief & conversational" %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
-  <h4> 3. Write question text </h4>
-  <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5} %>
-  <p class="muted"><%= render "shared/markdown_tip" %></p>
-  <p>
+  <h4> Enter Answers </h4>
   <div class="answer-list">
     <%= f.simple_fields_for :answers do |builder| %>
       <%= render 'answer_fields', f: builder %>
@@ -19,9 +16,13 @@
   <p>
     <%= link_to_add_fields "Add Answer", f, :answers %>
   </p>
-  <%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question", input_html: {class: "input-xxlarge", rows:5} %>
+  <h4>Write the first hint </h4>
+  <%= f.input :first_hint, input_html: {class: "input-xxlarge", rows:5}, hint: "Shown after first attempt" %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
-  <%= f.input :explanation, label: "Enter the explanation that will be shown after student answers question correctly", input_html: {class: "input-xxlarge", rows:5} %>
+  <p>
+  <%= f.input :second_hint, hint: "Shows after 2nd attempt", input_html: {class: "input-xxlarge", rows:5} %>
+  <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <%= f.input :explanation, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <%= f.button :submit, "Save Question", class: "btn btn-primary" %>
 <% end %>
