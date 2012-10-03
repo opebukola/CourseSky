@@ -16,22 +16,10 @@
   </div>
   <hr/>
   <div class="row-fluid">
-    <div class="span2">
-      <%= link_to @question.prev_question, :class => "btn qustion-pjax pull-left" do %>
-        <i class="icon-circle-arrow-left"></i>
-        Prev
-      <% end if @question.prev_question %>
-    </div>
-    <div class="span8">
+    <div class="span12">
       <div class="progress progress-success">
         <div class="bar" style="width:<%= @question.position / @question.lesson.questions.count.to_f * 100  %>%;"></div>
       </div>
-    </div>
-    <div class="span2">
-      <%= link_to @question.next_question, :class => "btn qustion-pjax pull-right" do %>
-        <i class="icon-circle-arrow-right"></i>
-        Next
-      <% end if @question.next_question %>
     </div>
   </div>
 </div>

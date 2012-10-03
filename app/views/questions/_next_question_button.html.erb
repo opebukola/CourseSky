@@ -1,0 +1,5 @@
+<%= link_to question.next_question, :class => "btn qustion-pjax" do %>
+  <i class="icon-circle-arrow-right"></i>
+  Next Question
+<% end unless question.last? %>
+
