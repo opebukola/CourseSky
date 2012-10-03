@@ -3,7 +3,9 @@
 
 $grayMediumLight: #eaeaea;
 
-/* universal */
+/** -------------------------------------------------- **/
+/* UNIVERSAL */
+/** -------------------------------------------------- **/
 
 html {
   overflow-y: scroll;
@@ -40,7 +42,9 @@ label.boolean {
   display: inline-block;
 }
 
-/* typography */
+/** -------------------------------------------------- **/
+/* TYPOGRAPHY */
+/** -------------------------------------------------- **/
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -66,8 +70,41 @@ p {
   line-height: 1.7em;
 }
 
+/** -------------------------------------------------- **/
+/* ALERTS */
+/** -------------------------------------------------- **/
 
-/* header */
+.alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #d9831f;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3d9400;
+}
+.alert-danger,
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #d9230f;
+}
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #029acf;
+}
+
+
+/* HEADER */
 
 #logo {
   float: left;
@@ -103,38 +140,9 @@ p {
   border-bottom-color: #555;
 }
 
-/* alert */
-
-.alert {
-  padding: 8px 35px 8px 14px;
-  margin-bottom: 20px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  background-color: #fcf8e3;
-  border: 1px solid #fbeed5;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  color: #d9831f;
-}
-
-.alert-success {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #3d9400;
-}
-.alert-danger,
-.alert-error {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #d9230f;
-}
-.alert-info {
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-  color: #029acf;
-}
-
-/* footer */
+/** -------------------------------------------------- **/
+/* FOOTER */
+/** -------------------------------------------------- **/
 
 footer {
   margin-top: 45px;
@@ -160,7 +168,10 @@ footer {
   }
 }
 
-/* home page */
+/** -------------------------------------------------- **/
+/* HOME PAGE */
+/** -------------------------------------------------- **/
+
 .teacher-call{
   text-align: center;
   padding: 30px 10px 20px 10px;
@@ -186,7 +197,14 @@ footer {
   }
 }
 
-/* course detail pages*/
+.search{
+  text-align: center;
+}
+
+/** -------------------------------------------------- **/
+/* COURSE DETAIL */
+/** -------------------------------------------------- **/
+
 
 .course-div{
   padding: 5px 5px 5px;
@@ -214,16 +232,19 @@ footer {
   font-size: 2em;
 }
 
+/** -------------------------------------------------- **/
+/* MANAGE COURSE PAGE */
+/** -------------------------------------------------- **/
 
-/* lessons list */
 #lessons_list .handle {
   font-size: 12px;
   color: #777;
   cursor: move;
 }
 
-
-/** question views **/
+/** -------------------------------------------------- **/
+/* QUESTIONS */
+/** -------------------------------------------------- **/
 
 .questionnav li {
   margin-left: 0px;
@@ -318,7 +339,10 @@ footer {
   color: #741885;
 }
 
-/* comments */
+/** -------------------------------------------------- **/
+/* COMMENTS*/
+/** -------------------------------------------------- **/
+
 .comments {
   margin: 8px 0;
   padding: 8px 15px;
@@ -350,7 +374,5 @@ footer {
 
 
 
-/** search **/
-.search{
-  text-align: center;
-}
+
+

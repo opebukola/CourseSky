@@ -1,8 +1,8 @@
 <div>
   <h2>
-    Congratulations! You've successfully completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %>. Tell your friends!
-    <% unless @lesson.last_lesson? %>
-      Or you can <%= link_to "move to next lesson", course_lesson_path(@lesson.course, @lesson.next_lesson) %>.
+    Congratulations! You've completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %>. Tell your friends!
+    <% unless @lesson.last? %>
+      When you're ready, <%= link_to "move to next lesson", course_lesson_path(@lesson.course, @lesson.next_lesson) %>.
     <% end %>
   </h2>
 
