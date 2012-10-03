@@ -13,4 +13,16 @@
 
 </div>
 
-<%= render "shared/authentication_dialog" unless current_user %>
+<% unless current_user %>
+  <%= render "shared/authentication_dialog" %>
+
+  <script type="text/javascript">
+    $(function() {
+      $("body").on("user:login", function() {
+        $.post("<%= save_course_lesson_path(@lesson.course, @lesson) %>", function() {
+          location.reload();
+        })
+      })
+    })
+  </script>
+<% end %>

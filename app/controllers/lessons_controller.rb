@@ -54,6 +54,24 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+  # save lesson question attempts from session to db after login
+  def save
+    @lesson = Lesson.find(params[:id])
+    unless session[:attempts].empty?
+      session[:attempts].each do |question_id, val|
+        qa = QuestionAttempt.new(question_id: question_id, student_id: current_user.id)
+        qa.attempts = val[:count]
+        qa.completed =  val[:correct]
+        qa.save
+      end
+      session.delete(:attempts)
+    end
+
+    flash[:success] = "Question attempts saved successfully."
+
+    render :json => {:success => true}
+  end
+
   def destroy
     @course = Course.find(params[:course_id])
     Lesson.find(params[:id]).destroy
