@@ -54,19 +54,32 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @lesson = @question.lesson
     @comment = Comment.new
-    @question.update_attempts(current_user) if current_user
-      if @question.is_correct?params[:response].downcase
-        @question.mark_correct(current_user) if current_user
-        respond_to do |format|
-          format.html{ redirect_to :@question.next_question, notice: "Correct!"}
-          format.js { render 'check_correct'}
-        end
+
+    if @current_user
+      @question.update_attempts(current_user)
+    else
+      session[:attempts] ||= {}
+      session[:attempts][@question.id] ||= {count: 0, correct: false}
+      session[:attempts][@question.id][:count] += 1
+    end
+
+    if @question.is_correct?params[:response].downcase
+      if current_user
+        @question.mark_correct(current_user)
       else
-        respond_to do |format|
-          format.html {redirect_to :back, notice: "Try Again"}
-          format.js { render 'check_incorrect'}
-        end
+        session[:attempts][@question.id][:correct] = true
       end
+
+      respond_to do |format|
+        format.html{ redirect_to :@question.next_question, notice: "Correct!"}
+        format.js { render 'check_correct'}
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to :back, notice: "Try Again"}
+        format.js { render 'check_incorrect'}
+      end
+    end
   end
 end
 
