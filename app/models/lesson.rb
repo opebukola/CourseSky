@@ -1,14 +1,16 @@
 class Lesson < ActiveRecord::Base
-  before_save :set_position
   attr_accessible :course_id, :document, :document_ipaper_access_key, :document_ipaper_id, :position,
                   :title, :user_id, :video_url, :intro
 
   belongs_to :user
   belongs_to :course
-  has_many :questions, dependent: :destroy
+  has_many :questions, order: "position", dependent: :destroy
   has_many :comments
   has_many :question_attempts, dependent: :destroy
 
+  acts_as_list scope: :course
+  alias_method :next_lesson, :lower_item
+  alias_method :prev_lesson, :higher_item
 
   mount_uploader :document, DocumentUploader
 
@@ -31,26 +33,7 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-  def first_lesson?
-    self.position == 1
-  end
-
-  def last_lesson?
-    self.position == self.course.lessons.count
-  end
-
-  def next_lesson
-    self.course.lessons.find_by_position(self.position + 1)
-  end
-
-  def prev_lesson
-    self.course.lessons.find_by_position(self.position - 1)
-  end
-
   protected
-    def set_position
-      self.position ||= 1 + (self.course.lessons.maximum(:position) || 0)
-    end
 end
 # == Schema Information
 #

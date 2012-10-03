@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
 
+  before_filter :admin_user, only: [:new, :create, :destroy, :update, :edit]
+
   def new
     @question = Question.new
   end

@@ -1,6 +1,3 @@
-<div class="question-text">
-  <%= markdown @question.question_text %>
-</div>
 <% if @question.is_multiple_choice? %>
     <div id="check_answer_<%=@question.id%>" class="answers">
       <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
@@ -21,7 +18,7 @@
   <div id="show-hint">
     <%= link_to 'javascript:void(0)', "data-toggle" => "collapse", "data-target" => "#hint-container" do %>
        <i class="icon-question-sign"></i>
-       Show Me a Hint
+       I don't know. Show me a hint!
     <% end %>
   </div>
   <div id="hint-container" class="collapse"><div id="hint">

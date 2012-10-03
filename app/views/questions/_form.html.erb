@@ -11,9 +11,12 @@
   <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <p>
+  <div class="answer-list">
     <%= f.simple_fields_for :answers do |builder| %>
       <%= render 'answer_fields', f: builder %>
     <% end %>
+  </div>
+  <p>
     <%= link_to_add_fields "Add Answer", f, :answers %>
   </p>
   <%= f.input :hint, label: "Enter a hint that will be shown if student cannot answer the question", input_html: {class: "input-xxlarge", rows:5} %>

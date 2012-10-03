@@ -1,13 +1,16 @@
-<div class="prompt">
-  <div class="author-image">
+<div class="row">
+  <div class="span1 author-image">
     <%= image_tag @course.user.avatar_url(:profile) %><br />
+    <div class="byline"><%= @course.user.username.capitalize %></div> 
   </div>
-<br />
-  <%= markdown @question.prompt %><br />
-  <div id="resources">
-    You can [watch a video] or [read notes]. When you're ready to move on, answer the question below:
+  <div class="span9 prompt">
+    <%= markdown @question.prompt %><br />
+    <div id="resources">
+      You can [watch a video] or [read notes]. When you're ready to move on, answer the question below:
+    </div>
   </div>
 </div>
+
 <div class="question-box">
   <div id="check-<%=@question.id%>">
     <% if current_user && current_user.has_answered?(@question) %>
@@ -23,23 +26,12 @@
 </div>
 <hr/>
 <div class="row-fluid">
-    <div class="span2">
-      <%= link_to @question.prev_question, :class => "btn qustion-pjax pull-left" do %>
-        <i class="icon-circle-arrow-left"></i>
-        Prev
-      <% end if @question.prev_question %>
-    </div>
-    <div class="span8">
-      <div class="progress progress-success">
-        <div class="bar" style="width:<%= @question.position / @question.lesson.questions.count.to_f * 100  %>%;"></div>
+  <div class="span12">
+    <div class="progress progress-success">
+      <div class="bar" style="width:<%= @question.position / @question.lesson.questions.count.to_f * 100  %>%;">
       </div>
-    </div>
-    <div class="span2">
-      <%= link_to @question.next_question, :class => "btn qustion-pjax pull-right" do %>
-        <i class="icon-circle-arrow-right"></i>
-        Next
-      <% end if @question.next_question %>
     </div>
   </div>
 </div>
+
 

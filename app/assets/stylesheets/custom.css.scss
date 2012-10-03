@@ -189,7 +189,6 @@ footer {
 /* course detail pages*/
 
 .course-div{
-  background-color:#FAFAFA; 
   padding: 5px 5px 5px;
   margin-bottom: 10px;
   #cover-image{
@@ -241,13 +240,13 @@ footer {
 
 
 .intro{
-  border: 1px solid #E5E5E5;
+  border: 1px solid #E5E5E5; 
   padding: 10px 10px 10px 10px;
   margin-bottom: 10px;
   .start{
-    font-size: 2.5em;
+    font-size: 1.5em; 
     float: left;
-    margin-bottom: 10px;
+    /**margin-bottom: 10px; **/
     margin-right: 20px;
     color: #741885;
   }
@@ -255,18 +254,30 @@ footer {
 
 .prompt{
   border: 1px solid #E5E5E5;
-  padding: 5px 5px 5px 5px; 
-  margin-bottom: 10px; 
+  padding: 10px 10px 10px 10px; 
+  margin-bottom: 20px; 
   font-size: 1.2em;
-  .author-image{
-    float: left;
-    padding: 0px 8px 0px 0px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.author-image{
+  float: left; 
+  padding: 10px 10px 10px 10px; 
+  /**margin-right: 25px;**/
+  margin-bottom: 10px;
+  .byline{
+    font-weight: bold;
+    font-size: 1.2em;
+    background: image-url('triangle.png') no-repeat left top;
   }
 }
 
 .question-box{
-  border: 2px dotted #32B2C6; 
-  border-radius: 8px; 
+  border: 2px solid #32B2C6; 
+  /** border-radius: 8px; **/
   padding: 10px 10px 10px 10px;
   margin-bottom: 10px;
   .submit{
