@@ -1,7 +1,7 @@
 <div>
   <h2>
     You have successfully passed lesson <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %>. You can share the lesson with friends.
-    <% unless @lesson.last_lesson? %>
+    <% unless @lesson.last? %>
       Or you can <%= link_to "move to next lesson", course_lesson_path(@lesson.course, @lesson.next_lesson) %>.
     <% end %>
   </h2>
