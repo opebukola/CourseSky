@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
-  attr_accessible :hint, :lesson_id, :answers_attributes, :prompt,
-                   :course_id, :question_type, :explanation, :question_text
+  attr_accessible :lesson_id, :answers_attributes, :prompt,
+                   :course_id, :question_type, :explanation, 
+                   :first_hint, :second_hint
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -16,9 +17,10 @@ class Question < ActiveRecord::Base
   validates :course_id, presence: true
   validates :prompt, presence: true
   validates :question_type, presence: true
+  validates :first_hint, presence: true
+  validates :second_hint, presence: true
   validates :explanation, presence: true
-  validates :question_text, presence: true
-  validates :hint, presence: true
+
 
   #question types
   QUESTION_TYPES = ["Multiple Choice", "Enter Response", "Open Ended"]

@@ -59,7 +59,8 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     unless session[:attempts].empty?
       session[:attempts].each do |question_id, val|
-        qa = QuestionAttempt.new(question_id: question_id, student_id: current_user.id)
+        qa = QuestionAttempt.new(question_id: question_id, student_id: current_user.id,
+                                lesson_id: @lesson.id)
         qa.attempts = val[:count]
         qa.completed =  val[:correct]
         qa.save

@@ -55,7 +55,7 @@ class QuestionsController < ApplicationController
     @lesson = @question.lesson
     @comment = Comment.new
 
-    if @current_user
+    if current_user
       @question.update_attempts(current_user)
     else
       session[:attempts] ||= {}

@@ -1,5 +1,5 @@
 class QuestionAttempt < ActiveRecord::Base
-  attr_accessible :completed, :question_id, :student_id
+  attr_accessible :completed, :question_id, :student_id, :lesson_id
 
   belongs_to :student, class_name: "User"
   belongs_to :question

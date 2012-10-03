@@ -1,6 +1,13 @@
 <hr/>
-<%= link_to question.next_question, :class => "btn qustion-pjax" do %>
-  <i class="icon-circle-arrow-right"></i>
-  Next
-<% end unless question.last? %>
-
+<% if question.next_question %>
+	<%= link_to question.next_question, :class => "btn qustion-pjax" do %>
+	  <i class="icon-circle-arrow-right"></i>
+	  Next
+	<% end unless question.last? %>
+<% else %>
+	<%= link_to share_course_lesson_path(@question.course,
+	@question.lesson), :class => "btn" do %>
+	<i class="icon-circle-arrow-right"></i>
+	  Next
+	<% end %>
+<% end %>
