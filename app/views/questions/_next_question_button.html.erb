@@ -3,7 +3,7 @@
 	<%= link_to question.next_question, :class => "btn qustion-pjax" do %>
 	  <i class="icon-circle-arrow-right"></i>
 	  Next
-	<% end unless question.last? %>
+	<% end %>
 <% else %>
 	<%= link_to share_course_lesson_path(@question.course,
 	@question.lesson), :class => "btn" do %>
