@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
   attr_accessible :lesson_id, :answers_attributes, :prompt,
                    :course_id, :question_type, :explanation, 
-                   :first_hint, :second_hint
+                   :first_hint, :second_hint, :content
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -78,5 +78,6 @@ end
 #  prompt        :text
 #  explanation   :text
 #  second_hint   :text
+#  content       :boolean         default(FALSE)
 #
 

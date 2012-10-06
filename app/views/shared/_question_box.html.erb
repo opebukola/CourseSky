@@ -1,15 +1,46 @@
 <div class="row">
   <div class="span1 author-image">
     <%= image_tag @course.user.avatar_url(:profile) %><br />
-    <div class="byline"><%= @course.user.username.capitalize %></div> 
+    <div class="byline">
+      <%= @course.user.username.capitalize %>
+    </div> 
   </div>
-  <div class="span9 prompt">
+  <%= content_tag "div", class: "span9 prompt", data: { hint1: @question.first_hint, hint2: @question.second_hint} do %>
     <%= markdown @question.prompt %><br />
-    <div id="resources">
-      You can [watch a video] or [read notes]. When you're ready to move on, answer the question below:
-    </div>
-  </div>
+    <% if @question.content %>
+      <div id="resources">
+        <a href="#videoModal" role="button" class="btn btn-primary" data-toggle="modal">Watch a Video</a> or 
+        <a href="#docModal" role="button" class="btn btn-primary" data-toggle="modal">Read Notes</a>
+        <div class="modal" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="videoModal">Video: <%=@lesson.title %></h3>
+          </div>
+          <div class="modal-body">
+            <iframe width="640" height="360" src="<%=@lesson.video_source%>" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+        <div class="modal" id="docModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="docModal">Video: <%=@lesson.title %></h3>
+          </div>
+          <div class="modal-body">
+            <%= raw @lesson.document.display_ipaper %>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div><br />
+        <p> When you're ready to move on, answer the question below</p>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+
 
 <div class="question-box">
   <div id="check-<%=@question.id%>">
@@ -20,7 +51,7 @@
         or <%= link_to 'move on to the next question', @question.next_question, :class => "qustion-pjax" %>
       <% end %>
     <% else %>
-       <%= render "questions/question" %>
+       <%= render "questions/response_box" %>
     <% end %>
   </div>
 </div>
@@ -29,7 +60,6 @@
   <div class="span12">
     <div class="progress progress-success">
       <div class="bar" style="width:<%= @question.position / @question.lesson.questions.count.to_f * 100  %>%;">
-
       </div>
     </div>
   </div>

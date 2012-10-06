@@ -7,6 +7,9 @@
   <h4>Write the Question </h4>
   <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5}, label:"Question", hint: "Be brief & conversational" %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <h4>Include Content (video and notes)? </h4><br />
+  <%= f.input :content, label: "Check the box if you want to include content block at the end of the prompt" %>
+  <hr />
   <h4> Enter Answers </h4>
   <div class="answer-list">
     <%= f.simple_fields_for :answers do |builder| %>

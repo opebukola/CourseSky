@@ -16,12 +16,8 @@
     </div>
   <% end %>
   <div id="show-hint">
-    <%= link_to 'javascript:void(0)', "data-toggle" => "collapse", "data-target" => "#hint-container" do %>
-       <i class="icon-question-sign"></i>
-       I don't know. Show me a hint!
-    <% end %>
+    <i class="icon-question-sign"></i>
+    I don't know. Show me a hint!
   </div>
-  <div id="hint-container" class="collapse"><div id="hint">
-    <%= @question.first_hint %></div>
-  </div>
+
 

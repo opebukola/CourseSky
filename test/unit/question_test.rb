@@ -20,5 +20,6 @@ end
 #  prompt        :text
 #  explanation   :text
 #  second_hint   :text
+#  content       :boolean         default(FALSE)
 #
 
