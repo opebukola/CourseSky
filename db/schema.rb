@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006013923) do
+ActiveRecord::Schema.define(:version => 20121006114420) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20121006013923) do
     t.text     "explanation"
     t.text     "second_hint"
     t.boolean  "content",       :default => false
+    t.text     "question_text"
   end
 
   add_index "questions", ["course_id"], :name => "index_questions_on_course_id"

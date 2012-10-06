@@ -34,10 +34,11 @@
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
           </div>
-        </div><br />
-        <p> When you're ready to move on, answer the question below</p>
+        </div><br /><br />
+        <em> When you're ready to move on, answer the question below:</em>
       </div>
-    <% end %>
+    <% end %><hr />
+    <%= @question.question_text %><hr />
   <% end %>
 </div>
 

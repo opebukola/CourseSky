@@ -21,5 +21,6 @@ end
 #  explanation   :text
 #  second_hint   :text
 #  content       :boolean         default(FALSE)
+#  question_text :text
 #
 
