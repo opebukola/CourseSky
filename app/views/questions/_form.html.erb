@@ -6,9 +6,11 @@
   <hr />
   <h4>Write the Prompt </h4>
   <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt", hint: "Be brief & conversational" %>
-  <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <p class="muted"><%= render "shared/markdown_tip" %></p>< hr/>
   <h4>Include Content (video and notes)? </h4><br />
-  <%= f.input :content, label: "Check the box if you want to include content block at the end of the prompt" %>
+  <%= f.input :content, label: "Check the box if you want to include content block at the end of the prompt" %><br />
+  <%= f.input :video_start, label: "Enter the time in seconds after video starts that you'd like video clip to BEGIN." %><br />
+  <%= f.input :video_end, label: "Enter the time in seconds after video starts that you'd like video clip to END." %><br />
   <hr />
   <h4>Write the Question Text </h4>
   <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt", hint: "Keep it short" %>

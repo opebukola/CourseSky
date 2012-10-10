@@ -22,5 +22,7 @@ end
 #  second_hint   :text
 #  content       :boolean         default(FALSE)
 #  question_text :text
+#  video_start   :integer
+#  video_end     :integer
 #
 

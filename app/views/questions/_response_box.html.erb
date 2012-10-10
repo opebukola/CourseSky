@@ -1,3 +1,4 @@
+<h3><%= @question.question_text %></h3><hr />
 <% if @question.is_multiple_choice? %>
     <div id="check_answer_<%=@question.id%>" class="answers">
       <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
@@ -10,7 +11,7 @@
   <% else %>
     <div id="check_answer_<%=@question.id%>" class="submit">
       <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-        <%= text_area_tag :response, "Enter your answer", class: "input-xxlarge", rows: 5 %><br />
+        <%= text_area_tag :response, "Enter your answer", class: "input-xxlarge", rows: 2 %><br />
         <%= submit_tag("Submit", class:'btn') %><br />
       <% end %>
     </div>

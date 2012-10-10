@@ -81,5 +81,10 @@ class QuestionsController < ApplicationController
       end
     end
   end
+
+  def reveal
+    format.html{ redirect_to :@question.next_question, notice: "Next Question"}
+      format.js { render 'check_correct'}
+  end
 end
 

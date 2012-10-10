@@ -17,7 +17,7 @@
             <h3 id="videoModal">Video: <%=@lesson.title %></h3>
           </div>
           <div class="modal-body">
-            <iframe width="640" height="360" src="<%=@lesson.video_source%>" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="<%=@question.video_clip_source%>" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -26,10 +26,10 @@
         <div class="modal" id="docModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="docModal">Video: <%=@lesson.title %></h3>
+            <h3 id="docModal">Document: <%=@lesson.title %></h3>
           </div>
           <div class="modal-body">
-            <%= raw @lesson.document.display_ipaper %>
+            <%= markdown @lesson.document %>
           </div>
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -37,8 +37,7 @@
         </div><br /><br />
         <em> When you're ready to move on, answer the question below:</em>
       </div>
-    <% end %><hr />
-    <%= @question.question_text %><hr />
+    <% end %>
   <% end %>
 </div>
 

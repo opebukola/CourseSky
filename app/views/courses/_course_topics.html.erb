@@ -1,12 +1,11 @@
 <div>
-
-    <ol>
-      <% @course.lessons.order(:position).each do |lesson| %>
-      <h3>
+  <ol>
+    <% @course.lessons.order(:position).each do |lesson| %>
+    <h3>
         <p>
           <li>
             <%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %></h3>
-            Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', lesson.document_url, target: '_blank' %><br />
+            Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', doc_course_lesson_path(course_id: @course.id, id: lesson.id), target: '_blank' %><br />
             <% if current_user %>
               Status: <%= current_user.lesson_progress(lesson) %>
             <% end %>

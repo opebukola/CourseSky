@@ -86,6 +86,10 @@ class LessonsController < ApplicationController
     render nothing: true
   end
 
+  def doc
+    @lesson = Lesson.find(params[:id])
+  end
+
   private
 
     def correct_user
