@@ -13,7 +13,7 @@
   	<%= f.input :video_url, label: "Enter the URL of a YouTube video.", input_html: {class: "input-xxlarge"} %>
   </div>
   <div class="tab-pane" id="doc">
-  	<%= f.input :document, label: "Enter lesson text", input_html: {class: "input-xxlarge", rows:35} %>
+  	<%= f.input :document, input_html: {class: "input-xxlarge", rows:35}, label: "Enter lesson text" %>
   	<p class="muted"><%= render "shared/markdown_tip" %></p>
   </div>
 
