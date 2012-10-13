@@ -4,18 +4,21 @@
   <h4>Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
   <hr />
-  <h4>Write the Prompt </h4>
-  <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt", hint: "Be brief & conversational" %>
-  <p class="muted"><%= render "shared/markdown_tip" %></p>< hr/>
-  <h4>Include Content (video and notes)? </h4><br />
-  <%= f.input :content, label: "Check the box if you want to include content block at the end of the prompt" %><br />
+  <h3>Write the Prompt </h3>
+  <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5}, label: "Write the prompt" %>
+  <p class="muted"><%= render "shared/markdown_tip" %></p>
+ <hr />
+ <h3> Content: Video Clip & Snippet </h3><br />
+  <%= f.input :content, label: "Check the box to include content block" %><br />
   <%= f.input :video_start, label: "Enter the time in seconds after video starts that you'd like video clip to BEGIN." %><br />
   <%= f.input :video_end, label: "Enter the time in seconds after video starts that you'd like video clip to END." %><br />
+    <%= f.input :snippet, input_html: {class: "input-xxlarge", rows:5}, label:"Add a portion of text" %><br />
+    <p class="muted"><%= render "shared/markdown_tip" %></p>
   <hr />
-  <h4>Write the Question Text </h4>
-  <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt", hint: "Keep it short" %>
+  <h3>Write the Question Text </h3>
+  <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
-  <h4> Enter Answers </h4>
+  <h3> Enter Answers </h3><br />
   <div class="answer-list">
     <%= f.simple_fields_for :answers do |builder| %>
       <%= render 'answer_fields', f: builder %>
@@ -24,12 +27,12 @@
   <p>
     <%= link_to_add_fields "Add Answer", f, :answers %>
   </p>
-  <h4>Write the first hint </h4>
-  <%= f.input :first_hint, input_html: {class: "input-xxlarge", rows:5}, hint: "Shown after first attempt" %>
+  <h3>Write a hint </h3>
+  <%= f.input :hint, input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <p>
-  <%= f.input :second_hint, hint: "Shows after 2nd attempt", input_html: {class: "input-xxlarge", rows:5} %>
-  <p class="muted"><%= render "shared/markdown_tip" %></p>
+<hr />
+ <h3>Explain the Answer </h3>
   <%= f.input :explanation, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <%= f.button :submit, "Save Question", class: "btn btn-primary" %>

@@ -243,21 +243,9 @@ footer {
 }
 
 /** -------------------------------------------------- **/
-/* QUESTIONS */
+/* QUESTION DETAIL PAGE */
 /** -------------------------------------------------- **/
 
-.questionnav li {
-  margin-left: 0px;
-  padding: 10px;
-  display: inline;
-}
-
-.progress-bar{
-  li {
-    display: inline;
-    padding: 0px 15px 0px 15px;
-  }
-}
 
 
 .intro{
@@ -267,40 +255,39 @@ footer {
   .start{
     font-size: 1.5em; 
     float: left;
-    /**margin-bottom: 10px; **/
+    margin-top: 3px;
+   margin-bottom: 10px; 
     margin-right: 20px;
     color: #741885;
   }
 }
 
-.prompt{
-  border: 1px solid #E5E5E5;
-  padding: 10px 10px 10px 10px; 
-  margin-bottom: 20px; 
-  font-size: 1.2em;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+.question-page{
+  margin: 0px auto;
+  border: 1px solid #ddd;
+  padding: 5px 5px 5px 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   background-color: white;
+  margin: none;
 }
 
-.author-image{
-  float: left; 
-  padding: 10px 10px 10px 10px; 
-  /**margin-right: 25px;**/
-  margin-bottom: 10px;
-  .byline{
-    font-weight: bold;
-    font-size: 1.2em;
-    background: image-url('triangle.png') no-repeat left top;
-  }
+.prompt{
+  /**border: 1px solid #E5E5E5;**/
+  padding: 5px 5px 5px 5px;
+  font-size: 1.4em;
+  /**float: left;**/
 }
 
 .question-box{
-  border: 2px solid #32B2C6; 
+  border: 3px solid #741885;
+  box-shadow: 0 0 4px #4B4B4B; 
+  padding: 15px 15px 15px 15px;
   /** border-radius: 8px; **/
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 10px;
+  .question-text{
+    font-size: 1.4em;
+  }
   .submit{
     text-align: center;
   }
@@ -309,18 +296,25 @@ footer {
   }
 }
 
-#hint {
-  background: #E5E5E5;
-  border-radius: 8px; 
-  padding: 5px 5px 5px 5px;
+.answer {
+  border: 1px solid #bbb;
+  padding: 5px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
-.resources{
+
+.content-box{
   /** border: 2px dotted #32B2C6; **/
   /** border-radius: 8px; **/
-  padding: 10px 10px 10px 10px;
+  padding: 20px 20px 20px 20px;
   margin-bottom: 10px;
+  .modal{
+    width: 600px;
+  }
 }
+
 
 .next-lesson{
   float: right;
@@ -368,10 +362,31 @@ footer {
   width: 30%;
 }
 
-.course-info{
-  text-align: right;
-}
+/** -------------------------------------------------- **/
+/* AUTHENTICATION DIALOG*/
+/** -------------------------------------------------- **/
 
+#authentication-dialog  {
+  form {
+    padding-top: 5px;
+  }
+
+  .form-actions {
+    padding: 0 0 0 160px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: inherit;
+    border: none;
+  }
+
+  .checkbox {
+    min-height: auto;
+  }
+
+  .modal-body {
+    max-height: none;
+  }
+}
 
 
 

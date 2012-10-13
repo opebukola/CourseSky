@@ -1,0 +1,14 @@
+<div class="question-box span6">
+  <div id="check-<%=@question.id%>">
+    <span class="question-text"><%= @question.question_text %></span><br /><hr />
+    <% if current_user && current_user.has_answered?(@question) %>
+      You have correctly answered this question.
+      <%= link_to 'You can answer it again', question_attempt_path(@question), method: :delete %>
+      <% if @question.next_question %>
+        or <%= link_to 'move on to the next question', @question.next_question, :class => "qustion-pjax" %>
+      <% end %>
+    <% else %>
+       <%= render "questions/response_box" %>
+    <% end %>
+  </div>
+</div>

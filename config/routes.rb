@@ -34,7 +34,7 @@ Coursesky::Application.routes.draw do
 
   resources :questions do
     member do
-      post :check, :reveal
+      post :check
     end
   end
 
@@ -49,5 +49,6 @@ Coursesky::Application.routes.draw do
   match '/contact', to: 'static_pages#contact' 
   match '/teach', to: 'static_pages#teach'
   match '/admin', to: 'static_pages#admin'
+  match '/careers', to: 'static_pages#careers'
   root to: 'static_pages#home'
 end

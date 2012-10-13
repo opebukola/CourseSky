@@ -23,10 +23,6 @@ class QuestionsController < ApplicationController
     @comments = @lesson.comments
     @comment = current_user.comments.build if current_user
     params[:lesson_id] = @lesson.id
-
-  if pjax_request?
-    render :partial =>  "shared/question_box"
-  end
   end
 
   def edit
@@ -80,11 +76,6 @@ class QuestionsController < ApplicationController
         format.js { render 'check_incorrect'}
       end
     end
-  end
-
-  def reveal
-    format.html{ redirect_to :@question.next_question, notice: "Next Question"}
-      format.js { render 'check_correct'}
   end
 end
 

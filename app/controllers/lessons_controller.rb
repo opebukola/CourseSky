@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :share]
+  before_filter :authenticate_user!, except: [:index, :show, :share, :doc]
   before_filter :correct_user, only: [:edit, :update, :destroy, :sort]
+  
   def index
     @course = Course.find(params[:course_id])
     @lessons = @course.lessons.order("position")
@@ -68,7 +69,7 @@ class LessonsController < ApplicationController
       session.delete(:attempts)
     end
 
-    flash[:success] = "Question attempts saved successfully."
+    flash[:success] = "Your progress has been saved!"
 
     render :json => {:success => true}
   end

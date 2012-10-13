@@ -1,8 +1,8 @@
 class Question < ActiveRecord::Base
   attr_accessible :lesson_id, :answers_attributes, :prompt,
                    :course_id, :question_type, :explanation, 
-                   :first_hint, :second_hint, :content, :question_text,
-                   :video_start, :video_end
+                   :hint, :content, :question_text,
+                   :video_start, :video_end, :snippet
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -18,8 +18,7 @@ class Question < ActiveRecord::Base
   validates :course_id, presence: true
   validates :prompt, presence: true
   validates :question_type, presence: true
-  validates :first_hint, presence: true
-  validates :second_hint, presence: true
+  validates :hint, presence: true
   validates :explanation, presence: true
 
 
@@ -78,7 +77,7 @@ end
 # Table name: questions
 #
 #  id            :integer         not null, primary key
-#  first_hint    :text
+#  hint          :text
 #  lesson_id     :integer
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
@@ -87,10 +86,10 @@ end
 #  question_type :string(255)
 #  prompt        :text
 #  explanation   :text
-#  second_hint   :text
 #  content       :boolean         default(FALSE)
 #  question_text :text
 #  video_start   :integer
 #  video_end     :integer
+#  snippet       :text
 #
 

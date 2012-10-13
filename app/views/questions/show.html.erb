@@ -1,8 +1,9 @@
 <% provide(:title, "Question" + @question.position.to_s) %>
 <section>
-	<%= render 'shared/course_info' %>
 	<%= render 'shared/lesson_intro' %>
-	<div question-pjax-container>
-		<%= render 'shared/question_box' %>
+	<div class="row question-page">
+		<%= render 'questions/prompt_box' %>
+		<%= render 'questions/question_box' %>
 	</div>
+	<%= render 'questions/content_box' if @question.content %>
 </section>
