@@ -15,9 +15,12 @@
       <% end %>
     </div>
 <% end %>
-<div id="show-hint">
+<div id="show-hint", data-toggle="collapse", data-target="#hint-container">
   <i class="icon-question-sign"></i>
   I don't know. Give me a hint!
+</div>
+<div id="hint-container" class="collapse">
+  <%= @question.hint %>
 </div>
 
 

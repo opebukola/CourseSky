@@ -1,8 +1,8 @@
 jQuery ->
-  $('a.question-pjax').pjax('[question-pjax-container]');
-  hint = $('.prompt').data('hint')
-  $('#show-hint').on 'click', (event) ->
-  	$('.prompt').append hint
+	$('.question-box').hide()
+	$('#show-question').on 'click', (event) ->
+  	$('.question-box, .prompt').toggle();
+  	event.preventDefault()
 
 
 

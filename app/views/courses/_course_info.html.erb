@@ -1,6 +1,6 @@
 <div class="course-div">
-    <div id="cover-image"><%= image_tag @course.cover_image_url(:box) %></div>
     <h1><%= @course.title %></h1>
+    <%= render 'progress' %>
     Course by: <%= link_to @course.user.username, user_path(@course.user) %><br />
     <%= markdown @course.description %><br />
 </div>

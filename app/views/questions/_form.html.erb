@@ -1,23 +1,21 @@
 <%= simple_form_for @question do |f| %>
   <%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
   <%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
+
   <h4>Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
   <hr />
-  <h3>Write the Prompt </h3>
-  <%= f.input :prompt, input_html: {class: "input-xxlarge", rows:5}, label: "Write the prompt" %>
-  <p class="muted"><%= render "shared/markdown_tip" %></p>
- <hr />
- <h3> Content: Video Clip & Snippet </h3><br />
-  <%= f.input :content, label: "Check the box to include content block" %><br />
+
+  <h3> Select Video Start & End </h3>
   <%= f.input :video_start, label: "Enter the time in seconds after video starts that you'd like video clip to BEGIN." %><br />
   <%= f.input :video_end, label: "Enter the time in seconds after video starts that you'd like video clip to END." %><br />
-    <%= f.input :snippet, input_html: {class: "input-xxlarge", rows:5}, label:"Add a portion of text" %><br />
-    <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <%= f.input :transcript, label: "Enter the video transcript." %><br />
   <hr />
+
   <h3>Write the Question Text </h3>
   <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
+
   <h3> Enter Answers </h3><br />
   <div class="answer-list">
     <%= f.simple_fields_for :answers do |builder| %>
@@ -32,6 +30,7 @@
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <p>
 <hr />
+
  <h3>Explain the Answer </h3>
   <%= f.input :explanation, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>

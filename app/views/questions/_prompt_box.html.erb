@@ -1,14 +1,14 @@
-<%= content_tag "div", class: "span5 prompt", data: { hint: @question.hint} do %>
-  <%= markdown @question.prompt %><br />
-  <% if @question.content %>
-    <%= link_to 'javascript:void(0)', "data-toggle" => "modal", "data-target" => "#video-container" do %>
-    <i class=" icon-play"></i> Watch a Video
-    <% end %> |
-    <%= link_to 'javascript:void(0)', "data-toggle" => "modal", "data-target" => "#doc-container" do %>
-    <i class=" icon-book"></i> Read a Snippet
-    <% end %><br /><br />
-    <em> When you're ready to move on, answer the question</em>
-  <% end %>
-<% end %>
+<div class="prompt">
+	<div class="video">
+		<iframe width="560" height="315" src="<%=@question.video_clip_source%>" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class= "transcript">
+  	<h4> Transcript: </h4>
+    <%= @question.transcript %>
+  </div>
+  <h4> <%= link_to 'Watch Full Video', '#' %> | <%= link_to 'Read Notes', '#' %></h4>
+</div><br />
 
-    
+<div id="show-question">
+  <i class="icon-question-sign"></i> Show or Hide Question
+</div>

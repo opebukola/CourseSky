@@ -1,12 +1,6 @@
 <%= provide(:title, @course.title) %>
 <section>
 <%= render 'course_info' %>
-<%= render 'progress' %>
 <%= render 'course_topics' %>
+<hr />
 </section>
-<div class="explore">
-Looking for something else?
-<p>
-  <%= link_to "Browse All Courses", courses_path, class: 'btn btn-large' %>
-</p>
-</div>

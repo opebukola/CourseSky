@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013214729) do
+ActiveRecord::Schema.define(:version => 20121015193956) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -143,18 +143,16 @@ ActiveRecord::Schema.define(:version => 20121013214729) do
   create_table "questions", :force => true do |t|
     t.text     "hint"
     t.integer  "lesson_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "position"
     t.integer  "course_id"
     t.string   "question_type"
-    t.text     "prompt"
     t.text     "explanation"
-    t.boolean  "content",       :default => false
     t.text     "question_text"
     t.integer  "video_start"
     t.integer  "video_end"
-    t.text     "snippet"
+    t.text     "transcript"
   end
 
   add_index "questions", ["course_id"], :name => "index_questions_on_course_id"

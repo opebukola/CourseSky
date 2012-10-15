@@ -216,21 +216,10 @@ footer {
   }
 }
 
-.progress-sidebar{
-  border: 1px solid #E5E5E5;
-  padding: 10px 10px 10px 10px;
-  border-radius: 8px; 
-  background-color:#FAFAFA; 
-}
-
 .content{
   padding: 8px 0px 10px; 
 }
 
-.explore{
-  text-align: center;
-  font-size: 2em;
-}
 
 /** -------------------------------------------------- **/
 /* MANAGE COURSE PAGE */
@@ -262,27 +251,32 @@ footer {
   }
 }
 
-.question-page{
-  margin: 0px auto;
+.prompt{
   border: 1px solid #ddd;
   padding: 5px 5px 5px 5px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   background-color: white;
-  margin: none;
-}
-
-.prompt{
-  /**border: 1px solid #E5E5E5;**/
+  margin: 0px auto;
+  .video{
+    /**border: 1px solid #E5E5E5;**/
+    margin: 5px 20px 5px 5px;
+    float: left; 
+    height: 320px;
+  }
+  .transcript{
+  /** border: 1px solid #E5E5E5; **/
   padding: 5px 5px 5px 5px;
-  font-size: 1.4em;
-  /**float: left;**/
+  margin: 5px 5px 5px 5px;
+  height: 320px;
+  }
 }
 
 .question-box{
   border: 3px solid #741885;
   box-shadow: 0 0 4px #4B4B4B; 
+  margin: 30px 0px 10px 0px;
   padding: 15px 15px 15px 15px;
   /** border-radius: 8px; **/
   .question-text{

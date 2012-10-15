@@ -21,12 +21,10 @@ two:
 #  position      :integer
 #  course_id     :integer
 #  question_type :string(255)
-#  prompt        :text
 #  explanation   :text
-#  content       :boolean         default(FALSE)
 #  question_text :text
 #  video_start   :integer
 #  video_end     :integer
-#  snippet       :text
+#  transcript    :text
 #
 

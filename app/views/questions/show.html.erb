@@ -1,9 +1,6 @@
 <% provide(:title, "Question" + @question.position.to_s) %>
 <section>
 	<%= render 'shared/lesson_intro' %>
-	<div class="row question-page">
-		<%= render 'questions/prompt_box' %>
-		<%= render 'questions/question_box' %>
-	</div>
-	<%= render 'questions/content_box' if @question.content %>
+	<%= render 'questions/prompt_box' %>
+	<%= render 'questions/question_box' %>
 </section>

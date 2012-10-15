@@ -2,14 +2,14 @@
   <ol>
     <% @course.lessons.order(:position).each do |lesson| %>
     <h3>
-        <p>
+<p>
           <li>
-            <%= link_to lesson.title, question_path(lesson.questions.first) %></h3>
-            Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', doc_course_lesson_path(course_id: @course.id, id: lesson.id), target: '_blank' %><br />
+            <%= link_to lesson.title, lesson.questions.first %></h3>
             <% if current_user %>
-              Status: <%= current_user.lesson_progress(lesson) %>
-            <% end %>
-          </li><hr />
+              <%= current_user.lesson_progress(lesson).capitalize %>
+            <% end %> |
+            Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', doc_course_lesson_path(course_id: @course.id, id: lesson.id), target: '_blank' %> 
+          </li>
         </p>
       <% end %>
     </ol>

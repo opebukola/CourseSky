@@ -1,9 +1,6 @@
-<div class="progress-sidebar">
-  <% if current_user && current_user == @course.user %>
-    <%= link_to 'Edit or Update Course', manage_course_path(@course), class: 'btn btn-large' %>
-  <% elsif current_user && current_user.enrolled?(@course) %>
-    <h3>Your Progress: <%= current_user.progress(@course) %>% Complete</h3>
-  <% else %>
-    <h3>  Select a topic below to start learning!</h3>
-  <% end %>
-</div>
+<% if current_user && current_user.enrolled?(@course) %>
+	<div class="progress progress-success">
+		<div class="bar" style="width:<%= current_user.progress(@course) %>%;"><%= current_user.progress(@course) %>% complete
+  	</div>
+  </div>
+ <% end %>

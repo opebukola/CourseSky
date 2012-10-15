@@ -1,8 +1,7 @@
 class Question < ActiveRecord::Base
-  attr_accessible :lesson_id, :answers_attributes, :prompt,
-                   :course_id, :question_type, :explanation, 
-                   :hint, :content, :question_text,
-                   :video_start, :video_end, :snippet
+  attr_accessible :lesson_id, :answers_attributes, :course_id,
+                  :question_type, :explanation, :hint, :question_text,
+                  :video_start, :video_end, :transcript
   belongs_to :lesson
   belongs_to :course
   has_many :answers
@@ -16,7 +15,6 @@ class Question < ActiveRecord::Base
 
   validates :lesson_id, presence: true
   validates :course_id, presence: true
-  validates :prompt, presence: true
   validates :question_type, presence: true
   validates :hint, presence: true
   validates :explanation, presence: true
@@ -61,7 +59,8 @@ class Question < ActiveRecord::Base
     attempt.update_attribute(:completed, true)
   end
 
-  #build video clip
+  #build video source
+
   def video_clip_source
     video_source = self.lesson.video_source
     start_time = self.video_start
@@ -84,12 +83,10 @@ end
 #  position      :integer
 #  course_id     :integer
 #  question_type :string(255)
-#  prompt        :text
 #  explanation   :text
-#  content       :boolean         default(FALSE)
 #  question_text :text
 #  video_start   :integer
 #  video_end     :integer
-#  snippet       :text
+#  transcript    :text
 #
 
