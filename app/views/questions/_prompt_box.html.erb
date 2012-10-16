@@ -1,10 +1,9 @@
 <div class="prompt">
 	<div class="video">
-		<iframe width="560" height="315" src="<%=@question.video_clip_source%>" frameborder="0" allowfullscreen></iframe>
+		<iframe width="560" height="315" src="<%=@question.video_clip_source%>&rel=0&autoplay=1" frameborder="1" allowfullscreen></iframe>
   </div>
   <div class= "transcript">
-  	<h4> Transcript: </h4>
-    <%= @question.transcript %>
+    <%= markdown @question.transcript %>
   </div>
   <h4> <%= link_to 'Watch Full Video', '#' %> | <%= link_to 'Read Notes', '#' %></h4>
 </div><br />
