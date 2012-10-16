@@ -12,7 +12,6 @@ gem 'ancestry'
 gem 'pg_search'
 gem 'fog'
 gem 'kramdown'
-gem 'pjax_rails'
 gem 'acts_as_list'
 
 group :development do
