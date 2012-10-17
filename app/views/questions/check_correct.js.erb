@@ -1,6 +1,5 @@
-var response = $("#check-<%=@question.id%>");
+var response = $("#show-hint");
 response.addClass("response");
-response.html("<%= escape_javascript(@question.explanation)%>");
-response.append("<%= escape_javascript(render "questions/next_question_button", question: @question ) %>")
+response.html("<%= escape_javascript(render "questions/next_question_button", question: @question ) %>")
 
 

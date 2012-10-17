@@ -1,8 +1,9 @@
-<hr/>
+<%= @question.explanation %>
+<hr />
 <% if question.next_question %>
-	<%= link_to question.next_question, :class => "btn qustion-pjax" do %>
+	<%= link_to question.next_question, :class => "btn btn-large btn-primary" do %>
 	  <i class="icon-circle-arrow-right"></i>
-	  Next
+	  Continue Lesson
 	<% end %>
 <% else %>
 	<%= link_to share_course_lesson_path(@question.course,

@@ -1,7 +1,7 @@
 <div class="course-div">
     <h1><%= @course.title %></h1>
     <%= render 'progress' %>
-    Course by: <%= link_to @course.user.username, user_path(@course.user) %><br />
+    Your Guide: <%= link_to @course.user.username, user_path(@course.user) %><br />
     <%= markdown @course.description %><br />
 </div>
 
