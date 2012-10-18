@@ -1,4 +1,4 @@
-var response = $("#show-hint");
+var response = $(".hint-box");
 response.addClass("response");
 response.html("<%= escape_javascript(render "questions/next_question_button", question: @question ) %>")
 

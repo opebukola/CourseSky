@@ -15,12 +15,14 @@
       <% end %>
     </div>
 <% end %>
-<div id="show-hint", data-toggle="collapse", data-target="#hint-container">
-  <i class="icon-question-sign"></i>
-  I don't know. Give me a hint!
-</div>
-<div id="hint-container" class="collapse">
-  <%= @question.hint %>
+<div class="hint-box">
+  <div id="show-hint">
+    <i class="icon-question-sign"></i>
+    I don't know. Give me a hint!
+  </div>
+  <div id="hint">
+    <%= @question.hint %>
+  </div>
 </div>
 
 
