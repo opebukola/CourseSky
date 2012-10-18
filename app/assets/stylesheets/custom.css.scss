@@ -199,6 +199,23 @@ footer {
   text-align: center;
 }
 
+.new-box{
+  border: solid 1px #CCC;
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 20px;
+  &:hover { 
+      background-color: #32B2C6;
+    }
+  h3 {
+    font-size: 1.4em;
+    font-weight: normal;
+  }
+  .image{
+    float: left;
+    margin-right: 5px;
+  }
+}
 /** -------------------------------------------------- **/
 /* COURSE DETAIL */
 /** -------------------------------------------------- **/
