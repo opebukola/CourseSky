@@ -3,7 +3,11 @@
     <% @courses.each do |course| %>
     <div class="course">
       <%= link_to image_tag(course.cover_image_url(:box)), course_path(course) %> <br />
-      <h3><%= link_to course.title, course_path(course) %></h3>
+      <h3><%= course.title %><br /></h3>
+      <ul>
+	      	<li>30 interactive lessons</li>
+	      	<li> 200 practice questions with video solutions </li>
+	      </ul>
     </div>
     <% end %>
   </div>

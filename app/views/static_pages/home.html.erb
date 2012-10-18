@@ -5,18 +5,8 @@
       Free, interactive, college-prep courses</h1>
   </div>
 </section>
-<h2> Pick a course and start learning!</h2> 
-
-  <% @courses.each do |course| %>
-    <div class="new-box">
-    	<div class="image">
-    		<%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %>
-    	</div>
-      <h3><%= course.title %><br /></h3>
-    </div>
-    <% end %>
+	<%= render 'shared/course_box' %>
 <br />
-
 <%= form_tag courses_path, class: "search",method: :get do %>
         <%= text_field_tag :query, params[:query], placeholder: "Search courses" %>
 <% end %>
