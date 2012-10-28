@@ -12,7 +12,7 @@
   <tr>
     <% @courses.each do |course| %>
     <td> <%= course.title %> </td>
-    <td> <%= course.user.username %> </td>
+    <td> <%= course.user.name %> </td>
     <td> <%= course.feature_status %></td>
     <td> <%= link_to "Change Featured Status", feature_course_path(course), method: :put %></td>
     <td> <%= link_to "Delete", course_path(course),

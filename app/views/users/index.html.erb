@@ -3,7 +3,7 @@
 <% @users.each do |user| %>
   <li>
     <%= user.email %> |
-    <%= user.username %> |
+    <%= user.name %> |
     <%= link_to 'Delete User', user_path(user),
                                 method: :delete,
                                 data: {confirm: 'Are you sure?'} %>
