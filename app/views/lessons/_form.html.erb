@@ -1,23 +1,12 @@
 <%= simple_form_for [@course, @lesson] do |f| %>
-<ul class="nav nav-tabs" id="lessonTab">
-  <li class="active"><a href="#title" data-toggle="tab">Title</a></li>
-  <li><a href="#video" data-toggle="tab">Video</a></li>
-  <li><a href="#doc" data-toggle="tab">Document</a></li>
-</ul>
- 
-<div class="tab-content">
-  <div class="tab-pane active" id="title">
-  	<%= f.input :title, label: "Give the lesson a Title", input_html: {class: "input-xxlarge"} %>
-  </div>
-  <div class="tab-pane" id="video">
-  	<%= f.input :video_url, label: "Enter the URL of a YouTube video.", input_html: {class: "input-xxlarge"} %>
-  </div>
-  <div class="tab-pane" id="doc">
-  	<%= f.input :document, input_html: {class: "input-xxlarge", rows:35}, label: "Enter lesson text" %>
-  	<p class="muted"><%= render "shared/markdown_tip" %></p>
-  </div>
 
-</div>
+<h3> Title </h3>
+<%= f.input :title, label: "Give the lesson a Title", input_html: {class: "input-xxlarge"} %>
+<h3>Video URL </h3>
+<%= f.input :video_url, label: "Enter the URL of a YouTube video.", input_html: {class: "input-xxlarge"} %>
+<h3>Document </h3>
+<%= f.input :document, input_html: {class: "input-xxlarge", rows:35}, label: "Enter lesson text" %>
+<p class="muted"><%= render "shared/markdown_tip" %></p>
 <hr />
 
 <%= f.button :submit, "Save Lesson", class: 'btn btn-success' %>

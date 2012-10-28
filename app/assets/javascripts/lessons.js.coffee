@@ -15,4 +15,19 @@ jQuery ->
     regexp = new RegExp($(this).data('id'), 'g')
     $(".answer-list").append($(this).data('fields').replace(regexp, time))
     event.preventDefault()
+  
+  $('div.element:not(:first)').hide();
+  $('a.next-section').on 'click', (event) ->
+    current = $('div.element:visible')
+    event.preventDefault();
+    current.hide();
+    current.next().show();
+  $('a.prev-section').on 'click', (event) ->
+    current = $('div.element:visible')
+    event.preventDefault();
+    current.hide();
+    current.prev().show();
+
+
+  
 

@@ -1,5 +1,6 @@
 var response = $(".hint-box");
 response.addClass("response");
-response.html("<%= escape_javascript(render "questions/next_question_button", question: @question ) %>")
-
-
+response.html("<%= @question.explanation %>")
+<% if current_user && current_user.completed_lesson?(@lesson) %>
+	window.location.href="<%=@lesson.id%>/share"
+<% end %>

@@ -1,3 +1,11 @@
-<% provide(:title, @course.title ) %>
+<%= provide(:title, @lesson.title ) %>
+<%= render 'shared/lesson_intro' %>
 
+<% @lesson.activities.each do |model| %>
+	<%= content_tag_for :div, model, class:"element", data: {id: model.id.to_i, model: model.class.to_s} do %>
+		<%= render model %>
+		<% end %>
+<% end %>
 
+<a class="prev-section btn btn-large btn-primary btn-prev" href="#"><i class="icon-circle-arrow-left"></i>Previous</a>
+<a class="next-section btn btn-large btn-primary btn-next" href="#"><i class="icon-circle-arrow-right"></i> Next</a>

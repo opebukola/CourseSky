@@ -1,0 +1,12 @@
+<div class="content-box">
+		<div id="check-<%=question.id%>">
+	    <% if current_user && current_user.has_answered?(question) %>
+	    <div class="question-answered">
+	    	You have correctly answered this question. Feel free to try it again!
+	    </div>
+	    <% end %>
+	    <span class="question-text"><%= markdown question.question_text %></span><br />
+	      <%= render "questions/response_box", question: question%>
+
+	  </div>
+</div>

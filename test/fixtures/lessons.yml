@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: lessons
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  document   :text
+#  video_url  :string(255)
+#  course_id  :integer
+#  user_id    :integer
+#  position   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
@@ -19,18 +34,3 @@ two:
   document_ipaper_id: 1
   document_ipaper_access_key: MyString
   position: 1
-# == Schema Information
-#
-# Table name: lessons
-#
-#  id         :integer         not null, primary key
-#  title      :string(255)
-#  document   :text
-#  video_url  :string(255)
-#  course_id  :integer
-#  user_id    :integer
-#  position   :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
-

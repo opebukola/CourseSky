@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id          :integer          not null, primary key
+#  content     :string(255)
+#  question_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  correct     :boolean          default(FALSE)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
@@ -9,15 +21,3 @@ two:
   content: MyText
   correct_answer: false
   question_id: 1
-# == Schema Information
-#
-# Table name: answers
-#
-#  id          :integer         not null, primary key
-#  content     :string(255)
-#  question_id :integer
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  correct     :boolean         default(FALSE)
-#
-

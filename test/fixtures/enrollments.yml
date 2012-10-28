@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: enrollments
+#
+#  id                 :integer          not null, primary key
+#  student_id         :integer
+#  enrolled_course_id :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
@@ -7,14 +18,3 @@ one:
 two:
   student_id: 1
   enrolled_course_id: 1
-# == Schema Information
-#
-# Table name: enrollments
-#
-#  id                 :integer         not null, primary key
-#  student_id         :integer
-#  enrolled_course_id :integer
-#  created_at         :datetime        not null
-#  updated_at         :datetime        not null
-#
-

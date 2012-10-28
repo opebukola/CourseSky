@@ -1,7 +1,0 @@
-
-<%= simple_form_for @course_review do |f| %>
-  <%= f.input :course_id, as: :hidden, input_html: { value: params[:course_id]} %>
-  <%= f.input :value, collection: 1..5, as: :radio_buttons, label: "Rate this course on a scale of 1-5 where 1 = poor/not helpful for learning, 3 = okay, 5 = excellent/great learning resource" %>
-  <%= f.input :content, label: 'Explain your rating' %>
-  <%= f.button :submit, "Save Review" %>
-<% end %>

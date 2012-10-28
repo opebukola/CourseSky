@@ -8,6 +8,7 @@ Coursesky::Application.routes.draw do
   resources :users, only: [:show, :destroy, :index] do
     member do
       get :dashboard
+      get :college
     end
   end
 
@@ -38,6 +39,7 @@ Coursesky::Application.routes.draw do
     end
   end
 
+  resources :videos
   resources :question_attempts, only: [:destroy]
   resources :categories
   resources :enrollments, only: [:create, :destroy]

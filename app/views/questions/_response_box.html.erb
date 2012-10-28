@@ -1,27 +1,27 @@
-<% if @question.is_multiple_choice? %>
-    <div id="check_answer_<%=@question.id%>" class="answers">
-      <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
-        <% @question.answers.each do |answer| %>
+<% if question.is_multiple_choice? %>
+    <div id="check_answer_<%=question.id%>" class="answers">
+      <%= form_tag({action: 'check', controller: 'questions', id: question.id}, remote: true) do %>
+        <% question.answers.each do |answer| %>
           <label class="radio"><%= radio_button_tag 'response', answer.content %> <%= answer.content %></label><br/>
         <% end %>
       <%= submit_tag("Submit", class:'btn') %><br />
       <% end %>
     </div>
 <% else %>
-    <div id="check_answer_<%=@question.id%>" class="submit">
-      <%= form_tag({action: 'check', controller: 'questions', id: @question.id}, remote: true) do %>
+    <div id="check_answer_<%=question.id%>" class="submit">
+      <%= form_tag({action: 'check', controller: 'questions', id: question.id}, remote: true) do %>
         <%= text_area_tag :response, "Enter your answer", rows: 2 %><br />
         <%= submit_tag("Submit", class:'btn') %><br />
       <% end %>
     </div>
 <% end %>
 <div class="hint-box">
-  <div id="show-hint">
+  <div class="show-hint" id="show-hint<%=question.id%>" data-qid="<%=question.id%>">
     <i class="icon-question-sign"></i>
     I don't know. Give me a hint!
   </div>
-  <div id="hint">
-    <%= @question.hint %>
+  <div id="hint_<%=question.id%>" class="hint"> 
+    <%= question.hint %>
   </div>
 </div>
 

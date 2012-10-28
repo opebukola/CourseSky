@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015193956) do
+ActiveRecord::Schema.define(:version => 20121026191858) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "lesson_id"
+    t.integer  "lesson_position"
+    t.integer  "activity_id"
+    t.string   "activity_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -73,6 +82,15 @@ ActiveRecord::Schema.define(:version => 20121015193956) do
   add_index "comments", ["lesson_id"], :name => "index_comments_on_lesson_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "completed_questions", :force => true do |t|
+    t.integer  "student_id",  :null => false
+    t.integer  "question_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "completed_questions", ["student_id"], :name => "index_completed_questions_on_student_id"
+
   create_table "course_reviews", :force => true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
@@ -115,6 +133,24 @@ ActiveRecord::Schema.define(:version => 20121015193956) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "lesson_items", :force => true do |t|
+    t.integer  "lesson_id"
+    t.integer  "lesson_position"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "lesson_positions", :force => true do |t|
+    t.integer  "positionable_id"
+    t.string   "positionable_type"
+    t.integer  "position"
+    t.integer  "lesson_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "lessons", :force => true do |t|
     t.string   "title"
     t.text     "document"
@@ -146,16 +182,11 @@ ActiveRecord::Schema.define(:version => 20121015193956) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "position"
-    t.integer  "course_id"
     t.string   "question_type"
     t.text     "explanation"
     t.text     "question_text"
-    t.integer  "video_start"
-    t.integer  "video_end"
-    t.text     "transcript"
   end
 
-  add_index "questions", ["course_id"], :name => "index_questions_on_course_id"
   add_index "questions", ["lesson_id"], :name => "index_questions_on_lesson_id"
 
   create_table "subjects", :force => true do |t|
@@ -177,7 +208,6 @@ ActiveRecord::Schema.define(:version => 20121015193956) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
-    t.string   "username"
     t.string   "avatar"
     t.string   "name"
     t.string   "location"
@@ -188,5 +218,16 @@ ActiveRecord::Schema.define(:version => 20121015193956) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.string   "url"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.text     "transcript"
+    t.integer  "lesson_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "position"
+  end
 
 end

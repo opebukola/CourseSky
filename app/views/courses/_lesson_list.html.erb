@@ -1,5 +1,5 @@
 <p>
-  <%= link_to 'Add New Lesson', new_course_lesson_path(course_id: @course.id), class: "btn btn-primary" %>
+  <%= link_to 'Add New Lesson', new_course_lesson_path(course_id: @course.id), class: "btn btn-large btn-primary" %>
 </p>
 <hr />
 <p>
@@ -13,20 +13,7 @@
           <%= link_to "Delete Lesson", course_lesson_path(course_id: @course.id, id: lesson.id),
             method: :delete,
             data: {confirm: 'Are you sure?'} %><br /></h3>
-            <a data-toggle="collapse" data-target="#question_lesson_<%=lesson.id%>">
-              [Show/Hide Questions]
-            </a>
-            <div id="question_lesson_<%=lesson.id%>" class="collapse">
-              <% lesson.questions.order(:position).each do |question| %>
-                  <%= link_to truncate(question.question_text, length: 30), question_path(question) %> |
-                  <%= link_to "Edit", edit_question_path(question, course_id: @course.id, lesson_id: lesson.id) %> |
-                  <%= link_to "Delete", question_path(question),
-                  method: :delete,
-                  data: {confirm: 'Are you sure?'} %><br />
-              <% end %>
-            </div>
-            <h4><%=link_to "Add New Question", new_question_path(course_id: @course.id, lesson_id: lesson.id) %></h4>
-      <% end %><hr />
+      <% end %><br />
     <% end %>
   </ul>
 </p>

@@ -51,9 +51,7 @@ class QuestionsController < ApplicationController
     @lesson = @question.lesson
     @comment = Comment.new
 
-    if current_user
-      @question.update_attempts(current_user)
-    else
+   unless current_user
       session[:attempts] ||= {}
       session[:attempts][@question.id] ||= {count: 0, correct: false}
       session[:attempts][@question.id][:count] += 1
@@ -67,12 +65,12 @@ class QuestionsController < ApplicationController
       end
 
       respond_to do |format|
-        format.html{ redirect_to :@question.next_question, notice: "Correct!"}
+        format.html{ redirect_to :back, notice: "Correct!"}
         format.js { render 'check_correct'}
       end
     else
       respond_to do |format|
-        format.html {redirect_to :back, notice: "Try Again"}
+        format.html {redirect_to :back, notice: "Wrong Answer. Try Again"}
         format.js { render 'check_incorrect'}
       end
     end

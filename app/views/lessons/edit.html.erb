@@ -1,3 +1,16 @@
 <% provide(:title, 'Edit Lesson') %>
 <h2> Editing: Lesson <%=@lesson.position%> - <%=@lesson.title%></h2>
-<%= render 'form' %>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#basics" data-toggle="tab"> Lesson Basics</a></li>
+  <li><a href="#activities" data-toggle="tab">Video Clips & Questions</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="basics">
+    <%= render 'form' %>
+  </div>
+  <div class="tab-pane" id="activities">
+    <%= render 'activity_list' %>
+  </div>
+</div>
+

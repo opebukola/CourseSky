@@ -209,6 +209,9 @@ footer {
 /* COURSE DETAIL */
 /** -------------------------------------------------- **/
 
+.course-description{
+  
+}
 
 .course-div{
   padding: 5px 5px 5px;
@@ -224,6 +227,27 @@ footer {
   padding: 8px 0px 10px; 
 }
 
+.course-section{
+  border: solid 1px #CCC;
+  border-radius: 10px;
+  background-color: white;
+  width: 100px;
+  padding: 10px 10px 10px 30px;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  h3 {
+    margin:10px 0px 10px 0px;
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+  &:hover { 
+      background-color: #32B2C6;
+    }
+}
+
+
+
 
 /** -------------------------------------------------- **/
 /* MANAGE COURSE PAGE */
@@ -236,7 +260,7 @@ footer {
 }
 
 /** -------------------------------------------------- **/
-/* QUESTION DETAIL PAGE */
+/* LESSON SHOW PAGE */
 /** -------------------------------------------------- **/
 
 
@@ -255,37 +279,29 @@ footer {
   }
 }
 
-.prompt{
+.content-box{
   border: 1px solid #ddd;
-  padding: 5px 5px 5px 5px;
+  padding: 20px 20px 20px 20px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   background-color: white;
   margin: 0px auto;
-
+  margin-bottom: 20px;
+  height: 320px;
   .video{
     /**border: 1px solid #E5E5E5;**/
     margin: 5px 20px 5px 5px;
     float: left; 
-    height: 320px;
+    /**height: 320px;**/
   }
   .transcript{
-  /** border: 1px solid #E5E5E5; **/
-  padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
-  overflow-x: scroll;
-  height: 320px;
-  background-color: #ddd;
-  }
-}
-
-.question-box{
-  .modal{
-    max-height: none;
-    border: 3px solid #741885;
-    box-shadow: 0 0 4px #4B4B4B; 
-    padding: 15px 15px 15px 15px;
+    /** border: 1px solid #E5E5E5; **/
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    overflow-x: scroll;
+    height: 310px;
+    background-color: #ddd;
   }
   .question-text{
     font-size: 1.4em;
@@ -308,33 +324,29 @@ footer {
   border-radius: 5px;
 }
 
-
-.content-box{
-  /** border: 2px dotted #32B2C6; **/
-  /** border-radius: 8px; **/
-  padding: 20px 20px 20px 20px;
-  margin-bottom: 10px;
-  .modal{
-    width: 600px;
-  }
-}
-
-
-.next-lesson{
+.next-section{
   float: right;
-  color: #741885;
-  font-size: 1.2em;
 }
 
-.previous-lesson{
-  color: #741885;
-  font-size: 1.4em;
+.btn-prev{
+  background-color: #741885;
+}
+
+.btn-next{
+  background-color: #741885;
 }
 
 .response {
   font-size: 1.2em;
   padding-top: 5px;
 }
+
+.question-answered{
+  border: 1px solid #bbb;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 10px;
+}
+
 
 /** -------------------------------------------------- **/
 /* COMMENTS*/

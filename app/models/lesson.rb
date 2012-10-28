@@ -1,11 +1,31 @@
+# == Schema Information
+#
+# Table name: lessons
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  document   :text
+#  video_url  :string(255)
+#  course_id  :integer
+#  user_id    :integer
+#  position   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Lesson < ActiveRecord::Base
   attr_accessible :course_id, :document, :position, :title, :user_id, :video_url
 
   belongs_to :user
   belongs_to :course
-  has_many :questions, order: "position", dependent: :destroy
+  has_many :lesson_items
+  # has_many :questions, through: :lesson_items, source: :item, source_type: "Question"
+  # has_many :videos, through: :lesson_items, source: :item, source_type: "Video"
+  has_many :videos, dependent: :destroy
+  has_many :questions, dependent: :destroy
   has_many :comments
   has_many :question_attempts, dependent: :destroy
+
 
   acts_as_list scope: :course
   alias_method :next_lesson, :lower_item
@@ -31,20 +51,8 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-  protected
-end
-# == Schema Information
-#
-# Table name: lessons
-#
-#  id         :integer         not null, primary key
-#  title      :string(255)
-#  document   :text
-#  video_url  :string(255)
-#  course_id  :integer
-#  user_id    :integer
-#  position   :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
+  def activities
+    [*videos, *questions].sort_by(&:position)
+  end   
 
+end

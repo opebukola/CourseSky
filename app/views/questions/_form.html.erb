@@ -1,15 +1,8 @@
 <%= simple_form_for @question do |f| %>
-  <%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
   <%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
 
   <h4>Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
-  <hr />
-
-  <h3> Select Video Start & End </h3>
-  <%= f.input :video_start, label: "Enter the time in seconds after video starts that you'd like video clip to BEGIN." %><br />
-  <%= f.input :video_end, label: "Enter the time in seconds after video starts that you'd like video clip to END." %><br />
-  <%= f.input :transcript, label: "Enter the video transcript." %><br />
   <hr />
 
   <h3>Write the Question Text </h3>
