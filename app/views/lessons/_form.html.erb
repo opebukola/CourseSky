@@ -1,21 +1,13 @@
 <%= simple_form_for [@course, @lesson] do |f| %>
-	<h3> Step 1: Tell us more about the lesson: </h3><br />
-	<%= f.input :title, label: "Provide a title" %>
-	<h3> Step 2: What skills will students learn? </h3><br />
-	[This will include a collection select of skills]
-	<h3> Step 3: Add some materials! </h3><br />
-	<h4>Add a Document:</h4>
-	<%= f.input :document, label: "Upload a document. Accepted file formats include .doc, .pdf, .ppt" %>
-	<p>
-		<h4>Add a Video:</h4>
-		<%= f.input :video_url, label: "Enter the URL of a YouTube video. Currently, we only support YouTube EDU videos." %>
-	</p>
-	<p>
-		<h4> Add a Quiz: </h4>
-		<%= f.simple_fields_for :questions do |builder| %>
-			<%= render 'question_fields', f: builder %>
-		<% end %>
-		<%= link_to_add_fields "Add New Question", f, :questions %>
-	</p>
-	<%= f.button :submit, "Save Lesson" %>
+
+<h3> Title </h3>
+<%= f.input :title, label: "Give the lesson a Title", input_html: {class: "input-xxlarge"} %>
+<h3>Video URL </h3>
+<%= f.input :video_url, label: "Enter the URL of a YouTube video.", input_html: {class: "input-xxlarge"} %>
+<h3>Document </h3>
+<%= f.input :document, input_html: {class: "input-xxlarge", rows:35}, label: "Enter lesson text" %>
+<p class="muted"><%= render "shared/markdown_tip" %></p>
+<hr />
+
+<%= f.button :submit, "Save Lesson", class: 'btn btn-success' %>
 <% end %>

@@ -1,4 +1,6 @@
 <div id ="publish">
-	<strong>Status:</strong> <%= @course.status %>
-	<%= link_to "Publish", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%>
+  <strong>Status:</strong> <%= @course.status %>
+  <%= link_to "Publish", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%><br />
+  <strong>Featured on CourseSky:</strong> <%= @course.feature_status %>
+  <%= link_to "Request course be featured ",'#' if @course.feature_status == 'not featured' %>
 </div>

@@ -1,0 +1,21 @@
+<% if @course.rating %>
+  <h3>Average User Rating: <%= @course.rating %></h3><br />
+  <% @course.course_reviews.limit(5).each do |review| %>
+  <ul>
+    <li><h4><%= review.user.username %> says:</h4>
+      <%= review.content %>
+    </li>
+  </ul>
+  <% end %><br />
+   <%= link_to 'Read All Reviews', course_reviews_path(course_id: @course.id) %>
+<% else %>
+  <%= "No Course Reviews yet." %>
+<% end %>
+<br />
+<% if current_user && current_user.enrolled?(@course) %>
+  <% if current_user.has_reviewed?(@course) %>
+    <%= link_to 'You have reviewed this course. Update your review', edit_course_review_path(course_id: @course.id) %>
+  <% else %>
+    <%= link_to 'Review this Course', new_course_review_path(course_id: @course.id) %>
+  <% end %>
+<% end %>

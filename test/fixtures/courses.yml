@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  cover_image    :string(255)
+#  description    :text
+#  published      :boolean          default(FALSE)
+#  user_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  featured       :boolean          default(FALSE)
+#  subject_id     :integer
+#  grade_level_id :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
@@ -13,18 +30,3 @@ two:
   description: MyText
   published: false
   user_id: 1
-# == Schema Information
-#
-# Table name: courses
-#
-#  id          :integer         not null, primary key
-#  title       :string(255)
-#  cover_image :string(255)
-#  description :text
-#  published   :boolean         default(FALSE)
-#  user_id     :integer
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  featured    :boolean         default(FALSE)
-#
-

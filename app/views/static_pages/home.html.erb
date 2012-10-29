@@ -1,15 +1,12 @@
 <% provide(:title, 'Welcome') %>
-
 <section>
-	<div class="center hero-unit">
-		<h1>Education For All </h1>
-
-		<p>
-			CourseSky wants everyone to be able to learn online, free of charge! Teachers and experts create courses using open content.  Students take free, engaging online courses.
-		</p>
-
-		<%= link_to "Get Started Now!", '#', class: "btn btn-large btn-primary" %>
-	</div>
+  <div class="center">
+    <h1><span class="control">Take control of your learning.</span><br />
+      Free, interactive, college-prep courses</h1>
+  </div>
 </section>
-<h2> FEATURED COURSES: </h2>
-<%= render 'shared/course_box' %>
+	<%= render 'shared/course_box' %>
+<br />
+<%= form_tag courses_path, class: "search",method: :get do %>
+        <%= text_field_tag :query, params[:query], placeholder: "Search courses" %>
+<% end %>

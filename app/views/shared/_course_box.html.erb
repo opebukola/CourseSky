@@ -1,12 +1,14 @@
 <section>
-	<div class="coursebox">
-		<% @courses.each do |course| %>
-		<div class="course">
-			<%= image_tag course.cover_image_url(:box) %><br />
-			<h4><%= link_to course.title, course_path(course) %><br /></h4>
-			By: <%= course.user.username %><br />
-			<%= link_to "Start Course", '#', class: "btn" %>
-		</div>
-		<% end %>
-	</div>
+  <div class="coursesarea">
+    <% @courses.each do |course| %>
+    <div class="course">
+      <%= link_to image_tag(course.cover_image_url(:box)), course_path(course) %> <br />
+      <h3><%= course.title %><br /></h3>
+      <ul>
+	      	<li><%= course.lessons.count %> interactive lessons</li>
+	      	<li> 200 practice questions with video solutions </li>
+	      </ul>
+    </div>
+    <% end %>
+  </div>
 </section>

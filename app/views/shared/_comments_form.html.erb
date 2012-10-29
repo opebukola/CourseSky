@@ -1,0 +1,12 @@
+<% if current_user %>
+  <div class="new_comment" %>
+    <%= simple_form_for @comment do |f| %>
+      <%= f.input :lesson_id, as: :hidden, input_html: { value: params[:lesson_id]} %>
+      <%= f.input :parent_id, as: :hidden, input_html: { value: params[:parent_id]} %>
+      <%= f.input :content, label: "Question", placeholder: "Ask a question" %>
+      <%= f.button :submit, "Save Question", class: 'btn' %>
+    <% end %>
+  </div>
+<% else %>
+  <%= link_to 'Sign in to ask a question', new_user_session_path %>
+<% end %>

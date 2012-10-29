@@ -2,7 +2,10 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
-    make_courses
+    make_admin
+    make_math
+    make_science
+    make_history
     make_lessons
     make_featured
   end
@@ -21,21 +24,64 @@ def make_users
   end
 end
 
+def make_admin
+  User.create!(username: "admin",
+                email: "admin@example.com",
+                password: "password",
+                password_confirmation: "password",
+                admin: true,
+                remember_me: true ) 
+end
 
-def make_courses
-  users = User.all
+
+def make_math
+  user = User.find(1)
+  subject = Subject.create!(name: "Math")
+  grade = GradeLevel.create!(name: "9-10")
   2.times do |n|
     title = Faker::Lorem.sentence(1)
     description = Faker::Lorem.paragraphs(1)
-    users.each { |user| user.courses.create!(title: title, 
+    user.courses.create!(title: title, 
                             description: description,
-                            published: true)}
+                            subject: subject,
+                            grade_level: grade,
+                            published: true)
+  end
+end
+
+def make_science
+  user = User.find(2)
+  subject = Subject.create!(name: "Science")
+  grade = GradeLevel.create!(name: "11-12")
+  2.times do |n|
+    title = Faker::Lorem.sentence(1)
+    description = Faker::Lorem.paragraphs(1)
+    user.courses.create!(title: title, 
+                            description: description,
+                            subject: subject,
+                            grade_level: grade,
+                            published: true)
+  end
+end
+
+def make_history
+  user = User.find(2)
+  subject = Subject.create!(name: "History")
+  grade = GradeLevel.create!(name: "6-8")
+  2.times do |n|
+    title = Faker::Lorem.sentence(1)
+    description = Faker::Lorem.paragraphs(1)
+    user.courses.create!(title: title, 
+                            description: description,
+                            subject: subject,
+                            grade_level: grade,
+                            published: true)
   end
 end
 
 def make_lessons
   courses = Course.all
-  4.times do |n|
+  3.times do |n|
     title = Faker::Lorem.sentence(1)
     ipaper_id = 101072330 
     ipaper_key = "key-1v0tyd70e4py9qvtcd5q" 
@@ -49,7 +95,7 @@ def make_lessons
 end
 
 def make_featured
-  courses = Course.all(limit:5)
+  courses = Course.all(limit:6)
   courses.each do |course|
     course.toggle!(:featured)
   end

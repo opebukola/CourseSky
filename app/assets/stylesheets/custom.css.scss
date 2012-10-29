@@ -3,14 +3,17 @@
 
 $grayMediumLight: #eaeaea;
 
-/* universal */
+/** -------------------------------------------------- **/
+/* UNIVERSAL */
+/** -------------------------------------------------- **/
 
 html {
   overflow-y: scroll;
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 80px;
+  background-color: #F7F7F7;
 }
 
 section {
@@ -23,30 +26,43 @@ textarea {
 
 .center {
   text-align: center;
+  padding: 20px 10px 10px 10px;
+  margin-bottom: 50px;
   h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 }
 
-/* typography */
+.control{
+  font-weight: normal;
+}
+
+label.boolean {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+/** -------------------------------------------------- **/
+/* TYPOGRAPHY */
+/** -------------------------------------------------- **/
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.7em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 h2 {
-  font-size: 1.7em;
+  font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
+  /* color: $grayLight; */
   font-weight: normal;
-  color: $grayLight;
 }
 
 p {
@@ -54,53 +70,86 @@ p {
   line-height: 1.7em;
 }
 
+/** -------------------------------------------------- **/
+/* ALERTS */
+/** -------------------------------------------------- **/
 
-/* header */
+.alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #d9831f;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3d9400;
+}
+.alert-danger,
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #d9230f;
+}
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #029acf;
+}
+
+
+/** -------------------------------------------------- **/
+/* HEADER */
+/** -------------------------------------------------- **/
 
 #logo {
   float: left;
   margin-right: 25px;
-  font-size: 1em;
-  color: white;
-  letter-spacing: -1px;
-  padding-top: 2px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
 }
 
-.topbar {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.4em;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  line-height: 1;
-  &:hover {
-    /** color: white; **/
-    text-decoration: none;
-  }
+.nav {
+  padding-top: 15px;
 }
-
 .navbar-inner {
-  background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
-  background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+  background: #fefefe; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #fefefe 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#fefefe)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#fefefe 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#fefefe 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#fefefe 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%,#fefefe 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+  border-bottom: 3px solid #32B2C6;
 }
 
-/* footer */
+.navbar .nav > li > a {
+  color: #000000;
+  font-weight: normal;
+  font-size: 1.2em; 
+  :hover { 
+      color: $grayDarker;
+    }
+}
+
+.navbar .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #555;
+  border-bottom-color: #555;
+}
+
+
+/** -------------------------------------------------- **/
+/* FOOTER */
+/** -------------------------------------------------- **/
 
 footer {
   margin-top: 45px;
-  padding-top: 5px;
+  padding: 5px 5px 0px 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
   a {
@@ -122,31 +171,240 @@ footer {
   }
 }
 
-/* courses */
-.cover-image{
-  float: left;
-  margin-right: 10px;
+/** -------------------------------------------------- **/
+/* HOME PAGE */
+/** -------------------------------------------------- **/
+
+/* courses index pages*/
+
+.coursesarea{
+  width: 80%; 
+  margin: 0px auto;
 }
 
 .course {
   border: solid 1px #CCC;
+  border-radius: 10px;
+  background-color: white;
   width: 200px;
-  padding: 10px 5px;
+  padding: 10px 10px 10px 10px;
   float: left;
   margin-right: 20px;
   margin-bottom: 20px;
-  a {
-    color: black;
+  h3 {
+    margin:10px 0px 10px 0px;
+    font-size: 1.3em;
+    font-weight: normal;
   }
-  .btn {
-    width: 180px;
-    align: center;
+  &:hover { 
+      background-color: #32B2C6;
+    }
+}
+
+.search{
+  text-align: center;
+}
+
+/** -------------------------------------------------- **/
+/* COURSE DETAIL */
+/** -------------------------------------------------- **/
+
+.course-description{
+  
+}
+
+.course-div{
+  padding: 5px 5px 5px;
+  margin-bottom: 10px;
+  #cover-image{
+    float: left; 
+    margin-right: 20px;
+    margin-left: 10px;
   }
 }
 
-/* lessons list */
+.content{
+  padding: 8px 0px 10px; 
+}
+
+.course-section{
+  border: solid 1px #CCC;
+  border-radius: 10px;
+  background-color: white;
+  width: 100px;
+  padding: 10px 10px 10px 30px;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  h3 {
+    margin:10px 0px 10px 0px;
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+  &:hover { 
+      background-color: #32B2C6;
+    }
+}
+
+.progress-none a{
+  color: white;
+}
+
+
+/** -------------------------------------------------- **/
+/* MANAGE COURSE PAGE */
+/** -------------------------------------------------- **/
+
 #lessons_list .handle {
   font-size: 12px;
   color: #777;
   cursor: move;
 }
+
+/** -------------------------------------------------- **/
+/* LESSON SHOW PAGE */
+/** -------------------------------------------------- **/
+
+
+
+.intro{
+  border: 1px solid #E5E5E5; 
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
+  .start{
+    font-size: 1.5em; 
+    float: left;
+    margin-top: 3px;
+   margin-bottom: 10px; 
+    margin-right: 20px;
+    color: #741885;
+  }
+}
+
+.content-box{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  margin: 0px auto;
+  margin-bottom: 20px;
+  height: 320px;
+  .video{
+    /**border: 1px solid #E5E5E5;**/
+    margin: 5px 20px 5px 5px;
+    float: left; 
+    /**height: 320px;**/
+  }
+  .transcript{
+    /** border: 1px solid #E5E5E5; **/
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    overflow-x: scroll;
+    height: 310px;
+    background-color: #ddd;
+  }
+  .question-text{
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  .submit{
+    text-align: center;
+  }
+  .answers {
+    padding: 10px 10px 10px 40px;
+  }
+}
+
+
+.answer {
+  border: 1px solid #bbb;
+  padding: 5px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.next-section{
+  float: right;
+}
+
+.btn-prev{
+  background-color: #741885;
+}
+
+.btn-next{
+  background-color: #741885;
+}
+
+.response {
+  font-size: 1.2em;
+  padding-top: 5px;
+}
+
+.question-answered{
+  border: 1px solid #bbb;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 10px;
+}
+
+
+/** -------------------------------------------------- **/
+/* COMMENTS*/
+/** -------------------------------------------------- **/
+
+.comments {
+  margin: 8px 0;
+  padding: 8px 15px;
+  border-bottom: dotted 1px #999;
+  width: 75%;
+  font-size: 0.9em;
+  /** border-radius: 12px; **/
+  
+}
+
+.nested_comments {
+  margin-left: 30px;
+}
+.nested_comments .nested_comments .nested_comments {
+  margin-left: 0;
+}
+
+.coursenav {
+  border: solid 2px #ccc;
+  margin-left: 0px;
+  margin-top: 70px;
+  padding: 10px;
+  width: 30%;
+}
+
+/** -------------------------------------------------- **/
+/* AUTHENTICATION DIALOG*/
+/** -------------------------------------------------- **/
+
+#authentication-dialog  {
+  form {
+    padding-top: 5px;
+  }
+
+  .form-actions {
+    padding: 0 0 0 160px;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: inherit;
+    border: none;
+  }
+
+  .checkbox {
+    min-height: auto;
+  }
+
+  .modal-body {
+    max-height: none;
+  }
+}
+
+
+
+

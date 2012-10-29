@@ -1,0 +1,13 @@
+<div class="intro">
+	<div class="start">
+		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> (<%= @lesson.position %> of <%= @course.lessons.count %>)
+  </div>
+  <div class="row-fluid">
+  	<div class="span12">
+  		<div class="progress progress-success">
+  			<div class="bar" style="width: 50%;">
+  			</div>
+  		</div>
+  	</div>
+  </div>
+</div>

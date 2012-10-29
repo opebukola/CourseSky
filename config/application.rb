@@ -61,5 +61,6 @@ module Coursesky
 
     #For deploying on Heroku w/ devise
     config.assets.initialize_on_precompile = false
+
   end
 end

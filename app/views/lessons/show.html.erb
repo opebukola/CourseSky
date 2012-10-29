@@ -1,36 +1,11 @@
-<% provide(:title, @lesson.title) %>
-<h1><%= @lesson.title %></h1>
-<ul class="nav nav-tabs">
-	<li><a href="#document" data-toggle="tab">Document</a></li>
-	<li><a href="#video" data-toggle="tab">Video</a></li>
-	<li><a href="#quiz" data-toggle="tab"> Quiz</a></li>
-</ul>
+<%= provide(:title, @lesson.title ) %>
+<%= render 'shared/lesson_intro' %>
 
-<div class="tab-content">
-	<div class="tab-pane active" id="document">
-		<%= raw @lesson.document.display_ipaper %>
-	</div>
-	<div class="tab-pane" id="video">
-		<div class="tab-pane" id="video">
-		<iframe allowfullscreen="", frameborder="1", height="349",
-			src="<%= @lesson.video_source %>", width="560"> </iframe>
-	</div>
-	</div>
-	<div class="tab-pane" id="quiz">
-		<ul>
-			<% @lesson.questions.each do |question| %>
-				<li>
-					Question: <%= question.content %><br />
-					Hint: <%= question.hint %>
-				</li>
-				<li>
-					<%= form_tag controller:'questions', action: 'check_correct', id: question.id do %>
-							Your Answer:
-							<%= text_field_tag :response, "Enter your answer" %>
-							<%= submit_tag("check answer") %>
-					<% end %>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-</div>
+<% @lesson.activities.each do |model| %>
+	<%= content_tag_for :div, model, class:"element", data: {id: model.id.to_i, model: model.class.to_s} do %>
+		<%= render model %>
+		<% end %>
+<% end %>
+
+<a class="prev-section btn btn-large btn-primary btn-prev" href="#"><i class="icon-circle-arrow-left"></i>Previous</a>
+<a class="next-section btn btn-large btn-primary btn-next" href="#"><i class="icon-circle-arrow-right"></i> Next</a>
