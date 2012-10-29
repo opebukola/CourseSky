@@ -22,7 +22,7 @@ class CompletedQuestion < ActiveRecord::Base
 
     def build_course_enrollment
       course = self.question.lesson.course
-      unless course.user == user
+      unless course.user == current_user
         Enrollment.find_or_create_by_student_id_and_enrolled_course_id(
         self.student_id, course.id)
       end
