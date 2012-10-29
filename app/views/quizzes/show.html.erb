@@ -1,0 +1,11 @@
+<%= provide(:title, 'Quiz' + @quiz.id.to_s) %>
+
+Practicing Skills:
+<% @quiz.skills.each do |s| %>
+	<%= s.description %>
+<% end %>
+<hr />
+
+<% @questions.each do |q| %>
+	<%= q.question_text %><br />
+<% end %>

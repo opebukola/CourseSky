@@ -18,14 +18,11 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :course
-  has_many :lesson_items
-  # has_many :questions, through: :lesson_items, source: :item, source_type: "Question"
-  # has_many :videos, through: :lesson_items, source: :item, source_type: "Video"
-  has_many :videos, dependent: :destroy
-  has_many :questions, dependent: :destroy
+  has_many :videos, dependent: :destroy, order: :position
+  has_many :questions, dependent: :destroy, order: :position
   has_many :comments
-
-
+  has_many :skill_listings, as: :skilled
+  has_many :skills, through: :skill_listings
 
   acts_as_list scope: :course
   alias_method :next_lesson, :lower_item

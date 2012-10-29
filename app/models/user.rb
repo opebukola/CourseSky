@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   has_many :enrolled_courses, through: :enrollments
   has_many :comments
   has_many :completed_questions, foreign_key: "student_id", dependent: :destroy
+  has_many :quizzes
   mount_uploader :avatar, AvatarUploader
 
   #enrollment methods

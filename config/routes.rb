@@ -38,10 +38,9 @@ Coursesky::Application.routes.draw do
       post :check
     end
   end
-  resources :quizzes
+  resources :quizzes 
 
   resources :videos
-  resources :question_attempts, only: [:destroy]
   resources :categories
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews

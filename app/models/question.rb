@@ -19,6 +19,8 @@ class Question < ActiveRecord::Base
   belongs_to :lesson
   has_many :answers
   has_many :completed_questions, dependent: :destroy
+  has_many :skill_listings, as: :skilled
+  has_many :skills, through: :skill_listings
 
   acts_as_list scope: :lesson
   alias_method :next_question, :lower_item

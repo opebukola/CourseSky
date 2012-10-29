@@ -1,0 +1,7 @@
+<%= provide(:title, 'New Quiz') %>
+<%= simple_form_for @quiz do |f| %>
+	<%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
+	<h3> Which skills would you like to practice? </h3>
+	<%= f.association :skills,   :as => :check_boxes, label_method: :description %>
+	<%= f.button :submit, "Start Quiz", class: "btn btn-primary" %>
+<% end %>
