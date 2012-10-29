@@ -20,7 +20,6 @@ class Course < ActiveRecord::Base
                   :subject_id, :category_ids, :subject, :grade_level_id, :grade_level
 
   has_many :lessons, order: "position", dependent: :destroy
-  has_many :questions, dependent: :destroy
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
