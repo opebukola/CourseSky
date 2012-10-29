@@ -23,6 +23,7 @@ Coursesky::Application.routes.draw do
       post :check_correct
     end
   end
+  resources :quizzes
 
 
   root to: 'static_pages#home'
