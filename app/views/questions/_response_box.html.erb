@@ -15,14 +15,15 @@
       <% end %>
     </div>
 <% end %>
-<div class="hint-box">
-  <div class="show-hint" id="show-hint<%=question.id%>" data-qid="<%=question.id%>">
+<div id="hint-box_<%=question.id%>">
+  <div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
     <i class="icon-question-sign"></i>
     I don't know. Give me a hint!
   </div>
-  <div id="hint_<%=question.id%>" class="hint"> 
+  <div id="hint_<%=question.id%>" class="hint collapse">
     <%= question.hint %>
   </div>
 </div>
+<div id="response"></div>
 
 

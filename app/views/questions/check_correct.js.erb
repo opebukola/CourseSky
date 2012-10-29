@@ -1,6 +1,8 @@
-var response = $(".hint-box");
-response.addClass("response");
-response.html("<%= @question.explanation %>")
+var qid = <%=@question.id.to_json %>;
+
+var response = $('#hint-box_' + qid);
+response.addClass("response").html("<%=@question.explanation%>")
 <% if current_user && current_user.completed_lesson?(@lesson) %>
 	window.location.href="<%=@lesson.id%>/share"
 <% end %>
+

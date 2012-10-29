@@ -4,8 +4,8 @@
   	</div>
   </div>
  <% else %>
- 	<div class="progress">
-		<div class="bar" style="width:100%;">Log in or Sign up to view your progress!
+ 	<div class="progress progress-none">
+		<div class="bar" style="width:100%;"><%=link_to 'Log In', new_user_session_path %> or <%= link_to 'Sign Up', new_user_registration_path %> to save your progress!
   	</div>
   </div>
  <% end %>
