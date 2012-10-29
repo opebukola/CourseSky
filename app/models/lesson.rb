@@ -24,7 +24,7 @@ class Lesson < ActiveRecord::Base
   has_many :videos, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :comments
-  has_many :question_attempts, dependent: :destroy
+
 
 
   acts_as_list scope: :course

@@ -52,7 +52,6 @@ class User < ActiveRecord::Base
   has_many :enrollments, foreign_key: "student_id", dependent: :destroy
   has_many :enrolled_courses, through: :enrollments
   has_many :comments
-  has_many :lesson_progressions, foreign_key: "student_id", dependent: :destroy
   has_many :completed_questions, foreign_key: "student_id", dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
