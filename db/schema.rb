@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029151636) do
+ActiveRecord::Schema.define(:version => 20121030022350) do
 
   create_table "activities", :force => true do |t|
     t.integer  "lesson_id"
     t.integer  "lesson_position"
-    t.integer  "activity_id"
-    t.string   "activity_type"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "lesson_activity_id"
+    t.string   "lesson_activity_type"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "answers", :force => true do |t|

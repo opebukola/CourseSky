@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
-    @course = @question.lesson.course
+    lesson_id = @question.lesson_id
+    @course = Lesson.find(lesson_id).course 
     if @question.save
       redirect_to manage_course_path(@course), notice: "Question saved"
     else

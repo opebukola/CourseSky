@@ -23,6 +23,9 @@ class Lesson < ActiveRecord::Base
   has_many :comments
   has_many :skill_listings, as: :skilled
   has_many :skills, through: :skill_listings
+  # has_many :activities, order: :lesson_position
+  # has_many :videos, through: :activities, source: :lesson_activity, source_type: 'Video'
+  # has_many :questions, through: :activities, source: :lesson_activity, source_type: 'Question'
 
   acts_as_list scope: :course
   alias_method :next_lesson, :lower_item
@@ -48,8 +51,12 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-  def activities
+  def items
     [*videos, *questions].sort_by(&:position)
-  end   
+  end
+
+  # def activities
+  #    [*videos, *questions].sort_by(&:position)
+  # end   
 
 end

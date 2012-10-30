@@ -14,10 +14,10 @@
 #
 
 class Video < ActiveRecord::Base
-  attr_accessible :end_time, :start_time, :transcript, :url, 
-  								:lesson_id
+  attr_accessible :end_time, :start_time, :transcript, :url, :lesson_id
   belongs_to :lesson
-
+  # has_one :activity, as: :lesson_activity
+  # has_one :lesson_position, through: :activity, source: :lesson_activity, source_type: 'Video'
   acts_as_list scope: :lesson
   
   
@@ -46,5 +46,4 @@ class Video < ActiveRecord::Base
     return video_source + "?&start=" + start_time.to_s + 
     "&end=" + end_time.to_s
   end
-  
 end

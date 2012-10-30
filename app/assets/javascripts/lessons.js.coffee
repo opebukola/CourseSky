@@ -17,16 +17,34 @@ jQuery ->
     event.preventDefault()
   
   $('div.element:not(:first)').hide();
+  $('a.prev-section').hide();
   $('a.next-section').on 'click', (event) ->
     current = $('div.element:visible')
     event.preventDefault();
     current.hide();
-    current.next().show();
+    next_activity = current.next()
+    next_activity.show();
+    if next_activity.next().size() is 0 
+      $(this).hide()
+    $('a.prev-section').show();
+
   $('a.prev-section').on 'click', (event) ->
     current = $('div.element:visible')
     event.preventDefault();
     current.hide();
-    current.prev().show();
+    previous_activity = current.prev()
+    previous_activity.show();
+    if previous_activity.prev().size() is 0
+      $(this).hide()
+    $('a.next-section').show();
+
+
+
+
+
+
+
+
 
 
   

@@ -21,6 +21,9 @@ class Question < ActiveRecord::Base
   has_many :completed_questions, dependent: :destroy
   has_many :skill_listings, as: :skilled
   has_many :skills, through: :skill_listings
+  # has_one :activity, as: :lesson_activity
+  # has_one :lesson_position, through: :activity, source: :lesson_activity, source_type: 'Question'
+
 
   acts_as_list scope: :lesson
   alias_method :next_question, :lower_item
@@ -28,7 +31,7 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  validates :lesson_id, presence: true
+  # validates :lesson_id, presence: true
   validates :question_type, presence: true
   validates :hint, presence: true
   validates :explanation, presence: true
