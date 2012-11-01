@@ -1,0 +1,6 @@
+<div class="answer">
+  <%= f.input :content, label: "Add Answer Choice", input_html: {class: "input-xxlarge"} %>
+  <%= f.input :correct, label: "Mark as Correct Answer" %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "Remove Answer", '#', class: "remove_fields" %>
+</div>

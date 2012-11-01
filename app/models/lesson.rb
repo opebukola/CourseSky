@@ -18,14 +18,11 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :course
-  has_many :videos, dependent: :destroy, order: :position
-  has_many :questions, dependent: :destroy, order: :position
+  # has_many :questions, dependent: :destroy, order: :position
   has_many :comments
   has_many :skill_listings, as: :skilled
   has_many :skills, through: :skill_listings
-  # has_many :activities, order: :lesson_position
-  # has_many :videos, through: :activities, source: :lesson_activity, source_type: 'Video'
-  # has_many :questions, through: :activities, source: :lesson_activity, source_type: 'Question'
+  has_many :lesson_items, order: :position
 
   acts_as_list scope: :course
   alias_method :next_lesson, :lower_item
@@ -51,8 +48,8 @@ class Lesson < ActiveRecord::Base
     end
   end
 
-  def items
-    [*videos, *questions].sort_by(&:position)
+  def asks_count
+    self.lesson_items.find_all_by_type('Ask').count
   end
 
   # def activities

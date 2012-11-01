@@ -1,0 +1,44 @@
+<section>
+<div class="lesson-items">
+		<% if @lesson_item.type == 'Video' %>
+			<div class="content-box">
+				<div class="video">
+					<iframe width="560" height="315" src="<%=@lesson_item.video_clip_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
+				</div>
+				<div class= "transcript">
+					<%= markdown @lesson_item.transcript %>
+				</div>
+			</div>
+		<% elsif @lesson_item.type == 'Ask' %>
+		<div class="content-box">
+			<div id="check-<%=@lesson_item.id%>">
+				<% if current_user && current_user.has_answered?(@lesson_item) %>
+				<div class="question-answered">
+					You have correctly answered this question. Feel free to try it again!
+				</div>
+	    <% end %>
+		    Question X of <%= @lesson.asks_count %>
+		   <hr />
+		    <span class="question-text"><%= markdown @lesson_item.question_text %></span><br />
+		      <%= render "lesson_items/check_answer", question: @lesson_item %>
+		  </div>
+		</div>
+		<% end %>
+</div>
+
+<% if @lesson_item.prev_item %>
+	<%= link_to @lesson_item.prev_item, class: "btn-large btn-primary btn-prev" do  %>
+		<i class="icon-circle-arrow-left"></i></i>
+		Previous
+	<% end %>
+<% end %>
+
+<% if @lesson_item.next_item %>
+	<%= link_to @lesson_item.next_item, class: "btn btn-large btn-primary btn-next" do  %>
+		<i class="icon-circle-arrow-right"></i></i>
+		Next
+	<% end %>
+<% end %>
+
+<%= link_to "Complete Lesson", '#' if @lesson_item.last? %>
+</section>

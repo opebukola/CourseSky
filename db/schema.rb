@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030022350) do
+ActiveRecord::Schema.define(:version => 20121031173213) do
 
   create_table "activities", :force => true do |t|
     t.integer  "lesson_id"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(:version => 20121030022350) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
-    t.integer  "question_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "correct",     :default => false
+    t.integer  "lesson_item_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "correct",        :default => false
   end
 
-  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
+  add_index "answers", ["lesson_item_id"], :name => "index_answers_on_question_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -81,6 +81,15 @@ ActiveRecord::Schema.define(:version => 20121030022350) do
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["lesson_id"], :name => "index_comments_on_lesson_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "completed_asks", :force => true do |t|
+    t.integer  "student_id",     :null => false
+    t.integer  "lesson_item_id", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "completed_asks", ["student_id"], :name => "index_completed_asks_on_student_id"
 
   create_table "completed_questions", :force => true do |t|
     t.integer  "student_id",  :null => false
@@ -135,20 +144,17 @@ ActiveRecord::Schema.define(:version => 20121030022350) do
 
   create_table "lesson_items", :force => true do |t|
     t.integer  "lesson_id"
-    t.integer  "lesson_position"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  create_table "lesson_positions", :force => true do |t|
-    t.integer  "positionable_id"
-    t.string   "positionable_type"
     t.integer  "position"
-    t.integer  "lesson_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "type"
+    t.string   "url"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.text     "transcript"
+    t.string   "question_type"
+    t.text     "question_text"
+    t.text     "hint"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "lessons", :force => true do |t|
@@ -161,20 +167,6 @@ ActiveRecord::Schema.define(:version => 20121030022350) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "question_attempts", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "question_id"
-    t.boolean  "completed",   :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "attempts",    :default => 0
-    t.integer  "lesson_id"
-  end
-
-  add_index "question_attempts", ["lesson_id"], :name => "index_question_attempts_on_lesson_id"
-  add_index "question_attempts", ["question_id"], :name => "index_question_attempts_on_question_id"
-  add_index "question_attempts", ["student_id"], :name => "index_question_attempts_on_student_id"
 
   create_table "questions", :force => true do |t|
     t.text     "hint"
@@ -239,16 +231,5 @@ ActiveRecord::Schema.define(:version => 20121030022350) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "videos", :force => true do |t|
-    t.string   "url"
-    t.integer  "start_time"
-    t.integer  "end_time"
-    t.text     "transcript"
-    t.integer  "lesson_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "position"
-  end
 
 end

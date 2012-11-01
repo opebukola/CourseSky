@@ -40,12 +40,21 @@ Coursesky::Application.routes.draw do
   end
   resources :quizzes 
 
-  resources :videos
   resources :categories
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews
   resources :comments, only: [:new, :create, :destroy]
   resources :grade_levels
+  resources :lesson_items do
+    member do
+      post :check
+    end
+    collection do
+      post :sort
+    end
+  end
+  resources :videos, controller: "lesson_items", type: "Video"
+  resources :asks, controller: "lesson_items", type: "Ask"
 
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact' 

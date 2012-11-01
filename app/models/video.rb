@@ -1,31 +1,29 @@
 # == Schema Information
 #
-# Table name: videos
+# Table name: lesson_items
 #
-#  id         :integer          not null, primary key
-#  url        :string(255)
-#  start_time :integer
-#  end_time   :integer
-#  transcript :text
-#  lesson_id  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  position   :integer
+#  id            :integer          not null, primary key
+#  lesson_id     :integer
+#  position      :integer
+#  type          :string(255)
+#  url           :string(255)
+#  start_time    :integer
+#  end_time      :integer
+#  transcript    :text
+#  question_type :string(255)
+#  question_text :text
+#  hint          :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
-class Video < ActiveRecord::Base
-  attr_accessible :end_time, :start_time, :transcript, :url, :lesson_id
-  belongs_to :lesson
-  # has_one :activity, as: :lesson_activity
-  # has_one :lesson_position, through: :activity, source: :lesson_activity, source_type: 'Video'
-  acts_as_list scope: :lesson
-  
-  
-  VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
+class Video < LessonItem
+	attr_accessible :url, :start_time, :end_time, :transcript 
+
+	VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 
   validates :url, format: {with: VIDEO_REGEX}
-  validates :lesson_id, presence:true
-  validates :transcript, presence:true
+  validates :transcript, presence: true
 
   #create embed code for Youtube video URLS
   def video_source
@@ -46,4 +44,5 @@ class Video < ActiveRecord::Base
     return video_source + "?&start=" + start_time.to_s + 
     "&end=" + end_time.to_s
   end
+
 end

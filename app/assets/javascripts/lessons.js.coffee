@@ -16,10 +16,10 @@ jQuery ->
     $(".answer-list").append($(this).data('fields').replace(regexp, time))
     event.preventDefault()
   
-  $('div.element:not(:first)').hide();
+  $('div.content-box:not(:first)').hide();
   $('a.prev-section').hide();
   $('a.next-section').on 'click', (event) ->
-    current = $('div.element:visible')
+    current = $('div.content-box:visible')
     event.preventDefault();
     current.hide();
     next_activity = current.next()
@@ -29,7 +29,7 @@ jQuery ->
     $('a.prev-section').show();
 
   $('a.prev-section').on 'click', (event) ->
-    current = $('div.element:visible')
+    current = $('div.content-box:visible')
     event.preventDefault();
     current.hide();
     previous_activity = current.prev()

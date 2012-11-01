@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: answers
+# Table name: completed_asks
 #
 #  id             :integer          not null, primary key
-#  content        :string(255)
-#  lesson_item_id :integer
+#  student_id     :integer          not null
+#  lesson_item_id :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  correct        :boolean          default(FALSE)
 #
 
 require 'test_helper'
 
-class AnswerTest < ActiveSupport::TestCase
+class CompletedAskTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,0 +1,33 @@
+<section>
+<div class="lesson-items">
+	<% @lesson.lesson_items.order(:position).each do |item| %>
+		<% if item.type == 'Video' %>
+			<div class="content-box">
+				<div class="video">
+					<iframe width="560" height="315" src="<%=item.video_clip_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
+				</div>
+				<div class= "transcript">
+					<%= markdown item.transcript %>
+				</div>
+			</div>
+		<% elsif item.type == 'Ask' %>
+		<div class="content-box">
+			<div id="check-<%=item.id%>">
+				<% if current_user && current_user.has_answered?(item) %>
+				<div class="question-answered">
+					You have correctly answered this question. Feel free to try it again!
+				</div>
+	    <% end %>
+		    Question X of <%= @lesson.asks_count %>
+		   <hr />
+		    <span class="question-text"><%= markdown item.question_text %></span><br />
+		      <%= render "lesson_items/check_answer", question: item %>
+		  </div>
+		</div>
+		<% end %>
+	<% end %>
+</div>
+
+<a class="prev-section btn btn-large btn-primary btn-prev" href="#"><i class="icon-circle-arrow-left"></i>Previous</a>
+<a class="next-section btn btn-large btn-primary btn-next" href="#"><i class="icon-circle-arrow-right"></i> Next</a>
+</section>

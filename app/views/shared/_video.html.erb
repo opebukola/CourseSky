@@ -1,5 +1,6 @@
-<h2> Add A Video Clip </h2>
-<%= simple_form_for @video do |f| %>
+<h4> Add a Video Clip</h4>
+
+<%= simple_form_for @lesson_item do |f| %>
 	<%= f.input :lesson_id, as: :hidden, input_html: {value: params[:lesson_id]} %>
 	<h3>Add YouTube Clip (URL)</h3>
 	<%= f.input :url, input_html: {class: "input-xxlarge"}, label: "Add URL" %>
@@ -10,7 +11,6 @@
 	<h3> Add Video Clip Transcript</h3>
 	<%= f.input :transcript, input_html: {class: "input-xxlarge", rows:5}, label: "Enter the text transcript" %>
 	<p class="muted"><%= render "shared/markdown_tip" %></p>
-
-	<%= f.button :submit, "Save Video Clip", class: "btn btn-primary" %>
-
+	<hr />
+	<%= f.button :submit, "Save", class: "btn btn-primary" %>
 <% end %>

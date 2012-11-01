@@ -34,25 +34,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name,
                   :location, :about, :avatar
 
-  #Virtual attribute for authenticating users by either username or email
-  #attr_accessor :login
-
-  #override default authentication method to use :login
-  # def self.find_first_by_auth_conditions(warden_conditions)
-  #   conditions = warden_conditions.dup
-  #   if login = conditions.delete(:login)
-  #     where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-  #   else
-  #     where(conditions).first
-  #   end
-  # end
-
   has_many :courses
   has_many :lessons
   has_many :enrollments, foreign_key: "student_id", dependent: :destroy
   has_many :enrolled_courses, through: :enrollments
   has_many :comments
-  has_many :completed_questions, foreign_key: "student_id", dependent: :destroy
+  # has_many :completed_questions, foreign_key: "student_id", dependent: :destroy
+  has_many :completed_asks, foreign_key: "student_id", dependent: :destroy
   has_many :quizzes
   mount_uploader :avatar, AvatarUploader
 
@@ -70,15 +58,17 @@ class User < ActiveRecord::Base
     self.enrollments.find_by_enrolled_course_id(course.id)
   end
 
-  #question progress
-  def has_answered?(question)
-    self.completed_questions.find_by_question_id(question.id)
+  #question aka "ask" status
+
+  def has_answered?(ask)
+    return true if 
+    self.completed_asks.find_by_lesson_item_id(ask.id)
   end
 
   #lesson progress
   def completed_lesson?(lesson)
-    questions = Question.find_all_by_lesson_id(lesson.id)
-    questions.all? {|question| self.has_answered?(question)}
+    asks = LessonItem.find_all_by_lesson_id_and_type(lesson.id, 'Ask') 
+    asks.all? {|ask| self.has_answered?(ask)}
   end
 
   # def lesson_progress(lesson)

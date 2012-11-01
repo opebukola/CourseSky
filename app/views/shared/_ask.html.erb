@@ -1,0 +1,26 @@
+<h4> Add a Question</h4>
+<%= simple_form_for @lesson_item do |f| %>
+	<%= f.input :lesson_id, as: :hidden, input_html: {value: params[:lesson_id]} %>
+	 <h4>Choose a question type </h4><br />
+  <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
+  <hr />
+	<h3>Write the Question Text </h3>
+  <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>
+  <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <h3> Enter Answers </h3><br />
+  <div class="answer-list">
+    <%= f.simple_fields_for :answers do |builder| %>
+      <%= render 'answer_fields', f: builder %>
+    <% end %>
+  </div>
+  <p>
+    <%= link_to_add_fields "Add Answer", f, :answers %>
+  </p>
+  <h3>Write a hint </h3>
+  <%= f.input :hint, input_html: {class: "input-xxlarge", rows:5} %>
+  <p class="muted"><%= render "shared/markdown_tip" %></p>
+  <p>
+<hr />
+	<hr />
+	<%= f.button :submit, "Save", class: "btn btn-primary" %>
+<% end %>
