@@ -51,6 +51,7 @@ class LessonsController < ApplicationController
 
   def share
     @lesson = Lesson.find(params[:id])
+    @course = Course.find(params[:course_id])
   end
 
   # save lesson question attempts from session to db after login

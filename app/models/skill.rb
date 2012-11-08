@@ -10,8 +10,10 @@
 
 class Skill < ActiveRecord::Base
   attr_accessible :description
-  has_many :skill_listings
-  has_many :lessons, through: :skill_listings, source: :skilled, source_type: 'Lesson'
-  has_many :questions, through: :skill_listings, source: :skilled, source_type: 'Question'
-  has_many :quizzes, through: :skill_listings, source: :skilled, source_type: 'Quiz'
+  has_many :lesson_skills
+  has_many :lessons, through: :lesson_skills
+  has_many :question_skills
+  has_many :questions, through: :question_skills
+  has_many :quiz_skills
+  has_many :quizzes, through: :quiz_skills
 end

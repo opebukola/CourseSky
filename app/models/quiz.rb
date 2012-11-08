@@ -14,11 +14,15 @@ class Quiz < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :course
-  has_many :skill_listings, as: :skilled
-  has_many :skills, through: :skill_listings
+  has_many :quiz_skills
+  has_many :skills, through: :quiz_skills
+  has_many :question_skills, through: :skills
+  has_many :questions, through: :question_skills
+  # quiz->(quiz_skills)->skills->(question_skills)->questions
 
-  def questions
-  	skills = self.skills
-  	skills.map {|skill| skill.questions }
-  end
+  # def questions
+  # 	skills = self.skills
+  # 	skills.map {|skill| skill.questions }.flatten
+  # end
+
 end

@@ -1,6 +1,7 @@
+<%= render 'shared/lesson_intro' %>
 <div>
   <h2>
-    Congratulations! You've completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %>. Tell your friends!
+    Congratulations! You've completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %>.Tell your friends!
   </h2>
   <a href="https://twitter.com/share" class="twitter-share-button" data-text="I have finished <%= @lesson.title %> of course <%= @lesson.course.title %> on CourseSky. You should try it! " data-url="<%= course_lesson_url(@lesson.course, @lesson) %>" data-lang="en" data-size="large" data-count="none">Tweet</a>
   <div class="fb-like" data-send="true" data-width="450" data-show-faces="true" data-action="recommend" data-font="arial"></div>

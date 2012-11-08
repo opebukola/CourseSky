@@ -20,8 +20,9 @@
 class Ask < LessonItem 
 	attr_accessible :lesson_id, :question_type, :question_text, :hint,
 									:answers_attributes
-	has_many :answers, foreign_key: :lesson_item_id
 	has_many :completed_asks, foreign_key: :lesson_item_id
+  has_many :answer_asks, dependent: :destroy
+  has_many :answers, through: :answer_asks
 
 	accepts_nested_attributes_for :answers, allow_destroy: true
 

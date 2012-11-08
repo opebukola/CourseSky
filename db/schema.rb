@@ -11,26 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031173213) do
+ActiveRecord::Schema.define(:version => 20121108010412) do
 
-  create_table "activities", :force => true do |t|
-    t.integer  "lesson_id"
-    t.integer  "lesson_position"
-    t.integer  "lesson_activity_id"
-    t.string   "lesson_activity_type"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+  create_table "answer_asks", :force => true do |t|
+    t.integer  "answer_id"
+    t.integer  "ask_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "answer_questions", :force => true do |t|
+    t.integer  "answer_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "answers", :force => true do |t|
     t.string   "content"
-    t.integer  "lesson_item_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.boolean  "correct",        :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "correct",    :default => false
   end
 
-  add_index "answers", ["lesson_item_id"], :name => "index_answers_on_question_id"
+  create_table "attempts", :force => true do |t|
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.boolean  "correct"
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -53,22 +65,6 @@ ActiveRecord::Schema.define(:version => 20121031173213) do
   add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
   add_index "categorizations", ["course_id"], :name => "index_categorizations_on_course_id"
 
-  create_table "ckeditor_assets", :force => true do |t|
-    t.string   "data_file_name",                  :null => false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    :limit => 30
-    t.string   "type",              :limit => 30
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
-
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
@@ -90,15 +86,6 @@ ActiveRecord::Schema.define(:version => 20121031173213) do
   end
 
   add_index "completed_asks", ["student_id"], :name => "index_completed_asks_on_student_id"
-
-  create_table "completed_questions", :force => true do |t|
-    t.integer  "student_id",  :null => false
-    t.integer  "question_id", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "completed_questions", ["student_id"], :name => "index_completed_questions_on_student_id"
 
   create_table "course_reviews", :force => true do |t|
     t.integer  "course_id"
@@ -157,6 +144,15 @@ ActiveRecord::Schema.define(:version => 20121031173213) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "lesson_skills", :force => true do |t|
+    t.integer  "lesson_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "lesson_skills", ["lesson_id", "skill_id"], :name => "index_lesson_skills_on_lesson_id_and_skill_id", :unique => true
+
   create_table "lessons", :force => true do |t|
     t.string   "title"
     t.text     "document"
@@ -168,18 +164,34 @@ ActiveRecord::Schema.define(:version => 20121031173213) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "question_skills", :force => true do |t|
+    t.integer  "question_id"
+    t.integer  "skill_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "question_skills", ["question_id", "skill_id"], :name => "index_question_skills_on_question_id_and_skill_id", :unique => true
+
   create_table "questions", :force => true do |t|
-    t.text     "hint"
-    t.integer  "lesson_id"
+    t.text     "first_hint"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "position"
     t.string   "question_type"
     t.text     "explanation"
     t.text     "question_text"
+    t.text     "second_hint"
   end
 
-  add_index "questions", ["lesson_id"], :name => "index_questions_on_lesson_id"
+  create_table "quiz_skills", :force => true do |t|
+    t.integer  "quiz_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "quiz_skills", ["quiz_id", "skill_id"], :name => "index_quiz_skills_on_quiz_id_and_skill_id", :unique => true
 
   create_table "quizzes", :force => true do |t|
     t.integer  "user_id"
@@ -188,24 +200,10 @@ ActiveRecord::Schema.define(:version => 20121031173213) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "skill_listings", :force => true do |t|
-    t.integer  "skill_id"
-    t.integer  "skilled_id"
-    t.string   "skilled_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "skills", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "subjects", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

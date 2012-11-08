@@ -1,11 +1,12 @@
 <ol>
   <% @lessons.each do |lesson| %>
+    <h3>
     <li>
       <p>
-        <h3><%= link_to lesson.title, lesson_item_path(lesson.lesson_items.first) %></h3>
-          Resources: <%= link_to 'Video', lesson.video_source, target: '_blank' %>, <%= link_to 'Notes', doc_course_lesson_path(course_id: @course.id, id: lesson.id), target: '_blank' %> 
+        <%= link_to lesson.title, lesson_item_path(lesson.lesson_items.first) %>
         </p>
     </li>
+  </h3>
   <% end %>
 </ol>
 

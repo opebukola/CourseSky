@@ -1,4 +1,6 @@
 class QuizzesController < ApplicationController
+	before_filter :authenticate_user!
+	
 	def new
 		@quiz = Quiz.new
 	end
@@ -6,7 +8,7 @@ class QuizzesController < ApplicationController
 	def create
 		@quiz = current_user.quizzes.build(params[:quiz])
 		if @quiz.save
-			redirect_to @quiz, notice: "Quiz Created"
+			redirect_to @quiz
 		else
 			render 'new'
 		end
@@ -14,7 +16,7 @@ class QuizzesController < ApplicationController
 
 	def show
 		@quiz = Quiz.find(params[:id])
-		@questions = @quiz.questions
+		@questions = @quiz.questions.limit(10)
 	end
 
 	def skills

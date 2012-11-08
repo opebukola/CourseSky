@@ -281,6 +281,11 @@ footer {
   }
 }
 
+
+/** -------------------------------------------------- **/
+/* LESSON ITEM SHOW PAGE */
+/** -------------------------------------------------- **/
+
 .content-box{
   border: 1px solid #ddd;
   padding: 20px 20px 20px 20px;
@@ -290,15 +295,11 @@ footer {
   background-color: white;
   margin: 0px auto;
   margin-bottom: 20px;
-  height: 320px;
   .video{
-    /**border: 1px solid #E5E5E5;**/
     margin: 5px 20px 5px 5px;
     float: left; 
-    /**height: 320px;**/
   }
   .transcript{
-    /** border: 1px solid #E5E5E5; **/
     padding: 5px 5px 5px 5px;
     margin: 5px 5px 5px 5px;
     overflow-x: scroll;
@@ -318,26 +319,6 @@ footer {
 }
 
 
-.answer {
-  border: 1px solid #bbb;
-  padding: 5px;
-  display: inline-block;
-  margin-bottom: 15px;
-  border-radius: 5px;
-}
-
-.next-section{
-  float: right;
-}
-
-.btn-prev{
-  background-color: #741885;
-}
-
-.btn-next{
-  background-color: #741885;
-}
-
 .response {
   font-size: 1.2em;
   padding-top: 5px;
@@ -348,6 +329,32 @@ footer {
   padding: 5px 5px 5px 5px;
   margin-bottom: 10px;
 }
+
+.btn-prev{
+  
+}
+
+.btn-next{
+  float: right;
+}
+
+.btn-complete{
+  float: right;
+}
+
+
+/** -------------------------------------------------- **/
+/* WHERE?? */
+/** -------------------------------------------------- **/
+
+.answer {
+  border: 1px solid #bbb;
+  padding: 5px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
 
 
 /** -------------------------------------------------- **/

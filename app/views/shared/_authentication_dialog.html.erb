@@ -12,7 +12,7 @@
     <div class="tab-content">
       <div class="tab-pane active" id="sign-in-pane">
         <%= simple_form_for(User.new, :url => session_path(:user), :html => {:class => "form-horizontal", 'data-type' => 'json'}, :remote => true) do |f| %>
-          <%= f.input :login, :label => "Email" %>
+          <%= f.input :email, :label => "Email" %>
           <%= f.input :password %>
           <%= f.input :remember_me, :as => :boolean, :label => "Remember me" %>
           <div class="form-actions">
@@ -22,7 +22,7 @@
       </div>
       <div class="tab-pane" id="sign-up-pane">
         <%= simple_form_for(User.new, :url => registration_path(:user), :html => {:class => "form-horizontal", 'data-type' => 'json'}, :remote => true) do |f| %>
-          <%= f.input :username %>
+          <%= f.input :name %>
           <%= f.input :email %>
           <%= f.input :password %>
           <%= f.input :password_confirmation, :label => "Confirmation" %>

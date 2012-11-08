@@ -27,5 +27,9 @@
  <h3>Explain the Answer </h3>
   <%= f.input :explanation, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
+
+   <h4>Choose Skills </h4><br />
+   <%= f.association :skills, label_method: :description, label: 'Add skills' %>
+  <hr />
   <%= f.button :submit, "Save Question", class: "btn btn-primary" %>
 <% end %>

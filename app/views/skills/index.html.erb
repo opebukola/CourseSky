@@ -1,0 +1,7 @@
+<%= provide(:title, 'All Skills') %>
+
+<% @skills.each do |s| %>
+	<%= s.description %> |
+	<%= link_to "Edit", '#' %> |
+	<%= link_to "Delete", '#' %><br />
+<% end %>

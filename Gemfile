@@ -20,8 +20,16 @@ group :development do
   gem 'ruby-graphviz', :require => 'graphviz'
 end
 
-group :test do
+group :test, :development do
   gem 'faker'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+end
+
+group :test do
+	gem 'capybara', '1.1.2'
+	gem 'factory_girl_rails'
+	gem 'rb-fsevent', :require => false
 end
 
 # Gems used only for assets and not required

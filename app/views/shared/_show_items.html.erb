@@ -1,0 +1,21 @@
+<div class="content-box">
+	<% if @lesson_item.type == 'Video' %>
+		<div class="video">
+			<iframe width="560" height="315" src="<%=@lesson_item.video_clip_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
+		</div>
+		<div class= "transcript">
+			<%= markdown @lesson_item.transcript %>
+		</div>
+
+	<% elsif @lesson_item.type == 'Ask' %>
+		<div id="check-<%=@lesson_item.id%>" class="ask" >
+			<% if current_user && current_user.has_answered?(@lesson_item) %>
+				<div class="question-answered">
+					You have correctly answered this question. Feel free to try it again!
+				</div>
+	    <% end %>
+	    <span class="question-text"><%= markdown @lesson_item.question_text %></span><br />
+	    <%= render "lesson_items/check_answer", question: @lesson_item %>
+		 </div>
+		<% end %>
+</div>

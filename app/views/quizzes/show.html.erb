@@ -1,11 +1,9 @@
 <%= provide(:title, 'Quiz' + @quiz.id.to_s) %>
 
-Practicing Skills:
-<% @quiz.skills.each do |s| %>
-	<%= s.description %>
+<section>
+<% @questions.each do |question| %>
+	<%= render 'questions/question', question: question %>
 <% end %>
-<hr />
 
-<% @questions.each do |q| %>
-	<%= q.question_text %><br />
-<% end %>
+<a class="next-section btn btn-large btn-primary btn-next" href="#"><i class="icon-circle-arrow-right"></i> Next</a>
+</section>

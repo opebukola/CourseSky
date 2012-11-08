@@ -20,9 +20,9 @@ class Lesson < ActiveRecord::Base
   belongs_to :course
   # has_many :questions, dependent: :destroy, order: :position
   has_many :comments
-  has_many :skill_listings, as: :skilled
-  has_many :skills, through: :skill_listings
   has_many :lesson_items, order: :position
+  has_many :lesson_skills
+  has_many :skills, through: :lesson_skills
 
   acts_as_list scope: :course
   alias_method :next_lesson, :lower_item

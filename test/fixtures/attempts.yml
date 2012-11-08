@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: attempts
+#
+#  id          :integer          not null, primary key
+#  started_at  :datetime
+#  ended_at    :datetime
+#  correct     :boolean
+#  question_id :integer
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  started_at: 2012-11-03 12:02:05
+  ended_at: 2012-11-03 12:02:05
+  correct: false
+  question_id: 1
+  user_id: 1
+
+two:
+  started_at: 2012-11-03 12:02:05
+  ended_at: 2012-11-03 12:02:05
+  correct: false
+  question_id: 1
+  user_id: 1

@@ -39,9 +39,10 @@ class User < ActiveRecord::Base
   has_many :enrollments, foreign_key: "student_id", dependent: :destroy
   has_many :enrolled_courses, through: :enrollments
   has_many :comments
-  # has_many :completed_questions, foreign_key: "student_id", dependent: :destroy
   has_many :completed_asks, foreign_key: "student_id", dependent: :destroy
   has_many :quizzes
+  has_many :attempts, dependent: :destroy
+
   mount_uploader :avatar, AvatarUploader
 
   #enrollment methods
@@ -70,6 +71,15 @@ class User < ActiveRecord::Base
     asks = LessonItem.find_all_by_lesson_id_and_type(lesson.id, 'Ask') 
     asks.all? {|ask| self.has_answered?(ask)}
   end
+
+
+  # def lesson_progress(lesson)
+  #   total_asks = lesson.asks_count
+  #   complete = completed_lessons(course).size
+  #   progress = complete.to_f / total_asks.to_f
+  #   return progress.round(2) * 100
+  #   end
+  # end
 
   # def lesson_progress(lesson)
   #   if self.completed_lesson?(lesson)

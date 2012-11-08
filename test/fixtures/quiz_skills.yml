@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: quiz_skills
+#
+#  id         :integer          not null, primary key
+#  quiz_id    :integer
+#  skill_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  quiz_id: 1
+  skill_id: 1
+
+two:
+  quiz_id: 1
+  skill_id: 1

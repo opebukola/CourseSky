@@ -8,8 +8,7 @@
 
 <ul id="item-list" data-update-url="<%=sort_lesson_items_url %>">
   <% @lesson.lesson_items.order(:position).each do |item| %>
- 
-    <%= content_tag_for :li, item do %>
+    <%= content_tag(:li, class:'lesson_item', id: "lesson_item_#{item.id}") do %>
       <span class="handle">[move]</span>
       <%= item.position %> . <%= item.type %> |
       <%= link_to "Edit Item", edit_lesson_item_path(item.id, lesson_id: @lesson.id, type: item.type) %> |

@@ -55,6 +55,9 @@ Coursesky::Application.routes.draw do
   end
   resources :videos, controller: "lesson_items", type: "Video"
   resources :asks, controller: "lesson_items", type: "Ask"
+  resources :skills
+
+
 
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact' 

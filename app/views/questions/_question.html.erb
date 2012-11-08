@@ -5,10 +5,9 @@
 	    	You have correctly answered this question. Feel free to try it again!
 	    </div>
 	    <% end %>
-	    Question <%=question.position%> of <%=@lesson.questions.count%>
+	    Question X of <%=@quiz.questions.count%> | Score: XXX
 	   <hr />
 	    <span class="question-text"><%= markdown question.question_text %></span><br />
 	      <%= render "questions/response_box", question: question%>
-
 	  </div>
 </div>

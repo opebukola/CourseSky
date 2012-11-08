@@ -9,12 +9,11 @@
     <hr />
   </div>
 </div>
-<%= render 'progress' %>
 
 <ul class="nav nav-tabs" id="course-sections">
   <li class="active"><a href="#lessons">Lessons</a></li>
   <li><a href="#practice">Practice</a></li>
-  <li><a href="#projects">Projects</a></li>
+  <li><a href="#progress">Your Progress</a></li>
 </ul>
  
 <div class="tab-content">
@@ -22,11 +21,11 @@
     <%= render 'course_topics' %>
   </div>
   <div class="tab-pane" id="practice">
-    <h2> Test your skills with practice questions. Prove what you know! Earn points! </h2><br />
-    <%= link_to "Start Practicing Now", '#', class: 'btn btn-large btn-success' %>
+    <h2> Test your skills with practice questions. Prove what you've mastered! Earn points! </h2><br />
+    <%= link_to "Start Practicing Now", new_quiz_path, class: 'btn btn-large btn-success' %>
   </div>
-  <div class="tab-pane" id="projects">
-    Coming Soon: Show what you know by teaching your peers!
+  <div class="tab-pane" id="progress">
+    <%= render 'progress' %>
   </div>
 </div>
 

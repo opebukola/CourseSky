@@ -3,26 +3,25 @@
 # Table name: questions
 #
 #  id            :integer          not null, primary key
-#  hint          :text
-#  lesson_id     :integer
+#  first_hint    :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  position      :integer
 #  question_type :string(255)
 #  explanation   :text
 #  question_text :text
+#  second_hint   :text
 #
 
 class Question < ActiveRecord::Base
   attr_accessible :lesson_id, :answers_attributes, :question_type, 
-                  :explanation, :hint, :question_text
-  belongs_to :lesson
-  has_many :answers
-  has_many :completed_questions, dependent: :destroy
-  has_many :skill_listings, as: :skilled
-  has_many :skills, through: :skill_listings
-  # has_one :activity, as: :lesson_activity
-  # has_one :lesson_position, through: :activity, source: :lesson_activity, source_type: 'Question'
+                  :explanation, :hint, :question_text, :skill_ids
+  has_many :question_skills
+  has_many :skills, through: :question_skills
+  has_many :answer_questions, dependent: :destroy
+  has_many :answers, through: :answer_questions
+  has_many :attempts, dependent: :destroy
+
 
 
   acts_as_list scope: :lesson
@@ -31,14 +30,18 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  # validates :lesson_id, presence: true
   validates :question_type, presence: true
-  validates :hint, presence: true
   validates :explanation, presence: true
+  # validate :must_have_answers
 
 
   #question types
-  QUESTION_TYPES = ["Multiple Choice", "Enter Response", "Open Ended"]
+  QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
+
+  def must_have_answers
+    errors.add(:base, "Must have at least one answer") if self.answers.empty?
+  end
+
 
   def is_multiple_choice?
     return true if self.question_type == "Multiple Choice"
@@ -62,9 +65,12 @@ class Question < ActiveRecord::Base
     self.no_answer || self.correct_answers.include?(response.downcase)
   end
 
-  #update completed_questions
+  #update attempts
   def mark_correct(user)
-    self.completed_questions.find_or_create_by_student_id(
-      student_id: user.id)
+    self.attempts.create(user_id: user.id, correct: true)
+  end
+
+  def mark_incorrect(user)
+    self.attempts.create(user_id: user.id)
   end
 end

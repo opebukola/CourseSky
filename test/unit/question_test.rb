@@ -3,14 +3,14 @@
 # Table name: questions
 #
 #  id            :integer          not null, primary key
-#  hint          :text
-#  lesson_id     :integer
+#  first_hint    :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  position      :integer
 #  question_type :string(255)
 #  explanation   :text
 #  question_text :text
+#  second_hint   :text
 #
 
 require 'test_helper'
