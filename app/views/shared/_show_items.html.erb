@@ -1,7 +1,7 @@
 <div class="content-box">
 	<% if @lesson_item.type == 'Video' %>
 		<div class="video">
-			<iframe width="560" height="315" src="<%=@lesson_item.video_clip_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="<%=@lesson_item.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
 		</div>
 		<div class= "transcript">
 			<%= markdown @lesson_item.transcript %>

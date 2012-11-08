@@ -1,0 +1,5 @@
+<%= simple_form_for @skill do |f| %>
+	<%= f.input :description, input_html: {class: "input-xxlarge"} %>
+	<%= f.input :parent_id, collection: Skill.all, label: 'Select Parent Skill', label_method: :description %>
+	<%= f.button :submit, "Add Skill" %>
+<% end %>

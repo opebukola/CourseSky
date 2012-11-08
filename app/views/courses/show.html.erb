@@ -1,28 +1,29 @@
 <%= provide(:title, @course.title) %>
 <section>
-<div class="course-description">
-  <a class="accordion-toggle" data-toggle="collapse" href="#about-course">
-    <h2>About <%= @course.title %></h2>
-  </a>
-  <div id="about-course" class="accordion-body collapse">
-    <%= markdown @course.description %>
-    <hr />
-  </div>
-</div>
+<h2><%= @course.title %></h2><br />
+  
 
 <ul class="nav nav-tabs" id="course-sections">
-  <li class="active"><a href="#lessons">Lessons</a></li>
-  <li><a href="#practice">Practice</a></li>
+  <li class="active"><a href="#about">Course Info</a></li>
+  <li><a href="#lessons">Lessons</a></li>
+  <li><a href="#practice">Quizzes</a></li>
+  <li><a href="#test">Tests</a></li>
   <li><a href="#progress">Your Progress</a></li>
 </ul>
  
 <div class="tab-content">
-  <div class="tab-pane active" id="lessons">
+  <div class="tab-pane active" id="about">
+    <%= markdown @course.description %>
+  </div>
+  <div class="tab-pane" id="lessons">
     <%= render 'course_topics' %>
   </div>
   <div class="tab-pane" id="practice">
     <h2> Test your skills with practice questions. Prove what you've mastered! Earn points! </h2><br />
     <%= link_to "Start Practicing Now", new_quiz_path, class: 'btn btn-large btn-success' %>
+  </div>
+  <div class="tab-pane" id="test">
+    <h2> Timed Tests </h2><br />
   </div>
   <div class="tab-pane" id="progress">
     <%= render 'progress' %>

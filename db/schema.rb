@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108010412) do
+ActiveRecord::Schema.define(:version => 20121108041506) do
 
   create_table "answer_asks", :force => true do |t|
     t.integer  "answer_id"
@@ -204,7 +204,10 @@ ActiveRecord::Schema.define(:version => 20121108010412) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "ancestry"
   end
+
+  add_index "skills", ["ancestry"], :name => "index_skills_on_ancestry"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

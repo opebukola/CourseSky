@@ -31,7 +31,7 @@ class Video < LessonItem
     if regex_youtube.match(self.url)
       protocol = $1
       youtube_id = $4
-      video_source = "#{protocol}://www.youtube.com/embed/#{youtube_id}"
+      video_source = "#{protocol}://www.youtube.com/embed/#{youtube_id}?rel=0&hd=1"
     else
       video_source = ""
     end

@@ -31,7 +31,7 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :answers, allow_destroy: true
 
   validates :question_type, presence: true
-  validates :explanation, presence: true
+  # validates :explanation, presence: true
   # validate :must_have_answers
 
 
