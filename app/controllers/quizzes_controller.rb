@@ -18,11 +18,13 @@ class QuizzesController < ApplicationController
 	def show
 		@quiz = Quiz.find(params[:id])
 		@questions = @quiz.available_questions.limit(5)
-		@attempts = @question.map do |question| 
-			Attempt.new { question: question, 
-										user: current_user,
-										quiz: @quiz}
-									end
+		@attempts = @questions.map do |question| 
+			a = Attempt.new
+			a.question = question
+			a.user = current_user
+			a.quiz = @quiz
+			a
+		end
 		@lesson = @quiz.lesson
 		@course = @lesson.course
 	end

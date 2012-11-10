@@ -1,3 +1,10 @@
+<% question = attempt.question %>
+<%= form_for( [@quiz, attempt], remote: true) do |f| %>
+  <%= f.text_area :response %>
+  <%= f.hidden_field :question_id %>
+  <%= f.submit %>
+<% end %>
+
 <% if question.is_multiple_choice? %>
     <div id="check_answer_<%=question.id%>" class="answers">
       <%= form_tag({action: 'check', controller: 'questions', id: question.id}, remote: true) do %>
