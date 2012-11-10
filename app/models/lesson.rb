@@ -14,15 +14,17 @@
 #
 
 class Lesson < ActiveRecord::Base
-  attr_accessible :course_id, :document, :position, :title, :user_id, :video_url
+  attr_accessible :course_id, :document, :position, :title, :user_id, :video_url,
+                  :skill_ids
 
   belongs_to :user
   belongs_to :course
-  # has_many :questions, dependent: :destroy, order: :position
   has_many :comments
   has_many :lesson_items, order: :position
   has_many :lesson_skills
   has_many :skills, through: :lesson_skills
+  has_many :lesson_questions
+  has_many :questions, through: :lesson_questions
 
   acts_as_list scope: :course
   alias_method :next_lesson, :lower_item

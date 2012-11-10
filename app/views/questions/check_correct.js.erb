@@ -1,5 +1,6 @@
 var qid = <%=@question.id.to_json %>;
 
 var response = $('#hint-box_' + qid);
-response.addClass("response").html("Correct!")
+response.addClass("response").html("<%= escape_javascript(render "questions/next_question_button" ) %>")
+
 

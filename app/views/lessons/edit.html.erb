@@ -1,8 +1,9 @@
 <% provide(:title, 'Edit Lesson') %>
 <h2> Editing: Lesson <%=@lesson.position%> - <%=@lesson.title%></h2>
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#basics" data-toggle="tab"> Lesson Basics</a></li>
-  <li><a href="#activities" data-toggle="tab">Video Clips & Questions</a></li>
+  <li class="active"><a href="#basics" data-toggle="tab"> Basics</a></li>
+  <li><a href="#activities" data-toggle="tab">Videos & Check for Understanding</a></li>
+  <li><a href="#practice" data-toggle="tab">Practice Questions</a></li>
 </ul>
 
 <div class="tab-content">
@@ -11,6 +12,9 @@
   </div>
   <div class="tab-pane" id="activities">
     <%= render 'lesson_item_list' %>
+  </div>
+  <div class="tab-pane" id="practice">
+    <%= render 'lesson_questions_list' %>
   </div>
 </div>
 

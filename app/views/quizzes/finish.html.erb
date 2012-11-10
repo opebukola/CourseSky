@@ -1,0 +1,25 @@
+<div class="intro">
+	<div class="start">
+		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> | Practice 
+  </div>
+</div><br />
+<h2> Quiz Review </h2>
+
+<h3> Your Results </h3><br />
+<h4> <%=@quiz.correct_questions %> Correct </h4><br />
+<h4> <%= @quiz.incorrect_questions %> Incorrect </h4><br />
+<h4> Score: <%=@quiz.score %> %</h4> 
+	
+<hr />
+
+<h3> Total Time:</h3> [insert] <br />
+<h3> Points: </h3> [insert] <br />
+
+<hr />
+<% @quiz.questions.each do |question| %>
+	<h4>Question X: <%= markdown question.question_text %></h4>
+	Correct Answer: <%= question.correct_answers.flatten %>
+		<br />
+	Your Answer: current_user.answer_to(question) <br />
+	<%= link_to "Review Solution", '#', class: "btn" %><br /><hr />
+<% end %>

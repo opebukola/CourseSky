@@ -5,8 +5,7 @@
 
 <ul class="nav nav-tabs" id="course-sections">
   <li class="active"><a href="#about">Course Info</a></li>
-  <li><a href="#lessons">Lessons</a></li>
-  <li><a href="#practice">Quizzes</a></li>
+  <li><a href="#topics">Topics</a></li>
   <li><a href="#test">Tests</a></li>
   <li><a href="#progress">Your Progress</a></li>
 </ul>
@@ -15,15 +14,13 @@
   <div class="tab-pane active" id="about">
     <%= markdown @course.description %>
   </div>
-  <div class="tab-pane" id="lessons">
+  <div class="tab-pane" id="topics">
     <%= render 'course_topics' %>
   </div>
-  <div class="tab-pane" id="practice">
-    <h2> Test your skills with practice questions. Prove what you've mastered! Earn points! </h2><br />
-    <%= link_to "Start Practicing Now", new_quiz_path, class: 'btn btn-large btn-success' %>
-  </div>
   <div class="tab-pane" id="test">
-    <h2> Timed Tests </h2><br />
+    <h2> Timed Tests </h2>
+    <h3> Diagnostic</h3>
+    <h3> Test 1</h3>
   </div>
   <div class="tab-pane" id="progress">
     <%= render 'progress' %>

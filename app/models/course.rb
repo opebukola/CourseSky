@@ -24,9 +24,10 @@ class Course < ActiveRecord::Base
   has_many :categories, through: :categorizations
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
-  has_many :quizzes
   belongs_to :user
   belongs_to :grade_level
+  has_many :lesson_skills, through: :lessons
+  has_many :skills, through: :lesson_skills
   # before_destroy :ensure_no_students
 
   validates :title, presence: true

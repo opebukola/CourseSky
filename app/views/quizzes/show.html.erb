@@ -1,9 +1,15 @@
 <%= provide(:title, 'Quiz' + @quiz.id.to_s) %>
 
-<section>
-<% @questions.each do |question| %>
-	<%= render 'questions/question', question: question %>
-<% end %>
+<div class="intro">
+	<div class="start">
+		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> | Practice 
+  </div>
+</div><br />
 
-<a class="next-section btn btn-large btn-primary btn-next" href="#"><i class="icon-circle-arrow-right"></i> Next</a>
-</section>
+	<%= render partial: 'questions/question', collection: @questions %>
+
+
+<%= link_to finish_quiz_path(@quiz), class: "btn btn-success" do %>
+	<i class="icon-thumbs-up"></i>
+	Finish Quiz
+<% end %>

@@ -1,0 +1,5 @@
+ <%=link_to "Add New Quiz Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+
+ <hr />
+
+ This lesson currently has <%=@lesson.questions.count %> quiz questions. 

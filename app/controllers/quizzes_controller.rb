@@ -2,6 +2,7 @@ class QuizzesController < ApplicationController
 	before_filter :authenticate_user!
 	
 	def new
+		@lesson = Lesson.find(params[:lesson_id])
 		@quiz = Quiz.new
 	end
 
@@ -16,10 +17,20 @@ class QuizzesController < ApplicationController
 
 	def show
 		@quiz = Quiz.find(params[:id])
-		@questions = @quiz.questions.limit(10)
+		@questions = @quiz.available_questions.limit(5)
+		@attempts = @question.map do |question| 
+			Attempt.new { question: question, 
+										user: current_user,
+										quiz: @quiz}
+									end
+		@lesson = @quiz.lesson
+		@course = @lesson.course
 	end
 
-	def skills
-		
+	def finish
+		@quiz = Quiz.find(params[:id])
+		@questions = @quiz.questions.limit(5)
+		@lesson = @quiz.lesson
+		@course = @lesson.course
 	end
 end

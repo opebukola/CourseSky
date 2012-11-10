@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108041506) do
+ActiveRecord::Schema.define(:version => 20121109224129) do
 
   create_table "answer_asks", :force => true do |t|
     t.integer  "answer_id"
@@ -37,11 +37,13 @@ ActiveRecord::Schema.define(:version => 20121108041506) do
   create_table "attempts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.boolean  "correct"
+    t.boolean  "correct",     :default => false
     t.integer  "question_id"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "response"
+    t.integer  "quiz_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -144,6 +146,16 @@ ActiveRecord::Schema.define(:version => 20121108041506) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "lesson_questions", :force => true do |t|
+    t.integer  "lesson_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "lesson_questions", ["lesson_id"], :name => "index_lesson_questions_on_lesson_id"
+  add_index "lesson_questions", ["question_id"], :name => "index_lesson_questions_on_question_id"
+
   create_table "lesson_skills", :force => true do |t|
     t.integer  "lesson_id"
     t.integer  "skill_id"
@@ -195,7 +207,7 @@ ActiveRecord::Schema.define(:version => 20121108041506) do
 
   create_table "quizzes", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "course_id"
+    t.integer  "lesson_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

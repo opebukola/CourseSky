@@ -3,7 +3,9 @@
     <h3>
     <li>
       <p>
-        <%= link_to lesson.title, lesson_item_path(lesson.lesson_items.first) %>
+      	<%= lesson.title %> | 
+      	<%=link_to "Learn", lesson_item_path(lesson.lesson_items.first) %> |
+      	<%= link_to "Practice", new_quiz_path(lesson_id: lesson.id) %>
         </p>
     </li>
   </h3>

@@ -18,4 +18,6 @@ class Skill < ActiveRecord::Base
   has_many :quiz_skills
   has_many :quizzes, through: :quiz_skills
   has_ancestry
+
+  scope :main, where('ancestry is null')
 end

@@ -39,29 +39,14 @@ class QuestionsController < ApplicationController
 
   def check
     @question = Question.find(params[:id])
-
-   unless current_user
-      session[:attempts] ||= {}
-      session[:attempts][@question.id] ||= {count: 0, correct: false}
-      session[:attempts][@question.id][:count] += 1
-    end
-
     if @question.is_correct?params[:response].downcase
-      if current_user
-        @question.mark_correct(current_user)
-      else
-        session[:attempts][@question.id][:correct] = true
-      end
-
+      @question.mark_correct(current_user, params[:response])
       respond_to do |format|
         format.html{ redirect_to :back, notice: "Correct!"}
         format.js { render 'check_correct'}
       end
     else
-      if current_user
-        @question.mark_incorrect(current_user)
-      else
-      end
+      @question.mark_incorrect(current_user, params[:response])
       respond_to do |format|
         format.html {redirect_to :back, notice: "Wrong Answer. Try Again"}
         format.js { render 'check_incorrect'}
