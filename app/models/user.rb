@@ -116,11 +116,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  #practice question methods
-  def answer_to(question)
-    attempts = self.attempts.find_all_by_question_id(question.id)
-    final_attempt = attempts.last
-    return final_attempt.response
-  end
-
 end

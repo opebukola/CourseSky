@@ -6,9 +6,9 @@
 <h2> Quiz Review </h2>
 
 <h3> Your Results </h3><br />
-<h4> <%=@quiz.correct_questions %> Correct </h4><br />
-<h4> <%= @quiz.incorrect_questions %> Incorrect </h4><br />
-<h4> Score: <%=@quiz.score %> %</h4> 
+<h4> X Correct </h4><br />
+<h4> X Incorrect </h4><br />
+<h4> Score: X %</h4> 
 	
 <hr />
 
@@ -16,10 +16,11 @@
 <h3> Points: </h3> [insert] <br />
 
 <hr />
-<% @quiz.questions.each do |question| %>
-	<h4>Question X: <%= markdown question.question_text %></h4>
-	Correct Answer: <%= question.correct_answers.flatten %>
-		<br />
-	Your Answer: current_user.answer_to(question) <br />
-	<%= link_to "Review Solution", '#', class: "btn" %><br /><hr />
+<% @attempts.each do |a| %>
+	Question: <%= markdown a.question.question_text %><br />
+	Correct Answer: <%= a.question.correct_answers %><br />
+	Your Answer: <%= a.response %><br />
+	<%= link_to "Review Solution Video", '#', class: "btn" %><br /><hr />
 <% end %>
+
+<hr />

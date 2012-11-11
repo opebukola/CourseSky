@@ -20,11 +20,9 @@ class Quiz < ActiveRecord::Base
   # has_many :questions, through: :question_skills
   has_many :available_questions, through: :lesson, source: :questions
   has_many :skills, through: :questions
-  validate :question_count
+  has_many :attempts
+  has_many :attempted_questions, through: :attempts, source: :question
 
-  def question_count
-    self.questions.count == 3
-  end
 
 
 

@@ -1,11 +1,19 @@
+<div class="intro">
+	<div class="start">
+		<%= link_to @course.title, course_path(@course) %> | Practice: <%= @lesson.title%><br />
+	</div> 
+</div>
+<br />
 <%= provide(:title, 'New Quiz') %>
 <%= simple_form_for @quiz do |f| %>
 	<%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
-	<h3> Practice Quiz</h3>
+	<h3> Test yourself with a quiz </h3><br />
 	<ul>
-		<li> You'll get 10 practice questions </li>
-		<li> You get 3 tries for each question </li>
-		<li> You get points .... </li>
+		<li> Each quiz has 5 practice questions </li>
+		<li> You have 3 tries for each question </li>
+		<li> At the end of the quiz, you can review all the questions and watch video solutions </li>
+		<li> You get points for each question </li>
+		<li> You can always come back and take additional quizzes!</li>
 	</ul><br />
-	<%= f.button :submit, "Start Quiz", class: "btn btn-primary" %>
+	<%= f.button :submit, "I'm Ready. Start Quiz!", class: "btn btn-primary" %>
 <% end %>

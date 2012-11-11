@@ -2,9 +2,9 @@
 
 <div class="intro">
 	<div class="start">
-		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> | Practice 
-  </div>
-</div><br />
+		<%= link_to @course.title, course_path(@course) %> | Practice: <%= @lesson.title%><br />
+	</div> 
+</div>
 
 	<%= render partial: 'questions/attempt', collection: @attempts %>
 

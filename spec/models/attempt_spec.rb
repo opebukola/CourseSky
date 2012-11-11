@@ -17,7 +17,13 @@
 require 'spec_helper'
 
 describe Attempt do 
-	it "has a valid factory"
-	it "has an associated user"
-	it "has an associated quiz"
+	it "should require a user" do
+		attempt = Attempt.new
+		attempt.quiz = Quiz.new
+		attempt.question = Question.new
+
+
+		attempt.should_not be_valid
+		attempt.errors[:user_id].should_not be_empty
+	end
 end

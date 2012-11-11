@@ -3,6 +3,7 @@ class QuizzesController < ApplicationController
 	
 	def new
 		@lesson = Lesson.find(params[:lesson_id])
+		@course = @lesson.course
 		@quiz = Quiz.new
 	end
 
@@ -31,8 +32,9 @@ class QuizzesController < ApplicationController
 
 	def finish
 		@quiz = Quiz.find(params[:id])
-		@questions = @quiz.questions.limit(5)
 		@lesson = @quiz.lesson
 		@course = @lesson.course
+		@questions = @quiz.attempted_questions
+		@attempts = @quiz.attempts
 	end
 end
