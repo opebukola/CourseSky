@@ -34,21 +34,17 @@ class Question < ActiveRecord::Base
 
   validates :question_type, presence: true
   # # validates :explanation, presence: true
-  validate :must_have_answers
+  # validate :must_have_answers
 
-  def must_have_answers
-    if self.answers.empty?
-      errors.add(:answers, 'must have at least one answer')
-    end
-  end
+  # def must_have_answers
+  #   if self.answers.empty?
+  #     errors.add(:answers, 'must have at least one answer')
+  #   end
+  # end
 
 
   #question types
   QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
-
-  def must_have_answers
-    errors.add(:base, "Must have at least one answer") if self.answers.empty?
-  end
 
 
   def is_multiple_choice?
