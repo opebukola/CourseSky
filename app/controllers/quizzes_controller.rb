@@ -35,9 +35,7 @@ class QuizzesController < ApplicationController
 		@quiz = Quiz.find(params[:id])
 		@lesson = @quiz.lesson
 		@course = @lesson.course
-		@attempts = @quiz.attempts
-		@questions = @quiz.unique_questions_attempted
-		@unique_attempts = @quiz.unique_question_attempts
+		@unique_attempts = @quiz.final_attempts_by_question
 	end
 
 	  private

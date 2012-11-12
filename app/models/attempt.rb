@@ -27,7 +27,7 @@ class Attempt < ActiveRecord::Base
   validates :quiz_id, presence: true
 
   def status
-    if self.correct == true
+    if self.correct 
       return 'Correct'
     else
       return 'Incorrect'

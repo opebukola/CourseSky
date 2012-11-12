@@ -270,13 +270,11 @@ footer {
 .intro{
   border: 1px solid #E5E5E5; 
   padding: 10px 10px 10px 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: white;
   .start{
     font-size: 1.5em; 
-    float: left;
     margin-top: 3px;
-   margin-bottom: 10px; 
-    margin-right: 20px;
     color: #741885;
   }
 }
@@ -346,18 +344,16 @@ footer {
 /* QUIZZES */
 /** -------------------------------------------------- **/
 
-.quiz-question {
-  border: 2px solid #bbb;
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-}
-
 .quiz-questions {
-  border: 2px solid #bbb;
+  border: 1px solid #E5E5E5; 
   padding: 10px 10px 10px 10px;
   margin-bottom: 15px;
   border-radius: 5px;
+  background-color: white;
+  .question-text{
+    font-size: 1.4em;
+    font-weight: bold;
+  }
 }
 
 

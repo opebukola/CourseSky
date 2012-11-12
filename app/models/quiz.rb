@@ -27,25 +27,32 @@ class Quiz < ActiveRecord::Base
     self.attempted_questions.uniq{ |question| question.id}
   end
 
-  def unique_question_attempts
-    self.attempts.reverse.uniq!{ |attempt| attempt.question }
+  def final_attempts_by_question
+    questions = self.unique_questions_attempted
+    questions.map do |question|
+      question.attempts.last
+    end
   end
+
+  # def unique_question_attempts
+  #   self.attempts.reverse.uniq!{ |attempt| attempt.question }
+  # end
 
 
   def correct_questions
-    self.attempts.find_all_by_correct(true).count
+    attempts = self.final_attempts_by_question
+    attempts.select{|a| a.correct}.count
   end
 
   def incorrect_questions
-    total = self.attempts.count
+    total = self.final_attempts_by_question.count
     return total - self.correct_questions
   end
 
   def score
     correct = self.correct_questions.to_f
     incorrect = self.incorrect_questions.to_f
-    total = correct + incorrect
-    return (correct / total) * 100
+    return correct / (correct + incorrect) * 100
   end
 
 end
