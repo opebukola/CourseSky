@@ -1,12 +1,10 @@
 <% question = attempt.question %>
 
-<div class="quiz-questions">
-	<div id="check-<%=question.id%>">
-		Question <%=attempt_counter + 1%> of <%=@questions.count%> | Score: XXX
+<div class="quiz-question">
+	Question <%=attempt_counter + 1%> of <%=@questions.count%> | Score: XXX
 		<hr />
 		<span class="question-text"><%= markdown question.question_text %></span><br />
 		<%= render "questions/response_box", attempt: attempt%>
-	</div>
 </div>
 
 

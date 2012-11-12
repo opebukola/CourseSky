@@ -344,7 +344,7 @@ footer {
 /* QUIZZES */
 /** -------------------------------------------------- **/
 
-.quiz-questions {
+.quiz-question {
   border: 1px solid #E5E5E5; 
   padding: 10px 10px 10px 10px;
   margin-bottom: 15px;
@@ -356,6 +356,25 @@ footer {
   }
 }
 
+.finish-quiz{
+  float: right;
+}
+
+.results{
+  border: 1px solid #E5E5E5; 
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.quiz-review-box{
+  border: 1px solid #E5E5E5; 
+  padding: 10px 10px 15px 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: white;
+}
 
 /** -------------------------------------------------- **/
 /* WHERE?? */

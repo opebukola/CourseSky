@@ -1,16 +1,16 @@
 jQuery ->
-  $('div.content-box:not(:first)').hide();
-  $('a.prev-section').hide();
-  $('a.next-section').on 'click', (event) ->
-    current = $('div.content-box:visible')
+  $('div.quiz-question:not(:first)').hide();
+  $('a.prev-question').hide();
+  $('a.finish-quiz').hide();
+  $('a.next-question').on 'click', (event) ->
+    current_question = $('div.quiz-question:visible')
     event.preventDefault();
-    current.hide();
-    next_activity = current.next()
-    next_activity.show();
-    if next_activity.next().size() is 0 
-      $(this).hide()
-    $('a.prev-section').show();
-  $('#review').modal('toggle');
-
+    current_question.hide();
+    next_question = current_question.next('div.quiz-question')
+    next_question.show();
+    if next_question.next('div.quiz-question').size() is 0
+      $(this).hide();
+      $('a.previous-question').show();
+      $('a.finish-quiz').show();
 
 

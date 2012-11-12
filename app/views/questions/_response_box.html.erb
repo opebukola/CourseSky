@@ -1,23 +1,24 @@
 <% question = attempt.question %>
-<%= simple_form_for( [@quiz, attempt], remote: true) do |f| %>
-  <%= f.input :question_id, as: :hidden %>
-  <% if question.is_multiple_choice? %>
-    <%= f.input :response, collection: question.answers, as: :radio_buttons, label_method: :content, value_method: :content %>
-  <% else %>
-    <%= f.input :response, label: "Your Response" %>
+<div id ="response-box-<%=question.id%>">
+  <%= simple_form_for( [@quiz, attempt], remote: true) do |f| %>
+    <%= f.input :question_id, as: :hidden %>
+    <% if question.is_multiple_choice? %>
+      <%= f.input :response, collection: question.answers, as: :radio_buttons, label_method: :content, value_method: :content %>
+    <% else %>
+      <%= f.input :response, label: "Your Response" %>
+    <% end %>
+    <%= f.button :submit, "Submit Answer" %>
   <% end %>
-  <%= f.button :submit, "Submit Answer" %>
-<% end %>
 
-<div id="hint-box_<%=question.id%>">
-  <div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
-    <i class="icon-question-sign"></i>
-    I don't know. Give me a hint!
-  </div>
-  <div id="hint_<%=question.id%>" class="hint collapse">
-    <%= question.first_hint %>
+  <div id="hint-box_<%=question.id%>">
+    <div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
+      <i class="icon-question-sign"></i>
+      I don't know. Give me a hint!
+    </div>
+    <div id="hint_<%=question.id%>" class="hint collapse">
+      <%= question.first_hint %>
+    </div>
   </div>
 </div>
-<div id="response"></div>
 
 

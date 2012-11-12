@@ -8,8 +8,12 @@
 
 	<%= render partial: 'questions/attempt', collection: @attempts %>
 
+<a class="prev-question btn btn-primary btn-prev" href="#"><i class="icon-circle-arrow-left"></i>Previous Question</a>
+<a class="next-question btn btn-primary btn-next" href="#"><i class="icon-circle-arrow-right"></i> Next Question</a>
+</section>
 
-<%= link_to finish_quiz_path(@quiz), class: "btn btn-success" do %>
+<%= link_to finish_quiz_path(@quiz), class: "finish-quiz btn btn-success" do %>
 	<i class="icon-thumbs-up"></i>
 	Finish Quiz
 <% end %>
+<br />
