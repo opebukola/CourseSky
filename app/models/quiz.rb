@@ -23,23 +23,29 @@ class Quiz < ActiveRecord::Base
   has_many :attempts
   has_many :attempted_questions, through: :attempts, source: :question
 
+  def unique_questions_attempted
+    self.attempted_questions.uniq{ |question| question.id}
+  end
 
+  def unique_question_attempts
+    self.attempts.reverse.uniq!{ |attempt| attempt.question }
+  end
 
 
   def correct_questions
-    attempts = self.questions.each do |question|
-      question.attempts.find_all_by_correct(true)
-    end
-    return attempts.count
+    self.attempts.find_all_by_correct(true).count
   end
 
   def incorrect_questions
-    total = self.questions.count
+    total = self.attempts.count
     return total - self.correct_questions
   end
 
   def score
-    return (self.correct_questions / self.questions.count)*100
+    correct = self.correct_questions.to_f
+    incorrect = self.incorrect_questions.to_f
+    total = correct + incorrect
+    return (correct / total) * 100
   end
 
 end

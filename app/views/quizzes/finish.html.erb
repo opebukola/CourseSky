@@ -3,23 +3,18 @@
 		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> | Practice 
   </div>
 </div><br />
-<h2> Quiz Review </h2>
-
-<h3> Your Results </h3><br />
-<h4> X Correct </h4><br />
-<h4> X Incorrect </h4><br />
-<h4> Score: X %</h4> 
-	
-<hr />
-
-<h3> Total Time:</h3> [insert] <br />
-<h3> Points: </h3> [insert] <br />
+<h2> Your Results </h2>
+<h3> <%= @quiz.correct_questions %> Correct |
+<%= @quiz.incorrect_questions %> Incorrect |
+Score: <%= @quiz.try(:score).round(0) %> %</h3> <br />
 
 <hr />
-<% @attempts.each do |a| %>
-	Question: <%= markdown a.question.question_text %><br />
-	Correct Answer: <%= a.question.correct_answers %><br />
-	Your Answer: <%= a.response %><br />
+<h2> Review </h2>
+
+<% @unique_attempts.each do |a| %>
+	<h4><%= markdown a.question.question_text %></h4><br />
+	Correct Answer: <%= a.question.correct_answers %> <br />
+	Your Answer: <%= a.response %>, <%= a.status %> <br />
 	<%= link_to "Review Solution Video", '#', class: "btn" %><br /><hr />
 <% end %>
 

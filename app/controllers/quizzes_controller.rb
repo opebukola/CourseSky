@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :correct_user, except: [:new, :create]
 	
 	def new
 		@lesson = Lesson.find(params[:lesson_id])
@@ -34,7 +35,19 @@ class QuizzesController < ApplicationController
 		@quiz = Quiz.find(params[:id])
 		@lesson = @quiz.lesson
 		@course = @lesson.course
-		@questions = @quiz.attempted_questions
 		@attempts = @quiz.attempts
+		@questions = @quiz.unique_questions_attempted
+		@unique_attempts = @quiz.unique_question_attempts
 	end
+
+	  private
+
+    def correct_user
+      @quiz = Quiz.find(params[:id])
+      @course = @quiz.lesson.course
+      unless current_user == @quiz.user || current_user.admin?
+        flash[:error] = "You cannot view this quiz"
+        redirect_to @course
+      end
+    end
 end

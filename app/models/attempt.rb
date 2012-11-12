@@ -26,6 +26,14 @@ class Attempt < ActiveRecord::Base
   validates :question_id, presence: true
   validates :quiz_id, presence: true
 
+  def status
+    if self.correct == true
+      return 'Correct'
+    else
+      return 'Incorrect'
+    end
+  end
+
   # after_save :update_user_score
 
   # def update_user_score
