@@ -178,28 +178,49 @@ footer {
 /* courses index pages*/
 
 .coursesarea{
-  width: 80%; 
+  // width: 80%;
   margin: 0px auto;
 }
-
-.course {
-  border: solid 1px #CCC;
-  border-radius: 10px;
-  background-color: white;
-  width: 200px;
-  padding: 10px 10px 10px 10px;
+.image-box {
+  width: 270px;
   float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  h3 {
-    margin:10px 0px 10px 0px;
-    font-size: 1.3em;
-    font-weight: normal;
-  }
+  border-radius: 10px;
+  padding: 10px 0px 10px 10px;
+  margin-bottom: 15px;
+}
+
+
+.course-text {
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  background-color: white;
+  height: 100px;
+  padding: 10px 0px 10px 10px;
+  margin: 10px 10px 10px 10px;
   &:hover { 
       background-color: #32B2C6;
     }
+ .start {
+    float: right;
+    margin-right: 10px;
+  }
+  img{
+    float: left;
+    margin-right: 30px;
+  }
+  h3 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    font-weight: normal;
+  }
 }
+  // img {
+  //   width: 270px;
+  //   // float: left;
+  //   // margin-right: 30px;
+  //   // display: inline-block;
+  // }
+
 
 .search{
   text-align: center;
@@ -210,7 +231,21 @@ footer {
 /** -------------------------------------------------- **/
 
 .course-description{
-  
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.course-topics{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
 }
 
 .course-div{
@@ -338,6 +373,19 @@ footer {
 
 .btn-complete{
   float: right;
+}
+
+/** -------------------------------------------------- **/
+/* LESSON SHARE */
+/** -------------------------------------------------- **/
+
+.share-lesson{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
 }
 
 /** -------------------------------------------------- **/

@@ -1,5 +1,6 @@
 class LessonItemsController < ApplicationController
 	def new
+		@lesson = Lesson.find(params[:lesson_id])
 		@lesson_item = item_type.new
 	end
 
@@ -19,6 +20,7 @@ class LessonItemsController < ApplicationController
 	end
 
 	def edit
+		@lesson = Lesson.find(params[:lesson_id])
 		@lesson_item = LessonItem.find(params[:id])
 	end
 

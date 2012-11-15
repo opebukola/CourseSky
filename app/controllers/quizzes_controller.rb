@@ -33,6 +33,7 @@ class QuizzesController < ApplicationController
 
 	def finish
 		@quiz = Quiz.find(params[:id])
+		@questions = @quiz.available_questions.limit(5)
 		@lesson = @quiz.lesson
 		@course = @lesson.course
 		@unique_attempts = @quiz.final_attempts_by_question

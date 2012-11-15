@@ -1,5 +1,16 @@
- <%=link_to "Add New Quiz Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+<%=link_to "Add New Quiz Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
 
  <hr />
 
- This lesson currently has <%=@lesson.questions.count %> quiz questions. 
+<h3> This lesson currently has <%=@lesson.questions.count %> quiz questions. </h3><br />
+
+ <% @lesson.questions.each do |q| %>
+ <p>
+ 	<%= q.question_text %> |
+ 	<%= link_to "View", '#' %> |
+ 	<%= link_to "Edit", edit_question_path(q, lesson_id:@lesson.id) %> |
+ 	<%= link_to "Delete", question_path(q),
+ 												method: :delete,
+ 												data: {confirm: 'Are you sure?'} %>
+ </p>
+ <% end %>

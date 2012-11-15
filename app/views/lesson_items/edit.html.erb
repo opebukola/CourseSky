@@ -1,2 +1,5 @@
+<h2> Editing: Lesson <%=@lesson.position%> - <%= @lesson.title %></h2>
+<h3> <%= link_to "Back to Lesson", edit_course_lesson_path(@lesson.course, @lesson) %></h3>
+<hr />
 <%= provide(:title, 'Edit') %>
 <%= render partial: 'shared/' + params[:type].downcase %>

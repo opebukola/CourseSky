@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :destroy, :update, :edit]
 
   def new
+    @lesson = Lesson.find(params[:lesson_id])
     @question = Question.new
   end
 
@@ -21,6 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @lesson = Lesson.find(params[:lesson_id])
     @question = Question.find(params[:id])
   end
 

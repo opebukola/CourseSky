@@ -1,8 +1,8 @@
 jQuery ->
   $('div.quiz-question:not(:first)').hide();
-  $('a.prev-question').hide();
   $('a.finish-quiz').hide();
   $('a.next-question').on 'click', (event) ->
+    event.preventDefault();
     current_question = $('div.quiz-question:visible')
     event.preventDefault();
     current_question.hide();

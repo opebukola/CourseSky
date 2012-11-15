@@ -1,14 +1,15 @@
 <section>
   <div class="coursesarea">
     <% @courses.each do |course| %>
-    <div class="course">
-      <%= link_to image_tag(course.cover_image_url(:box)), course_path(course) %> <br />
-      <h3><%= course.title %><br /></h3>
-      <ul>
-	      	<li><%= course.lessons.count %> interactive lessons</li>
-	      	<li> Hundreds of practice questions with solutions </li>
-	      </ul>
-    </div>
+      <div class="course-text">
+      <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
+        <h3><%= course.title %></h3>
+        <%= link_to "Start Learning Now", course_path(course), class: "start btn btn-large" %>
+        <h4>Tutor: <%=link_to course.user.name, user_path(course.user) %></h4><br />
+       <%= course.lessons.count %> interactive lessons<br />
+         Hundreds of practice questions with solutions 
+    
+        </div>
     <% end %>
   </div>
 </section>
