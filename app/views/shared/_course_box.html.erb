@@ -5,7 +5,7 @@
       <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
         <h3><%= course.title %></h3>
         <%= link_to "Start Learning Now", course_path(course), class: "start btn btn-large" %>
-        <h4>Tutor: <%=link_to course.user.name, user_path(course.user) %></h4><br />
+        <h4>Your Guide: <%=link_to course.user.name, user_path(course.user) %></h4><br />
        <%= course.lessons.count %> interactive lessons<br />
          Hundreds of practice questions with solutions 
     
