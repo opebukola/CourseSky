@@ -26,8 +26,11 @@ class Course < ActiveRecord::Base
   has_many :students, through: :enrollments
   belongs_to :user
   belongs_to :grade_level
-  has_many :lesson_skills, through: :lessons
-  has_many :skills, through: :lesson_skills
+  # has_many :lesson_skills, through: :lessons
+  # has_many :skills, through: :lesson_skills
+  has_many :lesson_items, through: :lessons
+  has_many :lesson_item_skills, through: :lesson_items
+  has_many :skills, through: :lesson_item_skills
   # before_destroy :ensure_no_students
 
   validates :title, presence: true

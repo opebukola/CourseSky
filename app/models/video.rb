@@ -18,7 +18,7 @@
 #
 
 class Video < LessonItem
-	attr_accessible :url, :start_time, :end_time, :transcript 
+	attr_accessible :url, :start_time, :end_time, :transcript, :skill_ids 
 
 	VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 

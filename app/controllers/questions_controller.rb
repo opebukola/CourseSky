@@ -13,7 +13,8 @@ class QuestionsController < ApplicationController
       redirect_to :back, notice: "Question saved"
     else
       flash[:error] = @question.errors.full_messages
-      render 'new'
+      redirect_to :back
+      # render 'new'
     end
   end
 

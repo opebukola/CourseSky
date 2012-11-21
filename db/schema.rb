@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109224129) do
+ActiveRecord::Schema.define(:version => 20121117161239) do
 
   create_table "answer_asks", :force => true do |t|
     t.integer  "answer_id"
@@ -131,6 +131,15 @@ ActiveRecord::Schema.define(:version => 20121109224129) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "lesson_item_skills", :force => true do |t|
+    t.integer  "lesson_item_id"
+    t.integer  "skill_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "lesson_item_skills", ["lesson_item_id", "skill_id"], :name => "index_lesson_item_skills_on_lesson_item_id_and_skill_id", :unique => true
+
   create_table "lesson_items", :force => true do |t|
     t.integer  "lesson_id"
     t.integer  "position"
@@ -156,19 +165,9 @@ ActiveRecord::Schema.define(:version => 20121109224129) do
   add_index "lesson_questions", ["lesson_id"], :name => "index_lesson_questions_on_lesson_id"
   add_index "lesson_questions", ["question_id"], :name => "index_lesson_questions_on_question_id"
 
-  create_table "lesson_skills", :force => true do |t|
-    t.integer  "lesson_id"
-    t.integer  "skill_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "lesson_skills", ["lesson_id", "skill_id"], :name => "index_lesson_skills_on_lesson_id_and_skill_id", :unique => true
-
   create_table "lessons", :force => true do |t|
     t.string   "title"
     t.text     "document"
-    t.string   "video_url"
     t.integer  "course_id"
     t.integer  "user_id"
     t.integer  "position"
@@ -186,14 +185,12 @@ ActiveRecord::Schema.define(:version => 20121109224129) do
   add_index "question_skills", ["question_id", "skill_id"], :name => "index_question_skills_on_question_id_and_skill_id", :unique => true
 
   create_table "questions", :force => true do |t|
-    t.text     "first_hint"
+    t.text     "hint"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "position"
     t.string   "question_type"
     t.text     "explanation"
     t.text     "question_text"
-    t.text     "second_hint"
   end
 
   create_table "quiz_skills", :force => true do |t|

@@ -5,7 +5,6 @@
 #  id         :integer          not null, primary key
 #  title      :string(255)
 #  document   :text
-#  video_url  :string(255)
 #  course_id  :integer
 #  user_id    :integer
 #  position   :integer

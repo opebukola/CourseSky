@@ -2,10 +2,5 @@
 
 <h3> Title </h3>
 <%= f.input :title, label: "Give the lesson a Title", input_html: {class: "input-xxlarge"} %>
-<h3>Video URL </h3>
-<%= f.input :video_url, label: "Enter the URL of a YouTube video.", input_html: {class: "input-xxlarge"} %>
-<h3> Which Skills does this lesson teach? </h3>
-<%= f.association :skills, label_method: :description, label: 'Add skills', hint: 'Select all that apply' %>
-
 <%= f.button :submit, "Save Lesson", class: 'btn btn-success' %>
 <% end %>

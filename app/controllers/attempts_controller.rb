@@ -5,7 +5,7 @@ class AttemptsController < ApplicationController
 		@attempt.quiz = Quiz.find(params[:quiz_id])
 		@question = @attempt.question
 		@response = @attempt.response.to_s
-		if @question.is_correct?@response.downcase
+		if @question.is_correct?@response
 			@attempt.correct = true
 			if @attempt.save
 				respond_to do |format|

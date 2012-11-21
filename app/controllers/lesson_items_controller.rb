@@ -9,7 +9,9 @@ class LessonItemsController < ApplicationController
 		if @lesson_item.save
 			redirect_to :back, notice: "Item Saved"
 		else
-			render 'new'
+			flash[:error] = @lesson_item.errors.full_messages
+			# render 'new'
+			redirect_to :back
 		end
 	end
 
