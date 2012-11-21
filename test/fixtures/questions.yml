@@ -9,6 +9,7 @@
 #  question_type :string(255)
 #  explanation   :text
 #  question_text :text
+#  difficulty    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

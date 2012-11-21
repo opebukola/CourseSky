@@ -9,10 +9,11 @@
 #  question_type :string(255)
 #  explanation   :text
 #  question_text :text
+#  difficulty    :integer
 #
 
 class Question < ActiveRecord::Base
-  attr_accessible :answers_attributes, :question_type, :explanation, 
+  attr_accessible :answers_attributes, :question_type, :explanation, :difficulty, 
                   :hint, :question_text, :skill_ids, :lesson_ids
   has_many :question_skills
   has_many :skills, through: :question_skills
@@ -23,6 +24,7 @@ class Question < ActiveRecord::Base
   has_many :lessons, through: :lesson_questions
 
   QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
+  QUESTION_DIFFICULTY = [1, 2, 3, 4, 5]
 
 
   accepts_nested_attributes_for :answers, allow_destroy: true
@@ -31,6 +33,7 @@ class Question < ActiveRecord::Base
   validates :question_text, presence: true
   validates :hint, presence: true
   validates :answers, presence: true
+  validates :difficulty, presence: true
   validate :must_have_skills
 
 
@@ -53,6 +56,10 @@ class Question < ActiveRecord::Base
 
   def is_correct?(response)
     self.correct_answers.include?(response.downcase)
+  end
+
+  def possible_points
+    20 * self.difficulty
   end
 
   # #quiz methods

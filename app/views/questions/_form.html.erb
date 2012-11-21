@@ -4,6 +4,9 @@
   <h4>Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
   <hr />
+    <h4>Choose difficulty level </h4><br />
+  <%= f.select :difficulty, Question::QUESTION_DIFFICULTY, {}, :class => "input-xlarge" %>
+  <hr />
 
   <h3>Write the Question Text </h3>
   <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>

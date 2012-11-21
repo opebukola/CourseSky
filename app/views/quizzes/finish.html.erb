@@ -7,7 +7,8 @@
 	<h2> Your Results </h2>
 	<h3> <%= @quiz.correct_questions %> Correct |
 	<%= @quiz.incorrect_questions %> Incorrect |
-	Score: <%= @quiz.try(:score).round(0) %> %</h3> <br />
+	Score: <%= @quiz.try(:score).round(0) %> % |
+	Points Earned: <%= @quiz.total_points_earned.round(0) %> </h3> <br />
 </div>
 
 <hr />
@@ -19,6 +20,7 @@
 		<h4><%= markdown a.question.question_text %></h4><br />
 		Correct Answer: <%= a.question.correct_answers %> <br />
 		Your Answer: <%= a.response %>, <%= a.status %> <br />
+		Points Earned: <%= a.calculate_score.round(0) %><br />
 		<%= link_to "Review Solution Video", '#', class: "btn" %><br />
 	</div>
 <% end %>

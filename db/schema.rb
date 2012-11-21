@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117161239) do
+ActiveRecord::Schema.define(:version => 20121121143338) do
 
   create_table "answer_asks", :force => true do |t|
     t.integer  "answer_id"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20121117161239) do
     t.string   "question_type"
     t.text     "explanation"
     t.text     "question_text"
+    t.integer  "difficulty"
   end
 
   create_table "quiz_skills", :force => true do |t|

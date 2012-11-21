@@ -55,6 +55,13 @@ class Quiz < ActiveRecord::Base
     return correct / (5) * 100
   end
 
+  def total_points_earned
+    score_array = self.final_attempts_by_question.map{
+      |attempt| attempt.calculate_score
+    }
+    score_array.reduce(:+)
+  end
+
   # def score
   #   correct = self.correct_questions.to_f
   #   incorrect = self.incorrect_questions.to_f

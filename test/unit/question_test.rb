@@ -9,6 +9,7 @@
 #  question_type :string(255)
 #  explanation   :text
 #  question_text :text
+#  difficulty    :integer
 #
 
 require 'test_helper'
