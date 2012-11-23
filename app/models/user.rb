@@ -112,8 +112,19 @@ class User < ActiveRecord::Base
       complete = completed_lessons(course).size
       incomplete = incomplete_lessons(course)
       progress = complete.to_f / total.to_f
-      return progress.round(2) * 100
+      return progress * 100
     end
+  end
+
+  def quiz_count(course)
+    self.quizzes.find_all_by_course_id(course.id).size
+  end
+
+  def quiz_question_count(course)
+    quizzes = self.quizzes.find_all_by_course_id(course)
+    questions = quizzes.map{ 
+      |quiz| quiz.unique_questions_attempted.size}
+    questions.reduce(:+)
   end
 
 end

@@ -10,7 +10,7 @@
 #
 
 class Quiz < ActiveRecord::Base
-  attr_accessible :lesson_id, :skill_ids
+  attr_accessible :lesson_id, :course_id, :skill_ids
 
   belongs_to :user
   belongs_to :lesson

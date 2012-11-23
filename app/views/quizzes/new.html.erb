@@ -7,6 +7,7 @@
 <%= provide(:title, 'New Quiz') %>
 <%= simple_form_for @quiz do |f| %>
 	<%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
+	<%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
 	<h3> Test yourself with a quiz </h3><br />
 	<ul>
 		<li> Each quiz has 5 practice questions </li>

@@ -23,4 +23,5 @@ class Skill < ActiveRecord::Base
   has_ancestry
 
   scope :main, where('ancestry is null')
+
 end

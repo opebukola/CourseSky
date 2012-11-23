@@ -2,4 +2,4 @@
 <h3> <%= link_to "Back to Lesson", edit_course_lesson_path(@lesson.course, @lesson) %></h3>
 <hr />
 <%= provide(:title, 'Edit') %>
-<%= render partial: 'shared/' + params[:type].downcase %>
+<%= render partial: 'new_' + params[:type].downcase %>
