@@ -36,10 +36,6 @@ class Attempt < ActiveRecord::Base
     end
   end
 
-  # def possible_points
-  #   20 * self.question.difficulty
-  # end
-
   def attempt_count
     Attempt.find_all_by_question_id_and_user_id_and_quiz_id(
       self.question_id,self.user_id,self.quiz_id).size

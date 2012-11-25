@@ -42,7 +42,8 @@ class User < ActiveRecord::Base
   has_many :completed_asks, foreign_key: "student_id", dependent: :destroy
   has_many :quizzes
   has_many :attempts, dependent: :destroy
-
+  has_many :attempted_questions, through: :attempts, source: :question
+  
   mount_uploader :avatar, AvatarUploader
 
   #enrollment methods
@@ -126,5 +127,23 @@ class User < ActiveRecord::Base
       |quiz| quiz.unique_questions_attempted.size}
     questions.reduce(:+)
   end
+
+  #skill methods
+
+  def course_quizzes(course)
+    self.quizzes.find_all{|q| q.course_id == course.id}   
+  end
+
+  def course_questions_attempted(course)
+    quizzes = self.course_quizzes(course)
+    quizzes.map{|q| q.attempted_questions}.flatten
+  end
+
+  def course_skills_attempted(course)
+    questions = self.course_questions_attempted(course)
+    skills = questions.map{|q| q.skills}.flatten
+    return skills.uniq{ |s| s.id} 
+  end
+
 
 end

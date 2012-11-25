@@ -7,6 +7,7 @@
 #  lesson_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  course_id  :integer
 #
 
 class Quiz < ActiveRecord::Base
@@ -14,10 +15,6 @@ class Quiz < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :lesson
-  # has_many :quiz_skills
-  # has_many :skills, through: :quiz_skills
-  # has_many :question_skills, through: :skills
-  # has_many :questions, through: :question_skills
   has_many :available_questions, through: :lesson, source: :questions
   has_many :skills, through: :questions
   has_many :attempts
@@ -30,6 +27,7 @@ class Quiz < ActiveRecord::Base
   def final_attempts_by_question
     questions = self.unique_questions_attempted
     questions.map do |question|
+      q2 = Question.find(1).attempts
       question.attempts.last
     end
   end
@@ -52,7 +50,7 @@ class Quiz < ActiveRecord::Base
   def score
     correct = self.correct_questions.to_f
     incorrect = self.incorrect_questions.to_f
-    return correct / (5) * 100
+    return correct / self.final_attempts_by_question.count * 100
   end
 
   def total_points_earned

@@ -26,4 +26,8 @@ describe Attempt do
 		attempt.should_not be_valid
 		attempt.errors[:user_id].should_not be_empty
 	end
+
+	it "should save a score" do
+		
+	end
 end

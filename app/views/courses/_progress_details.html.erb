@@ -1,12 +1,7 @@
-<h2><%= current_user.name.capitalize%>, here's your progress in <%= @course.title %>:</h2>
-<div class="progress progress-success">
-		<div class="bar" style="width:<%= current_user.progress(@course) %>%;"> <%= current_user.progress(@course).round(0) %>% complete
-  	</div>
-</div>
+<h2><%= current_user.name.capitalize%>, here's how you're doing in <%= @course.title %>:</h2>
 
 <ul>
 	<li><%=current_user.completed_lessons(@course).count %> lessons complete (out of <%=@course.lessons.size%>)</li>
-	<li><%= current_user.progress(@course).round(0) %> Percent complete</li>
 	<li> <%=current_user.quiz_count(@course)%> quizzes completed </li>
 	<li><%=current_user.quiz_question_count(@course)%> questions answered</li>
 </ul>
@@ -20,6 +15,7 @@
 	<%= s.description %><br />
 <% end %>
 
+<hr />
 
 
 <h3> Top 5 Skills Mastered</h3>
@@ -29,4 +25,3 @@
 <h3> Top 5 Skills to Work On</h3>
 
 <br />
-

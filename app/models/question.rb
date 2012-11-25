@@ -36,6 +36,10 @@ class Question < ActiveRecord::Base
   validates :difficulty, presence: true
   validate :must_have_skills
 
+  def last_attempt(quiz)
+    quiz.attempts.where(question_id: self.id).order('created_at DESC').first
+  end
+
 
 
   def must_have_skills
