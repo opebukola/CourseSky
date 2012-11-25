@@ -2,6 +2,7 @@
 
 <ul>
 	<li><%=current_user.completed_lessons(@course).count %> lessons complete (out of <%=@course.lessons.size%>)</li>
+	<li><%= current_user.try.(:progress(@course)).round(0) %> Percent complete</li>
 	<li> <%=current_user.quiz_count(@course)%> quizzes completed </li>
 	<li><%=current_user.quiz_question_count(@course)%> questions answered</li>
 </ul>

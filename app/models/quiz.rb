@@ -20,41 +20,46 @@ class Quiz < ActiveRecord::Base
   has_many :attempts
   has_many :attempted_questions, through: :attempts, source: :question
 
-  def unique_questions_attempted
-    self.attempted_questions.uniq{ |question| question.id}
-  end
+  # def unique_questions_attempted
+  #   self.attempted_questions.uniq{ |question| question.id}
+  # end
 
-  def final_attempts_by_question
-    questions = self.unique_questions_attempted
-    questions.map do |question|
-      q2 = Question.find(1).attempts
-      question.attempts.last
-    end
-  end
+  # def final_attempts_by_question
+  #   questions = self.unique_questions_attempted
+  #   questions.map do |question|
+  #     # q2 = Question.find(1).attempts
+  #     question.attempts.last
+  #   end
+  # end
+
 
   # def unique_question_attempts
   #   self.attempts.reverse.uniq!{ |attempt| attempt.question }
   # end
 
+  def final_attempts
+    self.attempted_questions.map{|q| q.last_attempt(self)}
+  end
+
 
   def correct_questions
-    attempts = self.final_attempts_by_question
+    attempts = self.final_attempts
     attempts.select{|a| a.correct}.count
   end
 
   def incorrect_questions
-    total = self.final_attempts_by_question.count
+    total = self.final_attempts.count
     return total - self.correct_questions
   end
 
   def score
     correct = self.correct_questions.to_f
     incorrect = self.incorrect_questions.to_f
-    return correct / self.final_attempts_by_question.count * 100
+    return correct / (correct + incorrect) * 100
   end
 
   def total_points_earned
-    score_array = self.final_attempts_by_question.map{
+    score_array = self.final_attempts.map{
       |attempt| attempt.calculate_score
     }
     score_array.reduce(:+)

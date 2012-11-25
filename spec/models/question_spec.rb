@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe Question do
-	describe "#last_attempt" do
+	describe "#last_attempt(quiz)" do
 		it "should return an empty set if no attempts" do
 			question = FactoryGirl.create(:question)
 			quiz = Quiz.create!
+
+
 			question.last_attempt(quiz).should be_nil
 		end
 		it	"should return last attempt with multiple attempts" do
@@ -23,6 +25,7 @@ describe Question do
 
 			question.last_attempt(quiz).should == attempt2
 		end
+
 		# it	"should return correct attempt if only one question" do
 		# 	user = FactoryGirl.create!(:user)
 		# 	quiz = user.quizzes.create!

@@ -27,7 +27,26 @@ describe Attempt do
 		attempt.errors[:user_id].should_not be_empty
 	end
 
-	it "should save a score" do
+	it "should calculate a score after saving" do
+		quiz = FactoryGirl.create(:quiz)
+		user = FactoryGirl.create(:user)
+		question = FactoryGirl.create(:question)
+		attempt1 = quiz.attempts.build
+		attempt1.user = user
+		attempt1.question = question
+		attempt1.correct = false
+		attempt1.save
+
+		attempt2 = quiz.attempts.build
+		attempt2.user = user
+		attempt2.question = question
+		attempt2.correct = true
+		attempt2.save
+
+		attempt1.calculate_score.should_not be_nil
+		attempt2.calculate_score.should_not be_nil
+		attempt2.calculate_score.should == 10
 		
 	end
+
 end

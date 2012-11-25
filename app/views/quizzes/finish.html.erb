@@ -14,13 +14,15 @@
 <hr />
 <h2> Review </h2>
 
-
-<% @unique_attempts.each do |a| %>
+<% @attempted_questions.each do |q| %>
 	<div class="quiz-review-box">
-		<h4><%= markdown a.question.question_text %></h4><br />
-		Correct Answer: <%= a.question.correct_answers %> <br />
-		Your Answer: <%= a.response %>, <%= a.status %> <br />
+		<% a = q.last_attempt(@quiz) %>
+		<h4><%= markdown q.question_text %></h4><br />
+		Correct Answer: <%= q.correct_answers %><br />
+		Your Answer: <%= a.response %><br />
 		Points Earned: <%= a.calculate_score.round(0) %><br />
 		<%= link_to "Review Solution", '#', class: "btn" %><br />
 	</div>
 <% end %>
+
+
