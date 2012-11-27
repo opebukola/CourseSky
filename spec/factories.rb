@@ -1,16 +1,34 @@
 FactoryGirl.define  do
+	Factory.sequence :email do |n|
+		"test #{n}@example.com"
+	end
 
 	factory :user do |u|
-		u.email 									"test@example.com"
+		u.fname										"Test"
+		u.lname										"User"
+		u.email 									{Factory.next(:email)} 
 		u.password								"password"
 		u.password_confirmation		"password"
 	end
+
+	factory :grade_level do |g|
+		g.name	"Grade 1"
+	end
+
 
 	factory :course do |c|
 		c.title "Course 1"
 		c.description { Faker::Lorem.paragraphs(1) }
 
+		grade_level
+		user	
+	end
+
+	factory :lesson do |l|
+		l.title	"Lesson 1"
+
 		user
+		course
 	end
 
 	factory :answer do |a|
@@ -32,7 +50,9 @@ FactoryGirl.define  do
 
 
 	factory :quiz do |q|
-		# course
+		user
+		course
+		lesson
 	end
 	
 end

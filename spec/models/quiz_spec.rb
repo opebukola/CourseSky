@@ -34,4 +34,27 @@ describe Quiz do
 		quiz.errors[:course_id].should_not be_empty
 	end
 
+	describe "#final_questions_attempted" do
+		it "should return unique list of questions" do
+			# quiz = Quiz.new
+			# quiz.user = FactoryGirl.create(:user)
+			# quiz.course = FactoryGirl.create(:course)
+			# quiz.lesson = FactoryGirl.create(:lesson)
+			quiz = FactoryGirl.create(:quiz)
+			question = FactoryGirl.create(:question)
+			attempt1 = quiz.attempts.build
+				attempt1.user = quiz.user
+				attempt1.question = question
+			attempt1.save
+			attempt2 = quiz.attempts.build
+				attempt2.user = quiz.user
+				attempt2.question = question
+			attempt2.save
+
+			quiz.final_attempts.should_not be_nil
+			quiz.final_attempts.count.should == 1
+		end
+		
+	end
+
 end

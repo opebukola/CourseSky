@@ -37,7 +37,7 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
   validates :user_id, presence: true
   validates :grade_level, presence: true
-  validates :categories, presence: true
+  # validates :categories, presence: true
 
   mount_uploader :cover_image, CoverImageUploader
 

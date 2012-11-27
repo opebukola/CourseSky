@@ -15,6 +15,7 @@ class Quiz < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :lesson
+  belongs_to :course
   has_many :available_questions, through: :lesson, source: :questions
   has_many :skills, through: :questions
   has_many :attempts
@@ -24,27 +25,10 @@ class Quiz < ActiveRecord::Base
   validates :course_id, presence: true
   validates :lesson_id, presence: true
 
-  # def unique_questions_attempted
-  #   self.attempted_questions.uniq{ |question| question.id}
-  # end
-
-  # def final_attempts_by_question
-  #   questions = self.unique_questions_attempted
-  #   questions.map do |question|
-  #     # q2 = Question.find(1).attempts
-  #     question.attempts.last
-  #   end
-  # end
-
-
-  # def unique_question_attempts
-  #   self.attempts.reverse.uniq!{ |attempt| attempt.question }
-  # end
-
   def final_attempts
-    self.attempted_questions.map{|q| q.last_attempt(self)}
+    questions = self.attempted_questions.uniq{|q| q.id}
+    questions.map{|q| q.last_attempt(self)}
   end
-
 
   def correct_questions
     attempts = self.final_attempts
@@ -68,11 +52,5 @@ class Quiz < ActiveRecord::Base
     }
     score_array.reduce(:+)
   end
-
-  # def score
-  #   correct = self.correct_questions.to_f
-  #   incorrect = self.incorrect_questions.to_f
-  #   return correct / (correct + incorrect) * 100
-  # end
 
 end
