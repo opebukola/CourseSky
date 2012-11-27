@@ -20,6 +20,10 @@ class Quiz < ActiveRecord::Base
   has_many :attempts
   has_many :attempted_questions, through: :attempts, source: :question
 
+  validates :user_id, presence: true
+  validates :course_id, presence: true
+  validates :lesson_id, presence: true
+
   # def unique_questions_attempted
   #   self.attempted_questions.uniq{ |question| question.id}
   # end

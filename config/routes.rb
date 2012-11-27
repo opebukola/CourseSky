@@ -18,7 +18,7 @@ Coursesky::Application.routes.draw do
         post :sort
       end
       member do
-        get :share, :doc
+        get :finish, :doc
         post :save
       end
     end

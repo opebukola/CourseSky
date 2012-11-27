@@ -1,17 +1,15 @@
 <%= render 'shared/lesson_intro' %>
 <div class="share-lesson">
   <h2>
-    Congratulations <%= current_user.try(:name) %>! You've completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %></h2>
+    Congratulations <%= current_user.try(:fname) %>! You've completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %></h2>
 
     <h3> Liked this lesson? Tell your friends! </h3><br />
   <a href="https://twitter.com/share" class="twitter-share-button" data-text="I have finished <%= @lesson.title %> of course <%= @lesson.course.title %> on CourseSky. You should try it! " data-url="<%= course_lesson_url(@lesson.course, @lesson) %>" data-lang="en" data-size="large" data-count="none">Tweet</a>
   <div class="fb-like" data-send="true" data-width="450" data-show-faces="true" data-action="recommend" data-font="arial"></div>
  <hr />
   <h3> What's Next? Take a practice quiz to make sure you really understand <%= @lesson.title %> </h3><br />
-  <%= link_to "Start Practicing!", new_quiz_path(lesson_id: @lesson), class: 'btn btn-large btn-success' %>
-  <% unless @lesson.last? %>
-    <h2>When you're ready, <%= link_to "move to next lesson", course_lesson_path(@lesson.course, @lesson.next_lesson) %></h2>
-  <% end %>
+  <%= link_to "Start Practicing!", new_quiz_path(course_id: @course, lesson_id: @lesson), class: 'btn btn-large btn-success' %>
+
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </div>
 

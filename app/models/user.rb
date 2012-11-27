@@ -16,11 +16,12 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  avatar                 :string(255)
-#  name                   :string(255)
 #  location               :string(255)
 #  about                  :text
 #  admin                  :boolean          default(FALSE)
 #  instructor             :boolean          default(FALSE)
+#  fname                  :string(255)
+#  lname                  :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -31,8 +32,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name,
-                  :location, :about, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+                  :location, :about, :avatar, :fname, :lname
 
   has_many :courses
   has_many :lessons
@@ -124,26 +125,26 @@ class User < ActiveRecord::Base
   def quiz_question_count(course)
     quizzes = self.quizzes.find_all_by_course_id(course)
     questions = quizzes.map{ 
-      |quiz| quiz.unique_questions_attempted.size}
+      |quiz| quiz.final_attempts.size}
     questions.reduce(:+)
   end
 
-  #skill methods
+  # #skill methods
 
-  def course_quizzes(course)
-    self.quizzes.find_all{|q| q.course_id == course.id}   
-  end
+  # def course_quizzes(course)
+  #   self.quizzes.find_all{|q| q.course_id == course.id}   
+  # end
 
-  def course_questions_attempted(course)
-    quizzes = self.course_quizzes(course)
-    quizzes.map{|q| q.attempted_questions}.flatten
-  end
+  # def course_questions_attempted(course)
+  #   quizzes = self.course_quizzes(course)
+  #   quizzes.map{|q| q.attempted_questions}.flatten
+  # end
 
-  def course_skills_attempted(course)
-    questions = self.course_questions_attempted(course)
-    skills = questions.map{|q| q.skills}.flatten
-    return skills.uniq{ |s| s.id} 
-  end
+  # def course_skills_attempted(course)
+  #   questions = self.course_questions_attempted(course)
+  #   skills = questions.map{|q| q.skills}.flatten
+  #   return skills.uniq{ |s| s.id} 
+  # end
 
 
 end

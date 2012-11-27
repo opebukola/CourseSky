@@ -3,8 +3,10 @@
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
 
-    <%= f.input :name, label: "Full Name" %>
+    <%= f.input :fname, label: "First Name" %>
+    <%= f.input :lname, label: "Last Name" %>
     <%= f.input :email, :required => true %>
+
     <h3> Complete Your Profile: </h3><br />
     <%= f.input :avatar %>
     <%= f.input :location %>

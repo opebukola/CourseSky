@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :share, :doc]
+  before_filter :authenticate_user!, except: [:index, :show, :finish, :doc]
   before_filter :correct_user, only: [:edit, :update, :destroy, :sort]
   
   def index
@@ -49,7 +49,7 @@ class LessonsController < ApplicationController
     end
   end
 
-  def share
+  def finish
     @lesson = Lesson.find(params[:id])
     @course = Course.find(params[:course_id])
   end

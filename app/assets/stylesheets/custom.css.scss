@@ -177,33 +177,42 @@ footer {
 
 /* courses index pages*/
 
-.coursesarea{
-  // width: 80%;
+.course-area{
+  width: 90%;
   margin: 0px auto;
 }
-.image-box {
-  width: 270px;
-  float: left;
-  border-radius: 10px;
-  padding: 10px 0px 10px 10px;
-  margin-bottom: 15px;
+
+.start-button{
+
+}
+
+.btn-start{
+  background-color: #741885;
+  background: #741885;
+  font-size: 2.2em;
+  color: white;
+  text-shadow: none;
+  margin-left: 0px;
+  margin-top: 30px; //need to figure out real way to center vertically
+  &:hover {
+    background-color: white;
+  }
 }
 
 
-.course-text {
-  border: solid 1px #ccc;
+
+.course-box {
+  width: 60%;
+  border: solid 1px #741885;
   border-radius: 5px;
   background-color: white;
   height: 100px;
   padding: 10px 0px 10px 10px;
-  margin: 10px 10px 10px 10px;
-  &:hover { 
-      background-color: #32B2C6;
-    }
- .start {
-    float: right;
-    margin-right: 10px;
-  }
+  margin: 0px 30px 0px 0px;
+  float: left;
+  // &:hover { 
+  //     background-color: #32B2C6;
+  //   }
   img{
     float: left;
     margin-right: 30px;
@@ -214,12 +223,9 @@ footer {
     font-weight: normal;
   }
 }
-  // img {
-  //   width: 270px;
-  //   // float: left;
-  //   // margin-right: 30px;
-  //   // display: inline-block;
-  // }
+
+
+
 
 
 .search{
@@ -283,6 +289,49 @@ footer {
 
 .progress-none a{
   color: white;
+}
+
+/** -------------------------------------------------- **/
+/* COURSE PROGRESS */
+/** -------------------------------------------------- **/
+
+.course-progress-stats{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  padding: 0px 0px 0px 0px;
+  margin: 10px 0px 30px 0px;
+  .progress-stat{
+    float: left;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+  }
+}
+
+.course-progress-stats::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.skills-report{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0px 10px 0px;
+}
+
+.progress-notice{
+  font-size: 1.5em;
 }
 
 
@@ -392,6 +441,18 @@ footer {
 /* QUIZZES */
 /** -------------------------------------------------- **/
 
+.quiz-intro{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  li{
+    font-size: 1.3em;
+    padding-bottom: 1em;
+  }
+}
 .quiz-question {
   border: 1px solid #E5E5E5; 
   padding: 10px 10px 10px 10px;
@@ -406,14 +467,6 @@ footer {
 
 .finish-quiz{
   float: right;
-}
-
-.results{
-  border: 1px solid #E5E5E5; 
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  background-color: white;
 }
 
 .quiz-review-box{

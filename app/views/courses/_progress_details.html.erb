@@ -1,28 +1,47 @@
-<h2><%= current_user.name.capitalize%>, here's how you're doing in <%= @course.title %>:</h2>
-
-<ul>
-	<li><%=current_user.completed_lessons(@course).count %> lessons complete (out of <%=@course.lessons.size%>)</li>
-	<li><%= current_user.try.(:progress(@course)).round(0) %> Percent complete</li>
-	<li> <%=current_user.quiz_count(@course)%> quizzes completed </li>
-	<li><%=current_user.quiz_question_count(@course)%> questions answered</li>
-</ul>
-
-<hr />
-
-<h2> Skills Report </h2>
-<h4> All Skills in this Course </h4>
-
-<% @course.skills.each do |s| %>
-	<%= s.description %><br />
+<% if current_user.enrolled?(@course) %>
+	<div class="course-progress-stats">
+		<div class="progress-stat">
+			<h3 class="progress-number"><%=current_user.completed_lessons(@course).count %></h3>
+			<p class="progress-description">lessons completed</p>
+		</div>
+		<div class="progress-stat">
+			<h3 class="progress-number"><%= current_user.progress(@course).round(0) %>%</h3>
+			<p class="progress-description">lessons completed</p>
+		</div>
+			<div class="progress-stat">
+			<h3 class="progress-number"><%=current_user.quiz_count(@course)%></h3>
+			<p class="progress-description">quizzes completed</p>
+		</div>
+			<div class="progress-stat">
+			<h3 class="progress-number"><%=current_user.quiz_question_count(@course)%></h3>
+			<p class="progress-description">questions answered</p>
+		</div>
+	</div>
+	<div class="skills-report">
+		<p class="progress-notice"> Skill Report </p>
+		<h3> Top 5 Skills Mastered</h3><br />
+		<h3> Top 5 Skills to Work On</h3><br />
+		<%= link_to "See all skills in this course", '#' %>
+	</div>
+<% else %>
+	<div class="course-progress-stats">
+		<div class="progress-stat">
+			<h3 class="progress-number">0</h3>
+			<p class="progress-description">lessons completed</p>
+		</div>
+		<div class="progress-stat">
+			<h3 class="progress-number">0%</h3>
+			<p class="progress-description">lessons completed</p>
+		</div>
+			<div class="progress-stat">
+			<h3 class="progress-number">0%</h3>
+			<p class="progress-description">quizzes completed</p>
+		</div>
+			<div class="progress-stat">
+			<h3 class="progress-number">0</h3>
+			<p class="progress-description">questions answered</p>
+		</div>
+	</div>
+		<p class="progress-notice"> You don't have any progress data for this course yet. Start a lesson or take a quiz to track your progress.  </p>
 <% end %>
 
-<hr />
-
-
-<h3> Top 5 Skills Mastered</h3>
-
-<br />
-
-<h3> Top 5 Skills to Work On</h3>
-
-<br />

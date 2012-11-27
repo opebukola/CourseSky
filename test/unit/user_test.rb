@@ -16,11 +16,12 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  avatar                 :string(255)
-#  name                   :string(255)
 #  location               :string(255)
 #  about                  :text
 #  admin                  :boolean          default(FALSE)
 #  instructor             :boolean          default(FALSE)
+#  fname                  :string(255)
+#  lname                  :string(255)
 #
 
 require 'test_helper'

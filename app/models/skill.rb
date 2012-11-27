@@ -20,4 +20,8 @@ class Skill < ActiveRecord::Base
 
   scope :main, where('ancestry is null')
 
+  # def questions_attempted_by(user)
+  # 	user.attempted_questions.where("question.skills = self.id")
+  # end
+
 end

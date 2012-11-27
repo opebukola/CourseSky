@@ -1,10 +1,10 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, @user.fname) %>
 
-<h3> Showing <%= @user.name%>'s profile </h3><br />
+<h3> Your profile </h3><br />
 
 <p>
   <%= image_tag @user.avatar_url(:profile) %>
-  Name: <%= @user.name %><br />
+  Name: <%= @user.fname %><br />
   Location: <%= @user.location %><br />
   About Me: <%= @user.about %>
 </p>

@@ -3,12 +3,24 @@
 		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> | Practice 
   </div>
 </div><br />
-<div class="results">
-	<h2> Your Results </h2>
-	<h3> <%= @quiz.correct_questions %> Correct |
-	<%= @quiz.incorrect_questions %> Incorrect |
-	Score: <%= @quiz.try(:score).round(0) %> % |
-	Points Earned: <%= @quiz.total_points_earned.round(0) %> </h3> <br />
+<h2> Your Results </h2>
+<div class="course-progress-stats">
+	<div class="progress-stat">
+		<h3 class="progress-number"><%= @quiz.score.round(0) %>%</h3>
+		<p class="progress-description">quiz score</p>
+	</div>
+	<div class="progress-stat">
+		<h3 class="progress-number"><%= @quiz.correct_questions %></h3>
+		<p class="progress-description">correct answers</p>
+	</div>
+	<div class="progress-stat">
+		<h3 class="progress-number"><%= @quiz.incorrect_questions %></h3>
+		<p class="progress-description">incorrect answers</p>
+	</div>
+	<div class="progress-stat">
+		<h3 class="progress-number"><%= @quiz.total_points_earned.round(0) %></h3>
+		<p class="progress-description">points earned</p>
+	</div>
 </div>
 
 <hr />
@@ -25,4 +37,5 @@
 	</div>
 <% end %>
 
+<%= link_to "Return to course page", course_path(@course), class: 'btn btn-primary' %>
 

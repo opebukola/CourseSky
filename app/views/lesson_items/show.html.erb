@@ -15,7 +15,7 @@
 		<% end %>
 	<% end %>
 	<% if @lesson_item.last? %>
-		<%= link_to share_course_lesson_path(id:@lesson.id, course_id:@course.id), class: "btn btn-large btn-success btn-next" do  %>
+		<%= link_to finish_course_lesson_path(id:@lesson.id, course_id:@course.id), class: "btn btn-large btn-success btn-next" do  %>
 			<i class="icon-thumbs-up"></i>
 			Complete Lesson
 		<% end %>
