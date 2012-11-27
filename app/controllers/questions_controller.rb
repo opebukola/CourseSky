@@ -30,6 +30,7 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
+    @lesson = Lesson.find(params[:question][:lesson_ids])
     if @question.update_attributes(params[:question])
       redirect_to :back, notice: "Question updated"
     else
