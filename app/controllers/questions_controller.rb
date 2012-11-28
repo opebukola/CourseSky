@@ -34,6 +34,7 @@ class QuestionsController < ApplicationController
     if @question.update_attributes(params[:question])
       redirect_to :back, notice: "Question updated"
     else
+      flash[:error] = @question.errors.full_messages
       render 'edit'
     end
   end

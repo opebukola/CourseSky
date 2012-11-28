@@ -27,10 +27,12 @@ class LessonItemsController < ApplicationController
 	end
 
 	def update
+		@lesson = Lesson.find(params[params[:type].downcase][:lesson_id])
 		@lesson_item = item_type.find(params[:id])
 		if @lesson_item.update_attributes(params[params[:type].downcase])
 			redirect_to :back, notice: 'Item Updated'
 		else
+			flash[:error] = @lesson_item.errors.full_messages
 			render 'edit'
 		end
 	end

@@ -41,9 +41,11 @@ class Quiz < ActiveRecord::Base
   end
 
   def score
-    correct = self.correct_questions.to_f
-    incorrect = self.incorrect_questions.to_f
-    return correct / (correct + incorrect) * 100
+    if self.attempts
+      correct = self.correct_questions.to_f
+      incorrect = self.incorrect_questions.to_f
+      return correct / (correct + incorrect) * 100
+    end
   end
 
   def total_points_earned

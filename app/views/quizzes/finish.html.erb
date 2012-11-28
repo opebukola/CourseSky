@@ -3,10 +3,11 @@
 		<%= link_to @course.title, course_path(@course) %> | <%= @lesson.title%> | Practice 
   </div>
 </div><br />
+
 <h2> Your Results </h2>
 <div class="course-progress-stats">
 	<div class="progress-stat">
-		<h3 class="progress-number"><%= @quiz.score.round(0) %>%</h3>
+		<h3 class="progress-number"><%= @quiz.try(:score).round(0) %>%</h3>
 		<p class="progress-description">quiz score</p>
 	</div>
 	<div class="progress-stat">
