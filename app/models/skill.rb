@@ -20,8 +20,25 @@ class Skill < ActiveRecord::Base
 
   scope :main, where('ancestry is null')
 
-  # def questions_attempted_by(user)
-  # 	user.attempted_questions.where("question.skills = self.id")
+  # def questions_attempted(user)
+  #   user_id = user.id
+  #   skill_id = self.id
+  #   Question.find_by_sql(["SELECT * 
+  #                 FROM questions
+  #                 INNER JOIN question_skills
+  #                 ON question.id = question_skill.question_id
+  #                 INNER JOIN attempts
+  #                 ON question.id = attempt.question_id 
+  #                 WHERE(attempt.user_id = #{user_id}
+  #                   AND question_skill.skill_id = #{skill_id})"])
   # end
+
+  # this is terrible. need to use sql
+  def questions_attempted(user)
+    questions = self.questions
+    attempts = questions.map {|q| q.attempts }
+    user_attempts = attempts.flatten.find_all{|a| a.user_id == user.id}
+    user_questions = user_attempts.map{|a| a.question }
+  end
 
 end
