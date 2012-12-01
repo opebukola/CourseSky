@@ -18,14 +18,13 @@ describe Question do
 	describe "#last_attempt(quiz)" do
 		it "should return an empty set if no attempts" do
 			question = FactoryGirl.create(:question)
-			quiz = Quiz.create!
-
+			quiz = FactoryGirl.create(:quiz)
 
 			question.last_attempt(quiz).should be_nil
 		end
 		it	"should return last attempt with multiple attempts" do
 			question = FactoryGirl.create(:question)
-			quiz = Quiz.create!
+			quiz = FactoryGirl.create(:quiz)
 			user = FactoryGirl.create(:user)
 			attempt1 = quiz.attempts.build
 				attempt1.user = user

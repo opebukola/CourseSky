@@ -14,4 +14,7 @@ class Enrollment < ActiveRecord::Base
   belongs_to :student, class_name: "User"
   belongs_to :enrolled_course, class_name: "Course"
 
+  validates :student_id, presence: true
+  validates	:enrolled_course_id, presence: true
+
 end

@@ -1,12 +1,10 @@
 FactoryGirl.define  do
-	Factory.sequence :email do |n|
-		"test #{n}@example.com"
-	end
 
 	factory :user do |u|
 		u.fname										"Test"
+		u.sequence(:email)				{|n| "user#{n}@example.com"}
 		u.lname										"User"
-		u.email 									{Factory.next(:email)} 
+		# u.email 									{Factory.next(:email)} 
 		u.password								"password"
 		u.password_confirmation		"password"
 	end

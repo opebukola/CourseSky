@@ -8,8 +8,6 @@ describe "PracticePages" do
 
   	# before { visit course_path(course) }
 
-  	it { pending
-  		should have_selector(:li, text: 'Practice') }
   end
 end
 
