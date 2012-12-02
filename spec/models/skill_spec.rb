@@ -12,31 +12,105 @@
 require 'spec_helper'
 
 describe Skill do
-	describe "#questions_attempted(user)" do
-		let(:user){FactoryGirl.create(:user)}
+	let(:user){FactoryGirl.create(:user)}
+	let(:quiz) {FactoryGirl.create(:quiz)}
+	let(:attempt1) {quiz.attempts.build}
+	let(:attempt2) {quiz.attempts.build}
+	let(:attempt3) {quiz.attempts.build}
+	let(:skill) {FactoryGirl.create(:skill)}
+	let(:question1) {FactoryGirl.create(:question)}
+	let(:question2) {FactoryGirl.create(:question)}
+
+	describe "#questions_attempted(user)" do	
 		it	"should return empty set if no attempts" do
-			skill = FactoryGirl.create(:skill)
-			question = skill.questions.build
+			skill.questions << question1
 
 			skill.questions_attempted(user).should be_empty
 		end
 
 		describe "with multiple attempts on question " do
 			it "should return unique number of questions" do
-				# some code that defines multiple attempts for a question 
-				# with same skill
+				skill.questions << question1
 
-				#verify skill.questions_attempted(user) has no duplicates
+				quiz.user = user
+
+				attempt1.user = user
+				attempt1.question = question1
+				attempt1.save
+
+				attempt2.user = user
+				attempt2.question = question1
+				attempt2.save
+
+				pp skill.questions_attempted(user)
+
+				skill.questions_attempted(user).should_not be_empty
+				skill.questions_attempted(user).size.should == 1
+
+
+				# skill.questions_attempted(user).should == question 
 			end
-			
 		end
 	end
 
-	describe "#accuracy(user)" do
-		it "should return average for all questions with skill" do
-			#find questions, find last attempts, average accuracy
+	describe "#questions_correct(user)" do
+		it "should return questions answered correct w/ skill" do
+			
+			skill.questions << question1
+			skill.questions << question2 
+
+			quiz.user = user
+
+			attempt1.user = user
+			attempt1.question = question1
+			attempt1.correct = false
+			attempt1.save
+
+			attempt2.user = user
+			attempt2.question = question2
+			attempt2.correct = false
+			attempt2.save
+
+			attempt3.user = user
+			attempt3.question = question2
+			attempt3.correct = true
+			attempt3.save
+
+			skill.questions_attempted(user).size.should == 2
+			skill.questions_correct(user).should_not be_empty
+			skill.questions_correct(user).size.should == 1
+
+			# skills.questions_correct_user).should include question2
 		end
 		
 	end
+
+	# describe "#accuracy(user)" do
+	# 	it "should return average for all questions with skill" do
+
+	# 		skill.questions << question1
+	# 		skill.questions << question2 
+
+	# 		quiz.user = user
+
+	# 		attempt1.user = user
+	# 		attempt1.question = question1
+	# 		attempt1.correct = false
+	# 		attempt1.save
+
+	# 		attempt2.user = user
+	# 		attempt2.question = question2
+	# 		attempt2.correct = false
+	# 		attempt2.save
+
+	# 		attempt3.user = user
+	# 		attempt3.question = question2
+	# 		attempt3.correct = true
+	# 		attempt3.save
+
+	# 		skill.accuracy(user).should == 0.5	
+	# 	end
+		
+	# end
 	
 end

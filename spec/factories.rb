@@ -52,5 +52,5 @@ FactoryGirl.define  do
 		course
 		lesson
 	end
-	
+
 end

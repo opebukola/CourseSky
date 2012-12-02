@@ -21,24 +21,47 @@ class Skill < ActiveRecord::Base
   scope :main, where('ancestry is null')
 
   # def questions_attempted(user)
-  #   user_id = user.id
   #   skill_id = self.id
-  #   Question.find_by_sql(["SELECT * 
-  #                 FROM questions
-  #                 INNER JOIN question_skills
-  #                 ON question.id = question_skill.question_id
-  #                 INNER JOIN attempts
-  #                 ON question.id = attempt.question_id 
-  #                 WHERE(attempt.user_id = #{user_id}
-  #                   AND question_skill.skill_id = #{skill_id})"])
+  #   user_id = user.id
+  #   Question.find_by_sql(["SELECT DISTINCT * 
+  #                     FROM questions
+  #                     INNER JOIN question_skills
+  #                     ON questions.id = question_skills.question_id
+  #                     INNER JOIN attempts
+  #                     ON questions.id = attempts.question_id
+  #                     WHERE (attempts.user_id = #{user_id}
+  #                       AND question_skills.skill_id = #{skill_id})"])
   # end
 
-  # this is terrible. need to use sql
+  #why do I have to use flatten here when it returns uniq array but
+  #array(size) is not unique
+
   def questions_attempted(user)
-    questions = self.questions
-    attempts = questions.map {|q| q.attempts }
-    user_attempts = attempts.flatten.find_all{|a| a.user_id == user.id}
-    user_questions = user_attempts.map{|a| a.question }
+    user_id = user.id
+    skill_id = self.id
+    Question.joins(:attempts, :question_skills).where(
+      "attempts.user_id = #{user_id} AND
+      question_skills.skill_id = #{skill_id}").uniq.flatten
   end
+
+
+  # def questions_correct(user)
+  #   last_attempts = self.questions_attempted(user).each do |q|
+  #     q.attempts.where(user_id: user.id).order('created_at DESC').first
+  #   end
+  #   return last_attempts
+  # end
+
+  def questions_correct(user)
+    questions = self.questions_attempted(user)
+    last_attempts = questions.map {|q| q.attempts.where(user_id: user.id).order('created_at DESC').first}
+    return last_attempts
+  end
+
+
+  # def accuracy(user)
+  #   self.questions_correct(user).size.to_f / 
+  #   self.questions_attempted(user).size.to_f
+  # end
 
 end
