@@ -36,9 +36,25 @@ class Question < ActiveRecord::Base
   validates :difficulty, presence: true
   validate :must_have_skills
 
-  def last_attempt(quiz)
+  #quiz methods
+
+  def last_quiz_attempt(quiz)
     quiz.attempts.where(question_id: self.id).order('created_at DESC').first
   end
+
+  #user methods
+
+  def all_attempts_by(user)
+    Attempt.where(
+      question_id: self.id, user_id: user.id)
+  end
+
+  def last_attempt_by(user)
+    Attempt.where(
+      question_id: self.id, user_id: user.id).order('
+      created_at DESC').first
+  end
+
 
 
 

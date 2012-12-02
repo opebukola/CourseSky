@@ -27,7 +27,7 @@ class Quiz < ActiveRecord::Base
 
   def final_attempts
     questions = self.attempted_questions.uniq{|q| q.id}
-    questions.map{|q| q.last_attempt(self)}
+    questions.map{|q| q.last_quiz_attempt(self)}
   end
 
   def correct_questions

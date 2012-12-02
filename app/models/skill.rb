@@ -34,7 +34,7 @@ class Skill < ActiveRecord::Base
   # end
 
   #why do I have to use flatten here when it returns uniq array but
-  #array(size) is not unique
+  #array(size) gives me size for all questions not unique
 
   def questions_attempted(user)
     user_id = user.id
@@ -45,19 +45,28 @@ class Skill < ActiveRecord::Base
   end
 
 
-  # def questions_correct(user)
-  #   last_attempts = self.questions_attempted(user).each do |q|
-  #     q.attempts.where(user_id: user.id).order('created_at DESC').first
-  #   end
-  #   return last_attempts
-  # end
-
+  # done with ruby 
   def questions_correct(user)
     questions = self.questions_attempted(user)
-    last_attempts = questions.map {|q| q.attempts.where(user_id: user.id).order('created_at DESC').first}
-    return last_attempts
+    last_attempts = questions.map {
+      |q| q.attempts.where(user_id: user.id).order('created_at DESC').first}
+    correct_attempts = last_attempts.find_all{|a| a.correct == true}
+    correct_questions = correct_attempts.map{|a| a.question}
+    return correct_questions
   end
 
+  #this method is bad because it finds correct attempts, but not last 
+  #attempt. If user attempts questiont twice, gets right then wrong
+  #this counts it as right but should be wrong
+
+  def bad_questions_correct(user)
+    user_id = user.id
+    skill_id = self.id
+    Question.joins(:attempts, :question_skills).where(
+      "attempts.user_id = #{user_id} AND
+      attempts.correct = true AND
+      question_skills.skill_id = #{skill_id}").uniq.flatten
+  end
 
   # def accuracy(user)
   #   self.questions_correct(user).size.to_f / 

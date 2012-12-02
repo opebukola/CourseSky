@@ -42,8 +42,6 @@ describe Skill do
 				attempt2.question = question1
 				attempt2.save
 
-				pp skill.questions_attempted(user)
-
 				skill.questions_attempted(user).should_not be_empty
 				skill.questions_attempted(user).size.should == 1
 
