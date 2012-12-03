@@ -20,19 +20,6 @@ class Skill < ActiveRecord::Base
 
   scope :main, where('ancestry is null')
 
-  # def questions_attempted(user)
-  #   skill_id = self.id
-  #   user_id = user.id
-  #   Question.find_by_sql(["SELECT DISTINCT * 
-  #                     FROM questions
-  #                     INNER JOIN question_skills
-  #                     ON questions.id = question_skills.question_id
-  #                     INNER JOIN attempts
-  #                     ON questions.id = attempts.question_id
-  #                     WHERE (attempts.user_id = #{user_id}
-  #                       AND question_skills.skill_id = #{skill_id})"])
-  # end
-
   #why do I have to use flatten here when it returns uniq array but
   #array(size) gives me size for all questions not unique
 
@@ -40,37 +27,26 @@ class Skill < ActiveRecord::Base
     user_id = user.id
     skill_id = self.id
     Question.joins(:attempts, :question_skills).where(
-      "attempts.user_id = #{user_id} AND
-      question_skills.skill_id = #{skill_id}").uniq.flatten
+      attempts: {user_id: user_id},
+      question_skills: {skill_id: skill_id}).uniq
   end
 
-
-  # done with ruby 
   def questions_correct(user)
-    questions = self.questions_attempted(user)
-    last_attempts = questions.map {
-      |q| q.attempts.where(user_id: user.id).order('created_at DESC').first}
-    correct_attempts = last_attempts.find_all{|a| a.correct == true}
-    correct_questions = correct_attempts.map{|a| a.question}
-    return correct_questions
-  end
-
-  #this method is bad because it finds correct attempts, but not last 
-  #attempt. If user attempts questiont twice, gets right then wrong
-  #this counts it as right but should be wrong
-
-  def bad_questions_correct(user)
     user_id = user.id
     skill_id = self.id
-    Question.joins(:attempts, :question_skills).where(
-      "attempts.user_id = #{user_id} AND
-      attempts.correct = true AND
-      question_skills.skill_id = #{skill_id}").uniq.flatten
+    Question.where(
+      "(SELECT correct FROM attempts 
+        WHERE question_id = questions.id 
+        ORDER BY created_at DESC LIMIT 1) = true").joins(:attempts, :question_skills).where(
+    attempts: {user_id: user_id},
+    question_skills: {skill_id: skill_id}).uniq
+
   end
 
-  # def accuracy(user)
-  #   self.questions_correct(user).size.to_f / 
-  #   self.questions_attempted(user).size.to_f
-  # end
+
+  def accuracy(user)
+    self.questions_correct(user).flatten.size.to_f / 
+    self.questions_attempted(user).flatten.size.to_f
+  end
 
 end

@@ -54,12 +54,18 @@ describe Enrollment do
 		it "should enroll user in course" do
 			student = FactoryGirl.create(:user)
 			course = FactoryGirl.create(:course)
-			quiz = course.quizzes.build
+			quiz = Quiz.new
+			quiz.lesson = FactoryGirl.create(:lesson)
+			quiz.course = course
+			quiz.user = student
 			quiz.save
+
+			pp quiz
 
 			student.enrolled?(course).should be_true
 		end
 	end
+
 
 	# describe "when user submits check question" do
 	# 		student = FactoryGirl.create(:user)

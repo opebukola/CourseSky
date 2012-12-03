@@ -16,7 +16,6 @@ describe Skill do
 	let(:quiz) {FactoryGirl.create(:quiz)}
 	let(:attempt1) {quiz.attempts.build}
 	let(:attempt2) {quiz.attempts.build}
-	let(:attempt3) {quiz.attempts.build}
 	let(:skill) {FactoryGirl.create(:skill)}
 	let(:question1) {FactoryGirl.create(:question)}
 	let(:question2) {FactoryGirl.create(:question)}
@@ -43,7 +42,7 @@ describe Skill do
 				attempt2.save
 
 				skill.questions_attempted(user).should_not be_empty
-				skill.questions_attempted(user).size.should == 1
+				skill.questions_attempted(user).flatten.size.should == 1
 
 
 				# skill.questions_attempted(user).should == question 
@@ -54,6 +53,52 @@ describe Skill do
 	describe "#questions_correct(user)" do
 		it "should return questions answered correct w/ skill" do
 			
+			skill.questions << question1
+
+			quiz.user = user
+
+			attempt1.user = user
+			attempt1.question = question1
+			attempt1.correct = false
+			attempt1.save
+
+			attempt2.user = user
+			attempt2.question = question1
+			attempt2.correct = true
+			attempt2.save
+
+			skill.questions_correct(user).should_not be_empty
+			skill.questions_correct(user).flatten.size.should == 1
+
+			# skills.questions_correct_user).should include question2
+		end
+
+		it "should return last attempt on question" do
+			
+			skill.questions << question1
+
+			quiz.user = user
+
+			attempt1.user = user
+			attempt1.question = question1
+			attempt1.correct = true
+			attempt1.save
+
+			attempt2.user = user
+			attempt2.question = question1
+			attempt2.correct = false
+			attempt2.save
+
+			skill.questions_correct(user).should be_empty
+			skill.questions_correct(user).flatten.size.should == 0
+
+			# skills.questions_correct_user).should include question2
+		end
+	end
+
+	describe "#accuracy(user)" do
+		it "should return average for all questions with skill" do
+
 			skill.questions << question1
 			skill.questions << question2 
 
@@ -66,49 +111,12 @@ describe Skill do
 
 			attempt2.user = user
 			attempt2.question = question2
-			attempt2.correct = false
+			attempt2.correct = true
 			attempt2.save
 
-			attempt3.user = user
-			attempt3.question = question2
-			attempt3.correct = true
-			attempt3.save
-
-			skill.questions_attempted(user).size.should == 2
-			skill.questions_correct(user).should_not be_empty
-			skill.questions_correct(user).size.should == 1
-
-			# skills.questions_correct_user).should include question2
+			skill.accuracy(user).should == 0.5	
 		end
 		
 	end
-
-	# describe "#accuracy(user)" do
-	# 	it "should return average for all questions with skill" do
-
-	# 		skill.questions << question1
-	# 		skill.questions << question2 
-
-	# 		quiz.user = user
-
-	# 		attempt1.user = user
-	# 		attempt1.question = question1
-	# 		attempt1.correct = false
-	# 		attempt1.save
-
-	# 		attempt2.user = user
-	# 		attempt2.question = question2
-	# 		attempt2.correct = false
-	# 		attempt2.save
-
-	# 		attempt3.user = user
-	# 		attempt3.question = question2
-	# 		attempt3.correct = true
-	# 		attempt3.save
-
-	# 		skill.accuracy(user).should == 0.5	
-	# 	end
-		
-	# end
 	
 end

@@ -20,14 +20,19 @@ class Quiz < ActiveRecord::Base
   has_many :skills, through: :questions
   has_many :attempts
   has_many :attempted_questions, through: :attempts, source: :question
+  after_save :build_course_enrollment
 
   validates :user_id, presence: true
   validates :course_id, presence: true
   validates :lesson_id, presence: true
 
+  # def final_attempts
+  #   questions = self.attempted_questions.uniq{|q| q.id}
+  #   questions.map{|q| q.last_quiz_attempt(self)}
+  # end
+
   def final_attempts
-    questions = self.attempted_questions.uniq{|q| q.id}
-    questions.map{|q| q.last_quiz_attempt(self)}
+
   end
 
   def correct_questions
@@ -54,5 +59,15 @@ class Quiz < ActiveRecord::Base
     }
     score_array.reduce(:+)
   end
+
+  protected
+    def build_course_enrollment
+      course = self.course
+      user = self.user
+      unless course.user == user
+        Enrollment.find_or_create_by_student_id_and_enrolled_course_id(
+          user.id, course.id)
+      end
+    end
 
 end
