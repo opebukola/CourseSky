@@ -26,14 +26,11 @@ class Quiz < ActiveRecord::Base
   validates :course_id, presence: true
   validates :lesson_id, presence: true
 
-  # def final_attempts
-  #   questions = self.attempted_questions.uniq{|q| q.id}
-  #   questions.map{|q| q.last_quiz_attempt(self)}
-  # end
-
   def final_attempts
-
+    questions = self.attempted_questions.uniq{|q| q.id}
+    questions.map{|q| q.last_quiz_attempt(self)}
   end
+
 
   def correct_questions
     attempts = self.final_attempts

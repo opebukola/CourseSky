@@ -22,11 +22,16 @@ FactoryGirl.define  do
 		user	
 	end
 
+	factory :unit do |u|
+		u.title "Unit 1"
+
+		course
+	end
+
 	factory :lesson do |l|
 		l.title	"Lesson 1"
 
-		user
-		course
+		unit
 	end
 
 	factory :answer do |a|

@@ -60,8 +60,6 @@ describe Enrollment do
 			quiz.user = student
 			quiz.save
 
-			pp quiz
-
 			student.enrolled?(course).should be_true
 		end
 	end

@@ -1,0 +1,16 @@
+<p>
+	<%= link_to 'Add New Unit', new_course_path(course_id: @course.id), class: 'btn btn-large btn-primary' %>
+</p>
+<hr />
+<p>
+	<h2> Edit or rearrange existing units</h2>
+	<% @course.units.order(:position).each do |u| %>
+		<%= content_tag_for :li, u do %>
+			<h3><span class="handle">[move]</span>
+				<%= u.title %> |
+				Edit |
+				Delete
+			</h3>
+		<% end %>
+	<% end %><br />
+</p>

@@ -5,8 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string(255)
 #  document   :text
-#  course_id  :integer
-#  user_id    :integer
+#  unit_id    :integer
 #  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

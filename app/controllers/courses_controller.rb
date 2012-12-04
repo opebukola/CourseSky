@@ -25,6 +25,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @units = @course.units.order(:position)
     @lessons = @course.lessons.order(:position)
     if @course.feature_status == 'not featured'
       redirect_to root_path unless current_user == @course.user

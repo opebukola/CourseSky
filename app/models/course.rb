@@ -18,26 +18,27 @@
 class Course < ActiveRecord::Base
   attr_accessible :cover_image, :description, :published, :title,
                   :subject_id, :category_ids, :subject, :grade_level_id, :grade_level
+  belongs_to :user
+  belongs_to :grade_level  
 
-  has_many :lessons, order: "position", dependent: :destroy
+  has_many :units
+  has_many :units, order: "position", dependent: :destroy
+  has_many :lessons, through: :units
+  has_many :lesson_items, through: :lessons
+  has_many :lesson_item_skills, through: :lesson_items
+  has_many :skills, through: :lesson_item_skills
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
-  belongs_to :user
-  belongs_to :grade_level
-  # has_many :lesson_skills, through: :lessons
-  # has_many :skills, through: :lesson_skills
-  has_many :lesson_items, through: :lessons
-  has_many :lesson_item_skills, through: :lesson_items
-  has_many :skills, through: :lesson_item_skills
-  has_many :quizzes
+
+  # has_many :quizzes
   # before_destroy :ensure_no_students
 
   validates :title, presence: true
   validates :description, presence: true
   validates :user_id, presence: true
-  validates :grade_level, presence: true
+  # validates :grade_level, presence: true
   # validates :categories, presence: true
 
   mount_uploader :cover_image, CoverImageUploader

@@ -33,6 +33,8 @@ Coursesky::Application.routes.draw do
     end
   end
 
+  resources :units
+
   resources :questions do
     member do
       post :check
