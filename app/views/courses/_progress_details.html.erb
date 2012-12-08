@@ -8,40 +8,32 @@
 			<h3 class="progress-number"><%= current_user.progress(@course).round(0) %>%</h3>
 			<p class="progress-description">lessons completed</p>
 		</div>
-			<div class="progress-stat">
-			<h3 class="progress-number"><%=current_user.quiz_count(@course)%></h3>
-			<p class="progress-description">quizzes completed</p>
-		</div>
-			<div class="progress-stat">
+		<div class="progress-stat">
 			<h3 class="progress-number"><%=current_user.quiz_question_count(@course)%></h3>
 			<p class="progress-description">questions answered</p>
+		</div>
+		<div class="progress-stat">
+			<h3 class="progress-number">X %</h3>
+			<p class="progress-description">overall accuracy</p>
+		</div>
+		<div class="progress-stat">
+			<h3 class="progress-number">X </h3>
+			<p class="progress-description">mastery level</p>
 		</div>
 	</div>
 	<div class="skills-report">
 		<p class="progress-notice"> Skill Report </p>
 		<h3> Top 5 Skills Mastered</h3><br />
+		<% @practiced_skills.each do |s| %>
+		<ul>
+			<li><%= s.description %></li>
+		</ul>
+
+		<% end %>
 		<h3> Top 5 Skills to Work On</h3><br />
-		<%= link_to "See all skills in this course", '#' %>
+		<%= link_to "See detailed skill report for this course", '#' %>
 	</div>
 <% else %>
-	<div class="course-progress-stats">
-		<div class="progress-stat">
-			<h3 class="progress-number">0</h3>
-			<p class="progress-description">lessons completed</p>
-		</div>
-		<div class="progress-stat">
-			<h3 class="progress-number">0%</h3>
-			<p class="progress-description">lessons completed</p>
-		</div>
-			<div class="progress-stat">
-			<h3 class="progress-number">0%</h3>
-			<p class="progress-description">quizzes completed</p>
-		</div>
-			<div class="progress-stat">
-			<h3 class="progress-number">0</h3>
-			<p class="progress-description">questions answered</p>
-		</div>
-	</div>
 		<p class="progress-notice"> You don't have any progress data for this course yet. Start a lesson or take a quiz to track your progress.  </p>
 <% end %>
 

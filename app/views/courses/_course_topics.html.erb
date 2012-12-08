@@ -12,10 +12,12 @@
             <ol>
               <% u.lessons.each do |l| %>
                 <li>
+                  <h4>
                   <%= l.title %> |
                   <%= link_to "Learn", lesson_item_path(l.lesson_items.first) %> |
                   <%= link_to "Practice", new_quiz_path(lesson_id: l.id, course_id: @course.id) %>
-                </li>   
+                </h4>
+                </li><br />   
               <% end %>
             </ol>
           <% else %>
@@ -24,4 +26,5 @@
         </div>
       </div>
     </div>
+  </div>
 <% end %>

@@ -1,5 +1,5 @@
 jQuery ->
-  $('div.quiz-question:not(:first)').hide();
+  $('div.quiz-areas:not(:first)').hide();
   $('a.finish-quiz').hide();
   $('a.next-question').on 'click', (event) ->
     event.preventDefault();

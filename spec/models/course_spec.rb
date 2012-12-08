@@ -36,4 +36,43 @@ describe	Course do
 	it { should respond_to(:lesson_items) }
 
 	it { should be_valid }
+
+	describe "#progress(user)" do
+		it "should return nothing if user is not enrolled" do
+			@course.progress(user).should be_nil
+		end
+	end
+
+	describe "#lessons_completed_by(user)" do
+		it "should return lessons in course that user has finished" do
+			unit = FactoryGirl.create(:unit)
+		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
+		  lesson2 = FactoryGirl.create(:lesson, unit: unit)
+		  @course.units << unit
+		  @course.save
+
+		end
+	end
+
+	describe "#practiced_skills(user)" do
+		it "should return list of skills in course user has worked on" do
+			skill = FactoryGirl.create(:skill)
+			question = FactoryGirl.create(:question)
+			skill.questions << question
+			@course.skills << skill
+			@course.save
+
+			quiz = FactoryGirl.create(:quiz)
+			attempt1 = quiz.attempts.build
+			attempt1.user = user
+			attempt1.question = question
+			attempt1.correct = false
+			attempt1.save
+
+			@course.practiced_skills(user).should_not be_empty
+			@course.practiced_skills(user).size == 1
+
+		end
+		
+	end
 end

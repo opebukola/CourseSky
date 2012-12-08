@@ -4,17 +4,15 @@
 <table border="1">
   <tr>
     <th> Course Name </th>
-    <th> Course User </th>
-    <th> Course Status </th>
-    <th> Change Featured Status </th>
+    <th> Author First Name </th>
+    <th> Author Last Name </th>
     <th> Delete Course </th>
   </tr>
   <tr>
     <% @courses.each do |course| %>
     <td> <%= course.title %> </td>
     <td> <%= course.user.fname %> </td>
-    <td> <%= course.feature_status %></td>
-    <td> <%= link_to "Change Featured Status", feature_course_path(course), method: :put %></td>
+    <td> <%= course.user.lname %> </td>
     <td> <%= link_to "Delete", course_path(course),
                                 method: :delete,
                                 data: {confirm: 'Are you sure?'} %></td>

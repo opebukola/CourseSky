@@ -95,12 +95,12 @@ class User < ActiveRecord::Base
 
   #course progress
   def completed_course?(course)
-    lessons = Lesson.find_all_by_course_id(course.id)
+    lessons = course.lessons
     lessons.all? {|lesson| self.completed_lesson?(lesson)}
   end
 
   def completed_lessons(course)
-    lessons = Lesson.find_all_by_course_id(course.id)
+    lessons = course.lessons
     lessons.select {|lesson| self.completed_lesson?(lesson)}
   end
 
@@ -128,23 +128,6 @@ class User < ActiveRecord::Base
       |quiz| quiz.final_attempts.size}
     questions.reduce(:+)
   end
-
-  # #skill methods
-
-  # def course_quizzes(course)
-  #   self.quizzes.find_all{|q| q.course_id == course.id}   
-  # end
-
-  # def course_questions_attempted(course)
-  #   quizzes = self.course_quizzes(course)
-  #   quizzes.map{|q| q.attempted_questions}.flatten
-  # end
-
-  # def course_skills_attempted(course)
-  #   questions = self.course_questions_attempted(course)
-  #   skills = questions.map{|q| q.skills}.flatten
-  #   return skills.uniq{ |s| s.id} 
-  # end
 
 
 end

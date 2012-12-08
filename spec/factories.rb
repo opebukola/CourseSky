@@ -34,6 +34,12 @@ FactoryGirl.define  do
 		unit
 	end
 
+	factory :lesson_item do |l|
+		l.skills	{|s| [s.association(:skill)]}
+
+		lesson
+	end
+
 	factory :answer do |a|
 		a.content "Content"
 	end

@@ -1,5 +1,7 @@
 <%= provide(:title, 'All Skills') %>
 
+<%= link_to "Add New Skill", new_skill_path, class: 'btn btn-large' %>
+<hr />
 <% @skills.each do |s| %>
 	<%= s.description %> |
 	<%= link_to "Edit", '#' %> |

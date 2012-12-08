@@ -1,13 +1,36 @@
 <% question = attempt.question %>
 
-<div class="quiz-question">
-	Question <%=attempt_counter + 1%> of <%=@questions.count%> | Difficulty: <%= question.difficulty %> | Points Possible: <%= question.possible_points %>
-		<hr />
-		<span class="question-text"><%= markdown question.question_text %></span><br />
-		<%= render "questions/response_box", attempt: attempt%>
-
+<div class="quiz-area">
+	<div class="question-counter">
+		Question <%=attempt_counter + 1%> of <%=@questions.count%>
+	</div>
+	<div class="quiz-question-area">
+		<div class="question-area">
+			<span class="question-text-new"><%= markdown question.question_text %></span><br />
+		</div>
+		<div class="answer-area">
+			<%= render "questions/response_box", attempt: attempt%>
+			<div id="hint-box_<%=question.id%>">
+				<div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
+					<i class="icon-question-sign"></i>
+	        I don't know. Give me a hint!
+	      </div>
+	      <div id="hint_<%=question.id%>" class="hint collapse">
+	      	<%= question.hint %>
+	      </div>
+	    </div>
+		</div>
+	</div>
+	<div class="question-data">
+		About This Question <br />
+		Difficulty: <%= question.difficulty %> |
+		Points Possible: <%= question.possible_points %> |
+		Skills Tested: 
+		<% question.skills.each do |s| %>
+			<%= s.description %>
+		<% end %>
+	</div>
 </div>
-
-
+<hr />
 
 

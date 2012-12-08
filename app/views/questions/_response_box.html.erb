@@ -3,22 +3,13 @@
   <%= simple_form_for( [@quiz, attempt], remote: true) do |f| %>
     <%= f.input :question_id, as: :hidden %>
     <% if question.is_multiple_choice? %>
-      <%= f.input :response, collection: question.answers, as: :radio_buttons, label_method: :content, value_method: :content %>
+      <div class="quiz-response"> Select Answer: </div>
+      <%= f.input :response, collection: question.answers, as: :radio_buttons, label_method: :content, value_method: :content, label: false, class: 'quiz-response' %>
     <% else %>
-      <%= f.input :response, label: "Your Response" %>
+      <%= f.input :response, label: false, placeholder: 'Enter your response', input_html: {class: "quiz_response_form"} %>
     <% end %>
-      <div id="hint-box_<%=question.id%>">
-        <div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
-          <i class="icon-question-sign"></i>
-          I don't know. Give me a hint!
-        </div>
-        <div id="hint_<%=question.id%>" class="hint collapse">
-          <%= question.hint %>
-        </div>
-      </div>
-      <hr />
       <div id ="response-box-<%=question.id%>">
-        <%= f.button :submit, "Submit Answer" %>
+        <%= f.button :submit, "Submit Answer", class: 'btn btn-large btn-quiz' %>
       </div>
   <% end %>
 

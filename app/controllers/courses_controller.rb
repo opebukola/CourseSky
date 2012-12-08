@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   before_filter :instructor, only: [:new, :create]
 
   def index
-    @courses = Course.text_search(params[:query]).featured.published.desc
+    @courses = Course.text_search(params[:query]).published.desc
     @categories = Category.main.order(:name)
   end
 
@@ -27,9 +27,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @units = @course.units.order(:position)
     @lessons = @course.lessons.order(:position)
-    if @course.feature_status == 'not featured'
-      redirect_to root_path unless current_user == @course.user
-    end
+    @practiced_skills = @course.practiced_skill_accuracy(current_user)
   end
 
   def edit

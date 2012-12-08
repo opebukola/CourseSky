@@ -16,10 +16,8 @@
 #
 
 class Course < ActiveRecord::Base
-  attr_accessible :cover_image, :description, :published, :title,
-                  :subject_id, :category_ids, :subject, :grade_level_id, :grade_level
-  belongs_to :user
-  belongs_to :grade_level  
+  attr_accessible :cover_image, :description, :published, :title
+  belongs_to :user 
 
   has_many :units
   has_many :units, order: "position", dependent: :destroy
@@ -27,8 +25,6 @@ class Course < ActiveRecord::Base
   has_many :lesson_items, through: :lessons
   has_many :lesson_item_skills, through: :lesson_items
   has_many :skills, through: :lesson_item_skills
-  has_many :categorizations, dependent: :destroy
-  has_many :categories, through: :categorizations
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
 
@@ -45,7 +41,19 @@ class Course < ActiveRecord::Base
 
   scope :desc, order: "created_at desc"
   scope :published, where(published: true)
-  scope :featured, where(featured: true)
+  # scope :featured, where(featured: true)
+
+  #skill methods - need to convert to sql
+
+  def practiced_skills(user)
+    skills = self.skills
+    skills.uniq.find_all{|s| s.questions_attempted(user).any?}
+  end
+
+  def practiced_skill_accuracy(user)
+    skills = practiced_skills(user)
+    skills.sort_by{|s| -s.accuracy(user)}
+  end
 
   # def ensure_no_students
   #   if self.students
@@ -63,13 +71,13 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def feature_status
-    if self.featured
-      return 'featured'
-    else
-      return 'not featured'
-    end
-  end
+  # def feature_status
+  #   if self.featured
+  #     return 'featured'
+  #   else
+  #     return 'not featured'
+  #   end
+  # end
 
   #ratings
   def rating

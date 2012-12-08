@@ -1,21 +1,28 @@
-<div class="content-box">
-	<% if @lesson_item.type == 'Video' %>
-		<div class="video">
-			<iframe width="560" height="315" src="<%=@lesson_item.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
-		</div>
-		<div class= "transcript">
-			<%= markdown @lesson_item.transcript %>
-		</div>
-
-	<% elsif @lesson_item.type == 'Ask' %>
-		<div id="check-<%=@lesson_item.id%>" class="ask" >
-			<% if current_user && current_user.has_answered?(@lesson_item) %>
-				<div class="question-answered">
-					You have correctly answered this question. Feel free to try it again!
-				</div>
-	    <% end %>
-	    <span class="question-text"><%= markdown @lesson_item.question_text %></span><br />
-	    <%= render "lesson_items/check_answer", question: @lesson_item %>
-		 </div>
-		<% end %>
-</div>
+  <div class="accordion content-box-large" id="unit_accordion">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#unit_accordion" href="#watch">
+          <h3>Watch</h3>
+        </a>
+      </div>
+      <div id="watch" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          <div class="video-large">
+          	<iframe width="853" height="480" src="<%=@lesson_item.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#unit_accordion" href="#read">
+          <h3>Read</h3>
+        </a>
+      </div>
+      <div id="read" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <%= markdown @lesson_item.transcript %>
+        </div>
+      </div>
+    </div>
+  </div>

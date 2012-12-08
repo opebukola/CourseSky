@@ -10,7 +10,7 @@ class AttemptsController < ApplicationController
 			if @attempt.save
 				respond_to do |format|
 					format.html {redirect_to :back, notice: "Correct" }
-					format.js {render text: 'ok'}
+					format.js {render js: "alert('Great!');", status: 200}
 				end
 			else
 				flash[:error] = @attempt.errors.full_messages
@@ -20,7 +20,7 @@ class AttemptsController < ApplicationController
 			if @attempt.save
 				respond_to do |format|
 					format.html {redirect_to :back, notice: "Try Again"}
-					format.js { render text: 'incorrect', status: 403}
+					format.js { render js: "alert('Incorrect!');"}
 				end
 			else
 				redirect_to :back
