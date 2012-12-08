@@ -1,12 +1,11 @@
 <% question = attempt.question %>
 
 <div class="quiz-area">
-	<div class="question-counter">
-		Question <%=attempt_counter + 1%> of <%=@questions.count%>
-	</div>
 	<div class="quiz-question-area">
 		<div class="question-area">
 			<span class="question-text-new"><%= markdown question.question_text %></span><br />
+			<%= image_tag(question.question_image_url) if question.question_image? %>
+
 		</div>
 		<div class="answer-area">
 			<%= render "questions/response_box", attempt: attempt%>
@@ -19,18 +18,21 @@
 	      	<%= question.hint %>
 	      </div>
 	    </div>
+	    <hr />
+	    <div class="question-data">
+	    	<div class="question-counter">
+	    		Question <%=attempt_counter + 1%> of <%=@questions.count%>
+	    	</div>
+	    	Difficulty: <%= question.difficulty_level %><br />
+	    	Points Possible: <%= question.possible_points %><br />
+	    	Skills Tested:<br />
+	    	<% question.skills.each do |s| %>
+	    		<%= s.description %>
+	    	<% end %>
+			</div>
 		</div>
 	</div>
-	<div class="question-data">
-		About This Question <br />
-		Difficulty: <%= question.difficulty %> |
-		Points Possible: <%= question.possible_points %> |
-		Skills Tested: 
-		<% question.skills.each do |s| %>
-			<%= s.description %>
-		<% end %>
-	</div>
+	
 </div>
-<hr />
 
 

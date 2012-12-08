@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @units = @course.units.order(:position)
     @lessons = @course.lessons.order(:position)
-    @practiced_skills = @course.practiced_skill_accuracy(current_user)
+    @practiced_skills = @course.practiced_skill_accuracy(current_user) if current_user
   end
 
   def edit

@@ -2,19 +2,22 @@
 #
 # Table name: questions
 #
-#  id            :integer          not null, primary key
-#  hint          :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  question_type :string(255)
-#  explanation   :text
-#  question_text :text
-#  difficulty    :integer
+#  id                :integer          not null, primary key
+#  hint              :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  question_type     :string(255)
+#  explanation_text  :text
+#  question_text     :text
+#  difficulty        :integer
+#  question_image    :string(255)
+#  explanation_video :string(255)
 #
 
 class Question < ActiveRecord::Base
-  attr_accessible :answers_attributes, :question_type, :explanation, :difficulty, 
-                  :hint, :question_text, :skill_ids, :lesson_ids
+  attr_accessible :answers_attributes, :question_type, :difficulty, 
+                  :hint, :question_text, :skill_ids, :lesson_ids,
+                  :question_image, :explanation_video, :explanation_text
   has_many :question_skills
   has_many :skills, through: :question_skills
   has_many :answer_questions, dependent: :destroy
@@ -24,7 +27,7 @@ class Question < ActiveRecord::Base
   has_many :lessons, through: :lesson_questions
 
   QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
-  QUESTION_DIFFICULTY = [1, 2, 3, 4, 5]
+  QUESTION_DIFFICULTY = [1, 2, 3]
 
 
   accepts_nested_attributes_for :answers, allow_destroy: true
@@ -35,6 +38,18 @@ class Question < ActiveRecord::Base
   validates :answers, presence: true
   validates :difficulty, presence: true
   validate :must_have_skills
+
+  mount_uploader :question_image, QuestionImageUploader
+
+  def must_have_skills
+    errors.add(:question, 'must have at least one skill') if self.skills.empty?
+  end
+
+  def difficulty_level
+    return "Easy" if self.difficulty == 1
+    return "Medium" if self.difficulty == 2
+    return "Hard" if self.difficulty == 3
+  end
 
   #quiz methods
 
@@ -53,13 +68,6 @@ class Question < ActiveRecord::Base
     Attempt.where(
       question_id: self.id, user_id: user.id).order('
       created_at DESC').first
-  end
-
-
-
-
-  def must_have_skills
-    errors.add(:question, 'must have at least one skill') if self.skills.empty?
   end
 
   def is_multiple_choice?

@@ -20,7 +20,7 @@ class AttemptsController < ApplicationController
 			if @attempt.save
 				respond_to do |format|
 					format.html {redirect_to :back, notice: "Try Again"}
-					format.js { render js: "alert('Incorrect!');"}
+					format.js { render js: "alert('Wrong Answer. Try Again');"}
 				end
 			else
 				redirect_to :back

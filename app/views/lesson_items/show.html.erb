@@ -1,5 +1,11 @@
 <%= render 'shared/lesson_intro' %>
-<%= render 'shared/show_items' %>
+<div class="content-box">
+	<% if @lesson_item.type == 'Video' %>
+		<%= render 'show_video' %>
+	<% elsif @lesson_item.type == 'Ask' %>
+		<%= render 'show_ask' %>
+	<% end %>
+</div>
 
 <div class="lesson-nav">
 	<% if @lesson_item.prev_item %>

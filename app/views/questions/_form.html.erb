@@ -12,6 +12,9 @@
   <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
 
+  <h3>Add an Image </h3>
+  <%= f.input :question_image, label: "Upload an image" %>
+
   <h3> Enter Answers </h3><br />
   <div class="answer-list">
     <%= f.simple_fields_for :answers do |builder| %>
@@ -28,7 +31,7 @@
 <hr />
 
  <h3>Explain the Answer </h3>
-  <%= f.input :explanation, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
+  <%= f.input :explanation_text, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
 
    <h4>Choose Skills </h4><br />

@@ -2,19 +2,42 @@
 #
 # Table name: questions
 #
-#  id            :integer          not null, primary key
-#  hint          :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  question_type :string(255)
-#  explanation   :text
-#  question_text :text
-#  difficulty    :integer
+#  id                :integer          not null, primary key
+#  hint              :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  question_type     :string(255)
+#  explanation_text  :text
+#  question_text     :text
+#  difficulty        :integer
+#  question_image    :string(255)
+#  explanation_video :string(255)
 #
 
 require 'spec_helper'
 
 describe Question do
+	before do
+	  @question = Question.new(
+	  						question_type: "Enter Response",
+	  						question_text: "Question Text",
+	  						difficulty: 1,
+	  						hint: "hint")
+	  skill = FactoryGirl.create(:skill)
+	  @question.skills << skill
+	  answer = FactoryGirl.create(:answer)
+	  @question.answers << answer
+	end
+
+	subject { @question }
+
+	it { should respond_to(:answers) }
+	it { should respond_to(:attempts) }
+	it { should respond_to(:lessons) }
+	it { should respond_to(:skills) }
+
+	it { should be_valid }
+
 	describe "#last_quiz_attempt(quiz)" do
 		it "should return an empty set if no attempts" do
 			question = FactoryGirl.create(:question)
