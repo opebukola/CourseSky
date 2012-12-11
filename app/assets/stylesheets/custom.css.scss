@@ -426,11 +426,22 @@ footer {
 
 .content-box-large{
   border: 1px solid #ddd;
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 30px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   background-color: white; 
+}
+
+.watch-read a{
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.watch-read{
+  padding: 10px 10px 10px 10px;
+  // font-weight: bold;
+  font-size: 1.3em;
 }
 
 /** -------------------------------------------------- **/
@@ -549,7 +560,8 @@ footer {
 .quiz-response{
   color: $gray;
   font-size: 1.1em;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
 input#attempt_response.string.quiz_response_form{
