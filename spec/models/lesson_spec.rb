@@ -23,6 +23,10 @@ describe Lesson do
 	it { should respond_to(:unit) }	
 	it { should respond_to(:position) }
 	it { should respond_to(:course) }
+	it { should respond_to(:lesson_activities) }
+	it { should respond_to(:concepts) }
+	it { should respond_to(:questions) }
+	it { should respond_to(:skills) }
 
 	it { should be_valid }
 

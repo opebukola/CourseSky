@@ -15,13 +15,13 @@ class Lesson < ActiveRecord::Base
   attr_accessible :unit_id, :document, :position, :title,:skill_ids
 
   belongs_to :unit
-  has_many :comments
-  has_many :lesson_items, order: :position
-  has_many :lesson_questions
-  has_many :questions, through: :lesson_questions
-  has_many :lesson_item_skills, through: :lesson_items
-  has_many :skills, through: :lesson_item_skills
+  has_many :questions
+  has_many :concepts
+  has_many :concept_skills, through: :concepts
+  has_many :skills, through: :concept_skills
   has_one :course, through: :unit
+  has_many :lesson_activities, order: :position
+  has_many :comments
 
   validates :title, presence: true
   validates :unit_id, presence: true

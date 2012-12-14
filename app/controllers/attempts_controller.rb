@@ -2,7 +2,6 @@ class AttemptsController < ApplicationController
 	def create
 		@attempt = Attempt.new(params[:attempt])
 		@attempt.user = current_user
-		@attempt.quiz = Quiz.find(params[:quiz_id])
 		@question = @attempt.question
 		@response = @attempt.response.to_s
 		if @question.is_correct?@response

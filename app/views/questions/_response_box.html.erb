@@ -1,7 +1,8 @@
 <% question = attempt.question %>
 
-  <%= simple_form_for( [@quiz, attempt], remote: true) do |f| %>
+  <%= simple_form_for(attempt, remote: true) do |f| %>
     <%= f.input :question_id, as: :hidden %>
+    <%= f.input :quiz_id, as: :hidden, input_html: {value: @quiz.id} %>
     
     <% if question.is_multiple_choice? %>
     <div class="quiz-response"> Select Response</div>

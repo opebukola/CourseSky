@@ -14,7 +14,7 @@
                 <li>
                   <h4>
                   <%= l.title %> |
-                  <%= link_to "Learn", lesson_item_path(l.lesson_items.first) %> |
+                  <%= link_to "Learn", lesson_activity_path(l.lesson_activities.first) %> |
                   <%= link_to "Practice", new_quiz_path(lesson_id: l.id, course_id: @course.id) %>
                 </h4>
                 </li><br />   

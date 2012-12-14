@@ -1,4 +1,56 @@
 <%= provide(:title, @lesson.title) %>
 <%= render 'shared/lesson_intro' %>
-<%= render 'show_item' %>
+
+<div class="lesson-itemms">
+	<% activity = @lesson.lesson_activities.find_by_position(1) %>
+
+	<% if activity.activity_type == 'LessonItem' %>
+			<% video = LessonItem.find(activity.activity_id) %>
+			<div class="accordion content-box-large" id="unit_accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="watch-read" data-toggle="collapse" data-parent="#unit_accordion" href="#watch">
+        Watch
+      </a> | 
+      <a class="watch-read" data-toggle="collapse" data-parent="#unit_accordion" href="#read">
+        Read
+      </a>
+      </div>
+      <div id="watch" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          	<iframe width="853" height="480" src="<%=video.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div id="read" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <%= markdown video.transcript %>
+        </div>
+      </div>
+    </div>
+</div>
+	<% end %>
+</div>
+
+<div class="lesson-nav">
+	<% if activity.prev_item %>
+		<%= link_to '#', class: "btn btn-large btn-primary" do  %>
+			<i class="icon-circle-arrow-left"></i>
+			Previous
+		<% end %>
+	<% end %>
+	<% if activity.next_item %>
+		<% next_video = activity.next_item.activity_id %>
+		<%= link_to lesson_item_path(next_video), class: "btn btn-large btn-primary btn-next" do  %>
+			<i class="icon-circle-arrow-right"></i>
+			Next
+		<% end %>
+	<% end %>
+	<% if activity.last? %>
+		<%= link_to finish_course_lesson_path(id:@lesson.id, course_id:@course.id), class: "btn btn-large btn-success btn-next" do  %>
+			<i class="icon-thumbs-up"></i>
+			Complete Lesson
+		<% end %>
+	<% end %>
+	<br />
+</div>
 

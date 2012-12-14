@@ -2,8 +2,5 @@
   <%= f.input :title, label: 'Give the course a title' %>
   <%= f.input :description, label: 'Provide a short course description', hint: 'You can add html tags (emphasis, lists, links, etc.) using <a href="http://daringfireball.net/projects/markdown/basics"> markdown. </a>' %>
   <%= f.input :cover_image, label: 'Upload a cover image' %>
-  <h4> What type of course is this? </h4>
-  <%= f.association :categories, collection: Category.order(:name), label: 'Choose all subjecst that apply' %>
-  <%= f.association :grade_level, collection: GradeLevel.order.desc, label: 'Select grade', required: true %><br />
   <%= f.button :submit, "Save Course" %>
 <% end %>

@@ -1,0 +1,19 @@
+<h4> Add a New Concept </h4>
+<%= simple_form_for @concept do |f| %>
+	<%= f.input :lesson_id, as: :hidden, input_html: {value: params[:lesson_id]} %>
+	<h3> Add Title</h3>
+	<%= f.input :title %>
+	<h3> Add YouTube Video Clip</h3>
+	<%= f.input :video_url, input_html: {class: "input-xxlarge"}, label: false, hint: 'YouTube URL only' %>
+	<h3> Add Clip Start and End Time</h3>
+	<%= f.input :video_start, hint:"Enter the time in seconds after video starts that you'd like video clip to BEGIN." %>
+	<h3>Add Video Clip End Time</h3>
+		<%= f.input :video_end, hint:"Enter the time in seconds after video starts that you'd like video clip to END." %>
+	<h3> Add Document</h3>
+	<%= f.input :doc, input_html: {class: "input-xxlarge", rows:10}, label: "Enter text document" %>
+	<p class="muted"><%= render "shared/markdown_tip" %></p>
+	<h3> Which Skills does this lesson teach? </h3>
+	<%= f.association :skills, label_method: :description, label: 'Add skills', hint: 'Select all that apply' %>
+	<hr />
+	<%= f.button :submit, "Save", class: "btn btn-primary" %>
+<% end %>

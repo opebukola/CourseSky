@@ -12,6 +12,8 @@
 #  difficulty        :integer
 #  question_image    :string(255)
 #  explanation_video :string(255)
+#  lesson_id         :integer
+#  mark_as_check     :boolean
 #
 
 require 'test_helper'

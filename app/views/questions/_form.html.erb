@@ -1,5 +1,8 @@
 <%= simple_form_for @question do |f| %>
-  <%= f.input :lesson_ids, as: :hidden, input_html: {value: @lesson.id} %>
+  <%= f.input :lesson_id, as: :hidden, input_html: {value: @lesson.id} %>
+
+  <h4>Make check for understanding?</h4><br />
+  <%= f.input :mark_as_check %>
 
   <h4>Choose a question type </h4><br />
   <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>

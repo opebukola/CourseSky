@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208161711) do
+ActiveRecord::Schema.define(:version => 20121214014800) do
 
   create_table "answer_asks", :force => true do |t|
     t.integer  "answer_id"
@@ -89,6 +89,26 @@ ActiveRecord::Schema.define(:version => 20121208161711) do
 
   add_index "completed_asks", ["student_id"], :name => "index_completed_asks_on_student_id"
 
+  create_table "concept_skills", :force => true do |t|
+    t.integer  "concept_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "concept_skills", ["concept_id", "skill_id"], :name => "index_concept_skills_on_concept_id_and_skill_id", :unique => true
+
+  create_table "concepts", :force => true do |t|
+    t.integer  "lesson_id"
+    t.string   "video_url"
+    t.integer  "video_start"
+    t.integer  "video_end"
+    t.text     "doc"
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "course_reviews", :force => true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
@@ -129,6 +149,15 @@ ActiveRecord::Schema.define(:version => 20121208161711) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "lesson_activities", :force => true do |t|
+    t.integer  "position"
+    t.integer  "lesson_id"
+    t.string   "activity_type"
+    t.integer  "activity_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "lesson_item_skills", :force => true do |t|
@@ -193,6 +222,8 @@ ActiveRecord::Schema.define(:version => 20121208161711) do
     t.integer  "difficulty"
     t.string   "question_image"
     t.string   "explanation_video"
+    t.integer  "lesson_id"
+    t.boolean  "mark_as_check"
   end
 
   create_table "quiz_skills", :force => true do |t|

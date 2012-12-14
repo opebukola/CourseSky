@@ -1,7 +1,6 @@
 jQuery ->
-  $('#item-list').sortable(
+  $('#lesson-activities-list').sortable(
     axis: 'y'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
-  );
-
+  )

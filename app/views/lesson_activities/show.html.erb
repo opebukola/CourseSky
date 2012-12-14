@@ -1,0 +1,31 @@
+<%= provide(:title, @lesson.title) %>
+<%= render 'shared/lesson_intro' %>
+
+<% if @activity.activity_type == 'Concept' %>
+	<%= render 'show_concept' %>
+<% elsif @activity.activity_type == 'Question'%>
+	<%= render 'show_question' %>
+<% else %>
+<% end %>
+
+<div class="lesson-nav">
+	<% if @activity.prev_item %>
+		<%= link_to lesson_activity_path(@activity.prev_item), class: "btn btn-large btn-primary" do  %>
+			<i class="icon-circle-arrow-left"></i>
+			Previous
+		<% end %>
+	<% end %>
+	<% if @activity.next_item %>
+		<%= link_to lesson_activity_path(@activity.next_item), class: "btn btn-large btn-primary btn-next" do  %>
+			<i class="icon-circle-arrow-right"></i>
+			Next
+		<% end %>
+	<% end %>
+	<% if @activity.last? %>
+		<%= link_to finish_course_lesson_path(id:@lesson.id, course_id:@lesson.course.id), class: "btn btn-large btn-success btn-next" do  %>
+			<i class="icon-thumbs-up"></i>
+			Complete Lesson
+		<% end %>
+	<% end %>
+	<br />
+</div>

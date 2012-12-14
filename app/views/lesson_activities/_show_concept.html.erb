@@ -1,0 +1,23 @@
+<% video = Concept.find(@activity.activity_id) %>
+<div class="accordion content-box-large" id="unit_accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="watch-read" data-toggle="collapse" data-parent="#unit_accordion" href="#watch">
+        Watch
+      </a> | 
+      <a class="watch-read" data-toggle="collapse" data-parent="#unit_accordion" href="#read">
+        Read
+      </a>
+      </div>
+      <div id="watch" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          	<iframe width="853" height="480" src="<%=video.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div id="read" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <%= markdown video.doc %>
+        </div>
+      </div>
+    </div>
+</div>

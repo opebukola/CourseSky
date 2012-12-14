@@ -33,7 +33,14 @@ Coursesky::Application.routes.draw do
     end
   end
 
-  resources :units
+  resources :units do
+    collection {post :sort}
+  end
+  resources :lesson_activities do
+    collection {post :sort }
+  end
+
+  resources :concepts
 
   resources :questions do
     member do
@@ -44,14 +51,13 @@ Coursesky::Application.routes.draw do
     member do
       get :finish
     end
-    resources :attempts
   end
+  resources :attempts
 
-  resources :categories
+
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews
   resources :comments, only: [:new, :create, :destroy]
-  resources :grade_levels
   resources :lesson_items do
     member do
       post :check

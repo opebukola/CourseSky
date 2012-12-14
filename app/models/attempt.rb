@@ -24,7 +24,7 @@ class Attempt < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :question_id, presence: true
-  validates :quiz_id, presence: true
+  # validates :quiz_id, presence: true
   # scope :skipped, where('response is null')
   after_save :calculate_score
 

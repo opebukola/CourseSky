@@ -15,10 +15,10 @@ class LessonsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @lesson = @course.lessons.build(params[:lesson])
-    @lesson.user = current_user
     if @lesson.save
       redirect_to manage_course_path(@course), notice: "Lesson Saved!"
     else
+      flash[:error] = @lesson.errors.full_messages
       render 'new'
     end
   end

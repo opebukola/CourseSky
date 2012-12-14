@@ -12,6 +12,8 @@
 #  difficulty        :integer
 #  question_image    :string(255)
 #  explanation_video :string(255)
+#  lesson_id         :integer
+#  mark_as_check     :boolean
 #
 
 require 'spec_helper'
@@ -33,7 +35,7 @@ describe Question do
 
 	it { should respond_to(:answers) }
 	it { should respond_to(:attempts) }
-	it { should respond_to(:lessons) }
+	it { should respond_to(:lesson) }
 	it { should respond_to(:skills) }
 
 	it { should be_valid }

@@ -1,9 +1,9 @@
-<%=link_to "Add New Quiz Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+<h3> This lesson has <%=@lesson.questions.count %> total questions.</h3><br />
 
- <hr />
+<%=link_to "Add New Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+<hr />
 
-<h3> This lesson currently has <%=@lesson.questions.count %> quiz questions. </h3><br />
-
+<h3> All Questions: </h3>
  <% @lesson.questions.each do |q| %>
  <p>
  	<%= q.question_text %> |

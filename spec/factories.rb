@@ -28,6 +28,16 @@ FactoryGirl.define  do
 		unit
 	end
 
+	factory :concept do |c|
+		c.title 			"Title"
+		c.video_url		"http://www.youtube.com/watch?v=2_QdgNsopkM"
+		c.doc					"Document"
+
+		c.skills {|s| [s.association(:skill)]}
+
+		lesson
+	end
+
 	factory :lesson_item do |l|
 		l.skills	{|s| [s.association(:skill)]}
 

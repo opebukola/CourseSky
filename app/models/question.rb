@@ -12,22 +12,46 @@
 #  difficulty        :integer
 #  question_image    :string(255)
 #  explanation_video :string(255)
+#  lesson_id         :integer
+#  mark_as_check     :boolean
 #
 
 class Question < ActiveRecord::Base
   attr_accessible :answers_attributes, :question_type, :difficulty, 
-                  :hint, :question_text, :skill_ids, :lesson_ids,
-                  :question_image, :explanation_video, :explanation_text
+                  :hint, :question_text, :skill_ids, :lesson_id,
+                  :question_image, :explanation_video, :explanation_text,
+                  :mark_as_check
+  belongs_to :lesson
   has_many :question_skills
   has_many :skills, through: :question_skills
   has_many :answer_questions, dependent: :destroy
   has_many :answers, through: :answer_questions
   has_many :attempts, dependent: :destroy
-  has_many :lesson_questions
-  has_many :lessons, through: :lesson_questions
+
+  #lesson ask methods
+  has_one :lesson_activity, as: :activity
+  after_save :create_lesson_activity
+  before_destroy :delete_lesson_activity
+
+
+  def create_lesson_activity
+    if self.mark_as_check?
+      id = self.id
+      type = 'Question'
+      activity = self.lesson.lesson_activities.
+      find_or_create_by_activity_id_and_activity_type(id,type)
+      activity.save
+    end
+  end
+
+    def delete_lesson_activity
+    LessonActivity.find_by_lesson_id_and_activity_id_and_activity_type(
+      self.lesson.id, self.id, 'Question').destroy
+  end
 
   QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
   QUESTION_DIFFICULTY = [1, 2, 3]
+
 
 
   accepts_nested_attributes_for :answers, allow_destroy: true
