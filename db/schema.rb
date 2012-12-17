@@ -11,27 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214014800) do
-
-  create_table "answer_asks", :force => true do |t|
-    t.integer  "answer_id"
-    t.integer  "ask_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "answer_questions", :force => true do |t|
-    t.integer  "answer_id"
-    t.integer  "question_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121217230832) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "correct",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "correct",     :default => false
+    t.integer  "question_id"
   end
 
   create_table "attempts", :force => true do |t|
@@ -46,27 +33,6 @@ ActiveRecord::Schema.define(:version => 20121214014800) do
     t.integer  "quiz_id"
   end
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "subject_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "ancestry"
-  end
-
-  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
-  add_index "categories", ["subject_id"], :name => "index_categories_on_subject_id"
-
-  create_table "categorizations", :force => true do |t|
-    t.integer  "category_id"
-    t.integer  "course_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
-  add_index "categorizations", ["course_id"], :name => "index_categorizations_on_course_id"
-
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
@@ -79,15 +45,6 @@ ActiveRecord::Schema.define(:version => 20121214014800) do
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["lesson_id"], :name => "index_comments_on_lesson_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
-
-  create_table "completed_asks", :force => true do |t|
-    t.integer  "student_id",     :null => false
-    t.integer  "lesson_item_id", :null => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "completed_asks", ["student_id"], :name => "index_completed_asks_on_student_id"
 
   create_table "concept_skills", :force => true do |t|
     t.integer  "concept_id"
@@ -145,41 +102,11 @@ ActiveRecord::Schema.define(:version => 20121214014800) do
   add_index "enrollments", ["student_id", "enrolled_course_id"], :name => "index_enrollments_on_student_id_and_enrolled_course_id", :unique => true
   add_index "enrollments", ["student_id"], :name => "index_enrollments_on_student_id"
 
-  create_table "grade_levels", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "lesson_activities", :force => true do |t|
     t.integer  "position"
     t.integer  "lesson_id"
     t.string   "activity_type"
     t.integer  "activity_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "lesson_item_skills", :force => true do |t|
-    t.integer  "lesson_item_id"
-    t.integer  "skill_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "lesson_item_skills", ["lesson_item_id", "skill_id"], :name => "index_lesson_item_skills_on_lesson_item_id_and_skill_id", :unique => true
-
-  create_table "lesson_items", :force => true do |t|
-    t.integer  "lesson_id"
-    t.integer  "position"
-    t.string   "type"
-    t.string   "url"
-    t.integer  "start_time"
-    t.integer  "end_time"
-    t.text     "transcript"
-    t.string   "question_type"
-    t.text     "question_text"
-    t.text     "hint"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -223,17 +150,7 @@ ActiveRecord::Schema.define(:version => 20121214014800) do
     t.string   "question_image"
     t.string   "explanation_video"
     t.integer  "lesson_id"
-    t.boolean  "mark_as_check"
   end
-
-  create_table "quiz_skills", :force => true do |t|
-    t.integer  "quiz_id"
-    t.integer  "skill_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "quiz_skills", ["quiz_id", "skill_id"], :name => "index_quiz_skills_on_quiz_id_and_skill_id", :unique => true
 
   create_table "quizzes", :force => true do |t|
     t.integer  "user_id"

@@ -13,19 +13,16 @@
 #  question_image    :string(255)
 #  explanation_video :string(255)
 #  lesson_id         :integer
-#  mark_as_check     :boolean
 #
 
 class Question < ActiveRecord::Base
   attr_accessible :answers_attributes, :question_type, :difficulty, 
                   :hint, :question_text, :skill_ids, :lesson_id,
-                  :question_image, :explanation_video, :explanation_text,
-                  :mark_as_check
+                  :question_image, :explanation_video, :explanation_text
   belongs_to :lesson
   has_many :question_skills
   has_many :skills, through: :question_skills
-  has_many :answer_questions, dependent: :destroy
-  has_many :answers, through: :answer_questions
+  has_many :answers
   has_many :attempts, dependent: :destroy
 
   #lesson ask methods
@@ -35,13 +32,11 @@ class Question < ActiveRecord::Base
 
 
   def create_lesson_activity
-    if self.mark_as_check?
-      id = self.id
-      type = 'Question'
-      activity = self.lesson.lesson_activities.
-      find_or_create_by_activity_id_and_activity_type(id,type)
+    id = self.id
+    type = 'Question'
+    activity = self.lesson.lesson_activities.
+    find_or_create_by_activity_id_and_activity_type(id,type)
       activity.save
-    end
   end
 
     def delete_lesson_activity
@@ -114,8 +109,4 @@ class Question < ActiveRecord::Base
     20 * self.difficulty
   end
 
-  # #quiz methods
-  # def last_in_quiz?(quiz)
-  #   return true if quiz.questions.last.id == self.id
-  # end
 end

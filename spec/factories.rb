@@ -59,6 +59,8 @@ FactoryGirl.define  do
 		q.hint						"hint"
 		q.answers				{|a| [a.association(:answer)]}		
 		q.skills				{|s| [s.association(:skill)]}
+
+		lesson
 	end
 
 

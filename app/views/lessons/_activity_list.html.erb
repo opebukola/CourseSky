@@ -1,3 +1,9 @@
+<h3> Add New Activities to this Lesson: </h3><br />
+
+<%=link_to "Add New Concept", new_concept_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+<%=link_to "Add New Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+<hr />
+
 <h3> Rearrange existing activities </h3>
 <p>
 <ul id="lesson-activities-list" data-update-url=" <%= sort_lesson_activities_url %>">
@@ -13,9 +19,4 @@
 </ul>
 </p>
 
-<hr />
 
-<h3> Add New Activities to this Lesson: </h3><br />
-
-<%=link_to "Add New Concept", new_concept_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
-<%=link_to "Add New Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>

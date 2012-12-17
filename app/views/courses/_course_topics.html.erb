@@ -6,16 +6,16 @@
           <h3>Unit <%=u.position%>: <%= u.title %></h3>
         </a>
       </div>
-      <div id="lessons_unit_<%=u.position%>" class="accordion-body collapse">
+      <div id="lessons_unit_<%=u.position%>" class="accordion-body collapse in">
         <div class="accordion-inner">
           <% if u.lessons.any? %>
             <ol>
               <% u.lessons.each do |l| %>
                 <li>
                   <h4>
-                  <%= l.title %> |
-                  <%= link_to "Learn", lesson_activity_path(l.lesson_activities.first) %> |
-                  <%= link_to "Practice", new_quiz_path(lesson_id: l.id, course_id: @course.id) %>
+                  <%= link_to l.title, lesson_activity_path(l.lesson_activities.first) %> |
+                  Status: incomplete |
+                  25% correct
                 </h4>
                 </li><br />   
               <% end %>

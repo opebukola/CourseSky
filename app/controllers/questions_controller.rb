@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
       redirect_to :back, notice: "Question saved"
     else
       flash[:error] = @question.errors.full_messages
-      @lesson = Lesson.find(params[:question][:lesson_ids])
+      @lesson = Lesson.find(params[:question][:lesson_id])
       # redirect_to :back
       render 'new'
     end
