@@ -1,24 +1,9 @@
 <%= provide(:title, @course.title) %>
+<%= render 'shared/course_intro' %>
+<br />
 <section>
-<h2><%= @course.title %></h2><br />
-  
-
-<ul class="nav nav-tabs" id="course-sections">
-  <li class="active"><a href="#about">Course Info</a></li>
-  <li><a href="#topics">Topics</a></li>
-  <li><a href="#progress">Your Progress</a></li>
-</ul>
- 
-<div class="tab-content">
-  <div class="tab-pane active course-description" id="about">
-    <%= markdown @course.description %>
+  <h2><%= @course.title %></h2><br />
+  <div class="course-description">
+      <%= markdown @course.description %>
   </div>
-  <div class="tab-pane course-topics" id="topics">
-    <%= render 'course_topics' %>
-  </div>
-  <div class="tab-pane" id="progress">
-    <%= render 'course_progress' %>
-  </div>
-</div>
-
 </section>

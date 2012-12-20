@@ -13,9 +13,10 @@ class Skill < ActiveRecord::Base
   attr_accessible :description, :parent, :parent_id
   has_many :question_skills
   has_many :questions, through: :question_skills
-  has_many :lesson_item_skills
-  has_many :lesson_items, through: :lesson_item_skills
-  has_many :lessons, through: :lesson_items
+  has_many :concept_skills
+  has_many :concepts, through: :concept_skills
+  has_many :lessons, through: :concepts
+ 
   has_ancestry
 
   scope :main, where('ancestry is null')

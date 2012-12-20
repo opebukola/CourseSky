@@ -1,5 +1,9 @@
 <%= provide(:title, 'Lessons') %>
+<%= render 'shared/course_intro' %><br />
+<div class="intro">
+	<div class="start">
+		<%= link_to @course.title, course_path(@course) %> | All Lessons
+  </div>
+</div>
 
-<% @lessons.each do |lesson| %>
-  <%= link_to lesson.title, course_lesson_path(course_id: @course.id, id: lesson.id) %><br />
-<% end %>
+<%= render 'courses/course_topics' %>

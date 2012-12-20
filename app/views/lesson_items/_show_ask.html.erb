@@ -1,9 +1,0 @@
-<div id="check-<%=@lesson_item.id%>" class="ask" >
-	<% if current_user && current_user.has_answered?(@lesson_item) %>
-	<div class="question-answered">
-		You have correctly answered this question. Feel free to try it again!
-	</div>
-	<% end %>
-	<span class="question-text"><%= markdown @lesson_item.question_text %></span><br />
-	<%= render "lesson_items/check_answer", question: @lesson_item %>
-		 </div>

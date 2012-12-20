@@ -28,7 +28,7 @@ Coursesky::Application.routes.draw do
     end
 
     member do
-      get :manage, :students
+      get :manage, :students, :progress, :tests
       put :publish, :feature
     end
   end
@@ -47,6 +47,7 @@ Coursesky::Application.routes.draw do
       post :check
     end
   end
+
   resources :quizzes do
     member do
       get :finish
@@ -58,16 +59,6 @@ Coursesky::Application.routes.draw do
   resources :enrollments, only: [:create, :destroy]
   resources :course_reviews
   resources :comments, only: [:new, :create, :destroy]
-  resources :lesson_items do
-    member do
-      post :check
-    end
-    collection do
-      post :sort
-    end
-  end
-  resources :videos, controller: "lesson_items", type: "Video"
-  resources :asks, controller: "lesson_items", type: "Ask"
   resources :skills
 
 

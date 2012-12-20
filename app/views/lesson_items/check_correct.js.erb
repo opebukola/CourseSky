@@ -1,6 +1,0 @@
-var qid = <%=@lesson_item.id.to_json %>;
-var response = $('#hint-box_' + qid);
-response.addClass("response").html("Correct!")
-<% if current_user && current_user.completed_lesson?(@lesson) %>
-	window.location.href="/courses/<%=@lesson.course.id%>/lessons/<%=@lesson.id%>/share"
-<% end %>

@@ -22,9 +22,9 @@ class Course < ActiveRecord::Base
   has_many :units
   has_many :units, order: "position", dependent: :destroy
   has_many :lessons, through: :units
-  has_many :lesson_items, through: :lessons
-  has_many :lesson_item_skills, through: :lesson_items
-  has_many :skills, through: :lesson_item_skills
+  has_many :concepts, through: :lessons
+  has_many :concept_skills, through: :concepts
+  has_many :skills, through: :concept_skills
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
 
@@ -34,14 +34,12 @@ class Course < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :user_id, presence: true
-  # validates :grade_level, presence: true
-  # validates :categories, presence: true
 
   mount_uploader :cover_image, CoverImageUploader
 
   scope :desc, order: "created_at desc"
   scope :published, where(published: true)
-  # scope :featured, where(featured: true)
+
 
   #skill methods - need to convert to sql
 
@@ -70,14 +68,6 @@ class Course < ActiveRecord::Base
       return 'draft'
     end
   end
-
-  # def feature_status
-  #   if self.featured
-  #     return 'featured'
-  #   else
-  #     return 'not featured'
-  #   end
-  # end
 
   #ratings
   def rating

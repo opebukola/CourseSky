@@ -76,6 +76,14 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def progress
+    @course = Course.find(params[:id])
+  end
+
+  def tests
+    @course = Course.find(params[:id])
+  end
+
   private
 
     def correct_user

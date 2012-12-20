@@ -1,0 +1,11 @@
+<%=provide(:title, @course.title) %>
+<%= render 'shared/course_intro' %><br />
+
+<h2> Coming Soon! Master every <%= @course.title %> skill with unlimited practice questions.</h2>
+
+<h3> Skills Listing </h3>
+<% @course.skills.each do |s| %>
+<ul>
+	<li><%= link_to s.description, '#' %></li>
+</ul>
+<% end %>
