@@ -2,21 +2,20 @@
 #
 # Table name: courses
 #
-#  id             :integer          not null, primary key
-#  title          :string(255)
-#  cover_image    :string(255)
-#  description    :text
-#  published      :boolean          default(FALSE)
-#  user_id        :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  featured       :boolean          default(FALSE)
-#  subject_id     :integer
-#  grade_level_id :integer
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  cover_image :string(255)
+#  description :text
+#  published   :boolean          default(FALSE)
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  cover_video :string(255)
 #
 
 class Course < ActiveRecord::Base
-  attr_accessible :cover_image, :description, :published, :title
+  attr_accessible :cover_image, :description, :published, :title,
+                  :cover_video
   belongs_to :user 
 
   has_many :units
@@ -28,17 +27,30 @@ class Course < ActiveRecord::Base
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
 
+  VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
+
   # has_many :quizzes
   # before_destroy :ensure_no_students
 
   validates :title, presence: true
   validates :description, presence: true
   validates :user_id, presence: true
+  validates :cover_video, presence: true, format: {with: VIDEO_REGEX}
 
   mount_uploader :cover_image, CoverImageUploader
 
   scope :desc, order: "created_at desc"
   scope :published, where(published: true)
+
+  def video_source
+    if VIDEO_REGEX.match(self.cover_video)
+     protocol = $1
+     youtube_id = $4
+     video_source = "#{protocol}://www.youtube.com/embed/#{youtube_id}?rel=0&hd=1"
+    else
+      video_source = ""
+    end
+  end
 
 
   #skill methods - need to convert to sql

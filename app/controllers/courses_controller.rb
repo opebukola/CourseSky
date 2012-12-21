@@ -54,6 +54,7 @@ class CoursesController < ApplicationController
 
   def manage
     @course = Course.find(params[:id])
+    @units = @course.units.order(:position)
   end
 
   def publish

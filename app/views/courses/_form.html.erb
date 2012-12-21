@@ -1,5 +1,6 @@
 <%= simple_form_for @course do |f| %>
   <%= f.input :title, label: 'Give the course a title' %>
+  <%= f.input :cover_video, label: 'Add course intro video' %>
   <%= f.input :description, label: 'Provide a short course description', hint: 'You can add html tags (emphasis, lists, links, etc.) using <a href="http://daringfireball.net/projects/markdown/basics"> markdown. </a>' %>
   <%= f.input :cover_image, label: 'Upload a cover image' %>
   <%= f.button :submit, "Save Course" %>

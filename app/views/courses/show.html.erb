@@ -3,6 +3,7 @@
 <br />
 <section>
   <h2><%= @course.title %></h2><br />
+  <iframe width="853" height="480" src="<%=@course.video_source%>" frameborder="1" allowfullscreen></iframe>
   <div class="course-description">
       <%= markdown @course.description %>
   </div>

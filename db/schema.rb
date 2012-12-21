@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217230832) do
+ActiveRecord::Schema.define(:version => 20121221164418) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -79,17 +79,12 @@ ActiveRecord::Schema.define(:version => 20121217230832) do
     t.string   "title"
     t.string   "cover_image"
     t.text     "description"
-    t.boolean  "published",      :default => false
+    t.boolean  "published",   :default => false
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.boolean  "featured",       :default => false
-    t.integer  "subject_id"
-    t.integer  "grade_level_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "cover_video"
   end
-
-  add_index "courses", ["grade_level_id"], :name => "index_courses_on_grade_level_id"
-  add_index "courses", ["subject_id"], :name => "index_courses_on_subject_id"
 
   create_table "enrollments", :force => true do |t|
     t.integer  "student_id"

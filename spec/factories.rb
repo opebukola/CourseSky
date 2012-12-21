@@ -10,8 +10,9 @@ FactoryGirl.define  do
 	end
 
 	factory :course do |c|
-		c.title "Course 1"
-		c.description { Faker::Lorem.paragraphs(1) }
+		c.title 							"Course 1"
+		c.description 				{ Faker::Lorem.paragraphs(1) }
+		c.cover_video					"http://www.youtube.com/watch?v=2_QdgNsopkM"
 		
 		user	
 	end

@@ -1,8 +1,7 @@
 <%= provide(:title, 'Manage Course') %>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#info" data-toggle="tab">Basics</a></li>
-  <li><a href="#course-units" data-toggle="tab">Units</a></li>
-  <li><a href="#course-lessons" data-toggle="tab">Lessons</a></li>
+  <li><a href="#course-units" data-toggle="tab">Units and Lessons</a></li>
   <li><a href="#course-status" data-toggle="tab">Status</a></li>
 </ul>
 
@@ -19,9 +18,6 @@
   </div>
   <div class="tab-pane" id="course-units">
     <%= render 'manage_units' %>
-  </div>
-  <div class="tab-pane" id="course-lessons">
-    <%= render 'lesson_list' %>
   </div>
   <div class="tab-pane" id="course-status">
     <%= render 'publish' %>
