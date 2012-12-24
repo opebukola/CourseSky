@@ -24,18 +24,7 @@ textarea {
   resize: vertical;
 }
 
-.center {
-  text-align: center;
-  padding: 20px 10px 10px 10px;
-  margin-bottom: 50px;
-  h1 {
-    margin-bottom: 15px;
-  }
-}
 
-.control{
-  font-weight: normal;
-}
 
 label.boolean {
   margin-left: 10px;
@@ -175,6 +164,64 @@ footer {
 /* HOME PAGE */
 /** -------------------------------------------------- **/
 
+.home-hero {
+  padding: 40px;
+  margin-bottom: 30px;
+  // background-color: #EEE;
+  background-color: #fefefe;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  overflow: hidden;
+  h1{
+    margin-bottom: 0;
+    letter-spacing: -1px;
+  }
+  .subtext{
+    font-weight: normal;
+  }
+  .image{
+    float: right;
+  }
+  .btn-join{
+  background-color: #741885;
+  background: #741885;
+  font-size: 1.4em;
+  color: white;
+  text-shadow: none;    
+  }
+}
+
+/* course on home page new */
+
+.featured-coursess{
+  background-color: #fefefe;
+  padding: 10px 10px 10px 10px;
+}
+.course-info{
+  background-color: #fefefe;
+  padding: 10px 5px 20px 5px;
+  img{
+    float: left;
+    margin-right: 30px;
+  }
+  h3 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    font-weight: normal;
+  }
+  .btn-course-start{
+  float: right;
+  background: #32B2C6;
+  color: white;
+  text-shadow: none;
+  margin-right: 10px;
+  &:hover {
+    background-color: white;
+  }   
+  }
+}
+
 /* courses index pages*/
 
 .course-area{
@@ -182,9 +229,6 @@ footer {
   margin: 0px auto;
 }
 
-.start-button{
-
-}
 
 .btn-start{
   background-color: #741885;

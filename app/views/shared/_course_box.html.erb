@@ -1,18 +1,16 @@
 <section>
-  <% @courses.each do |course| %>
-  <p>
-    <div class="course-area">
-      <div class="course-box">
+  <div class="featured-courses">
+    <h2> Featured Courses: </h2>
+    <% @courses.each do |course| %>
+    <p>
+      <div class="course-info">
         <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
         <h3><%= course.title %></h3>
-        <h4>Your Guide(s): <%=link_to course.user.fname, user_path(course.user) %></h4><br />
+        <%= link_to "Start Learning", course_path(course), class: "btn-course-start btn btn-large" %>
         <%= course.lessons.count %> interactive lessons<br />
-        Hundreds of practice questions with solutions 
-      </div>  
-      <div class="start-button">
-        <%= link_to "Start Learning", course_path(course), class: "btn-start btn btn-large" %>
-      </div>
-    </div>
-  </p>
-<% end %>
+        Hundreds of practice questions with solutions<br /> 
+        </div>  
+    </p>
+    <% end %>
+</div>
 </section>

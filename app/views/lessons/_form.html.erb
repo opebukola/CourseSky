@@ -1,6 +1,6 @@
 <%= simple_form_for [@course, @lesson] do |f| %>
-
-<h3> Title </h3>
-<%= f.input :title, label: "Give the lesson a Title", input_html: {class: "input-xxlarge"} %>
-<%= f.button :submit, "Save Lesson", class: 'btn btn-success' %>
+	<%= f.input :unit_id, as: :hidden, input_html: {value: params[:unit_id]} %>
+	<h3> Title </h3>
+	<%= f.input :title, label: "Give the lesson a Title", input_html: {class: "input-xxlarge"} %>
+	<%= f.button :submit, "Save Lesson", class: 'btn btn-success' %>
 <% end %>

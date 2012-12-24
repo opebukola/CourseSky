@@ -4,6 +4,7 @@
       <%= link_to image_tag("logo.png"), '/', id:"logo" %>
       <nav>
         <ul class="nav pull-right">
+          <li><%= link_to "Plans + Pricing", "#" %>
           <% if user_signed_in? %>
             <li id="fat-menu" class="dropdown" %>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.fname %><b class="caret"></b>

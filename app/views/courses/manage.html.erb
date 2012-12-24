@@ -2,7 +2,6 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#info" data-toggle="tab">Basics</a></li>
   <li><a href="#course-units" data-toggle="tab">Units and Lessons</a></li>
-  <li><a href="#course-status" data-toggle="tab">Status</a></li>
 </ul>
 
 <div class="tab-content">
@@ -10,17 +9,18 @@
     <div class="tab-pane active course-description" id="about">
       <%= markdown @course.description %>
     </div><br />
+    <p>
+      <strong>Status:</strong> <%= @course.status %>
+      <%= link_to "Publish", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%>
+    </p>
     <%= link_to 'Edit Basic Information', edit_course_path, class: "btn btn-primary"  %>
     <%= link_to 'Delete Course', course_path(@course),
                                     method: :delete,
                                     data: {confirm: 'Are you sure?'},
-                                    class: "btn btn-danger" %>
+                                    class: "btn btn-danger" %> 
   </div>
   <div class="tab-pane" id="course-units">
     <%= render 'manage_units' %>
-  </div>
-  <div class="tab-pane" id="course-status">
-    <%= render 'publish' %>
   </div>
 </div>
 

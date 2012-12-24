@@ -11,13 +11,15 @@
           <% if u.lessons.any? %>
             <ol>
               <% u.lessons.each do |l| %>
-                <li>
-                  <h4>
-                  <%= link_to l.title, lesson_activity_path(l.lesson_activities.first) %> |
-                  Status: incomplete |
-                  25% correct
-                </h4>
-                </li><br />   
+                <% if l.lesson_activities.any? %>
+                  <li>
+                    <h4>
+                    <%= link_to l.title, lesson_activity_path(l.lesson_activities.first)  %> |
+                    Status: incomplete |
+                    25% correct
+                  </h4>
+                  </li><br />   
+                <% end %>
               <% end %>
             </ol>
           <% else %>
