@@ -1,12 +1,12 @@
 <% @units.each do |u| %>
-  <div class="accordion" id="unit_accordion">
+  <div class="accordion course-topics" id="unit_accordion">
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#unit_accordion" href="#lessons_unit_<%=u.position%>">
           <h3>Unit <%=u.position%>: <%= u.title %></h3>
         </a>
       </div>
-      <div id="lessons_unit_<%=u.position%>" class="accordion-body collapse in">
+      <div id="lessons_unit_<%=u.position%>" class="accordion-body collapse">
         <div class="accordion-inner">
           <% if u.lessons.any? %>
             <ol>
@@ -15,8 +15,7 @@
                   <li>
                     <h4>
                     <%= link_to l.title, lesson_activity_path(l.lesson_activities.first)  %> |
-                    Status: incomplete |
-                    25% correct
+                    25% complete
                   </h4>
                   </li><br />   
                 <% end %>

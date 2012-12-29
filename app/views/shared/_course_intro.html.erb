@@ -1,8 +1,9 @@
 <div class="course-top-nav">
-<h3>
-  <%= link_to "About this Course", course_path(@course) %> |
-  <%= link_to "Lessons", course_lessons_path(@course) %> |
-  <%= link_to "Test Center", tests_course_path(@course) %> | 
-  <%= link_to "Progress Report", progress_course_path(@course) %>
-</h3>
+	<div class="nav-course-title"><%= @course.title %></div>
+	<div class="nav-course-links">
+	  <%= link_to "About the Course", course_path(@course) %> |
+	  <%= link_to "Lessons", course_lessons_path(@course) %> |
+	  <%= link_to "Practice", tests_course_path(@course) %> | 
+	  <%= link_to "Progress Report", progress_course_path(@course) %>
+	</div>
 </div>

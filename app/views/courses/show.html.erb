@@ -2,9 +2,17 @@
 <%= render 'shared/course_intro' %>
 <br />
 <section>
-  <h2><%= @course.title %></h2><br />
-  <iframe width="853" height="480" src="<%=@course.video_source%>" frameborder="1" allowfullscreen></iframe>
+	<div class="course-intro-video">
+		<iframe width="853" height="480" src="<%=@course.video_source%>" frameborder="1" allowfullscreen></iframe>
+	</div>
   <div class="course-description">
+  	<h2> About the Course</h2>
       <%= markdown @course.description %>
+  </div>
+  <div class="course-instructors">
+  	<h2> About the Guide</h2>
+      <%= image_tag @course.user.avatar_url(:profile) %>
+      <%= @course.user.fname %><br />
+      <%= truncate(@course.user.about, length: 500) %>
   </div>
 </section>
