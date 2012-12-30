@@ -65,15 +65,38 @@ describe	Course do
 		end
 	end
 
-	describe "#lessons_completed_by(user)" do
-		it "should return lessons in course that user has finished" do
+	describe "completed_by(user)" do
+		it "should be true if user has finished all course lessons" do
 			unit = FactoryGirl.create(:unit)
 		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
 		  lesson2 = FactoryGirl.create(:lesson, unit: unit)
 		  @course.units << unit
 		  @course.save
 
+		  lesson1.completed_by?(user) == true
+		  lesson2.completed_by?(user) == true
+
+		  @course.completed_by?(user).should be_true
+
 		end
+	end
+
+	describe "#completed_lessons(user)" do
+		it "should return completed lessons in course" do
+			unit = FactoryGirl.create(:unit)
+		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
+		  lesson2 = FactoryGirl.create(:lesson, unit: unit)
+		  @course.units << unit
+		  @course.save
+
+		  lesson1.completed_by?(user) == true
+
+		  pp @course.completed_lessons(user)
+
+		  @course.completed_lessons(user).should include(lesson1)	
+		  @course.completed_lessons(user).should_not include(lesson2)
+		end
+		
 	end
 
 	describe "#practiced_skills(user)" do

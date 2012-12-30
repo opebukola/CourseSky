@@ -1,4 +1,4 @@
-<%= render 'shared/lesson_intro' %>
+<%= render 'shared/course_intro' %><br />
 <div class="share-lesson">
   <h2>
     Congratulations <%= current_user.try(:fname) %>! You've completed: <%= link_to @lesson.title, course_lesson_path(@lesson.course, @lesson) %></h2>

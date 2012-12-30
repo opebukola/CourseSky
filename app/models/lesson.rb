@@ -32,6 +32,12 @@ class Lesson < ActiveRecord::Base
 
   def asks_count
     self.lesson_items.find_all_by_type('Ask').count
+  end
+
+  #lesson progress methods
+
+  def completed_by?(user)
+    self.questions.all?{|q| q.correct_attempt?(user)}
   end 
 
 end

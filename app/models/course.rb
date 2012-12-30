@@ -91,6 +91,17 @@ class Course < ActiveRecord::Base
     end
   end
 
+  #progress methods
+  def completed_lessons(user)
+    lessons = self.lessons
+    lessons.select {|l| l.completed_by?(user)}
+  end
+
+  def completed_by?(user)
+    lessons = self.lessons
+    return true if lessons.all?{|l| l.completed_by(user)}
+  end
+
   #search
   include PgSearch
   pg_search_scope :search, against: [:title, :description],

@@ -25,24 +25,12 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :attempts, dependent: :destroy
 
-  #lesson ask methods
+
   has_one :lesson_activity, as: :activity
   after_save :create_lesson_activity
   before_destroy :delete_lesson_activity
 
 
-  def create_lesson_activity
-    id = self.id
-    type = 'Question'
-    activity = self.lesson.lesson_activities.
-    find_or_create_by_activity_id_and_activity_type(id,type)
-      activity.save
-  end
-
-    def delete_lesson_activity
-    LessonActivity.find_by_lesson_id_and_activity_id_and_activity_type(
-      self.lesson.id, self.id, 'Question').destroy
-  end
 
   QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
   QUESTION_DIFFICULTY = [1, 2, 3]
@@ -64,35 +52,17 @@ class Question < ActiveRecord::Base
     errors.add(:question, 'must have at least one skill') if self.skills.empty?
   end
 
+  def is_multiple_choice?
+    return true if self.question_type == "Multiple Choice"
+  end
+
   def difficulty_level
     return "Easy" if self.difficulty == 1
     return "Medium" if self.difficulty == 2
     return "Hard" if self.difficulty == 3
   end
-
-  #quiz methods
-
-  def last_quiz_attempt(quiz)
-    quiz.attempts.where(question_id: self.id).order('created_at DESC').first
-  end
-
-  #user methods
-
-  def all_attempts_by(user)
-    Attempt.where(
-      question_id: self.id, user_id: user.id)
-  end
-
-  def last_attempt_by(user)
-    Attempt.where(
-      question_id: self.id, user_id: user.id).order('
-      created_at DESC').first
-  end
-
-  def is_multiple_choice?
-    return true if self.question_type == "Multiple Choice"
-  end
-
+ 
+  #answers 
   def correct_answers
     answer_array = []
     self.answers.find_all_by_correct(:true).each do |answer|
@@ -103,8 +73,48 @@ class Question < ActiveRecord::Base
 
   def is_correct?(response)
     self.correct_answers.include?(response.downcase)
+  end 
+
+  #lesson activities
+  def create_lesson_activity
+    id = self.id
+    type = 'Question'
+    activity = self.lesson.lesson_activities.
+    find_or_create_by_activity_id_and_activity_type(id,type)
+      activity.save
   end
 
+    def delete_lesson_activity
+    LessonActivity.find_by_lesson_id_and_activity_id_and_activity_type(
+      self.lesson.id, self.id, 'Question').destroy
+  end
+
+  # #quiz methods
+
+  # def last_quiz_attempt(quiz)
+  #   quiz.attempts.where(question_id: self.id).order('created_at DESC').first
+  # end
+
+  #user attempts  
+  def last_attempt_by(user)
+    Attempt.where(
+      question_id: self.id, user_id: user.id).order('
+      created_at DESC').first
+  end
+
+  def correct_attempt?(user)
+    return true if 
+    self.last_attempt_by(user).correct == true
+  end
+
+  def all_attempts_by(user)
+    Attempt.where(
+      question_id: self.id, user_id: user.id)
+  end
+
+
+
+  #points
   def possible_points
     20 * self.difficulty
   end

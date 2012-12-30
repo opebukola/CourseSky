@@ -61,18 +61,18 @@ class User < ActiveRecord::Base
     self.enrollments.find_by_enrolled_course_id(course.id)
   end
 
-  #question aka "ask" status
+  # #question aka "ask" status
 
-  def has_answered?(ask)
-    return true if 
-    self.completed_asks.find_by_lesson_item_id(ask.id)
-  end
+  # def has_answered?(ask)
+  #   return true if 
+  #   self.completed_asks.find_by_lesson_item_id(ask.id)
+  # end
 
-  #lesson progress
-  def completed_lesson?(lesson)
-    asks = LessonItem.find_all_by_lesson_id_and_type(lesson.id, 'Ask') 
-    asks.all? {|ask| self.has_answered?(ask)}
-  end
+  # #lesson progress
+  # def completed_lesson?(lesson)
+  #   asks = LessonItem.find_all_by_lesson_id_and_type(lesson.id, 'Ask') 
+  #   asks.all? {|ask| self.has_answered?(ask)}
+  # end
 
 
   # def lesson_progress(lesson)
@@ -99,10 +99,10 @@ class User < ActiveRecord::Base
     lessons.all? {|lesson| self.completed_lesson?(lesson)}
   end
 
-  def completed_lessons(course)
-    lessons = course.lessons
-    lessons.select {|lesson| self.completed_lesson?(lesson)}
-  end
+  # def completed_lessons(course)
+  #   lessons = course.lessons
+  #   lessons.select {|lesson| self.completed_lesson?(lesson)}
+  # end
 
   def incomplete_lessons(course)
     course.lessons.count - completed_lessons(course).size
