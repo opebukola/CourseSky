@@ -24,7 +24,7 @@ class Quiz < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :course_id, presence: true
-  validates :lesson_id, presence: true
+  # validates :lesson_id, presence: true
 
   def final_attempts
     questions = self.attempted_questions.uniq{|q| q.id}

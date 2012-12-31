@@ -81,7 +81,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
-  def tests
+  def practice
     @course = Course.find(params[:id])
   end
 

@@ -28,7 +28,7 @@ Coursesky::Application.routes.draw do
     end
 
     member do
-      get :manage, :students, :progress, :tests
+      get :manage, :students, :progress, :practice
       put :publish, :feature
     end
   end

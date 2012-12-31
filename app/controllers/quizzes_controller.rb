@@ -4,8 +4,8 @@ class QuizzesController < ApplicationController
 	before_filter :confirm_attempts, only: :finish
 	
 	def new
-		@lesson = Lesson.find(params[:lesson_id])
-		@course = @lesson.course
+		# @lesson = Lesson.find(params[:lesson_id])
+		@course = Course.find(params[:course_id])
 		@quiz = Quiz.new
 	end
 
@@ -14,6 +14,7 @@ class QuizzesController < ApplicationController
 		if @quiz.save
 			redirect_to @quiz
 		else
+			flash[:error] = @quiz.errors.full_messages
 			render 'new'
 		end
 	end
@@ -43,7 +44,7 @@ class QuizzesController < ApplicationController
 
     def correct_user
       @quiz = Quiz.find(params[:id])
-      @course = @quiz.lesson.course
+      @course = @quiz.course
       unless current_user == @quiz.user || current_user.admin?
         flash[:error] = "You cannot view this quiz"
         redirect_to @course

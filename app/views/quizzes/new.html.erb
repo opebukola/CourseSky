@@ -1,15 +1,10 @@
-<div class="intro">
-	<div class="start">
-		<%= link_to @course.title, course_path(@course) %> | Practice: <%= @lesson.title%><br />
-	</div> 
-</div>
-<br />
 <%= provide(:title, 'New Quiz') %>
+
 <%= simple_form_for @quiz do |f| %>
-	<%= f.input :lesson_id, as: :hidden, input_html: {value:params[:lesson_id]} %>
+
 	<%= f.input :course_id, as: :hidden, input_html: {value:params[:course_id]} %>
 	<div class="quiz-intro">
-		<h3> Time to practice <%=@lesson.title %>!</h3><br />
+		<h3> Time to practice: Skill!</h3><br />
 		<ul>
 			<li> Each quiz has 5 practice questions </li>
 			<li> You have 3 tries for each question. To get full points, answer the question correct on 1st try. </li>
