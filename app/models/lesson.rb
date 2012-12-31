@@ -30,14 +30,31 @@ class Lesson < ActiveRecord::Base
   alias_method :next_lesson, :lower_item
   alias_method :prev_lesson, :higher_item
 
-  def asks_count
-    self.lesson_items.find_all_by_type('Ask').count
+  def cfu_activities
+    self.lesson_activities.find_all_by_activity_type('Question')
   end
 
-  #lesson progress methods
+  # find cfu questions only - sql & test
+  def cfu_questions
+    self.cfu_activities.map{|a| Question.find(a.activity_id)}.flatten
+  end
+
+
+  #lesson progress methods - need to test  & sql
+
+  def cfu_correct(user)
+    self.cfu_questions.select{|q| q.correct_attempt?(user)}
+  end
+
+  def progress(user)
+    total = self.cfu_questions.count
+    correct = self.cfu_correct(user).count
+    progress = (correct.to_f / total.to_f) * 100
+    return progress
+  end
 
   def completed_by?(user)
-    self.questions.all?{|q| q.correct_attempt?(user)}
+    return true if self.cfu_questions.all?{|q| q.correct_attempt?(user)}
   end 
 
 end

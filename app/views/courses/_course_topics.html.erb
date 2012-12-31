@@ -15,9 +15,13 @@
                   <li>
                     <h4>
                     <%= link_to l.title, lesson_activity_path(l.lesson_activities.first)  %> |
-                    25% complete
+                    <% if current_user && current_user.enrolled?(@course) %>
+                      <%=l.progress(current_user).round(0) %>% complete
+                    <% end %> 
                   </h4>
-                  </li><br />   
+                  </li>
+                <% else %>
+                  This unit has no lessons yet. Check back soon!
                 <% end %>
               <% end %>
             </ol>

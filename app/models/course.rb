@@ -97,6 +97,13 @@ class Course < ActiveRecord::Base
     lessons.select {|l| l.completed_by?(user)}
   end
 
+  def progress(user)
+    total = self.lessons.count
+    completed = self.completed_lessons(user).count
+    progress = (completed.to_f / total.to_f) * 100
+    return progress
+  end
+
   def completed_by?(user)
     lessons = self.lessons
     return true if lessons.all?{|l| l.completed_by(user)}

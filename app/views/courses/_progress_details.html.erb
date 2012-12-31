@@ -1,16 +1,12 @@
- if current_user.enrolled?(@course) 
+ <% if current_user.enrolled?(@course) %>
 	<div class="course-progress-stats">
 		<div class="progress-stat">
-			<h3 class="progress-number">current_user.completed_lessons(@course).count </h3>
+			<h3 class="progress-number"><%=@course.completed_lessons(current_user).count %></h3>
 			<p class="progress-description">lessons completed</p>
 		</div>
 		<div class="progress-stat">
-			<h3 class="progress-number">= current_user.progress(@course).round(0) </h3>
+			<h3 class="progress-number"><%=@course.progress(current_user).round(0)%>%</h3>
 			<p class="progress-description">lessons completed</p>
-		</div>
-		<div class="progress-stat">
-			<h3 class="progress-number">current_user.quiz_question_count(@course)</h3>
-			<p class="progress-description">questions answered</p>
 		</div>
 		<div class="progress-stat">
 			<h3 class="progress-number">X %</h3>
@@ -35,5 +31,5 @@
 	</div>
 
 		<p class="progress-notice"> You don't have any progress data for this course yet. Start a lesson or take a quiz to track your progress.  </p>
-
+<% end %>
 
