@@ -96,6 +96,12 @@ class Question < ActiveRecord::Base
   # end
 
   #user attempts  
+
+  def attempted_by?(user)
+    Attempt.where(question_id: self.id, user_id: user.id).any?  
+  end
+
+
   def last_attempt_by(user)
     Attempt.where(
       question_id: self.id, user_id: user.id).order('

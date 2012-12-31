@@ -76,6 +76,19 @@ describe Question do
 	# 	end
 	# end
 
+	describe "#attempted_by?(user)" do
+		it "should be true only if user has attempted question" do
+			q1 = FactoryGirl.create(:question)
+			q2 = FactoryGirl.create(:question)
+			attempt = user.attempts.build
+			attempt.question = q1
+			attempt.save
+
+			q1.attempted_by?(user).should be_true
+			q2.attempted_by?(user).should be_false
+		end
+	end
+
 
 	describe "#last_attempt_by(user)" do
 		it "should return last question attempt" do

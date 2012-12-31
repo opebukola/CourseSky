@@ -41,6 +41,7 @@ describe Lesson do
   	it { should_not be_valid }
   end
 
+
   describe "#completed_by?(user)" do
   	it "should be true if user has completed lesson" do
   		q1 = FactoryGirl.create(:question, lesson: @lesson)

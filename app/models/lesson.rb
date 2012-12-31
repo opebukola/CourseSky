@@ -42,19 +42,30 @@ class Lesson < ActiveRecord::Base
 
   #lesson progress methods - need to test  & sql
 
+  def cfu_attempted(user)
+    self.cfu_questions.select{|q| q.attempted_by?(user)}
+  end
+
   def cfu_correct(user)
     self.cfu_questions.select{|q| q.correct_attempt?(user)}
   end
 
   def progress(user)
     total = self.cfu_questions.count
-    correct = self.cfu_correct(user).count
-    progress = (correct.to_f / total.to_f) * 100
+    attempts = self.cfu_attempted(user).count
+    progress = (attempts.to_f / total.to_f) * 100
     return progress
   end
 
   def completed_by?(user)
-    return true if self.cfu_questions.all?{|q| q.correct_attempt?(user)}
+    return true if self.cfu_questions.all?{|q| q.attempted_by?(user)}
+  end
+
+  def score(user)
+    total = self.cfu_questions.count
+    correct = self.cfu_correct(user).count
+    score = (correct.to_f / total.to_f) * 100
+    return score
   end 
 
 end
