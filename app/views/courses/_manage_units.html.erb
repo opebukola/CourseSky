@@ -1,5 +1,6 @@
 <p>
 	<h2> Edit or rearrange existing units</h2>
+	
 	<ul id="units-list" data-update-url="<%= sort_units_url %>">
 		<% @units.each do |u| %>
 			<%= content_tag_for :li, u do %>
@@ -14,10 +15,11 @@
 					<% end %><br />
 					<%= link_to 'Add New Lesson to Unit', new_course_lesson_path(course_id: @course.id, unit_id: u.id), class: "btn" %>
 				</div>	
-			<% end %><hr />
+			<% end %><br />
 		<% end %>
 	</ul>
 </p>
 <p>
 	<%= link_to 'Add New Unit', new_unit_path(course_id: @course.id), class: 'btn btn-primary' %>
 </p>
+
