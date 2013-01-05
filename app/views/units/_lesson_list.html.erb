@@ -1,6 +1,8 @@
-<p>
+<h2> Add, Edit or Rearrange lessons </h2>
+<% if @unit.lessons.any? %>
+	<p>
   <ol id="lessons-list" data-update-url="<%=sort_course_lessons_url(course_id: @course.id) %>">
-    <% u.lessons.order("position").each do |lesson| %>
+    <% @unit.lessons.order("position").each do |lesson| %>
       <%= content_tag_for :li, lesson do %>
         <h4><span class="handle">[move]</span>
           <%= lesson.title %> |
@@ -12,3 +14,5 @@
     <% end %>
   </ol>
 </p>
+<% end %>
+<%= link_to 'Add New Lesson to Unit', new_course_lesson_path(course_id: @course.id, unit_id: @unit), class: "btn" %>

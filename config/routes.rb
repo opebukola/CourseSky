@@ -13,23 +13,21 @@ Coursesky::Application.routes.draw do
   end
 
   resources :courses do
-    resources :lessons do
-      collection do
-        post :sort
-      end
-      member do
-        get :finish, :doc
-        post :save
-      end
-    end
-
     collection do
       get :admin
     end
-
     member do
-      get :manage, :students, :progress, :practice
+      get :lessons, :manage, :students, :progress, :practice
       put :publish, :feature
+    end
+  end
+
+  resources :lessons do 
+    collection do
+      post :sort
+    end
+    member do
+      get :finish
     end
   end
 

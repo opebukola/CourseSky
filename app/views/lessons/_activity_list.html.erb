@@ -12,8 +12,14 @@
     <span class="handle">[move]</span>
       <%= a.activity_type %> <%= a.position %>
       <%= link_to "View", lesson_activity_path(a), target: 'blank' %> |
-      <%= link_to 'Edit', '#' %> |
-      <%= link_to 'Remove from Lesson', '#' %>
+      <% if a.activity_type == 'Concept' %>
+      	<%= link_to 'Edit', edit_concept_path(Concept.find(a.activity_id), lesson_id: @lesson.id) %> |
+      	<% else %>
+      	<%= link_to 'Edit', edit_question_path(Question.find(a.activity_id), lesson_id: @lesson.id) %> |
+      <% end %>
+      <%= link_to 'Remove from Lesson', lesson_activity_path(a),
+      																	method: :delete,
+      																	data: {confirm: 'Are you sure?'} %>
     <% end %><br />
   <% end %>
 </ul>

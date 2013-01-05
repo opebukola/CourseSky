@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
   def create
     @course = current_user.courses.build(params[:course])
     if @course.save
-      redirect_to @course, notice: "Course Saved!"
+      redirect_to manage_course_path(@course), notice: "Course Saved!"
     else
       render 'new'
     end
@@ -52,6 +52,10 @@ class CoursesController < ApplicationController
     end
   end
 
+  def lessons
+    @course = Course.find(params[:id])
+  end
+  
   def manage
     @course = Course.find(params[:id])
     @units = @course.units.order(:position)

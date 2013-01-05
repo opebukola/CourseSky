@@ -1,5 +1,4 @@
-<%= simple_form_for @unit do |f| %>
-	<%= f.input :course_id, as: :hidden, input_html: {value: params[:course_id]} %>
-  <%= f.input :title, label: 'Give the unit a title' %>
-  <%= f.button :submit, "Save Unit" %>
-<% end %>
+<%= provide(:title, 'Add New Unit')%>
+<h3> <%= link_to "Back to Editing Course", manage_course_path(@course) %></h3>
+<hr />
+<%= render 'form' %>

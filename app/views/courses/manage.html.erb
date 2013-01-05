@@ -1,4 +1,5 @@
 <%= provide(:title, 'Manage Course') %>
+<h2> Editing <%=@course.title %></h2>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#info" data-toggle="tab">Basics</a></li>
   <li><a href="#course-units" data-toggle="tab">Units and Lessons</a></li>
@@ -6,21 +7,30 @@
 
 <div class="tab-content">
   <div class="tab-pane active" id="info">
-    <div class="tab-pane active" id="about">
+    <p>
+      <h4>Course Title:</h4> 
+      <%= @course.title %>
+    </p>
+    <p>
+      <h4>Course Description</h4>
       <%= markdown @course.description %>
-    </div>  
-  </div>
-  <div class="tab-pane" id="course-units">
-    <%= render 'manage_units' %>
-  </div>
-</div>
-<hr />
-<p>
-      <strong>Status:</strong> <%= @course.status %>
-      <%= link_to "Publish", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%>
+    </p>
+    <p>
+      <span>Course Status:</span>
+      <%= @course.status %><br />
+      <%= link_to "Publish Course", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%>
+    </p>
+      <hr />
     </p>
     <%= link_to 'Edit Basic Information', edit_course_path, class: "btn btn-primary"  %>
     <%= link_to 'Delete Course', course_path(@course),
                                     method: :delete,
                                     data: {confirm: 'Are you sure?'},
                                     class: "btn btn-danger" %> 
+  </div>
+  <div class="tab-pane" id="course-units">
+    <%= render 'manage_units' %>
+  </div>
+</div>
+
+      

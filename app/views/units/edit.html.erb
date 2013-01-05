@@ -1,0 +1,20 @@
+<%= provide(:title, 'Edit Unit')%>
+<h3> Editing Unit: <%=@unit.title %></h3><br />
+<h3> <%= link_to "Back to Editing Course", manage_course_path(@course) %></h3>
+<hr />
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#unit-info" data-toggle="tab"> Basics</a></li>
+  <li><a href="#unit-lessons" data-toggle="tab">Lessons in the Unit</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="unit-info">
+    <div class="tab-pane active" id="about">
+      <%= render 'form' %>
+    </div>  
+  </div>
+  <div class="tab-pane" id="unit-lessons">
+    <%= render 'lesson_list' %>
+  </div>
+</div>

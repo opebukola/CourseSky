@@ -16,7 +16,7 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id])
     @lesson = @course.lessons.build(params[:lesson])
     if @lesson.save
-      redirect_to manage_course_path(@course), notice: "Lesson Saved!"
+      redirect_to edit_unit_path(@lesson.unit), notice: "Lesson Saved!"
     else
       flash[:error] = @lesson.errors.full_messages
       render 'new'
@@ -49,10 +49,32 @@ class LessonsController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.find(params[:course_id])
+    Lesson.find(params[:id]).destroy
+    redirect_to :back, notice: "Lesson Deleted!"
+  end
+
+  def lessons
+    @course = Course.find(params[:id])
+  end
+
   def finish
     @lesson = Lesson.find(params[:id])
     @course = Course.find(params[:course_id])
   end
+
+  def sort
+    params[:lesson].each_with_index do |id, index|
+      Lesson.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
+
+  def doc
+    @lesson = Lesson.find(params[:id])
+  end
+
 
   # save lesson question attempts from session to db after login
   # def save
@@ -73,22 +95,6 @@ class LessonsController < ApplicationController
   #   render :json => {:success => true}
   # end
 
-  def destroy
-    @course = Course.find(params[:course_id])
-    Lesson.find(params[:id]).destroy
-    redirect_to :back, notice: "Lesson Deleted!"
-  end
-
-  def sort
-    params[:lesson].each_with_index do |id, index|
-      Lesson.update_all({position: index+1}, {id: id})
-    end
-    render nothing: true
-  end
-
-  def doc
-    @lesson = Lesson.find(params[:id])
-  end
 
   private
 

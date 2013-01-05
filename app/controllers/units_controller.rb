@@ -16,18 +16,23 @@ class UnitsController < ApplicationController
 	end
 
 	def edit
-		@course = Course.find(params[:course_id])
 		@unit = Unit.find(params[:id])
+		@course = @unit.course
 	end
 
 	def update
-		@course = Course.find(params[:course_id])
 		@unit = Unit.find(params[:id])
+		@course = @unit.course
 		if @unit.update_attributes(params[:unit])
 			redirect_to manage_course_path(@course), notice: "Unit saved"
 		else
 			render 'edit'
 		end
+	end
+
+	def destroy
+		Unit.find(params[:id]).destroy
+		redirect_to :back, notice: "Unit deleted"
 	end
 
 	def sort

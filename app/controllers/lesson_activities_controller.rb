@@ -23,6 +23,11 @@ class LessonActivitiesController < ApplicationController
 		end
 	end
 
+	def destroy
+		LessonActivity.find(params[:id]).destroy
+		redirect_to :back, notice: "Removed"
+	end
+
 	def sort
 		params[:lesson_activity].each_with_index do |id, index|
 			LessonActivity.update_all({position: index+1}, {id: id})
