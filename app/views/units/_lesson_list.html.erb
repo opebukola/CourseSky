@@ -1,13 +1,13 @@
 <h2> Add, Edit or Rearrange lessons </h2>
 <% if @unit.lessons.any? %>
 	<p>
-  <ol id="lessons-list" data-update-url="<%=sort_course_lessons_url(course_id: @course.id) %>">
+  <ol id="lessons-list" data-update-url="<%=sort_lessons_url(course_id: @course.id) %>">
     <% @unit.lessons.order("position").each do |lesson| %>
       <%= content_tag_for :li, lesson do %>
         <h4><span class="handle">[move]</span>
           <%= lesson.title %> |
-          <%= link_to "Edit Lesson", edit_course_lesson_path(course_id: @course.id, id: lesson.id) %> |
-          <%= link_to "Delete Lesson", course_lesson_path(course_id: @course.id, id: lesson.id),
+          <%= link_to "Edit Lesson", edit_lesson_path(lesson, unit_id: @unit) %> |
+          <%= link_to "Delete Lesson", lesson_path(lesson),
             method: :delete,
             data: {confirm: 'Are you sure?'} %><br /></h4>
       <% end %><br />
@@ -15,4 +15,4 @@
   </ol>
 </p>
 <% end %>
-<%= link_to 'Add New Lesson to Unit', new_course_lesson_path(course_id: @course.id, unit_id: @unit), class: "btn" %>
+<%= link_to 'Add New Lesson to Unit', new_lesson_path(unit_id: @unit), class: "btn" %>

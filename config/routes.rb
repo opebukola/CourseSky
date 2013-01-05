@@ -61,10 +61,11 @@ Coursesky::Application.routes.draw do
 
 
 
-  match '/about', to: 'static_pages#about'
-  match '/contact', to: 'static_pages#contact' 
-  match '/teach', to: 'static_pages#teach'
-  match '/admin', to: 'static_pages#admin'
-  match '/careers', to: 'static_pages#careers'
-  root to: 'static_pages#home'
+  match '/about', to: 'pages#about'
+  match '/admin', to: 'pages#admin'
+  match '/careers', to: 'pages#careers'
+  match '/terms', to: 'pages#terms'
+  match '/parents', to: 'pages#parents'
+  match '/pricing', to: 'pages#pricing'
+  root to: 'pages#home'
 end

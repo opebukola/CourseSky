@@ -22,7 +22,7 @@
 		<% end %>
 	<% end %>
 	<% if @activity.last? %>
-		<%= link_to finish_course_lesson_path(id:@lesson.id, course_id:@lesson.course.id), class: "btn btn-large btn-success btn-next" do  %>
+		<%= link_to finish_lesson_path(@lesson), class: "btn btn-large btn-success btn-next" do  %>
 			<i class="icon-thumbs-up"></i>
 			Complete Lesson
 		<% end %>

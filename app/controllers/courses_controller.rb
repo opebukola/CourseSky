@@ -7,7 +7,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.text_search(params[:query]).published.desc
-    @categories = Category.main.order(:name)
   end
 
   def new
@@ -25,9 +24,6 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    @units = @course.units.order(:position)
-    @lessons = @course.lessons.order(:position)
-    # @practiced_skills = @course.practiced_skill_accuracy(current_user) if current_user
   end
 
   def edit
@@ -54,8 +50,9 @@ class CoursesController < ApplicationController
 
   def lessons
     @course = Course.find(params[:id])
+    @units = @course.units
   end
-  
+
   def manage
     @course = Course.find(params[:id])
     @units = @course.units.order(:position)
@@ -69,12 +66,6 @@ class CoursesController < ApplicationController
 
   def admin
     @courses = Course.published.desc
-  end
-
-  def feature
-    @course = Course.find(params[:id])
-    @course.toggle!(:featured)
-    redirect_to :back, notice: "Course is now featured!"
   end
 
   def students

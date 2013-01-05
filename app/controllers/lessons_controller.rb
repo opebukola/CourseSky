@@ -1,20 +1,20 @@
 class LessonsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show, :finish, :doc]
-  before_filter :correct_user, only: [:edit, :update, :destroy, :sort]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    @course = Course.find(params[:course_id])
-    @units = @course.units
+    # @course = Course.find(params[:course_id])
+    # @units = @course.units
   end
 
   def new
-    @course = Course.find(params[:course_id])
     @lesson = Lesson.new
+    @course = Unit.find(params[:unit_id]).course
   end
 
   def create
-    @course = Course.find(params[:course_id])
-    @lesson = @course.lessons.build(params[:lesson])
+    @unit = Unit.find(params[:lesson][:unit_id])
+    @lesson = @unit.lessons.build(params[:lesson])
     if @lesson.save
       redirect_to edit_unit_path(@lesson.unit), notice: "Lesson Saved!"
     else
@@ -35,33 +35,31 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:course_id])
     @lesson = Lesson.find(params[:id])
+    @course = @lesson.course
   end
 
   def update
-    @course = Course.find(params[:course_id])
     @lesson = Lesson.find(params[:id])
+    @course = @lesson.course
     if @lesson.update_attributes(params[:lesson])
-      redirect_to manage_course_path(@course), notice: "Lesson Saved"
+      redirect_to edit_unit_path(@lesson.unit), notice: "Lesson Saved"
     else
+      flash[:error] = @lesson.errors.full_messages
       render 'edit'
     end
   end
 
   def destroy
-    @course = Course.find(params[:course_id])
     Lesson.find(params[:id]).destroy
     redirect_to :back, notice: "Lesson Deleted!"
   end
 
-  def lessons
-    @course = Course.find(params[:id])
-  end
+
 
   def finish
     @lesson = Lesson.find(params[:id])
-    @course = Course.find(params[:course_id])
+    @course = @lesson.course
   end
 
   def sort
@@ -99,7 +97,7 @@ class LessonsController < ApplicationController
   private
 
     def correct_user
-      @course = Course.find(params[:course_id])
+      @course = Lesson.find(params[:id]).course
       unless current_user == @course.user || current_user.admin?
         flash[:error]= "You are not authorized to perform this action"
         redirect_to @course

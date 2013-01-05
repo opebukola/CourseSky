@@ -1,5 +1,5 @@
 <%= provide(:title, 'Manage Course') %>
-<h2> Editing <%=@course.title %></h2>
+<%= render 'shared/course_manage' %><br />
 <ul class="nav nav-tabs">
   <li class="active"><a href="#info" data-toggle="tab">Basics</a></li>
   <li><a href="#course-units" data-toggle="tab">Units and Lessons</a></li>
@@ -8,17 +8,17 @@
 <div class="tab-content">
   <div class="tab-pane active" id="info">
     <p>
-      <h4>Course Title:</h4> 
+      <h4>Title:</h4> 
       <%= @course.title %>
     </p>
     <p>
-      <h4>Course Description</h4>
+      <h4>Description</h4>
       <%= markdown @course.description %>
     </p>
     <p>
       <span>Course Status:</span>
       <%= @course.status %><br />
-      <%= link_to "Publish Course", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%>
+      <%= link_to "Publish", publish_course_path(@course), method: :put, class: "btn btn-success" if @course.status == 'draft'%>
     </p>
       <hr />
     </p>
