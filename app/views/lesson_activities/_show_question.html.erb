@@ -8,35 +8,47 @@
 		</div>
 		<div class="answer-area">
 			<%= simple_form_for(@attempt, remote: true) do |f| %>
-			<%= f.input :question_id, as: :hidden, input_html: {value: question.id} %>
-			<% if question.is_multiple_choice? %>
-		    <div class="quiz-response"> Select Response</div>
-		      <%= f.input :response, collection: question.answers, as: :radio_buttons, label_method: :content, value_method: :content, label: false, class: 'quiz-response' %>
-    <% else %>
-      	<%= f.input :response, label: false, placeholder: 'Enter your response', input_html: {class: "quiz_response_form"} %>
-    <% end %>
-      <div id ="response-box-<%=question.id%>">
-        <%= f.button :submit, "Submit Answer", class: 'btn btn-large btn-quiz' %>
-      </div>
-  <% end %>
-
-			<div id="hint-box_<%=question.id%>">
-				<div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
-					<i class="icon-question-sign"></i>
-	        I don't know. Give me a hint!
+				<%= f.input :question_id, as: :hidden, input_html: {value: question.id} %>
+				<% if question.is_multiple_choice? %>
+			    <div class="quiz-response"> Select Response</div>
+			      <%= f.input :response, collection: question.answers, as: :radio_buttons, label_method: :content, value_method: :content, label: false, class: 'quiz-response' %>
+	    	<% else %>
+	      	<%= f.input :response, label: false, placeholder: 'Enter your response', input_html: {class: "quiz_response_form"} %>
+	    	<% end %>
+	      <div id ="response-box-<%=question.id%>">
+	        <%= f.button :submit, "Submit Answer", class: 'btn btn-large btn-quiz' %>
 	      </div>
-	      <div id="hint_<%=question.id%>" class="hint collapse">
-	      	<%= question.hint %>
-	      </div>
-	    </div>
-	    <hr />
-	    <div class="question-data">
-	    	Difficulty: <%= question.difficulty_level %><br />
-	    	Points Possible: <%= question.possible_points %><br />
-	    	Skills Tested:<br />
+  		<% end %>
+  		<div id="hint-box_<%=question.id%>">
+  			<div class="show-hint" data-toggle="collapse" data-target="#hint_<%=question.id%>">
+  				<i class="icon-question-sign"></i>
+  				I don't know. Give me a hint!
+  			</div>
+  			<div id="hint_<%=question.id%>" class="hint collapse">
+  				<%= question.hint %>
+  			</div>
+  		</div>
+  		<hr />
+  		<!-- Button to trigger solution -->
+  		<a href="#solution-<%=question.id%>" role="button" class="btn" data-toggle="modal" id="view-solution">View Solution</a>
+  		<!-- Solution Modal -->
+  		<div id="solution-<%=question.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  			<div class="modal-header">
+  				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  				<h3 id="myModalLabel">Solution</h3>
+  			</div>
+  			<div class="modal-body">
+  				<p><%=question.explanation_text%></p>
+  			</div>
+  		</div>
+  		<div class="question-data">
+  			Difficulty: <%= question.difficulty_level %><br />
+  			Points Possible: <%= question.possible_points %><br />
+  			Skills Tested:<br />
 	    	<% question.skills.each do |s| %>
 	    		<%= s.description %>
 	    	<% end %>
 			</div>
 		</div>
 	</div>
+</div>

@@ -9,7 +9,7 @@ class AttemptsController < ApplicationController
 			if @attempt.save
 				respond_to do |format|
 					format.html {redirect_to :back, notice: "Correct" }
-					format.js {render js: "alert('Great!');", status: 200}
+					format.js {render 'correct'}
 				end
 			else
 				flash[:error] = @attempt.errors.full_messages

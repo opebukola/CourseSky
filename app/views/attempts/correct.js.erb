@@ -2,3 +2,5 @@ var qid = <%=@question.id.to_json %>;
 
 var response = $('#response-box-' + qid);
 response.addClass("response").html("Correct!");
+$('#hint-box_' + qid).hide();
+$('#view-solution').show();

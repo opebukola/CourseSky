@@ -1,0 +1,2 @@
+jQuery ->
+	$('#view-solution').hide();
