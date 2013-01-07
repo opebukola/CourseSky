@@ -4,17 +4,18 @@ class QuestionsController < ApplicationController
 
   def new
     @lesson = Lesson.find(params[:lesson_id])
+    @course = @lesson.course
     @question = Question.new
   end
 
   def create
+    @lesson = Lesson.find(params[:question][:lesson_id])
+    @course = @lesson.course
     @question = Question.new(params[:question])
     if @question.save
-      redirect_to :back, notice: "Question saved"
+      redirect_to edit_lesson_path(@lesson), notice: "Question saved"
     else
       flash[:error] = @question.errors.full_messages
-      @lesson = Lesson.find(params[:question][:lesson_id])
-      # redirect_to :back
       render 'new'
     end
   end
@@ -24,14 +25,17 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @lesson = Lesson.find(params[:lesson_id])
     @question = Question.find(params[:id])
+    @lesson = @question.lesson
+    @course = @lesson.course
   end
 
   def update
     @question = Question.find(params[:id])
+    @lesson = @question.lesson
+    @course = @lesson.course
     if @question.update_attributes(params[:question])
-      redirect_to :back, notice: "Question updated"
+      redirect_to edit_lesson_path(@lesson), notice: "Question updated"
     else
       flash[:error] = @question.errors.full_messages
       render 'edit'

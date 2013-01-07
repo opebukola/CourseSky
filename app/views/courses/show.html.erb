@@ -11,8 +11,10 @@
   </div>
   <div class="course-instructors">
   	<h2> About the Guide</h2>
-      <%= image_tag @course.user.avatar_url(:profile) %>
-      <%= @course.user.fname %><br />
-      <%= truncate(@course.user.about, length: 500) %>
+      <%= image_tag @course.user.avatar_url(:headshot) %><br />
+      <%= markdown (truncate h(@course.user.about),
+                       length: 500, 
+                       omission: "...#{link_to'[more]',
+                       user_path(@course.user), target: 'blank'}").html_safe %>
   </div>
 </section>

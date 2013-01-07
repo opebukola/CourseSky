@@ -1,5 +1,5 @@
-<h2> Editing: Lesson <%=@lesson.position%> - <%= @lesson.title %></h2>
-<h3> <%= link_to "Back to Lesson", edit_course_lesson_path(@lesson.course, @lesson) %></h3>
-<hr />
 <% provide(:title, 'Add Question') %>
+<%= render 'shared/course_manage' %><br />
+<h2><%= link_to "Back to Edit Lesson", edit_lesson_path(@lesson) %></h2>
+<hr />
 <%= render 'form' %>

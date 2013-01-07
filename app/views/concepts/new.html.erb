@@ -1,2 +1,5 @@
 <%= provide(:title, 'Add New Concept') %>
+<%= render 'shared/course_manage' %><br />
+<h2><%= link_to "Back to Edit Lesson", edit_lesson_path(@lesson) %></h2>
+<hr />
 <%= render 'form' %>
