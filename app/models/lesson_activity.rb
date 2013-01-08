@@ -24,4 +24,9 @@ class LessonActivity < ActiveRecord::Base
   acts_as_list scope: :lesson
   alias_method :next_item, :lower_item
   alias_method :prev_item, :higher_item
+
+  def lesson_progress
+  	activity_count = self.lesson.lesson_activities.count  
+  	return (self.position.to_f / activity_count.to_f)*100
+  end
 end

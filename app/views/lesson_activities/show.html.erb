@@ -1,5 +1,8 @@
 <%= provide(:title, @lesson.title) %>
-<%= render 'shared/course_intro' %>
+<%= render 'shared/course_intro' %><br />
+<div class="progress">
+  <div class="bar" style="width:<%=@activity.lesson_progress%>%;"></div>
+</div>
 <br />
 <% if @activity.activity_type == 'Concept' %>
 	<%= render 'show_concept' %>

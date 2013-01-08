@@ -25,7 +25,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
-    @course = Course.find(params[:course_id])
+    @course = @lesson.course
     @comments = @lesson.comments
     @comment = Comment.new
     params[:lesson_id] = params[:id]
