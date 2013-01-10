@@ -26,7 +26,7 @@ class Concept < ActiveRecord::Base
 
   validates :lesson_id, presence: true
   validates	:title, presence: true
-  validates :video_url, presence: true, format: {with: VIDEO_REGEX}
+  validates :video_url, allow_blank: true, presence: true, format: {with: VIDEO_REGEX}
   validates :doc, presence: true
   validate :must_have_skills
   after_create :create_lesson_activity

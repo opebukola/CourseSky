@@ -29,6 +29,7 @@ class Question < ActiveRecord::Base
   has_one :lesson_activity, as: :activity
   after_save :create_lesson_activity
   before_destroy :delete_lesson_activity
+  VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 
 
 
@@ -45,8 +46,22 @@ class Question < ActiveRecord::Base
   validates :answers, presence: true
   validates :difficulty, presence: true
   validate :must_have_skills
+  validates :explanation_video, allow_blank:true, format: {with: VIDEO_REGEX}
 
   mount_uploader :question_image, QuestionImageUploader
+
+  #create embed code for Youtube video URLS
+  def video_source
+    regex_youtube = VIDEO_REGEX
+    if regex_youtube.match(self.explanation_video)
+      protocol = $1
+      youtube_id = $4
+      video_source = "#{protocol}://www.youtube.com/embed/#{youtube_id}?rel=0&hd=1"
+    else
+      video_source = ""
+    end
+  end
+
 
   def must_have_skills
     errors.add(:question, 'must have at least one skill') if self.skills.empty?

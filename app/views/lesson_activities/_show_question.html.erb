@@ -25,7 +25,7 @@
   				I don't know. Give me a hint!
   			</div>
   			<div id="hint_<%=question.id%>" class="hint collapse">
-  				<%= question.hint %>
+  				<%= markdown question.hint %>
   			</div>
   		</div>
   		<hr />
@@ -38,7 +38,11 @@
   				<h3 id="myModalLabel">Solution</h3>
   			</div>
   			<div class="modal-body">
-  				<p><%=question.explanation_text%></p>
+  				<p><%= markdown question.try(:explanation_text)%></p>
+          <% if question.explanation_video %>
+            <iframe width="560" height="315" src="<%=question.video_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
+          <% end %>
+
   			</div>
   		</div>
   		<div class="question-data">
