@@ -1,17 +1,32 @@
 <div class="login-form">
-<h2>Sign in to CourseSky</h2>
+	<span class="login-header">
+		<h2>Sign in to your account </h2>
+	</span>
 
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true, label: "Enter your email" %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in", class: 'btn-primary' %>
-  </div>
-<% end %>
+	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	  <div class="form-inputs">
+	    <%= f.input :email, :required => true, :autofocus => true, label: "Enter your email" %>
+	    <%= f.input :password, :required => true %>
+	    <%= f.input :remember_me, label: "Keep me signed in", :as => :boolean if devise_mapping.rememberable? %>
+	  </div>
 
-<%= render "devise/shared/links" %>
+	  <div class="form-actions">
+	    <%= f.button :submit, "Sign in", class: 'btn-large btn-primary btn-signin' %>
+	  </div>
+	<% end %>
+	<hr />
+	<span class="division"> - or -</span>
+		<div class="social">
+		<a class="fb-login" href="#" alt="facebook">
+			<span class="fb_icon">
+				<img src="/images/i_face.png" alt="facebook">
+			</span>
+			<span class="text">Sign in with facebook</span>
+		</a>
+			<%= render "devise/shared/links" %>
+	</div>
+
+
+
 </div>
