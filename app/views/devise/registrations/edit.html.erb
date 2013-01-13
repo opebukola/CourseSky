@@ -11,10 +11,12 @@
     <%= f.input :avatar %>
     <%= f.input :location %>
     <%= f.input :about, hint: "Add a bit of info about yourself" %>
-    <h3> Confirm Changes: </h3><br />
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+    <% if f.object.encrypted_password.present? %>
+        <h3> Confirm Changes: </h3><br />
+        <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+        <%= f.input :password_confirmation, :required => false %>
+        <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+    <% end %>
 
     <%= f.button :submit, "Update", class: "btn btn-primary"%>
 <% end %>

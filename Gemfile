@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.11'
 gem 'jquery-rails'
 gem 'pg'
 gem 'simple_form'
@@ -13,6 +13,7 @@ gem 'pg_search'
 gem 'fog'
 gem 'kramdown'
 gem 'acts_as_list'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'annotate'

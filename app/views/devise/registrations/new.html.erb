@@ -7,8 +7,10 @@
     <%= f.input :fname, label: "First Name",required: true %>
     <%= f.input :lname, label: "Last Name",required: true %>
     <%= f.input :email, :required => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
+    <% if f.object.password_required? %>
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :required => true %>
+    <% end %>
   </div>
 
   <div class="form-actions">

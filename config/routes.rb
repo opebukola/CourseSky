@@ -3,7 +3,8 @@ Coursesky::Application.routes.draw do
 
   get "enrollments/destroy"
 
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
 
   resources :users, only: [:show, :destroy, :index] do
     member do
