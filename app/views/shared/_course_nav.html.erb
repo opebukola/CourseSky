@@ -1,0 +1,18 @@
+
+	<div class="course-side-nav">
+		<% @course.units.each do |u| %>
+			Unit <%=u.position%>: <%= u.title %><br />
+				<% u.lessons.each do |l| %>
+					Lesson: <%= l.title %><br />
+					<ol>
+						<% l.lesson_activities.order(:position).each do |la| %>
+								<% if la.activity_type == "Concept" %>
+									<li>Concept <%=la.position%>: <%= Concept.find(la.activity_id).title %></li>
+								<% else %>
+									<li>Question</li>
+								<% end %>
+				<% end %>
+			</ol>
+		<% end %><hr />
+		<% end %>
+	</div>

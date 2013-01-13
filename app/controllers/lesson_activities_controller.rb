@@ -6,6 +6,7 @@ class LessonActivitiesController < ApplicationController
 		@quiz = Quiz.new
 		@attempt = Attempt.new
 		@attempt.user = current_user
+		@comment = Comment.new
 	end
 
 	def edit

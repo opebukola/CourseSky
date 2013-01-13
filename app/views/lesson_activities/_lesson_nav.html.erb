@@ -1,0 +1,21 @@
+<div class="lesson-nav">
+	<% if @activity.prev_item %>
+		<%= link_to lesson_activity_path(@activity.prev_item), class: "btn btn-primary" do  %>
+			<i class="icon-circle-arrow-left"></i>
+			Previous
+		<% end %>
+	<% end %>
+	<% if @activity.next_item %>
+		<%= link_to lesson_activity_path(@activity.next_item), class: "btn btn-primary btn-next" do  %>
+			<i class="icon-circle-arrow-right"></i>
+			Next
+		<% end %>
+	<% end %>
+	<% if @activity.last? %>
+		<%= link_to finish_lesson_path(@lesson), class: "btn btn-success btn-next" do  %>
+			<i class="icon-thumbs-up"></i>
+			Complete Lesson
+		<% end %>
+	<% end %>
+	<br />
+</div>

@@ -1,0 +1,15 @@
+<!-- Button to trigger solution -->
+<a href="#solution-<%=question.id%>" role="button" class="btn" data-toggle="modal" id="view-solution">View Solution</a>
+<!-- Solution Modal -->
+<div id="solution-<%=question.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Solution</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= markdown question.try(:explanation_text)%></p>
+    <% if question.explanation_video %>
+      <iframe width="560" height="315" src="<%=question.video_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
+    <% end %>
+  </div>
+</div>

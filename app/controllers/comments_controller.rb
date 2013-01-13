@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to :back, notice: "Comment saved!"
     else
+      flash[:error] = @comment.errors.full_messages
       redirect_to :back, notice: "Cannot save comment. Please try again"
     end
   end

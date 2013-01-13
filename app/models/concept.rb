@@ -21,6 +21,7 @@ class Concept < ActiveRecord::Base
   has_one :lesson_activity, as: :activity
   has_many :concept_skills
   has_many :skills, through: :concept_skills
+  has_many :comments
 
   VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 

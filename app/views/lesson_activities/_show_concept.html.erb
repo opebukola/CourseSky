@@ -1,5 +1,6 @@
+<div class="lesson-activity">
 <% video = Concept.find(@activity.activity_id) %>
-<div class="accordion content-box-large" id="unit_accordion">
+<div class="accordion" id="unit_accordion">
   <div class="accordion-group">
     <div class="accordion-heading">
       <a class="watch-read" data-toggle="collapse" data-parent="#unit_accordion" href="#watch">
@@ -9,15 +10,25 @@
         Read
       </a>
       </div>
-      <div id="watch" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          	<iframe width="853" height="480" src="<%=video.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
+      <div id="watch" class="collapse in">
+        <div class="">
+          	<iframe width="736" height="414" src="<%=video.video_clip_source%>" frameborder="1" allowfullscreen></iframe>
         </div>
       </div>
-      <div id="read" class="accordion-body collapse">
+      <div id="read" class="collapse">
         <div class="accordion-inner">
           <%= markdown video.doc %>
         </div>
       </div>
     </div>
 </div>
+<%= render 'lesson_nav' %>
+<hr />
+<div class="comment-section">
+<h3> Questions & Answers </h3>
+<%= nested_comments video.comments.arrange %>
+<%= render 'shared/comments_form' %>
+</div>
+
+</div>
+

@@ -137,6 +137,7 @@ p {
 /** -------------------------------------------------- **/
 
 footer {
+  clear: both;
   margin-top: 45px;
   padding: 5px 5px 0px 5px;
   border-top: 1px solid $grayMediumLight;
@@ -159,6 +160,24 @@ footer {
     }
   }
 }
+
+/** -------------------------------------------------- **/
+/* LOGINS */
+/** -------------------------------------------------- **/
+
+.login-form{
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px; 
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15); 
+  margin-left: 65px;
+}
+
 
 /** -------------------------------------------------- **/
 /* HOME PAGE */
@@ -317,6 +336,92 @@ footer {
 
 .progress-none a{
   color: white;
+}
+
+/** -------------------------------------------------- **/
+/* ACTIVITY - NAVIGATION */
+/** -------------------------------------------------- **/
+.course-side-nav{
+  border: solid 1px #CCC;
+  // border-radius: 10px;
+  background-color: #dcdcdc;
+  padding: 5px 5px 5px 5px;
+  width: 180px;
+  // z-index: 20;
+  // position: relative;
+  max-height: 350px;
+  float: left;
+  margin: 0px 5px 20px 0px;
+  overflow-y: scroll;
+}
+
+.lesson-nav{
+  clear: right;
+}
+
+.accordion-group{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  // border: none;
+}
+
+
+/** -------------------------------------------------- **/
+/* ACTIVITY- CONCEPT SHOW */
+/** -------------------------------------------------- **/
+
+.lesson-activity{
+  width: 740px;
+  float: right;
+  margin: 0px 0px 10px 0px;
+}
+
+.comment-section{
+  clear: both;
+}
+
+/** -------------------------------------------------- **/
+/* ACTIVITY-QUESTION SHOW */
+/** -------------------------------------------------- **/
+
+.activity-question{
+  width: 740px;
+  float: right;
+  margin: 0px 0px 20px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.question-area-large{
+  background-color: white;
+  border: 2px solid #E5E5E5; 
+  border-radius: 5px;
+  padding: 10px 10px 20px 10px;
+  margin: 0px 0px 10px 0px;
+  .question-text{
+   width: 65%;
+   float: left;
+  }
+  .answer-area{
+    width: 30%;
+  }
+  .question-data{
+    margin-top: 20px;
+    color: $gray;
+  }
+}
+
+.question-area-large::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+input#attempt_response.string.quiz_response_form{
+  height: 30px;
+  line-height: 20px;
+  font-size: 15px;
 }
 
 /** -------------------------------------------------- **/
@@ -545,17 +650,9 @@ footer {
 }
 
 
-.quiz-question-area{
-  margin: 0px auto;
-  margin-bottom: 30px;
-  // width: 90%;
-  border: 2px solid #E5E5E5; 
-  padding: 10px 10px 10px 10px;
-  border-radius: 5px;
-  background-color: white;
-}
 
-.question-area{
+
+.questionss-area{
   width: 60%;
   // border: 1px solid #E5E5E5; 
   // border-radius: 5px;
@@ -611,18 +708,16 @@ footer {
   font-weight: bold;
 }
 
-input#attempt_response.string.quiz_response_form{
-  // border: 4px solid $gray;
-  height: 30px;
-  line-height: 20px;
-  font-size: 15px;
-  // float: left;
-  // vertical-align: middle;
-}
+// input#attempt_response.string.quiz_response_form{
+//   height: 30px;
+//   line-height: 20px;
+//   font-size: 15px;
 
-.question-data{
-  color: $gray;
-}
+// }
+
+// .question-data{
+//   color: $gray;
+// }
 /** -------------------------------------------------- **/
 /* WHERE?? */
 /** -------------------------------------------------- **/
