@@ -5,7 +5,7 @@
 	<h3> Skills Listing </h3><br />
 	<% @course.skills.each do |s| %>
 		<ul>
-			<li><%= link_to s.description, new_quiz_path(course_id: @course)%></li>
+			<li><%= link_to s.description, '#' %></li>
 		</ul>
 	<% end %>
 </div>
