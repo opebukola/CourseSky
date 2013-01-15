@@ -6,11 +6,11 @@
 		<iframe width="853" height="480" src="<%=@course.video_source%>" frameborder="1" allowfullscreen></iframe>
 	</div>
   <div class="course-description">
-  	<h2> About the Course</h2>
+  	<div class="main-course-title"> About the Course</div>
       <%= markdown @course.description %>
   </div>
   <div class="course-instructors">
-  	<h2> About the Guide</h2>
+  	<div class="main-course-title">  About the Guide</div>
       <%= image_tag @course.user.avatar_url(:headshot) %><br />
       <%= markdown (truncate h(@course.user.about),
                        length: 500, 

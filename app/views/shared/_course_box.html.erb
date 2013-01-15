@@ -6,7 +6,7 @@
       <div class="course-info">
         <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
         <h3><%= course.title %></h3>
-        <%= link_to "Start Learning", course_path(course), class: "btn-course-start btn btn-large" %>
+        <%= link_to "Start Learning", lessons_course_path(course), class: "btn-course-start btn btn-large" %>
         <%= course.lessons.count %> interactive lessons<br />
         Hundreds of practice questions with solutions<br /> 
         </div>  

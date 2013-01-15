@@ -1,7 +1,7 @@
 class AttemptsController < ApplicationController
 	def create
 		@attempt = Attempt.new(params[:attempt])
-		@attempt.user = current_user
+		@attempt.user = current_or_guest_user
 		@question = @attempt.question
 		@response = @attempt.response.to_s
 		if @question.is_correct?@response

@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
   has_many :enrollments, foreign_key: "student_id", dependent: :destroy
   has_many :enrolled_courses, through: :enrollments
   has_many :comments
-  has_many :completed_asks, foreign_key: "student_id", dependent: :destroy
   has_many :quizzes
   has_many :attempts, dependent: :destroy
   has_many :attempted_questions, through: :attempts, source: :question

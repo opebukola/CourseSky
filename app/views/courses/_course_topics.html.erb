@@ -17,7 +17,6 @@
                     <%= link_to l.title, lesson_activity_path(l.lesson_activities.first)  %> 
                     <% if current_user && current_user.enrolled?(@course) %> |
                       <%=l.progress(current_user).round(0) %>% complete |
-                      Score: <%= l.score(current_user).round(0)%>%
                     <% end %> 
                   </h4>
                   </li>
