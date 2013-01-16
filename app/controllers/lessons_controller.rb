@@ -1,7 +1,8 @@
 class LessonsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show, :finish, :doc]
   before_filter :correct_user, only: [:edit, :update, :destroy]
-  
+  before_filter :confirm_complete, only: :finish
+
   def index
     # @course = Course.find(params[:course_id])
     # @units = @course.units
@@ -101,6 +102,15 @@ class LessonsController < ApplicationController
       unless current_user == @course.user || current_user.admin?
         flash[:error]= "You are not authorized to perform this action"
         redirect_to @course
+      end
+    end
+
+    def confirm_complete
+      @lesson = Lesson.find(params[:id])
+      user = current_or_guest_user
+      unless @lesson.completed_by?(user)
+        flash[:error] = "You must answer all questions correctly to finish lesson"
+        redirect_to :back
       end
     end
 

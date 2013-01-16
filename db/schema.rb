@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113014643) do
+ActiveRecord::Schema.define(:version => 20130115223454) do
 
   create_table "answers", :force => true do |t|
     t.string   "content"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(:version => 20130113014643) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "response"
-    t.integer  "quiz_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -73,6 +72,24 @@ ActiveRecord::Schema.define(:version => 20130113014643) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "course_skill", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "course_skill", ["course_id", "skill_id"], :name => "index_course_skill_on_course_id_and_skill_id", :unique => true
+
+  create_table "course_skills", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "course_skills", ["course_id", "skill_id"], :name => "index_course_skills_on_course_id_and_skill_id", :unique => true
 
   create_table "courses", :force => true do |t|
     t.string   "title"

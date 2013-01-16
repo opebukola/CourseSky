@@ -21,7 +21,6 @@ class Lesson < ActiveRecord::Base
   has_many :skills, through: :concept_skills
   has_one :course, through: :unit
   has_many :lesson_activities, order: :position
-  has_many :comments
 
   validates :title, presence: true
   validates :unit_id, presence: true
@@ -52,13 +51,13 @@ class Lesson < ActiveRecord::Base
 
   def progress(user)
     total = self.cfu_questions.count
-    attempts = self.cfu_attempted(user).count
+    attempts = self.cfu_correct(user).count
     progress = (attempts.to_f / total.to_f) * 100
     return progress
   end
 
   def completed_by?(user)
-    return true if self.cfu_questions.all?{|q| q.attempted_by?(user)}
+    return true if self.cfu_questions.all?{|q| q.correct_attempt?(user)}
   end
 
   def score(user)

@@ -22,6 +22,8 @@
 #  instructor             :boolean          default(FALSE)
 #  fname                  :string(255)
 #  lname                  :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -97,6 +99,15 @@ class User < ActiveRecord::Base
     return true if
     self.enrollments.find_by_enrolled_course_id(course.id)
   end
+
+
+
+  # def last_attempt_by(user)
+  #   Attempt.where(
+  #     question_id: self.id, user_id: user.id).order('
+  #     created_at DESC').first
+  # end
+
 
   # #question aka "ask" status
 

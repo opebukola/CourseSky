@@ -11,7 +11,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  response    :string(255)
-#  quiz_id     :integer
 #
 
 require 'test_helper'

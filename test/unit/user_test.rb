@@ -22,6 +22,8 @@
 #  instructor             :boolean          default(FALSE)
 #  fname                  :string(255)
 #  lname                  :string(255)
+#  provider               :string(255)
+#  uid                    :string(255)
 #
 
 require 'test_helper'

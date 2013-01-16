@@ -1,31 +1,30 @@
- <% if current_user.enrolled?(@course) %>
-	<div class="course-progress-stats">
-		<div class="progress-stat">
-			<h3 class="progress-number"><%=@course.completed_lessons(current_user).count %></h3>
-			<p class="progress-description">lessons completed</p>
+<% user = current_or_guest_user %>
+ <% if user.enrolled?(@course) %>
+		<div class="course-progress-stats">
+			<div class="progress-stat">
+				<h3 class="progress-number"><%=@course.completed_lessons(user).count %></h3>
+				<p class="progress-description">lessons completed</p>
+			</div>
+			<div class="progress-stat">
+				<h3 class="progress-number"><%=@course.progress(user).round(0)%>%</h3>
+				<p class="progress-description">lessons completed</p>
+			</div>
+			<div class="progress-stat">
+				<h3 class="progress-number">X</h3>
+				<p class="progress-description">questions answered</p>
+			</div>
 		</div>
-		<div class="progress-stat">
-			<h3 class="progress-number"><%=@course.progress(current_user).round(0)%>%</h3>
-			<p class="progress-description">lessons completed</p>
-		</div>
-		<div class="progress-stat">
-			<h3 class="progress-number">X %</h3>
-			<p class="progress-description">overall accuracy</p>
-		</div>
-		<div class="progress-stat">
-			<h3 class="progress-number">X </h3>
-			<p class="progress-description">mastery level</p>
-		</div>
-	</div>
-	<div class="skills-report">
-		<p class="progress-notice"> Skill Report </p>
-		<h3> Top 5 Skills Mastered</h3><br />
+		<div class="skills-report">
+			<p class="progress-notice"> Skill Report </p>
+			<h3> Top 5 Skills Mastered</h3><br />
 
 
-		<h3> Top 5 Skills to Work On</h3><br />
-		<%= link_to "See detailed skill report for this course", '#' %>
-	</div>
-
-		<p class="progress-notice"> You don't have any progress data for this course yet. Start a lesson or take a quiz to track your progress.  </p>
+			<h3> Top 5 Skills to Work On</h3><br />
+			<%= link_to "Coming Soon! Get a detailed skill report for this course", '#' %>
+		</div>
+	<% else %>
+	<p class="progress-notice"> 
+		You don't have any progress data for this course yet. <%=link_to "Start Learning", lessons_course_path(@course)%> and we'll track your progress. 
+	</p>
 <% end %>
 

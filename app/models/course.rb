@@ -22,14 +22,13 @@ class Course < ActiveRecord::Base
   has_many :units, order: "position", dependent: :destroy
   has_many :lessons, through: :units
   has_many :concepts, through: :lessons
-  has_many :concept_skills, through: :concepts
-  has_many :skills, through: :concept_skills
+  has_many :course_skills
+  has_many :skills, through: :course_skills
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
 
   VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 
-  # has_many :quizzes
   # before_destroy :ensure_no_students
 
   validates :title, presence: true

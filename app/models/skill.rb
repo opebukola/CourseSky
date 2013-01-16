@@ -16,6 +16,8 @@ class Skill < ActiveRecord::Base
   has_many :concept_skills
   has_many :concepts, through: :concept_skills
   has_many :lessons, through: :concepts
+  has_many :course_skills
+  has_many :courses, through: :course_skills
  
   has_ancestry
 

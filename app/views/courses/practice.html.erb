@@ -1,8 +1,8 @@
-<%=provide(:title, @course.title) %>
+<%=provide(:title, @course.title + 'Practice') %>
 <%= render 'shared/course_intro' %>
 <div class="skills-listing">
 	<h3> Coming Soon! Master every <%= @course.title %> skill with unlimited practice questions.</h3><br />
-	<h3> Skills Listing </h3><br />
+	<h3> Below is a list of all the skills covered in Algebra 1.</h3><br />
 	<% @course.skills.each do |s| %>
 		<ul>
 			<li><%= link_to s.description, '#' %></li>

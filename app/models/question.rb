@@ -124,7 +124,8 @@ class Question < ActiveRecord::Base
   end
 
   def correct_attempt?(user)
-    return true if 
+    # return true if 
+    self.last_attempt_by(user) && 
     self.last_attempt_by(user).correct == true
   end
 

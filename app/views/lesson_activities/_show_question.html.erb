@@ -1,7 +1,13 @@
 <% question = Question.find(@activity.activity_id) %>
+<% user = current_or_guest_user %>
 
 <div class="activity-question">
 	<div class="question-area-large">
+    <% if question.correct_attempt?user %>
+      <div class="already-answered">
+        You have already answered this question correctly. You can try it again!
+      </div>
+    <% end %>
     <div class="question-text">
       <%= markdown question.question_text %>
       <%= image_tag question.question_image_url(:quiz) if question.question_image? %>

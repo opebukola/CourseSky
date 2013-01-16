@@ -11,7 +11,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  response    :string(255)
-#  quiz_id     :integer
 #
 
 class Attempt < ActiveRecord::Base
@@ -20,11 +19,15 @@ class Attempt < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :question
-  belongs_to :quiz
+  has_one :lesson, through: :question
+  has_one :unit, through: :lesson
+  has_one :course, through: :unit
+  after_save :build_course_enrollment
 
   validates :user_id, presence: true
   validates :question_id, presence: true
-  # validates :quiz_id, presence: true
+
+
   # scope :skipped, where('response is null')
   after_save :calculate_score
 
@@ -37,8 +40,8 @@ class Attempt < ActiveRecord::Base
   end
 
   def attempt_count
-    Attempt.find_all_by_question_id_and_user_id_and_quiz_id(
-      self.question_id,self.user_id,self.quiz_id).size
+    Attempt.find_all_by_question_id_and_user_id(
+      self.question_id,self.user_id).size
   end
 
 
@@ -55,4 +58,13 @@ class Attempt < ActiveRecord::Base
   # def update_user_score
   # 	self.user.update_score!
   # end
+  protected
+    def build_course_enrollment
+      course = self.course
+      user = self.user
+      unless course.user == user
+        Enrollment.find_or_create_by_student_id_and_enrolled_course_id(
+          user.id, course.id)
+      end
+    end
 end

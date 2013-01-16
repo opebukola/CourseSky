@@ -439,6 +439,12 @@ footer {
   border-radius: 5px;
   padding: 10px 10px 20px 20px;
   margin: 0px 0px 10px 0px;
+  .already-answered{
+    border: 1px dotted;
+    border-radius: none;
+    padding: 5px 5px 5px 5px;
+    margin: 0px 0px 5px 0px;
+  }
   .question-text{
    width: 65%;
    float: left;
