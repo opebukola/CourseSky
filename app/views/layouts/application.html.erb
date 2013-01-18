@@ -9,6 +9,9 @@
     <%= render 'layouts/mathjax' %>
   </head>
   <body>
+    <a href="#" class="scrolltop">
+        <span>up</span>
+    </a>
     <%= render "layouts/facebook" %>
     <%= render 'layouts/header' %>
     <div class="container">
@@ -19,8 +22,8 @@
         </div>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
     </div>
+    <%= render 'layouts/footer' %>
     <%= google_analytics_js %>
   </body>
 </html>

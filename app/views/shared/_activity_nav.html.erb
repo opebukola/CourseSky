@@ -1,0 +1,15 @@
+<ul id="lesson-items">
+	<% @lesson.lesson_activities.each do |a| %>
+	<li>
+		<% if a.activity_type == 'Concept' %>
+		<%= link_to lesson_activity_path(a) do %>
+		<i class="icon-play-circle icon-2x"></i>
+		<% end %>
+		<% else %>
+		<%= link_to lesson_activity_path(a) do %>
+		<i class="icon-question-sign icon-2x"></i>
+		<% end %>
+		<% end %>
+	</li>
+<% end %>
+</ul>

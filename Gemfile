@@ -14,6 +14,7 @@ gem 'fog'
 gem 'kramdown'
 gem 'acts_as_list'
 gem 'omniauth-facebook'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'annotate'

@@ -23,12 +23,11 @@
     </div>
 </div>
 <%= render 'lesson_nav' %>
-<hr />
 <div class="comment-section">
-<h3> Questions & Answers </h3>
-<%= nested_comments video.comments.arrange %>
-<%= render 'shared/comments_form' %>
+  <hr />
+  <span class="ask"> Ask a question </span>
+  <%= nested_comments video.comments.arrange %>
+  <%= render 'shared/comments_form' %>
 </div>
-
 </div>
 

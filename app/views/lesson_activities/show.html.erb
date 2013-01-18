@@ -1,6 +1,7 @@
 <%= provide(:title, @lesson.title) %>
-
 <%= render 'shared/course_intro' %><br />
+<%= render 'shared/activity_nav' %>
+
 
 <% if @activity.activity_type == 'Concept' %>
 	<%= render 'show_concept' %>
@@ -8,4 +9,5 @@
 	<%= render 'show_question' %>
 <% else %>
 <% end %>
+
 

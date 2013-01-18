@@ -1,11 +1,12 @@
 @import "bootstrap";
+@import "font-awesome";
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
 
-/** -------------------------------------------------- **/
-/* UNIVERSAL */
-/** -------------------------------------------------- **/
+// /** -------------------------------------------------- **/
+// /* UNIVERSAL */
+// /** -------------------------------------------------- **/
 
 html {
   overflow-y: scroll;
@@ -31,71 +32,94 @@ label.boolean {
   display: inline-block;
 }
 
-/** -------------------------------------------------- **/
-/* TYPOGRAPHY */
-/** -------------------------------------------------- **/
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+.scrolltop {
+  background-color: #F1F1F1;
+  border: 1px solid darkGray;
+  border-radius: 100px 100px 100px 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  display: none;
+  height: 36px;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  position: fixed;
+  right: 2%;
+  /*text-indent: -9999px;*/
+  top: 50%;
+  width: 36px;
+  z-index: 33;
+}
+.scrolltop span {
+  position: relative;
+  top: 7px;
+  left: 10px;
 }
 
-h1 {
-  font-size: 2.7em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  /* text-align: center; */
-}
+// /** -------------------------------------------------- **/
+// /* TYPOGRAPHY */
+// /** -------------------------------------------------- **/
 
-h2 {
-  font-size: 2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  /* color: $grayLight; */
-  font-weight: normal;
-}
+// h1, h2, h3, h4, h5, h6 {
+//   line-height: 1;
+// }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
+// h1 {
+//   font-size: 2.7em;
+//   letter-spacing: -2px;
+//   margin-bottom: 30px;
+//   /* text-align: center; */
+// }
+
+// h2 {
+//   font-size: 2em;
+//   letter-spacing: -1px;
+//   margin-bottom: 30px;
+//   /* color: $grayLight; */
+//   font-weight: normal;
+// }
+
+// p {
+//   font-size: 1.1em;
+//   line-height: 1.7em;
+// }
 
 /** -------------------------------------------------- **/
 /* ALERTS */
 /** -------------------------------------------------- **/
 
-.alert {
-  padding: 8px 35px 8px 14px;
-  margin-bottom: 20px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  background-color: #fcf8e3;
-  border: 1px solid #fbeed5;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  color: #d9831f;
-}
+// .alert {
+//   padding: 8px 35px 8px 14px;
+//   margin-bottom: 20px;
+//   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+//   background-color: #fcf8e3;
+//   border: 1px solid #fbeed5;
+//   -webkit-border-radius: 4px;
+//   -moz-border-radius: 4px;
+//   border-radius: 4px;
+//   color: #d9831f;
+// }
 
-.alert-success {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #3d9400;
-}
-.alert-danger,
-.alert-error {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #d9230f;
-}
-.alert-info {
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-  color: #029acf;
-}
+// .alert-success {
+//   background-color: #dff0d8;
+//   border-color: #d6e9c6;
+//   color: #3d9400;
+// }
+// .alert-danger,
+// .alert-error {
+//   background-color: #f2dede;
+//   border-color: #eed3d7;
+//   color: #d9230f;
+// }
+// .alert-info {
+//   background-color: #d9edf7;
+//   border-color: #bce8f1;
+//   color: #029acf;
+// }
 
 
-/** -------------------------------------------------- **/
-/* HEADER */
-/** -------------------------------------------------- **/
+// /** -------------------------------------------------- **/
+// /* HEADER */
+// /** -------------------------------------------------- **/
 
 #logo {
   float: left;
@@ -132,16 +156,24 @@ p {
 }
 
 
-/** -------------------------------------------------- **/
-/* FOOTER */
-/** -------------------------------------------------- **/
 
-footer {
-  clear: both;
-  margin-top: 45px;
-  padding: 5px 5px 0px 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+// /** -------------------------------------------------- **/
+// /* FOOTER */
+// /** -------------------------------------------------- **/
+
+.footer {
+  border-top: 3px solid #32B2C6;
+  background: #fefefe; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #fefefe 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#fefefe)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#fefefe 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#fefefe 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#fefefe 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%,#fefefe 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+
+  margin: 20px 0px 10px 0px;
+  padding: 20px 5px 20px 5px;
   a {
     color: $gray;
     &:hover { 
@@ -161,76 +193,6 @@ footer {
   }
 }
 
-/** -------------------------------------------------- **/
-/* LOGINS */
-/** -------------------------------------------------- **/
-
-.login-form{
-  background-color: white;
-  width: 400px;
-  padding: 10px 10px 10px 10px;
-  // margin: 40px -20px 10px;
-  margin: 0px 0px 10px 70px; 
-  border: 1px solid #D6D6D6;
-  .login-header{
-    text-align: center;
-    padding: 20px 0px 0px 0px;
-  }
-  // -webkit-border-radius: 10px 10px 10px 10px;
-  // -moz-border-radius: 10px 10px 10px 10px;
-  // border-radius: 10px 10px 10px 10px;
-  // -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  // -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  // box-shadow: 0 1px 2px rgba(0,0,0,.15); 
-  // margin-left: 65px;
-  .social{
-    margin: 0 auto;
-    width: 83%;
-  }
-  .fb-login{
-    border: 1px solid #3B4868;
-    border-radius: 3px 3px 3px 3px;
-    background: #6887c4;
-    background: -moz-linear-gradient(top, #6887c4 0%, #4566a9 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6887c4), color-stop(100%,#4566a9));
-    background: -webkit-linear-gradient(top, #6887c4 0%,#4566a9 100%);
-    background: -o-linear-gradient(top, #6887c4 0%,#4566a9 100%);
-    background: -ms-linear-gradient(top, #6887c4 0%,#4566a9 100%);
-    background: linear-gradient(to bottom, #6887c4 0%,#4566a9 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6887c4', endColorstr='#4566a9',GradientType=0 );
-    display: inline-block;
-    height: 37px;
-    overflow: hidden;
-    width: 99%;
-    text-decoration: none !important;
-  }
-  .division{
-    text-align: center;
-    color: #666666;
-    font-size: 18px;    
-  }
-  .form-actions {
-  // padding: 17px 20px 18px;
-  padding: 10px 10px 10px 10px;
-  margin: 10px 0px 10px 0px; 
-  background-color: transparent;
-  border-top: none;
-  }
-  .btn-signin{
-    float: right;
-  }
-  .form input[type="text"] {
-    border-color: #DBDBDB #EAEAEA #EAEAEA #DBDBDB;
-    border-left: 1px solid #DBDBDB;
-    border-style: solid;
-    border-width: 1px;
-    font-size: 16px;
-    height: 30px;
-    margin-bottom: 16px;
-    width: 95%;
-  } 
-}
-
 
 /** -------------------------------------------------- **/
 /* HOME PAGE */
@@ -239,6 +201,7 @@ footer {
 .home-hero {
   background: image-url('home-main.jpg') 0 0 no-repeat;
   padding: 80px 180px 150px 50px; 
+  padding-bottom: 150px;
   margin-bottom: 10px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -310,7 +273,13 @@ footer {
 }
 
 .main-course-title{
-  font-size: 1.6em;
+  font-size: 1.8em;
+  padding-bottom: 10px;
+  color: #741885;
+}
+
+.main-course-section{
+  font-size: 1.8em;
   padding-bottom: 10px;
 }
 
@@ -401,6 +370,25 @@ footer {
   clear: right;
 }
 
+#lesson-items{
+  overflow: hidden;
+}
+
+#lesson-items li{
+  float: left;
+  margin-right: 10px;
+  list-style-type: none;
+
+}
+
+#lesson-items li a{
+  display: block;
+  // text-indent: -9999em; 
+  // background: image-url('schoolhouse_grey.png') 0 0 no-repeat;
+  height: 50px;
+  width: 50px;
+  color: #696969;
+}
 
 /** -------------------------------------------------- **/
 /* ACTIVITY- CONCEPT SHOW */
@@ -784,11 +772,20 @@ input#attempt_response.string.quiz_response_form{
 /* COMMENTS*/
 /** -------------------------------------------------- **/
 
+.comment-section{
+  hr{
+    width: 10px;
+  }
+  .ask{
+    font-size: 2em;
+    color: #999;
+  }
+}
 .comments {
   margin: 8px 0;
   padding: 8px 15px;
   border-bottom: dotted 1px #999;
-  width: 75%;
+  width: 90%;
   font-size: 0.9em;
   /** border-radius: 12px; **/
   

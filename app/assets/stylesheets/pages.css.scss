@@ -1,3 +1,207 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* About Us
+-------------------------------------------------- */
+
+.about_page .section_header {
+	margin-top: 30px;
+}
+.about_page h3.intro {
+	color: #282F39;
+	text-align: center;
+	font-weight: normal;
+	font-size: 22px;
+	line-height: 32px;
+	width: 83%;
+	margin: 0 auto;
+	margin-bottom: 70px;
+}
+.about_page .section_header.team {
+	margin-top: 50px;
+}
+.about_page .teammate {
+	margin-bottom: 50px;
+}
+.about_page .teammate img {
+	margin-bottom: 10px;
+}
+.about_page .teammate h5 {
+	margin-bottom: 2px;
+}
+.about_page .teammate hr {
+	border-top: 1px solid #BDBFC2;
+	border-bottom: 2px solid white;
+}
+.about_page .teammate p.description { 
+	font-size: 15px;
+	color: #57595C;
+	width: 80%;
+}
+.about_page .teammate .social {
+	margin-top: 15px;
+}
+.about_page .teammate .social a,
+.about_page .teammate .social a:hover {
+	text-decoration: none
+}
+.about_page .teammate .social a:hover {
+	opacity: 0.7;
+}
+.about_page .teammate .social i {
+	margin-right: 5px;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 980px) {
+	.about_page .teammate > * {
+		margin-left: 25px;
+	}
+}
+
+
+/* Pricing
+-------------------------------------------------- */
+.pricing_page .section_header {
+	margin-top: 55px;
+}
+.pricing_page .cols4 {
+	margin-top: 60px;
+}
+#pricing .cols4 .price_wrapper {
+	min-height: 395px;
+}
+#pricing .cols4 .header .price span {
+	font-size: 35px;
+}
+#pricing .cols4 .price_wrapper {
+	width: 240px;
+}
+
+@media (min-width: 768px) {
+	#pricing .cols2 .standard {
+		float: right;
+	}
+	#pricing .cols2 .pro {
+		float: left;
+	}
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+	#pricing .cols4 .span3 {
+		width: 320px;
+	}
+	#pricing .cols4 .price_wrapper {
+		width: 321px !important;
+	}
+	#pricing .cols4 .price_wrapper.regular .header {
+		background: image-url('chart1.png') 0 0 no-repeat;
+	}
+	#pricing .cols4 .price_wrapper.pro {
+		width: 331px !important;
+		top: 0px;
+	}
+	#pricing .cols4 .price_wrapper.pro .header {
+		background: image-url('chart2.png') 0 0 no-repeat;
+	}
+}
+@media (max-width: 979px) {
+	#pricing .cols4 .price_wrapper {
+		width: 321px;
+	}
+}
+@media (min-width: 980px) {
+	#pricing .cols4 .price_wrapper.pro {
+		margin: 0 auto;
+	}
+	#pricing .cols4 .price_wrapper.regular .header {
+		background: image-url('chart1_small.png') 0 0 no-repeat;
+	}
+	#pricing .cols4 .price_wrapper.pro .header {
+		background: image-url('chart2_small.png') 0 0 no-repeat;
+	}
+}
+/* Large desktop */
+@media (min-width: 1200px) {
+	#pricing .cols4 .standard {
+		margin: 0 auto;
+		left: inherit;
+		float: right;
+	}
+	#pricing .cols4 .price_wrapper.lite {
+		right: inherit;
+	}
+}
+
+
+/* pricing charts section */
+#pricing { }
+#pricing .section_header {
+	margin-bottom: 70px;
+}
+#pricing .section_header hr {
+	width: 35%;
+}
+#pricing .price_wrapper {
+	background-color: #fafafa;
+	border: 1px solid #d9d9d9;
+	box-shadow: 0px 0px 5px 2px #E8E8E8;
+	border-radius: 6px;
+	width: 321px;
+	min-height: 375px;
+	position: relative;	
+}
+#pricing .price_wrapper.regular .header {
+	background: image-url('chart1.png')  0 0 no-repeat;
+}
+#pricing .price_wrapper.pro {
+	width: 331px;
+	margin: 0 auto;
+}
+#pricing .price_wrapper.pro .header {
+	background: image-url('chart2.png') 0 0 no-repeat;
+}
+#pricing .price_wrapper section .btn {
+	left: 35%;
+}
+#pricing .price_wrapper .header {
+	height: 98px;
+	color: #fff;
+	padding: 25px 0px 0px 40px;
+}
+#pricing .price_wrapper .header > span {
+	font-size: 24px;
+	font-style: italic;
+}
+#pricing .price_wrapper .header .price {
+	font-size: 20px;
+	top: 25px;
+	position: relative;
+	font-weight: bold;
+}
+#pricing .price_wrapper .header .price span {
+	font-size: 48px;
+	margin-right: 10px;
+}
+#pricing .price_wrapper .section {
+	padding: 15px 30px;
+}
+#pricing .price_wrapper .section h3 {
+	color: #535861;
+	font-size: 17px;
+	line-height: 22px;
+}
+#pricing .price_wrapper .section ul.perks {
+	list-style-type: none;
+	margin-left: 0px;
+	margin-top: 18px;
+}
+#pricing .price_wrapper .section ul.perks li {
+	padding: 3px 0px;
+}
+#pricing .price_wrapper .section ul.perks i {
+	margin-right: 10px;
+}
+#pricing .price_wrapper .section .btn {
+	position: absolute;
+	bottom: 15px;
+	left: 32%;
+	font-weight: bold;
+}

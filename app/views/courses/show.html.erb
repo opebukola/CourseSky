@@ -2,15 +2,16 @@
 <%= render 'shared/course_intro' %>
 <br />
 <section>
+  <div class="main-course-section">Introduction to Algebra</div>
 	<div class="course-intro-video">
 		<iframe width="853" height="480" src="<%=@course.video_source%>" frameborder="1" allowfullscreen></iframe>
 	</div>
   <div class="course-description">
-  	<div class="main-course-title"> About the Course</div>
+  	<div class="main-course-section"> About the Course</div>
       <%= markdown @course.description %>
   </div>
   <div class="course-instructors">
-  	<div class="main-course-title">  About the Guide</div>
+  	<div class="main-course-section">  About the Guide</div>
       <%= image_tag @course.user.avatar_url(:headshot) %><br />
       <%= markdown (truncate h(@course.user.about),
                        length: 500, 

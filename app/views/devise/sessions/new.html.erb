@@ -1,32 +1,42 @@
-<div class="login-form">
-	<span class="login-header">
-		<h2>Sign in to your account </h2>
-	</span>
-
-
-	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-	  <div class="form-inputs">
-	    <%= f.input :email, :required => true, :autofocus => true, label: "Enter your email" %>
-	    <%= f.input :password, :required => true %>
-	    <%= f.input :remember_me, label: "Keep me signed in", :as => :boolean if devise_mapping.rememberable? %>
-	  </div>
-
-	  <div class="form-actions">
-	    <%= f.button :submit, "Sign in", class: 'btn-large btn-primary btn-signin' %>
-	  </div>
-	<% end %>
-	<hr />
-	<span class="division"> - or -</span>
-		<div class="social">
-		<a class="fb-login" href="#" alt="facebook">
-			<span class="fb_icon">
-				<img src="/images/i_face.png" alt="facebook">
-			</span>
-			<span class="text">Sign in with facebook</span>
-		</a>
-			<%= render "devise/shared/links" %>
-	</div>
-
-
-
+<%=provide(:title, 'Sign In') %>
+<div id="box_login"> 
+	<div class="container">
+		<div class="box_wrapper">
+			<div class="box">
+				<div>
+					<div class="head">
+						<h4>Log in to your account</h4>
+					</div>
+					<div class="social">
+						<a class="face_login" href="/users/auth/facebook">
+							<span class="face_icon">
+								<%= image_tag("i_face.png") %>
+							</span>
+							<span class="text">Sign in with Facebook</span>
+						</a>
+						<div class="division">
+							<hr class="left">
+							<span>or</span>
+							<hr class="right">
+						</div>
+					</div>
+					<div class="form form-inputs">
+						<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+							<%= f.input :email, required: true, label: false, autofocus: true, placeholder: "Enter your email"%>
+							<%= f.input :password, required: true, label: false, placeholder: "Enter your password" %>
+							<div class="remember">
+								<div class="left">
+									<%= f.input :remember_me, label: "Keep me signed in", :as => :boolean if devise_mapping.rememberable? %>
+								</div>
+						</div>
+							<%= f.button :submit, "Sign in" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<p class="already">
+      <%= render "devise/shared/links" %>
+    </p>
+  </div>
+</div>
 </div>
