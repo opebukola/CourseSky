@@ -1,3 +1,136 @@
-// Place all the styles related to the Courses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/** course#show **/
+
+// .course-top-nav{
+//   background-color: white;
+//   padding: 10px 10px 10px 10px;
+//   border: 1px solid #ddd;
+//   margin: 0px 0px 10px 0px;
+//   .nav-course-links{
+//     font-size: 1.2em;
+//     float: right;
+//   }
+// }
+
+.course-top-nav{
+  // background-color: white;
+  // padding: 10px 10px 10px 10px;
+  // border: 1px solid #ddd;
+  margin: 0px 0px 5px 0px;
+  .course-nav-title{
+  	font-size: 1.8em;
+ 	 padding-bottom: 10px;
+ 	 // color: #741885;
+  }
+  .course-nav-links{
+    font-size: 1.2em;
+    float: right;
+  }
+}
+
+
+.course-intro-title{
+  font-size: 1.8em;
+  padding-bottom: 10px;
+  color: #741885;
+}
+
+.course-intro-video{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  text-align: center;
+}
+
+.course-intro-description{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  width: 60%;
+  float: left;
+}
+
+
+.course-intro-about{
+	font-size: 1.8em;
+	margin-bottom: 10px;
+}
+
+.course-instructors{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  width: 30%;
+  float: right;
+}
+
+
+/**course#lessons page **/
+
+.course-topics{
+  border: 1px solid #ddd;
+  padding: 10px 10px 10px 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.course-div{
+  padding: 5px 5px 5px;
+  margin-bottom: 10px;
+  #cover-image{
+    float: left; 
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+}
+
+.content{
+  padding: 8px 0px 10px; 
+}
+
+.course-section{
+  border: solid 1px #CCC;
+  border-radius: 10px;
+  background-color: white;
+  width: 100px;
+  padding: 10px 10px 10px 30px;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  h3 {
+    margin:10px 0px 10px 0px;
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+  &:hover { 
+      background-color: #32B2C6;
+    }
+}
+
+.progress-none a{
+  color: white;
+}
+
+/** course#practice **/
+
+.course-practice{
+	border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+  margin-top: 10px;
+}
+.course-practice-teaser{
+	font-size: 1.3em;
+	margin-top: 5px;
+}

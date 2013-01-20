@@ -1,15 +1,35 @@
-<ul id="lesson-items">
-	<% @lesson.lesson_activities.each do |a| %>
+<div class="lesson-navigation">
+
+<span class="lesson-title">Learning: <%= @lesson.title %></span>
+<span class="nav-lesson-links">
+<a class="n" data-toggle="collapse" href="#topics">Show Topics</a> |
+<a class="n"data-toggle="collapse" href="#questions">Show Questions </a>
+</span>
+<div id="topics" class="collapse">
+<ul class="lesson-items">
+	<span class="in-lesson"> All Topics: </span>
+	<% @lesson.concepts.each do |c| %>
 	<li>
-		<% if a.activity_type == 'Concept' %>
-		<%= link_to lesson_activity_path(a) do %>
-		<i class="icon-play-circle icon-2x"></i>
-		<% end %>
-		<% else %>
-		<%= link_to lesson_activity_path(a) do %>
-		<i class="icon-question-sign icon-2x"></i>
-		<% end %>
+			<% a = LessonActivity.find_by_activity_type_and_activity_id("Concept", c.id)  %>
+			<%= link_to lesson_activity_path(a), title: c.title do %>
+			<i class="icon-book icon-2x concept-icon"></i>
 		<% end %>
 	</li>
 <% end %>
 </ul>
+</div>
+
+<div id="questions" class="collapse">
+<ol class="lesson-questions">
+	<span class="in-lesson"> All Questions: </span>
+	<% @lesson.questions.each do |q| %>
+	<li>
+			<% a = LessonActivity.find_by_activity_type_and_activity_id("Question", q.id)  %>
+			<%= link_to lesson_activity_path(a) do %>
+			<i class="icon-question-sign icon-2x concept-icon"></i>
+		<% end %>
+	</li>
+<% end %>
+</ol>
+</div>
+</div>

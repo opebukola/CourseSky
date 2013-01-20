@@ -17,6 +17,13 @@ class ConceptsController < ApplicationController
 		end
 	end
 
+	def show
+		@concept = Concept.find(params[:id])
+		@lesson = @concept.lesson
+		@course = @lesson.course
+		@comment = Comment.new
+	end
+
 	def edit
 		@concept = Concept.find(params[:id])
 		@lesson = @concept.lesson

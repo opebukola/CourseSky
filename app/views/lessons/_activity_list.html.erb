@@ -1,20 +1,20 @@
-<h3> Add New Activities to this Lesson: </h3><br />
-
-<%=link_to "Add New Concept", new_concept_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
-<%=link_to "Add New Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
-<hr />
-
 <h3> Rearrange existing activities </h3>
 <p>
 <ul id="lesson-activities-list" data-update-url=" <%= sort_lesson_activities_url %>">
   <% @lesson.lesson_activities.order(:position).each do |a| %>
     <%= content_tag(:li, class:'lesson_activity', id: "lesson_activity_#{a.id}") do %>
     <span class="handle">[move]</span>
-      <%= a.activity_type %> <%= a.position %>
-      <%= link_to "View", lesson_activity_path(a), target: 'blank' %> |
       <% if a.activity_type == 'Concept' %>
+        <% concept = Concept.find(a.activity_id) %>
+        <%= a.activity_type %> |
+        <%= concept.title %> |
+        <%= link_to "View", lesson_activity_path(a), target: 'blank' %> |
       	<%= link_to 'Edit', edit_concept_path(Concept.find(a.activity_id), lesson_id: @lesson.id) %> |
       	<% else %>
+        <% question = Question.find(a.activity_id) %>
+        <%= a.activity_type %> | 
+        <%= truncate(question.question_text) %> |
+        <%= link_to "View", lesson_activity_path(a), target: 'blank' %> |
       	<%= link_to 'Edit', edit_question_path(Question.find(a.activity_id), lesson_id: @lesson.id) %> |
       <% end %>
       <%= link_to 'Remove from Lesson', lesson_activity_path(a),
@@ -24,5 +24,10 @@
   <% end %>
 </ul>
 </p>
+<hr />
+<h3> Add New Activities to this Lesson: </h3><br />
+<%=link_to "Add New Concept", new_concept_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+<%=link_to "Add New Question", new_question_path(lesson_id: @lesson.id), class: "btn btn-primary" %>
+
 
 

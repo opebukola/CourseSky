@@ -1,8 +1,12 @@
 <%=provide(:title, @course.title + 'Practice') %>
-<%= render 'shared/course_intro' %>
-<div class="skills-listing">
-	<h3> Coming Soon! Master every <%= @course.title %> skill with unlimited practice questions.</h3><br />
-	<h3> Below is a list of all the skills covered in Algebra 1.</h3><br />
+<%= render 'shared/course_nav' %>
+<div class="course-practice">
+	<h2> Coming Soon! </h2>
+	<div class="course-practice-teaser">
+		Practice makes perfect! Master every <%= @course.title %> skill and build your confidence with unlimited practice questions. The better you get, the harder the questions will get until you score a perfect 100!
+	</div>
+	<hr />
+	<h3> All Algebra Skills</h3><br />
 	<% @course.skills.each do |s| %>
 		<ul>
 			<li><%= link_to s.description, '#' %></li>

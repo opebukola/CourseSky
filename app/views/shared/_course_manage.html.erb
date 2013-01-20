@@ -1,6 +1,6 @@
 <div class="course-top-nav">
-	<div class="nav-course-title"><%= @course.title %></div>
-	<div class="nav-course-links">
-	  <%= link_to "Edit the Course", manage_course_path(@course) %> 
-	</div>
+	<span class="main-course-title"><%= @course.title %></span>
+	<span class="nav-course-links">
+	  <%= link_to "Back to main course edit page", manage_course_path(@course) %> 
+	</span>
 </div>

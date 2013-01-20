@@ -1,28 +1,42 @@
 <%= provide(:title, 'Your Courses') %>
 
-<h2> Courses in Progress: </h2>
-<div>
-  <% @user.enrolled_courses.each do |course| %>
-  <div id = "leave-course-<%=course.id%>">
-    <%= link_to course.title, course_path(course) %><br />
-    Progress: <%= @user.progress(course) %> percent complete.<br />
-    <%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(course.id), html: {method: :delete}, remote:true) do |f| %>
-      <%= f.button :submit, "Leave course", class: 'btn btn-danger' %>
+<div class="courses-learning">
+  <div class="dashboard-intro-title"> You're Learning</div>
+  <div class="dashboard">
+    <% @user.enrolled_courses.each do |course| %>
+      <div class="course-info">
+        <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
+        <h3><%= course.title %></h3>
+        X lessons completed<br />
+        X questions answered <br />
+        <p id = "leave-course-<%=course.id%>">
+          <%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(course.id), html: {method: :delete}, remote:true) do |f| %>
+            <%= f.button :submit, "Leave course", class: 'btn btn-danger' %>
+          <% end %>
+        </p>
+      </div>        
     <% end %>
   </div>
-  <hr />
-  <% end %>
 </div>
 
+<div class="courses-complete">
+  <div class="dashboard-intro-title"> You've Completed</div>
+  <div class="dashboard">
+  </div>
+</div>
 
-<h2> Courses Completed: </h2>
-
-<% if @user.courses.any? %>
-
-<h2> You're Teaching: </h2>
-<% @user.courses.each do |course| %>
-  <%= link_to course.title, manage_course_path(course) %> |
-  Status: <%= course.status %><br />
-<% end %>
-
+<% if current_user.instructor? %>
+<div class="courses-teaching">
+  <div class="dashboard-intro-title"> You're Teaching</div>
+  <div class="dashboard">
+    <% @user.courses.each do |course| %>
+      <div class="course-info">
+        <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
+        <h3><%= course.title %></h3>
+        <%= link_to "Edit Course", manage_course_path(course),class: 'btn' %> <br />
+        Status: <%= course.status %>
+      </div>
+    <% end %>
+  </div>
+</div>
 <% end %>

@@ -1,12 +1,15 @@
 <% provide(:title, @user.fname) %>
 
-<h3> Your profile </h3><br />
+<h3><%=@user.fname%>'s Profile </h3><br />
 
-<p>
-  <%= image_tag @user.avatar_url(:profile) %>
-  Name: <%= @user.fname %><br />
-  Location: <%= @user.location %><br />
-  About Me: <%= @user.about %>
-</p>
+<div class="box_profile">
+	<p>
+	  <%= image_tag @user.avatar_url(:profile) %><br />
+	  <span class="profile-heading">Location:</span><br />
+	   <%= @user.location %><br />
+	   <span class="profile-heading">About:</span><br />
+	    <%= @user.about %><br />
+	</p>
+</div>
 
-<%= link_to "Edit Your Profile", edit_user_registration_path(@user) if @user == current_user %>
+<%= link_to "Edit Your Profile and Settings", edit_user_registration_path(@user) if @user == current_user %>

@@ -1,21 +1,21 @@
 <p>
-	<h2> Add, Edit or Rearrange course units</h2>
+	<h3> Add, Edit or Rearrange course units</h3><br />
 	
-	<ul id="units-list" data-update-url="<%= sort_units_url %>">
+	<ol id="units-list" data-update-url="<%= sort_units_url %>">
 		<% @units.each do |u| %>
 			<%= content_tag_for :li, u do %>
-				<h3><span class="handle">[move]</span>
+				<h4><span class="handle">[move]</span>
 					<span data-toggle="collapse" data-target="#lessons-unit-<%=u.position%>"><%= u.title %></span> |
 					<%= link_to 'Edit Unit', edit_unit_path(u, course_id:@course.id)%> |
 					<%= link_to 'Delete Unit', unit_path(u),
 																		method: :delete,
 																		data: {confirm: 'Are you sure?'} %>
-				</h3>	
+				</h4>	
 			<% end %><br />
 		<% end %>
 	</ul>
 </p>
-<p>
-	<%= link_to 'Add New Unit', new_unit_path(course_id: @course.id), class: 'btn btn-primary' %>
-</p>
+<hr />
+<%= link_to 'Add New Unit', new_unit_path(course_id: @course.id), class: 'btn btn-primary' %>
+
 

@@ -1,4 +1,4 @@
-<h2> Add, Edit or Rearrange lessons </h2>
+<h3> Add, Edit or Rearrange lessons </h3>
 <% if @unit.lessons.any? %>
 	<p>
   <ol id="lessons-list" data-update-url="<%=sort_lessons_url(course_id: @course.id) %>">
@@ -15,4 +15,5 @@
   </ol>
 </p>
 <% end %>
-<%= link_to 'Add New Lesson to Unit', new_lesson_path(unit_id: @unit), class: "btn" %>
+<hr />
+<%= link_to 'Add New Lesson to Unit', new_lesson_path(unit_id: @unit), class: "btn btn-primary" %>

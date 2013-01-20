@@ -14,14 +14,6 @@
 				<p class="progress-description">questions answered</p>
 			</div>
 		</div>
-		<div class="skills-report">
-			<p class="progress-notice"> Skill Report </p>
-			<h3> Top 5 Skills Mastered</h3><br />
-
-
-			<h3> Top 5 Skills to Work On</h3><br />
-			<%= link_to "Coming Soon! Get a detailed skill report for this course", '#' %>
-		</div>
 	<% else %>
 	<p class="progress-notice"> 
 		You don't have any progress data for this course yet. <%=link_to "Start Learning", lessons_course_path(@course)%> and we'll track your progress. 

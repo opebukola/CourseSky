@@ -59,62 +59,62 @@ label.boolean {
 // /* TYPOGRAPHY */
 // /** -------------------------------------------------- **/
 
-// h1, h2, h3, h4, h5, h6 {
-//   line-height: 1;
-// }
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
 
-// h1 {
-//   font-size: 2.7em;
-//   letter-spacing: -2px;
-//   margin-bottom: 30px;
-//   /* text-align: center; */
-// }
+h1 {
+  font-size: 2.7em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  /* text-align: center; */
+}
 
-// h2 {
-//   font-size: 2em;
-//   letter-spacing: -1px;
-//   margin-bottom: 30px;
-//   /* color: $grayLight; */
-//   font-weight: normal;
-// }
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  /* color: $grayLight; */
+  font-weight: normal;
+}
 
-// p {
-//   font-size: 1.1em;
-//   line-height: 1.7em;
-// }
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
 
 /** -------------------------------------------------- **/
 /* ALERTS */
 /** -------------------------------------------------- **/
 
-// .alert {
-//   padding: 8px 35px 8px 14px;
-//   margin-bottom: 20px;
-//   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-//   background-color: #fcf8e3;
-//   border: 1px solid #fbeed5;
-//   -webkit-border-radius: 4px;
-//   -moz-border-radius: 4px;
-//   border-radius: 4px;
-//   color: #d9831f;
-// }
+.alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #d9831f;
+}
 
-// .alert-success {
-//   background-color: #dff0d8;
-//   border-color: #d6e9c6;
-//   color: #3d9400;
-// }
-// .alert-danger,
-// .alert-error {
-//   background-color: #f2dede;
-//   border-color: #eed3d7;
-//   color: #d9230f;
-// }
-// .alert-info {
-//   background-color: #d9edf7;
-//   border-color: #bce8f1;
-//   color: #029acf;
-// }
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3d9400;
+}
+.alert-danger,
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #d9230f;
+}
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #029acf;
+}
 
 
 // /** -------------------------------------------------- **/
@@ -191,6 +191,9 @@ label.boolean {
       margin-left: 10px;
     }
   }
+  .icon-footer{
+    margin-right: 10px;
+  }
 }
 
 
@@ -230,8 +233,10 @@ label.boolean {
 
 
 .course-info{
+  border: 1px solid #ddd;
   background-color: #fefefe;
   padding: 10px 5px 20px 5px;
+  margin-bottom: 10px;
   img{
     float: left;
     margin-right: 30px;
@@ -258,137 +263,91 @@ label.boolean {
   text-align: center;
 }
 
-/** -------------------------------------------------- **/
-/* COURSE DETAIL */
-/** -------------------------------------------------- **/
 
-.course-top-nav{
-  background-color: white;
-  padding: 10px 10px 10px 10px;
-  border: 1px solid #ddd;
-  .nav-course-links{
-    font-size: 1.2em;
-    float: right;
-  }
-}
-
-.main-course-title{
-  font-size: 1.8em;
-  padding-bottom: 10px;
-  color: #741885;
-}
-
-.main-course-section{
-  font-size: 1.8em;
-  padding-bottom: 10px;
-}
-
-.course-intro-video{
-  border: 1px solid #ddd;
-  padding: 20px 20px 20px 20px;
-  margin-bottom: 20px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white;
-  text-align: center;
-}
-
-.course-description{
-  border: 1px solid #ddd;
-  padding: 20px 20px 20px 20px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white;
-  width: 60%;
-  float: left;
-}
-
-.course-instructors{
-  border: 1px solid #ddd;
-  padding: 20px 20px 20px 20px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white;
-  width: 30%;
-  float: right;
-}
-
-.course-topics{
-  border: 1px solid #ddd;
-  padding: 20px 20px 20px 20px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white;
-}
-
-.course-div{
-  padding: 5px 5px 5px;
-  margin-bottom: 10px;
-  #cover-image{
-    float: left; 
-    margin-right: 20px;
-    margin-left: 10px;
-  }
-}
-
-.content{
-  padding: 8px 0px 10px; 
-}
-
-.course-section{
-  border: solid 1px #CCC;
-  border-radius: 10px;
-  background-color: white;
-  width: 100px;
-  padding: 10px 10px 10px 30px;
-  float: left;
-  margin-right: 30px;
-  margin-bottom: 10px;
-  h3 {
-    margin:10px 0px 10px 0px;
-    font-size: 1.5em;
-    font-weight: normal;
-  }
-  &:hover { 
-      background-color: #32B2C6;
-    }
-}
-
-.progress-none a{
-  color: white;
-}
 
 /** -------------------------------------------------- **/
 /* ACTIVITY - NAVIGATION */
 /** -------------------------------------------------- **/
 
+.lesson-navigation{
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #ddd;
+  margin: 0px 0px 10px 0px;
+  .lesson-title{
+    font-size: 1.8em;
+    padding-bottom: 10px;
+    color: #741885;
+  }
+  .nav-lesson-links{
+    font-size: 1.2em;
+    float: right;
+  }
+}
+
+
+
 .lesson-nav{
   clear: right;
 }
 
-#lesson-items{
-  overflow: hidden;
+.concept-icon{
+
 }
 
-#lesson-items li{
+.show-topics{
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #741885;
+  padding-bottom: 10px;
+}
+
+.lesson-items{
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0px 10px 0px;
+  .in-lesson{
+    float: left;
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+}
+
+.lesson-items li{
   float: left;
   margin-right: 10px;
   list-style-type: none;
 
 }
 
-#lesson-items li a{
+.lesson-items li a{
   display: block;
   // text-indent: -9999em; 
   // background: image-url('schoolhouse_grey.png') 0 0 no-repeat;
-  height: 50px;
+  // height: 50px;
   width: 50px;
   color: #696969;
 }
+
+.lesson-questions{
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0px 10px 0px;
+  .in-lesson{
+    float: left;
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+  li{
+    list-style-type: none;
+    float: left;
+  }
+}
+
 
 /** -------------------------------------------------- **/
 /* ACTIVITY- CONCEPT SHOW */

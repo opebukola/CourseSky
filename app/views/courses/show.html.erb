@@ -1,20 +1,19 @@
 <%= provide(:title, @course.title) %>
-<%= render 'shared/course_intro' %>
-<br />
+<%= render 'shared/course_nav' %>
 <section>
-  <div class="main-course-section">Introduction to Algebra</div>
+  <div class="course-intro-title">Introduction to Algebra</div>
 	<div class="course-intro-video">
 		<iframe width="853" height="480" src="<%=@course.video_source%>" frameborder="1" allowfullscreen></iframe>
 	</div>
-  <div class="course-description">
-  	<div class="main-course-section"> About the Course</div>
+  <div class="course-intro-description">
+  	<span class="course-intro-about"> About the Course</span>
       <%= markdown @course.description %>
   </div>
   <div class="course-instructors">
-  	<div class="main-course-section">  About the Guide</div>
+      <span class="course-intro-about">  About the Guide</span>
       <%= image_tag @course.user.avatar_url(:headshot) %><br />
       <%= markdown (truncate h(@course.user.about),
-                       length: 500, 
+                       length: 600, 
                        omission: "...#{link_to'[more]',
                        user_path(@course.user), target: 'blank'}").html_safe %>
   </div>

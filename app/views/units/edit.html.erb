@@ -1,11 +1,12 @@
 <%= provide(:title, 'Edit Unit')%>
 <%= render 'shared/course_manage' %><br />
+<h3> Editing Unit <%=@unit.position%>: <%=@unit.title %></h3>
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#unit-info" data-toggle="tab"> Basics</a></li>
   <li><a href="#unit-lessons" data-toggle="tab">Lessons in the Unit</a></li>
 </ul>
-<h3> Editing Unit: <%=@unit.title %></h3><br />
+
 <div class="tab-content">
   <div class="tab-pane active" id="unit-info">
     <div class="tab-pane active" id="about">
