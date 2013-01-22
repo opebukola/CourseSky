@@ -15,12 +15,14 @@ gem 'kramdown'
 gem 'acts_as_list'
 gem 'omniauth-facebook'
 gem 'font-awesome-rails'
-gem 'taps'
+
 
 group :development do
   gem 'annotate'
   gem "rails-erd"
   gem 'ruby-graphviz', :require => 'graphviz'
+  gem 'taps'
+  gem 'sqlite3'
 end
 
 group :test, :development do
