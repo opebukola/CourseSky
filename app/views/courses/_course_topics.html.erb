@@ -1,3 +1,4 @@
+<% user = current_or_guest_user %>
 <% @units.each do |u| %>
   <div class="accordion course-topics" id="unit_accordion">
     <div class="accordion-group">
@@ -13,10 +14,9 @@
               <% u.lessons.each do |l| %>
                 <% if l.lesson_activities.any? %>
                   <li>
-                    <h4>
-                    <%= link_to l.title, lesson_activity_path(l.lesson_activities.first)  %> |
+                    <span>
+                    <%= link_to l.title, lesson_activity_path(l.lesson_activities.first)  %></span> | <%= l.status(user) %>
                     <% end %> 
-                  </h4>
                   </li>
               <% end %>
             </ol>

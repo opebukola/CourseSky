@@ -1,15 +1,4 @@
-/** course#show **/
-
-// .course-top-nav{
-//   background-color: white;
-//   padding: 10px 10px 10px 10px;
-//   border: 1px solid #ddd;
-//   margin: 0px 0px 10px 0px;
-//   .nav-course-links{
-//     font-size: 1.2em;
-//     float: right;
-//   }
-// }
+/** course details page**/
 
 .course-top-nav{
   // background-color: white;
@@ -118,11 +107,10 @@
     }
 }
 
-.progress-none a{
-  color: white;
-}
 
-/** course#practice **/
+/** -------------------------------------------------- **/
+/* Course Practice */
+/** -------------------------------------------------- **/
 
 .course-practice{
 	border: 1px solid #ddd;
@@ -133,4 +121,55 @@
 .course-practice-teaser{
 	font-size: 1.3em;
 	margin-top: 5px;
+}
+
+
+/** -------------------------------------------------- **/
+/* Course Progress */
+/** -------------------------------------------------- **/
+
+.course-progress-stats{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  padding: 0px 0px 0px 0px;
+  margin: 10px 0px 30px 0px;
+  .progress-stat{
+    float: left;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+  }
+}
+
+.course-progress-stats::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.skills-report{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0px 10px 0px;
+}
+
+.progress-notice{
+  font-size: 1.5em;
+}
+
+.course-lesson-progress{
+  border: 1px solid #ddd;
+  padding: 20px 20px 20px 20px;
+  background-color: white;
+  margin-top: 10px;
 }

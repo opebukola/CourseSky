@@ -18,7 +18,6 @@ require 'spec_helper'
 describe Attempt do 
 	it "should require a user" do
 		attempt = Attempt.new
-		attempt.quiz = Quiz.new
 		attempt.question = Question.new
 
 
@@ -27,7 +26,7 @@ describe Attempt do
 	end
 
 	it "should calculate a score after saving" do
-		quiz = FactoryGirl.create(:quiz)
+		# quiz = FactoryGirl.create(:quiz)
 		user = FactoryGirl.create(:user)
 		question = FactoryGirl.create(:question)
 		attempt1 = quiz.attempts.build

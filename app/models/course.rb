@@ -21,15 +21,15 @@ class Course < ActiveRecord::Base
   has_many :units
   has_many :units, order: "position", dependent: :destroy
   has_many :lessons, through: :units
+  has_many :questions, through: :lessons
   has_many :concepts, through: :lessons
-  has_many :course_skills
+  has_many :course_skills, dependent: :destroy
   has_many :skills, through: :course_skills
   has_many :enrollments, foreign_key: "enrolled_course_id", dependent: :destroy
   has_many :students, through: :enrollments
 
   VIDEO_REGEX = /(https?):\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 
-  # before_destroy :ensure_no_students
 
   validates :title, presence: true
   validates :description, presence: true
@@ -50,6 +50,35 @@ class Course < ActiveRecord::Base
       video_source = ""
     end
   end
+
+  #user progress methods - need to convert to sql
+
+
+  #temp method - need to write it differently
+  def questions_attempted(user)
+    lessons = self.lessons
+    questions = lessons.map{|l| l.cfu_attempted(user)}.uniq
+    return questions
+  end
+
+  def completed_lessons(user)
+    lessons = self.lessons
+    lessons.select{|l| l.completed_by?(user)}
+  end
+
+
+  def progress(user)
+    total = self.lessons.size
+    completed = self.completed_lessons(user).size
+    progress = (completed.to_f / total.to_f) * 100
+    return progress
+  end
+
+  def completed_by?(user)
+    lessons = self.lessons
+    lessons.all?{|l| l.completed_by(user)}
+  end
+
 
 
   #skill methods - need to convert to sql
@@ -90,23 +119,7 @@ class Course < ActiveRecord::Base
     end
   end
 
-  #progress methods
-  def completed_lessons(user)
-    lessons = self.lessons
-    lessons.select {|l| l.completed_by?(user)}
-  end
-
-  def progress(user)
-    total = self.lessons.count
-    completed = self.completed_lessons(user).count
-    progress = (completed.to_f / total.to_f) * 100
-    return progress
-  end
-
-  def completed_by?(user)
-    lessons = self.lessons
-    return true if lessons.all?{|l| l.completed_by(user)}
-  end
+  
 
   #search
   include PgSearch

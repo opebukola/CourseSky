@@ -14,11 +14,11 @@ require 'spec_helper'
 describe Skill do
 	let(:user){FactoryGirl.create(:user)}
 	let(:quiz) {FactoryGirl.create(:quiz)}
-	let(:attempt1) {quiz.attempts.build}
-	let(:attempt2) {quiz.attempts.build}
 	let(:skill) {FactoryGirl.create(:skill)}
 	let(:question1) {FactoryGirl.create(:question)}
 	let(:question2) {FactoryGirl.create(:question)}
+	# let(:attempt1) {quiz.attempts.build}
+	# let(:attempt2) {quiz.attempts.build}
 
 	describe "#questions_attempted(user)" do	
 		it	"should return empty set if no attempts" do

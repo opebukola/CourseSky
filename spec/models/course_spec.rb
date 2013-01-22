@@ -17,11 +17,13 @@ require 'spec_helper'
 
 describe	Course do
 	let(:user) {FactoryGirl.create(:user)}
+	let(:unit) {FactoryGirl.create(:unit)}
 	before do
 	  @course = Course.new(title: "Course 1", 
 	  										description: "Description",
 	  										cover_video: "http://www.youtube.com/watch?v=2_QdgNsopkM")
 	  @course.user = user
+	  @course.units << unit
 	end
 
 	subject {@course}
@@ -59,13 +61,59 @@ describe	Course do
 		it { should_not be_valid }
 	end
 
-	describe "#progress(user)" do
-		it "should return nothing if user is not enrolled" do
-			@course.progress(user).should be_nil
+	describe "#questions_attempted(user)" do
+		it "should return all course questions user has tried" do
+			unit = FactoryGirl.create(:unit)
+		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
+		  @course.units << unit
+		  @course.save
+
+
+			q1 = FactoryGirl.create(:question, lesson: lesson1)	
+      q2 = FactoryGirl.create(:question, lesson: lesson1)
+      q3 = FactoryGirl.create(:question, lesson: lesson1)
+      a1 = user.attempts.build
+      a1.question = q1
+      a1.save
+      a2 = user.attempts.build
+      a2.question = q2
+      a2.save 
+      a3 = user.attempts.build
+      a3.question = q1
+      a3.save
+
+      @course.save
+
+      @course.questions_attempted(user).should_not be_empty
+      @course.questions_attempted(user).should include (q1)
+      @course.questions_attempted(user).size == 2
 		end
 	end
 
-	describe "completed_by(user)" do
+	describe "#completed_lessons(user)" do
+		it "should return lessons in course user has finished" do
+
+			unit = FactoryGirl.create(:unit)
+		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
+		  lesson2 = FactoryGirl.create(:lesson, unit: unit)
+		  @course.units << unit
+		  @course.save
+
+		  lesson1.completed_by?(user) == true
+
+			@course.completed_lessons(user).should_not be_empty
+			@course.completed_lessons(user).should include(lesson1)
+			
+		end
+	end
+
+	# describe "#progress(user)" do
+	# 	it "should return nothing if user is not enrolled" do
+	# 		@course.progress(user).should be_nil
+	# 	end
+	# end
+
+	describe "completed_by?(user)" do
 		it "should be true if user has finished all course lessons" do
 			unit = FactoryGirl.create(:unit)
 		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
@@ -76,48 +124,35 @@ describe	Course do
 		  lesson1.completed_by?(user) == true
 		  lesson2.completed_by?(user) == true
 
-		  @course.completed_by?(user).should be_true
-
-		end
-	end
-
-	describe "#completed_lessons(user)" do
-		it "should return completed lessons in course" do
-			unit = FactoryGirl.create(:unit)
-		  lesson1 = FactoryGirl.create(:lesson, unit: unit)
-		  lesson2 = FactoryGirl.create(:lesson, unit: unit)
-		  @course.units << unit
-		  @course.save
-
-		  lesson1.completed_by?(user) == true
-
 		  pp @course.completed_lessons(user)
 
-		  @course.completed_lessons(user).should include(lesson1)	
-		  @course.completed_lessons(user).should_not include(lesson2)
-		end
-		
-	end
+		  @course.completed_by?(user).should be_true
 
-	describe "#practiced_skills(user)" do
-		it "should return list of skills in course user has worked on" do
-			skill = FactoryGirl.create(:skill)
-			question = FactoryGirl.create(:question)
-			skill.questions << question
-			@course.skills << skill
-			@course.save
-
-			quiz = FactoryGirl.create(:quiz)
-			attempt1 = quiz.attempts.build
-			attempt1.user = user
-			attempt1.question = question
-			attempt1.correct = false
-			attempt1.save
-
-			@course.practiced_skills(user).should_not be_empty
-			@course.practiced_skills(user).size == 1
+		  lesson3 = FactoryGirl.create(:lesson, unit: unit)
+		  @course.completed_by?(user).should_not be_true
 
 		end
-		
 	end
+
+	# describe "#practiced_skills(user)" do
+	# 	it "should return list of skills in course user has worked on" do
+	# 		skill = FactoryGirl.create(:skill)
+	# 		question = FactoryGirl.create(:question)
+	# 		skill.questions << question
+	# 		@course.skills << skill
+	# 		@course.save
+
+	# 		quiz = FactoryGirl.create(:quiz)
+	# 		attempt1 = quiz.attempts.build
+	# 		attempt1.user = user
+	# 		attempt1.question = question
+	# 		attempt1.correct = false
+	# 		attempt1.save
+
+	# 		@course.practiced_skills(user).should_not be_empty
+	# 		@course.practiced_skills(user).size == 1
+
+	# 	end
+		
+	# end
 end

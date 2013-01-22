@@ -111,7 +111,7 @@ class LessonsController < ApplicationController
       unless @lesson.completed_by?(user)
         flash[:error] = "You must answer all questions correctly to finish lesson"
         redirect_to :back
-      end
+      end if @lesson.cfu_questions.any?
     end
 
 end

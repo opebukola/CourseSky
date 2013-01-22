@@ -2,7 +2,7 @@
  <% if user.enrolled?(@course) %>
 		<div class="course-progress-stats">
 			<div class="progress-stat">
-				<h3 class="progress-number"><%=@course.completed_lessons(user).count %></h3>
+				<h3 class="progress-number"><%=@course.completed_lessons(user).size%></h3>
 				<p class="progress-description">lessons completed</p>
 			</div>
 			<div class="progress-stat">
@@ -10,13 +10,21 @@
 				<p class="progress-description">lessons completed</p>
 			</div>
 			<div class="progress-stat">
-				<h3 class="progress-number">X</h3>
+				<h3 class="progress-number"><%=@course.questions_attempted(user).size %></h3>
 				<p class="progress-description">questions answered</p>
 			</div>
 		</div>
 	<% else %>
-	<p class="progress-notice"> 
-		You don't have any progress data for this course yet. <%=link_to "Start Learning", lessons_course_path(@course)%> and we'll track your progress. 
-	</p>
-<% end %>
+		<p class="progress-notice"> 
+			You don't have any progress data for this course yet. <%=link_to "Start Learning", lessons_course_path(@course)%> and we'll track your progress. 
+		</p>
+	<% end %>
 
+<div class="course-lesson-progress">
+	<h3> All Lessons </h3><br />
+	<ol>
+	<% @course.lessons.each do |l| %>
+		<li><%= l.title %> | Status: <%= l.status(user)%> | Score: <%=l.lesson_score(user).round(0) %>%</li>
+	<% end %>
+	</ol>
+</div>

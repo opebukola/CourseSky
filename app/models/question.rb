@@ -104,12 +104,6 @@ class Question < ActiveRecord::Base
       self.lesson.id, self.id, 'Question').destroy
   end
 
-  # #quiz methods
-
-  # def last_quiz_attempt(quiz)
-  #   quiz.attempts.where(question_id: self.id).order('created_at DESC').first
-  # end
-
   #user attempts  
 
   def attempted_by?(user)
@@ -124,7 +118,6 @@ class Question < ActiveRecord::Base
   end
 
   def correct_attempt?(user)
-    # return true if 
     self.last_attempt_by(user) && 
     self.last_attempt_by(user).correct == true
   end

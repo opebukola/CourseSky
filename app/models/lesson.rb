@@ -29,17 +29,16 @@ class Lesson < ActiveRecord::Base
   alias_method :next_lesson, :lower_item
   alias_method :prev_lesson, :higher_item
 
+
+  #user progress methods - need to convert to sql
+
   def cfu_activities
     self.lesson_activities.find_all_by_activity_type('Question')
   end
 
-  # find cfu questions only - sql & test
   def cfu_questions
     self.cfu_activities.map{|a| Question.find(a.activity_id)}.flatten
   end
-
-
-  #lesson progress methods - need to test  & sql
 
   def cfu_attempted(user)
     self.cfu_questions.select{|q| q.attempted_by?(user)}
@@ -57,14 +56,29 @@ class Lesson < ActiveRecord::Base
   end
 
   def completed_by?(user)
-    return true if self.cfu_questions.all?{|q| q.correct_attempt?(user)}
+    self.cfu_questions.any? && 
+    self.cfu_questions.all?{|q| q.attempted_by?(user)}
   end
 
-  def score(user)
-    total = self.cfu_questions.count
-    correct = self.cfu_correct(user).count
-    score = (correct.to_f / total.to_f) * 100
-    return score
-  end 
+  def lesson_score(user)
+    if self.cfu_questions.any?
+      total = self.cfu_questions.count
+      correct = self.cfu_correct(user).count
+      score = (correct.to_f / total.to_f) * 100
+      return score
+    else
+      return 0
+    end
+  end
+
+  def status(user)
+    if self.completed_by?(user)
+      return 'completed'
+    elsif self.cfu_attempted(user).any?
+      return 'in progress'
+    else
+      return 'not started'
+    end
+  end
 
 end
