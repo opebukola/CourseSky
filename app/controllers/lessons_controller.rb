@@ -109,7 +109,7 @@ class LessonsController < ApplicationController
       @lesson = Lesson.find(params[:id])
       user = current_or_guest_user
       unless @lesson.completed_by?(user)
-        flash[:error] = "You must answer all questions correctly to finish lesson"
+        flash[:error] = "You must attempt all questions to finish lesson"
         redirect_to :back
       end if @lesson.cfu_questions.any?
     end

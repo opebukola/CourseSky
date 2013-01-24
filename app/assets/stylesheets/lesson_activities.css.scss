@@ -1,3 +1,139 @@
-// Place all the styles related to the LessonActivities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/** -------------------------------------------------- **/
+/* Lesson Activity Navigation */
+/** -------------------------------------------------- **/
+
+.lesson-navigation{
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #ddd;
+  margin: 0px 0px 10px 0px;
+  .lesson-title{
+    font-size: 1.8em;
+    padding-bottom: 10px;
+    color: #741885;
+  }
+  .nav-lesson-links{
+    font-size: 1.2em;
+    float: right;
+  }
+}
+
+.lesson-items{
+  clear: left;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 0px 10px 0px;
+  li{
+    list-style-type: none;
+    // margin: 0px 5px 0px 5px;
+    display: inline-block;
+  }
+}
+
+ol#topics{
+  margin-left: 0px;
+}
+
+.icon-concept{
+  color: #D8D8D8;
+}
+
+.icon-question-correct{
+  color: #40FF00;
+}
+
+.icon-question-unattempted{
+  color: #424242;
+}
+
+.icon-question-incorrect{
+  color: #FE2E2E;
+}
+
+.lesson-nav{
+  clear: right;
+}
+
+/** -------------------------------------------------- **/
+/* Show Concept */
+/** -------------------------------------------------- **/
+
+.activity-concept{
+  margin: 0px 0px 10px 0px;
+
+}
+
+.concept-area{
+  background-color: white;
+  padding: 10px 10px 20px 20px;
+  margin: 0px 0px 10px 0px;
+  background-color: white;
+  border: 2px solid #E5E5E5; 
+  border-radius: 5px;
+  padding: 10px 10px 20px 20px;
+  #video{
+    text-align: center;
+  }
+}
+
+.comment-section{
+  clear: both;
+}
+
+/** -------------------------------------------------- **/
+/* Show Question */
+/** -------------------------------------------------- **/
+
+.activity-question{
+  margin: 0px 0px 20px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.question-area-large{
+  background-color: white;
+  border: 2px solid #E5E5E5; 
+  border-radius: 5px;
+  padding: 10px 10px 20px 20px;
+  margin: 0px 0px 10px 0px;
+  .already-answered{
+    border: 1px dotted;
+    border-radius: none;
+    padding: 5px 5px 5px 5px;
+    margin: 0px 0px 5px 0px;
+  }
+  .question-text{
+   width: 65%;
+   float: left;
+  }
+  .answer-area{
+    width: 30%;
+  }
+  .question-data{
+    margin-top: 20px;
+    color: #666;
+  }
+}
+
+.question-area-large::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+input#attempt_response.string.quiz_response_form{
+  height: 30px;
+  line-height: 20px;
+  font-size: 15px;
+}
+
+.btn#view-solution{
+  background-color: #741885;
+  background: #741885;
+  font-size: 14px;
+  color: white;
+}

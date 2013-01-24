@@ -56,9 +56,8 @@ class Course < ActiveRecord::Base
 
   #temp method - need to write it differently
   def questions_attempted(user)
-    lessons = self.lessons
-    questions = lessons.map{|l| l.cfu_attempted(user)}.uniq
-    return questions
+    questions = self.questions
+    questions.find_all{|q| q.attempted_by?(user)}.size
   end
 
   def completed_lessons(user)

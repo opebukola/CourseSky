@@ -14,15 +14,12 @@ gem 'fog'
 gem 'kramdown'
 gem 'acts_as_list'
 gem 'omniauth-facebook'
-gem 'font-awesome-rails'
 
 
 group :development do
   gem 'annotate'
   gem "rails-erd"
   gem 'ruby-graphviz', :require => 'graphviz'
-  gem 'taps'
-  gem 'sqlite3'
 end
 
 group :test, :development do
@@ -44,5 +41,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass', '2.0.4'
   gem 'uglifier', '>= 1.0.3'
+  gem 'font-awesome-rails'
 end
 

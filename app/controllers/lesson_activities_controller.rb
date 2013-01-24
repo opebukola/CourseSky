@@ -2,6 +2,7 @@ class LessonActivitiesController < ApplicationController
 	def show
 		@activity = LessonActivity.find(params[:id])
 		@lesson = @activity.lesson
+		@activities = @lesson.lesson_activities
 		@course = @lesson.course
 		@quiz = Quiz.new
 		@attempt = Attempt.new

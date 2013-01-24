@@ -1,35 +1,41 @@
+<% user = current_or_guest_user %>
 <div class="lesson-navigation">
+	<span class="lesson-title">
+		Learning: <%= @lesson.title %>
+	</span>
+	<span class="nav-lesson-links">
+		<a data-toggle="collapse" href="#topics">Topics & Questions</a>
+	</span>
+</div>
 
-<span class="lesson-title">Learning: <%= @lesson.title %></span>
-<span class="nav-lesson-links">
-<a class="n" data-toggle="collapse" href="#topics">Show Topics</a> |
-<a class="n"data-toggle="collapse" href="#questions">Show Questions </a>
-</span>
-<div id="topics" class="collapse">
-<ul class="lesson-items">
-	<span class="in-lesson"> All Topics: </span>
-	<% @lesson.concepts.each do |c| %>
+<ol id="topics" class="collapse">
+	<div class="lesson-items">
+	<% @activities.order(:position).each do |a| %>
 	<li>
-			<% a = LessonActivity.find_by_activity_type_and_activity_id("Concept", c.id)  %>
+		<% if a.activity_type == 'Concept' %>
+			<% c = Concept.find(a.activity_id) %>
 			<%= link_to lesson_activity_path(a), title: c.title do %>
-			<i class="icon-book icon-2x concept-icon"></i>
+				<i class="icon-play-circle icon-2x icon-concept"></i>
+			<% end %>
+		<% else %>
+			<% question = Question.find(a.activity_id) %>
+			<% if question.correct_attempt?(user) %>
+				<%= link_to lesson_activity_path(a) do %>
+					<i class="icon-check icon-2x icon-question-correct"></i>
+				<% end %>
+			<% elsif question.attempted_by?(user) %>
+				<%= link_to lesson_activity_path(a) do %>
+					<i class="icon-check-empty icon-2x icon-question-incorrect"></i>
+				<% end %>
+			<% else %>
+				<%= link_to lesson_activity_path(a) do %>
+					<i class="icon-check-empty icon-2x icon-question-unattempted"></i>
+				<% end %>
+			<% end %>
 		<% end %>
 	</li>
-<% end %>
-</ul>
+	<% end %>
 </div>
-
-<div id="questions" class="collapse">
-<ol class="lesson-questions">
-	<span class="in-lesson"> All Questions: </span>
-	<% @lesson.questions.each do |q| %>
-	<li>
-			<% a = LessonActivity.find_by_activity_type_and_activity_id("Question", q.id)  %>
-			<%= link_to lesson_activity_path(a) do %>
-			<i class="icon-question-sign icon-2x concept-icon"></i>
-		<% end %>
-	</li>
-<% end %>
 </ol>
-</div>
-</div>
+
+
