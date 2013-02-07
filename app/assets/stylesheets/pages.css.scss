@@ -9,19 +9,26 @@
 	font-weight: normal;
 	font-size: 22px;
 	line-height: 32px;
-	width: 83%;
+	width: 85%;
 	margin: 0 auto;
-	margin-bottom: 70px;
+	margin-bottom: 30px;
 }
 .about_page .section_header.team {
-	margin-top: 50px;
+	margin-top: 30px;
 }
 .about_page .teammate {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 .about_page .teammate img {
 	margin-bottom: 10px;
 }
+
+.about_page .teammate-main img {
+	margin-bottom: 10px;
+	float: left;
+	margin-right: 20px;
+}
+
 .about_page .teammate h5 {
 	margin-bottom: 2px;
 }
@@ -32,7 +39,7 @@
 .about_page .teammate p.description { 
 	font-size: 15px;
 	color: #57595C;
-	width: 80%;
+	width: 90%;
 }
 .about_page .teammate .social {
 	margin-top: 15px;

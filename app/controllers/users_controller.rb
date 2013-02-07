@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = User.find(params[:id])
+    @courses = Course.text_search(params[:query]).published.desc
   end
 
   def destroy

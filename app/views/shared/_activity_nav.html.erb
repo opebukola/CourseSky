@@ -4,7 +4,7 @@
 		Learning: <%= @lesson.title %>
 	</span>
 	<span class="nav-lesson-links">
-		<a data-toggle="collapse" href="#topics">Topics & Questions</a>
+		<a data-toggle="collapse" href="#topics">Concepts & Questions</a>
 	</span>
 </div>
 
@@ -25,7 +25,7 @@
 				<% end %>
 			<% elsif question.attempted_by?(user) %>
 				<%= link_to lesson_activity_path(a) do %>
-					<i class="icon-check-empty icon-2x icon-question-incorrect"></i>
+					<i class="icon-remove icon-2x icon-question-incorrect"></i>
 				<% end %>
 			<% else %>
 				<%= link_to lesson_activity_path(a) do %>

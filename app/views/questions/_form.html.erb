@@ -1,41 +1,54 @@
+<ul class="nav nav-tabs">
+  <li><a href="#basics" data-toggle="tab">Question Basics</a></li>
+  <li><a href="#question" data-toggle="tab">Question & Hint</a></li>
+  <li><a href="#answers" data-toggle="tab">Answers & Explanation</a></li>
+</ul>
+
+
 <%= simple_form_for @question do |f| %>
-  <%= f.input :lesson_id, as: :hidden, input_html: {value: @lesson.id} %>
-
-  <h4>Choose a question type </h4><br />
-  <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
-  <hr />
-    <h4>Choose difficulty level </h4><br />
-  <%= f.select :difficulty, Question::QUESTION_DIFFICULTY, {}, :class => "input-xlarge" %>
-  <hr />
-
-  <h3>Write the Question Text </h3>
-  <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>
-  <p class="muted"><%= render "shared/markdown_tip" %></p>
-
-  <h3>Add an Image </h3>
-  <%= f.input :question_image, label: "Upload an image" %>
-
-  <h3> Enter Answers </h3><br />
-  <div class="answer-list">
-    <%= f.simple_fields_for :answers do |builder| %>
-      <%= render 'answer_fields', f: builder %>
-    <% end %>
+<div class="tab-content">
+  <div class="tab-pane active" id="basics">
+    <%= f.input :lesson_id, as: :hidden, input_html: {value: @lesson.id} %>
+    <h4>Choose a question type </h4><br />
+    <%= f.select :question_type, Question::QUESTION_TYPES, {}, :class => "input-xlarge" %>
+    <hr />
+      <h4>Choose difficulty level </h4><br />
+    <%= f.select :difficulty, Question::QUESTION_DIFFICULTY, {}, :class => "input-xlarge" %>
+    <hr />
+    <h4>Choose Skills Tested</h4><br />
+   <%= f.association :skills, input_html: {class: "input-xxlarge"},label_method: :description, label: 'Add skills', required: true %>
   </div>
-  <p>
-    <%= link_to_add_fields "Add Answer", f, :answers %>
-  </p>
-  <h3>Write a hint </h3>
+  <div class="tab-pane" id="question">
+    <h3>Write the Question Text </h3>
+    <%= f.input :question_text, input_html: {class: "input-xxlarge", rows:5}, label:"Prompt" %>
+    <p class="muted"><%= render "shared/markdown_tip" %></p>
+
+    <h3>Add an Image </h3>
+    <%= f.input :question_image, label: "Upload an image" %>
+    <h3>Write a hint </h3>
   <%= f.input :hint, input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
   <p>
 <hr />
+  </div>
+  <div class="tab-pane" id="answers">
+    <h3> Enter Answers </h3><br />
+    <div class="answer-list">
+      <%= f.simple_fields_for :answers do |builder| %>
+        <%= render 'answer_fields', f: builder %>
+      <% end %>
+    </div>
+  <p>
+    <%= link_to_add_fields "Add Answer", f, :answers %>
+  </p>
+  
 
- <h3>Explain the Answer </h3>
+ <h3>Explain the Answer </h3><br />
+ <%= f.input :explanation_video, input_html: {class: "input-xxlarge"}, label: "Add link to video explanation", hint: 'YouTube URL only' %>
   <%= f.input :explanation_text, label: "Enter answer explanation", input_html: {class: "input-xxlarge", rows:5} %>
   <p class="muted"><%= render "shared/markdown_tip" %></p>
-
-   <h4>Choose Skills </h4><br />
-   <%= f.association :skills, label_method: :description, label: 'Add skills', required: true %>
+  </div>
+</div>
   <hr />
   <%= f.button :submit, "Save Question", class: "btn btn-primary" %>
 <% end %>

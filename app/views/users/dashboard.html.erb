@@ -3,25 +3,24 @@
 <div class="courses-learning">
   <div class="dashboard-intro-title"> You're Learning</div>
   <div class="dashboard">
-    <% @user.enrolled_courses.each do |course| %>
-      <div class="course-info">
-        <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
-        <h3><%= course.title %></h3>
-        X lessons completed<br />
-        X questions answered <br />
-        <p id = "leave-course-<%=course.id%>">
-          <%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(course.id), html: {method: :delete}, remote:true) do |f| %>
-            <%= f.button :submit, "Leave course", class: 'btn btn-danger' %>
-          <% end %>
-        </p>
-      </div>        
+    <% if @user.enrolled_courses.any? %>
+      <% @user.enrolled_courses.each do |course| %>
+        <div class="course-info">
+          <%= link_to image_tag(course.cover_image_url(:home)), course_path(course) %> 
+          <h3><%= course.title %></h3>
+          X lessons completed<br />
+          X questions answered <br />
+          <p id = "leave-course-<%=course.id%>">
+            <%= simple_form_for(current_user.enrollments.find_by_enrolled_course_id(course.id), html: {method: :delete}, remote:true) do |f| %>
+              <%= f.button :submit, "Leave course", class: 'btn btn-danger' %>
+            <% end %>
+          </p>
+        </div>        
+      <% end %>
+    <% else %>
+     <h3> You're not taking any courses yet. Pick a course below and get started! </h3><br />
+     <%= render 'shared/course_box' %>
     <% end %>
-  </div>
-</div>
-
-<div class="courses-complete">
-  <div class="dashboard-intro-title"> You've Completed</div>
-  <div class="dashboard">
   </div>
 </div>
 
