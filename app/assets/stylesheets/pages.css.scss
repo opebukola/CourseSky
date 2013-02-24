@@ -1,11 +1,44 @@
 /* pages#about */
 
+.about_page .static-content{
+	float: right;
+	width: 650px;
+}
+
+.about_page .sidebar{
+	float: left;
+	width: 200px;
+	margin-top: 40px;
+	ul{
+		list-style-type: none;
+		margin: 0 0 35px -30px;
+		li{
+			position: relative;
+			height: 22px;
+			padding: 6px 0 6px 30px;
+			margin: 0 0 5px 0;
+			font-size: 1.5em; 
+			a{
+				color: #741885;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+
 .about_page .section_header {
 	margin-top: 30px;
 }
+
+.about_page .section_small_header{
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
 .about_page h3.intro {
 	color: #282F39;
-	text-align: center;
+	// text-align: center;
 	font-weight: normal;
 	font-size: 22px;
 	line-height: 32px;
@@ -13,11 +46,20 @@
 	margin: 0 auto;
 	margin-bottom: 30px;
 }
-.about_page .section_header.team {
-	margin-top: 30px;
+
+.about_page h4.intro {
+	color: #282F39;
+	// text-align: center;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 32px;
+	width: 85%;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
+
 .about_page .teammate {
-	margin-bottom: 30px;
+	margin-bottom: 80px;
 }
 .about_page .teammate img {
 	margin-bottom: 10px;
@@ -61,6 +103,8 @@
 		margin-left: 25px;
 	}
 }
+
+
 
 
 /* Pricing

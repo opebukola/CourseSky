@@ -8,6 +8,12 @@ class PagesController < ApplicationController
   def about
   end
 
+  def how
+  end
+
+  def team
+  end
+
   def admin
   end
 

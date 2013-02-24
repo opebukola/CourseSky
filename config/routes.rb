@@ -63,6 +63,8 @@ Coursesky::Application.routes.draw do
 
 
   match '/about', to: 'pages#about'
+  match '/howitworks', to: 'pages#how'
+  match '/team', to: 'pages#team'
   match '/admin', to: 'pages#admin'
   match '/careers', to: 'pages#careers'
   match '/terms', to: 'pages#terms'
