@@ -41,8 +41,8 @@
   -moz-border-radius: 3px;
   border-radius: 3px;
   background-color: white;
-  width: 60%;
-  float: left;
+  // width: 60%;
+  // float: left;
 }
 
 
@@ -63,7 +63,9 @@
 }
 
 
-/**course#lessons page **/
+/** -------------------------------------------------- **/
+/* Course Lessons */
+/** -------------------------------------------------- **/
 
 .course-topics{
   border: 1px solid #ddd;
@@ -107,6 +109,10 @@
     }
 }
 
+.lesson-list li{
+  font-size: 1.2em;
+  line-height: 135%;
+}
 
 /** -------------------------------------------------- **/
 /* Course Practice */
@@ -172,4 +178,9 @@
   padding: 20px 20px 20px 20px;
   background-color: white;
   margin-top: 10px;
+}
+
+.progress-list li{
+  font-size: 1.2em;
+  line-height: 175%;
 }

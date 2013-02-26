@@ -6,7 +6,8 @@
     Congratulations <%= current_user.try(:fname) %>! You've completed: <%= link_to @lesson.title, '#' %></h2>
 
     <h3> Liked this lesson? Tell your friends! </h3><br />
-  <a href="https://twitter.com/share" class="twitter-share-button" data-text="I have finished <%= @lesson.title %> of course <%= @lesson.course.title %> on CourseSky. You should try it! " data-url="<%= lesson_url(@lesson) %>" data-lang="en" data-size="large" data-count="none">Tweet</a>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="I just finished learning <%= @lesson.title %> (<%= @lesson.course.title %>) on CourseSky. You should try it!" data-url="<%= lesson_url(@lesson) %>" data-lang="en" data-size="large" data-count="none">Tweet</a>
+
   <div class="fb-like" data-send="true" data-width="450" data-show-faces="true" data-action="recommend" data-font="arial"></div>
  <hr />
   <h3> Ready for the Next Lesson?

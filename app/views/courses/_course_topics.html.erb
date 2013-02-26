@@ -7,10 +7,10 @@
           <h3>Unit <%=u.position%>: <%= u.title %></h3>
         </a>
       </div>
-      <div id="lessons_unit_<%=u.position%>" class="accordion-body collapse">
+      <div id="lessons_unit_<%=u.position%>" class="accordion-body collapse in">
         <div class="accordion-inner">
           <% if u.lessons.any? %>
-            <ol>
+            <ol class="lesson-list">
               <% u.lessons.each do |l| %>
                 <% if l.lesson_activities.any? %>
                   <li>

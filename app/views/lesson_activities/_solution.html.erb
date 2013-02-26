@@ -9,7 +9,7 @@
   <div class="modal-body">
     <p><%= markdown question.try(:explanation_text)%></p>
     <hr />
-    <% if question.explanation_video %>
+    <% if question.explanation_video? %>
       <iframe width="560" height="315" src="<%=question.video_source%>&rel=0" frameborder="1" allowfullscreen></iframe>
     <% end %>
   </div>

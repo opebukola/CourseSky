@@ -22,7 +22,7 @@
 
 <div class="course-lesson-progress">
 	<h3> All Lessons </h3><br />
-	<ol>
+	<ol class="progress-list">
 	<% @course.lessons.each do |l| %>
 		<li><%= l.title %> | Status: <%= l.status(user)%> | Score: <%=l.lesson_score(user).round(0) %>%</li>
 	<% end %>

@@ -39,7 +39,7 @@
       <div class="question-data">
         Difficulty: <%= question.difficulty_level %><br />
         Points Possible: <%= question.possible_points %><br />
-        Skills Tested:<br />
+        <div class="skills">Skills Tested:</div>
         <% question.skills.each do |s| %>
           <%= s.description %><br />
         <% end %>

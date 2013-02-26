@@ -34,7 +34,7 @@ class Question < ActiveRecord::Base
 
 
   QUESTION_TYPES = ["Multiple Choice", "Enter Response"]
-  QUESTION_DIFFICULTY = [1, 2, 3]
+  QUESTION_DIFFICULTY = [1, 2, 3, 4]
 
 
 
@@ -75,6 +75,7 @@ class Question < ActiveRecord::Base
     return "Easy" if self.difficulty == 1
     return "Medium" if self.difficulty == 2
     return "Hard" if self.difficulty == 3
+    return "Challenge" if self.difficulty == 4
   end
  
   #answers 

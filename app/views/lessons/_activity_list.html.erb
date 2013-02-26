@@ -5,11 +5,13 @@
     <%= content_tag(:li, class:'lesson_activity', id: "lesson_activity_#{a.id}") do %>
     <span class="handle">[move]</span>
       <% if a.activity_type == 'Concept' %>
+        <b>
         <% concept = Concept.find(a.activity_id) %>
         <%= a.activity_type %> |
         <%= concept.title %> |
         <%= link_to "View", lesson_activity_path(a), target: 'blank' %> |
       	<%= link_to 'Edit', edit_concept_path(Concept.find(a.activity_id), lesson_id: @lesson.id) %> |
+      </b>
       	<% else %>
         <% question = Question.find(a.activity_id) %>
         <%= a.activity_type %> | 

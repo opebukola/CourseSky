@@ -13,7 +13,7 @@
 	<%= f.input :doc, input_html: {class: "input-xxlarge", rows:10}, label: "Enter text document" %>
 	<p class="muted"><%= render "shared/markdown_tip" %></p>
 	<h3> Which Skills does this lesson teach? </h3>
-	<%= f.association :skills, label_method: :description, label: 'Add skills', hint: 'Select all that apply' %>
+	 <%= f.association :skills, input_html: {class: "input-xxlarge"},label_method: :description, label: 'Add skills', required: true %>
 	<hr />
 	<%= f.button :submit, "Save", class: "btn btn-primary" %>
 <% end %>

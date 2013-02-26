@@ -96,6 +96,9 @@
 .about_page .teammate .social i {
 	margin-right: 5px;
 }
+.careers li{
+	line-height: 30px;
+}
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 980px) {
@@ -104,7 +107,16 @@
 	}
 }
 
-
+.btn-start{
+  background-color: #741885;
+  background: #741885;
+  font-size: 1.4em;
+  color: white;
+  text-shadow: none; 
+  &:hover {
+      background-color: #741885;
+    }   
+  }
 
 
 /* Pricing
